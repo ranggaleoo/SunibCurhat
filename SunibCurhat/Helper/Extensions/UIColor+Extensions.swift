@@ -3,6 +3,10 @@ import UIKit
 
 extension UIColor {
     
+    struct custom {
+        static var red  : UIColor { return "C53741".hexToUIColor() }
+    }
+    
     /// SwifterSwift: https://github.com/SwifterSwift/SwifterSwift
     /// Hexadecimal value string (read-only).
     public var hexString: String {
