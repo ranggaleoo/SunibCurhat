@@ -4,7 +4,12 @@ import UIKit
 extension UIColor {
     
     struct custom {
-        static var red  : UIColor { return "C53741".hexToUIColor() }
+        static var red_absolute     : UIColor { return "CE0000".hexToUIColor() }
+        static var blue_absolute    : UIColor { return "006CEA".hexToUIColor() }
+        static var blue             : UIColor { return "008DDD".hexToUIColor() }
+        static var gray_absolute    : UIColor { return "8E8E93".hexToUIColor() }
+        static var gray             : UIColor { return "8E8E93".hexToUIColor() }
+        static var black_absolute   : UIColor { return "000000".hexToUIColor() }
     }
     
     /// SwifterSwift: https://github.com/SwifterSwift/SwifterSwift

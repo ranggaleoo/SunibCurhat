@@ -19,6 +19,32 @@ class ListCurhatViewController: UIViewController {
         super.viewDidLoad()
         delegates()
         configAdUnit()
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clicked)))
+    }
+    
+    @objc func clicked() {
+        print("--------clicked")
+        self.showLoaderIndicator()
+        TimelineService.shared.getTimeline { (result) in
+            switch result {
+            case .failure(let error):
+                self.dismissLoaderIndicator()
+                self.showAlert(title: "Error", message: error.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
+                    self.clicked()
+                }, CancelCompletion: { (act) in
+                    RepoMemory.token = nil
+                })
+                
+                print(error)
+            case .success(let success):
+                self.dismissLoaderIndicator()
+                self.showAlert(title: "Success", message: success.message, OKcompletion: { (act) in
+                    self.clicked()
+                }, CancelCompletion: nil)
+                print(success)
+            }
+        }
     }
     
     private func delegates() {
@@ -37,11 +63,16 @@ class ListCurhatViewController: UIViewController {
 
 extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurhatTableViewCell") as! CurhatTableViewCell
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 

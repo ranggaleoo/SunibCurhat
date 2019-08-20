@@ -20,6 +20,14 @@
 		AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5BABE522F655BC004253AF /* ListCurhat.storyboard */; };
 		AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */; };
 		AA5BABEC22F65876004253AF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABEB22F65876004253AF /* Logger.swift */; };
+		AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394923077BF800DEAA63 /* HTTPRequest.swift */; };
+		AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394B23077ED900DEAA63 /* URLConst.swift */; };
+		AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394E23077F6E00DEAA63 /* TimelineService.swift */; };
+		AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF39522307B57200DEAA63 /* HTTPRequestHeader.swift */; };
+		AABF39562307C05900DEAA63 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF39552307C05900DEAA63 /* MainService.swift */; };
+		AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF39582307C43B00DEAA63 /* MainResponse.swift */; };
+		AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */; };
+		AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACF3F1A23075E350056EF28 /* UIFont+Extensions.swift */; };
 		AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E35E22F70F01005CC55A /* UIViewController+Extensions.swift */; };
 		AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E35F22F70F01005CC55A /* UIView+Extensions.swift */; };
 		AAD0E37122F70F02005CC55A /* Common+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E36022F70F01005CC55A /* Common+Extensions.swift */; };
@@ -79,6 +87,14 @@
 		AA5BABE522F655BC004253AF /* ListCurhat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListCurhat.storyboard; sourceTree = "<group>"; };
 		AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurhatViewController.swift; sourceTree = "<group>"; };
 		AA5BABEB22F65876004253AF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		AABF394923077BF800DEAA63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		AABF394B23077ED900DEAA63 /* URLConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConst.swift; sourceTree = "<group>"; };
+		AABF394E23077F6E00DEAA63 /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
+		AABF39522307B57200DEAA63 /* HTTPRequestHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHeader.swift; sourceTree = "<group>"; };
+		AABF39552307C05900DEAA63 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
+		AABF39582307C43B00DEAA63 /* MainResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainResponse.swift; sourceTree = "<group>"; };
+		AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
+		AACF3F1A23075E350056EF28 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		AAD0E35E22F70F01005CC55A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AAD0E35F22F70F01005CC55A /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		AAD0E36022F70F01005CC55A /* Common+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Common+Extensions.swift"; sourceTree = "<group>"; };
@@ -170,6 +186,8 @@
 		AA3AB36322F7211E0016ADFF /* App_Main */ = {
 			isa = PBXGroup;
 			children = (
+				AABF39572307C42100DEAA63 /* Model */,
+				AABF39542307C04000DEAA63 /* Service */,
 				AA3AB36722F721810016ADFF /* Controller */,
 				AA3AB36422F7212A0016ADFF /* View */,
 			);
@@ -229,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				AA478D8F22F6503000BC23A7 /* ConstGlobal.swift */,
+				AABF394B23077ED900DEAA63 /* URLConst.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -256,6 +275,7 @@
 		AA5BABE322F6559C004253AF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AABF394D23077F4C00DEAA63 /* Service */,
 				AAF1182B22F6BCD200FDA099 /* TableViewCell */,
 				AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */,
 			);
@@ -284,9 +304,43 @@
 		AA5BABEA22F65860004253AF /* GeneralHelper */ = {
 			isa = PBXGroup;
 			children = (
+				AABF394823077BE000DEAA63 /* HTTPRequest */,
 				AA5BABEB22F65876004253AF /* Logger.swift */,
 			);
 			path = GeneralHelper;
+			sourceTree = "<group>";
+		};
+		AABF394823077BE000DEAA63 /* HTTPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				AABF394923077BF800DEAA63 /* HTTPRequest.swift */,
+				AABF39522307B57200DEAA63 /* HTTPRequestHeader.swift */,
+			);
+			path = HTTPRequest;
+			sourceTree = "<group>";
+		};
+		AABF394D23077F4C00DEAA63 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AABF394E23077F6E00DEAA63 /* TimelineService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		AABF39542307C04000DEAA63 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AABF39552307C05900DEAA63 /* MainService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		AABF39572307C42100DEAA63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AABF39582307C43B00DEAA63 /* MainResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AAD0E35D22F70EE6005CC55A /* Extensions */ = {
@@ -309,6 +363,8 @@
 				AAD0E36E22F70F02005CC55A /* UITextView+Extensions.swift */,
 				AAD0E35F22F70F01005CC55A /* UIView+Extensions.swift */,
 				AAD0E35E22F70F01005CC55A /* UIViewController+Extensions.swift */,
+				AACF3F1A23075E350056EF28 /* UIFont+Extensions.swift */,
+				AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -626,8 +682,10 @@
 			files = (
 				AAD0E3BB22F7111A005CC55A /* ContactCell.swift in Sources */,
 				AAD0E39322F70FE6005CC55A /* CurrencyCell.swift in Sources */,
+				AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */,
 				AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */,
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
+				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
 				AAD0E37C22F70F02005CC55A /* Date+Extension.swift in Sources */,
 				AAD0E3BD22F71122005CC55A /* Contact.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
@@ -635,6 +693,7 @@
 				16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */,
 				AAD0E3B922F71113005CC55A /* ContactsPickerViewController.swift in Sources */,
 				AAD0E38E22F70FBD005CC55A /* LocalePickerViewController.swift in Sources */,
+				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
 				AAD0E39622F70FF9005CC55A /* LocaleInfo.swift in Sources */,
 				AAD0E38522F70F5D005CC55A /* TextViewController.swift in Sources */,
@@ -656,19 +715,24 @@
 				AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */,
 				AAF1182F22F6BD0400FDA099 /* AdsTableViewCell.swift in Sources */,
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
+				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
+				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
+				AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */,
 				AAD0E37E22F70F02005CC55A /* Array+Extensions.swift in Sources */,
 				AAD0E39222F70FE6005CC55A /* CountryCell.swift in Sources */,
 				AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */,
 				AAD0E3BF22F7112C005CC55A /* Contacts.swift in Sources */,
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
 				AAD0E39822F71008005CC55A /* LocaleStore.swift in Sources */,
+				AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */,
 				AAD0E37D22F70F02005CC55A /* Optional+Extensions.swift in Sources */,
 				AAD0E37122F70F02005CC55A /* Common+Extensions.swift in Sources */,
 				AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */,
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
 				AA478D8222F649A300BC23A7 /* SunibCurhat.xcdatamodeld in Sources */,
+				AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,7 +872,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8P99Q352K3;
+				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -827,7 +891,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8P99Q352K3;
+				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
