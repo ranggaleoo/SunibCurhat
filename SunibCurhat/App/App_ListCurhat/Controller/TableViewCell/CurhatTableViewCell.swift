@@ -22,13 +22,38 @@ class CurhatTableViewCell: UITableViewCell {
     var btn_comments_clicked: ((UIButton) -> Void)?
     var btn_shares_clicked: ((UIButton) -> Void)?
     
+    var timeline: TimelineResponse? {
+        didSet {
+            self.updateUI()
+        }
+    }
+    
+    var isLiked: Bool = false {
+        didSet {
+            if isLiked {
+                DispatchQueue.main.async {
+                    self.btn_likes.setImage(UIImage(named: "btn_like_active"), for: .normal)
+                }
+            
+            } else {
+                DispatchQueue.main.async {
+                    self.btn_likes.setImage(UIImage(named: "btn_like"), for: .normal)
+                }
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
     
     private func updateUI() {
-        
+        DispatchQueue.main.async {
+            self.lbl_name.text = self.timeline?.name
+            self.lbl_curhat.text = self.timeline?.text_content
+            self.lbl_time.text = self.timeline?.timed
+        }
     }
     
     @IBAction private func actionLike(_ sender: UIButton) {

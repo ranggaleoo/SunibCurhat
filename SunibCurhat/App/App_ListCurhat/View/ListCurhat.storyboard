@@ -62,6 +62,9 @@
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tg-O1-UA0">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="87.5"/>
                                                                             <state key="normal" image="btn_like"/>
+                                                                            <connections>
+                                                                                <action selector="actionLike:" destination="Grn-us-HLX" eventType="touchUpInside" id="71b-2b-8a6"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,6 +81,9 @@
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTH-sN-7u9">
                                                                             <rect key="frame" x="0.0" y="0.0" width="65" height="87.5"/>
                                                                             <state key="normal" image="btn_comment"/>
+                                                                            <connections>
+                                                                                <action selector="actionComment:" destination="Grn-us-HLX" eventType="touchUpInside" id="oUC-JD-0dT"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,6 +100,9 @@
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGO-rO-ndL">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="87.5"/>
                                                                             <state key="normal" image="btn_share"/>
+                                                                            <connections>
+                                                                                <action selector="actionShare:" destination="Grn-us-HLX" eventType="touchUpInside" id="8sj-B8-E5Z"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -233,6 +242,15 @@
                                                 <constraint firstItem="fan-lR-Swy" firstAttribute="leading" secondItem="jrV-mp-cKu" secondAttribute="leading" constant="16" id="pTt-R9-u7g"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btn_likes" destination="3tg-O1-UA0" id="Mq8-6A-a2q"/>
+                                            <outlet property="lbl_count_comments" destination="TUp-Nu-x5A" id="Wxs-Ro-HLP"/>
+                                            <outlet property="lbl_count_likes" destination="vma-u6-Oaf" id="u5b-2l-O0l"/>
+                                            <outlet property="lbl_count_shares" destination="O7q-dP-QS9" id="SJE-c4-meO"/>
+                                            <outlet property="lbl_curhat" destination="L9X-RN-4J5" id="1Ki-SQ-D8c"/>
+                                            <outlet property="lbl_name" destination="VRK-eU-20F" id="4Uo-4u-Avt"/>
+                                            <outlet property="lbl_time" destination="UsZ-ae-c4S" id="YKY-Xr-Tfr"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdsTableViewCell" rowHeight="300" id="6Cd-z9-Hpb" customClass="AdsTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="295" width="375" height="300"/>

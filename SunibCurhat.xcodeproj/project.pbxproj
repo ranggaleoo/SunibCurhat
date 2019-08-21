@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1603603523018792006A0948 /* AddThread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1603603423018792006A0948 /* AddThread.storyboard */; };
 		16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16036036230187AB006A0948 /* AddThreadViewController.swift */; };
+		168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168D6F39230C0FFA007872D9 /* AddThreadService.swift */; };
+		16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4692230D2BD000AD323F /* TimelineResponse.swift */; };
+		16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4695230D5B8F00AD323F /* CommentService.swift */; };
 		79CDE8404861C4A74D31C85F /* Pods_SunibCurhat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */; };
 		AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA3AB36522F7213D0016ADFF /* Main.storyboard */; };
 		AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AB36822F721A30016ADFF /* MainTabBarController.swift */; };
@@ -73,6 +76,9 @@
 /* Begin PBXFileReference section */
 		1603603423018792006A0948 /* AddThread.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThread.storyboard; sourceTree = "<group>"; };
 		16036036230187AB006A0948 /* AddThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadViewController.swift; sourceTree = "<group>"; };
+		168D6F39230C0FFA007872D9 /* AddThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadService.swift; sourceTree = "<group>"; };
+		16FD4692230D2BD000AD323F /* TimelineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineResponse.swift; sourceTree = "<group>"; };
+		16FD4695230D5B8F00AD323F /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		4212E3969724C5A6980D50D0 /* Pods-SunibCurhat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.debug.xcconfig"; sourceTree = "<group>"; };
 		640EBA3BF5174C2A4F09B7B8 /* Pods-SunibCurhat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.release.xcconfig"; sourceTree = "<group>"; };
 		AA3AB36522F7213D0016ADFF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -150,9 +156,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16034F87230C0FB2004A79DA /* AddThreadService */ = {
+			isa = PBXGroup;
+			children = (
+				168D6F39230C0FFA007872D9 /* AddThreadService.swift */,
+			);
+			path = AddThreadService;
+			sourceTree = "<group>";
+		};
 		160360312301875F006A0948 /* App_AddThread */ = {
 			isa = PBXGroup;
 			children = (
+				16034F87230C0FB2004A79DA /* AddThreadService */,
 				1603603323018780006A0948 /* View */,
 				1603603223018777006A0948 /* Controller */,
 			);
@@ -173,6 +188,22 @@
 				1603603423018792006A0948 /* AddThread.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		16FD4691230D2BA800AD323F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				16FD4692230D2BD000AD323F /* TimelineResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		16FD4694230D5B7B00AD323F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				16FD4695230D5B8F00AD323F /* CommentService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		7E63821394418A71381FE146 /* Frameworks */ = {
@@ -266,6 +297,7 @@
 		AA5BABE222F65573004253AF /* App_ListCurhat */ = {
 			isa = PBXGroup;
 			children = (
+				16FD4691230D2BA800AD323F /* Model */,
 				AA5BABE422F655A3004253AF /* View */,
 				AA5BABE322F6559C004253AF /* Controller */,
 			);
@@ -525,6 +557,7 @@
 		AAF1182422F6BBC600FDA099 /* App_CommentCurhat */ = {
 			isa = PBXGroup;
 			children = (
+				16FD4694230D5B7B00AD323F /* Service */,
 				AAF1182622F6BBDB00FDA099 /* Controller */,
 				AAF1182522F6BBD400FDA099 /* View */,
 			);
@@ -701,12 +734,15 @@
 				AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */,
 				AAD0E37622F70F02005CC55A /* String+Extensions.swift in Sources */,
 				AAD0E37222F70F02005CC55A /* UIImage+Extensions.swift in Sources */,
+				16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
 				AAD0E37322F70F02005CC55A /* UISearchBar+Extensions.swift in Sources */,
 				AAD0E38322F70F4B005CC55A /* AttributedTextBlock.swift in Sources */,
 				AA478D9022F6503000BC23A7 /* ConstGlobal.swift in Sources */,
 				AAD0E37F22F70F02005CC55A /* UITextView+Extensions.swift in Sources */,
+				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
+				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
 				AAD0E39422F70FE6005CC55A /* PhoneCodeCell.swift in Sources */,
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,

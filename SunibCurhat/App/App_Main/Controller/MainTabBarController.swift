@@ -20,8 +20,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }()
     
     private lazy var addThread: UIViewController = {
-        let storyboad = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "empty")
+        let storyboad = UIStoryboard(name: "AddThread", bundle: nil)
+        let vc = storyboad.instantiateViewController(withIdentifier: "nav_add_thread")
         let image = UIImage(named: "bar_btn_add_thread")
         vc.tabBarItem = UITabBarItem(title: "Add Thread", image: image, selectedImage: image)
         return vc

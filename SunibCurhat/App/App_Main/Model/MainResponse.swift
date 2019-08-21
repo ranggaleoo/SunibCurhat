@@ -23,6 +23,6 @@ struct MainResponse<T: Decodable>: Decodable {
         let container = try decoder.container(keyedBy: Keys.self)
         self.success   = try container.decodeIfPresent(Bool.self, forKey: .success) ?? false
         self.data     = try container.decodeIfPresent(T.self, forKey: .data)
-        self.message  = try container.decodeIfPresent(String.self, forKey: .message) ?? "unknown"
+        self.message  = try container.decodeIfPresent(String.self, forKey: .message) ?? "message unknown"
     }
 }
