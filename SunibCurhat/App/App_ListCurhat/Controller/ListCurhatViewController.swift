@@ -70,11 +70,10 @@ class ListCurhatViewController: UIViewController {
             case .failure(let error):
                 self.dismissLoaderIndicator()
                 self.refreshControl.endRefreshing()
-                self.showAlert(title: "Error", message: error.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
-                    self.getTimeline()
-                }, CancelCompletion: { (act) in
+                self.showAlert(title: "Error", message: error.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
                     RepoMemory.token = nil
-                })
+                    RepoMemory.pendingFunction = self.getTimeline.self
+                }, CancelCompletion: nil)
                 
                 print(error)
             case .success(let success):
@@ -86,9 +85,7 @@ class ListCurhatViewController: UIViewController {
                     }
                 
                 } else {
-                    self.showAlert(title: "Error", message: success.message + "\n Try Again?", OKcompletion: { (act) in
-                        self.getTimeline()
-                    }, CancelCompletion: nil)
+                    print(success.message)
                 }
             }
         }
@@ -100,8 +97,8 @@ class ListCurhatViewController: UIViewController {
             switch result {
             case .failure(let e):
                 self.dismissLoaderIndicator()
-                self.showAlert(title: "Error", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
-                    self.likeTimeline(timeline_id: timeline_id, cell: cell)
+                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                    RepoMemory.token = nil
                 }, CancelCompletion: nil)
                 
             case .success(let s):
@@ -123,8 +120,8 @@ class ListCurhatViewController: UIViewController {
             switch result {
             case .failure(let e):
                 self.dismissLoaderIndicator()
-                self.showAlert(title: "Error", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
-                    self.unlikeTimeline(timeline_id: timeline_id, cell: cell)
+                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                    RepoMemory.token = nil
                 }, CancelCompletion: nil)
                 
             case .success(let s):
@@ -146,7 +143,9 @@ class ListCurhatViewController: UIViewController {
             switch result {
             case .failure(let e):
                 self.dismissLoaderIndicator()
-                self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: { (act) in
+                    RepoMemory.token = nil
+                }, CancelCompletion: nil)
                 
             case .success(let s):
                 self.dismissLoaderIndicator()
@@ -163,6 +162,10 @@ class ListCurhatViewController: UIViewController {
         switch segue.identifier {
         case "toComment":
             let d = segue.destination as! CommentCurhatViewController
+            if let index = indexBeforeToComment?.row {
+                d.timeline = self.timeline[index]
+            }
+            
         default:
             print(segue.identifier, "not found")
         }

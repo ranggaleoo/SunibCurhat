@@ -16,7 +16,11 @@ class AddThreadService {
         param["device_id"] = RepoMemory.device_id
         param["text_content"] = text_content
         
-        if let token = RepoMemory.token {
+        if
+            let token = RepoMemory.token,
+            let name = RepoMemory.user_name
+        {
+            param["name"] = name
             param["X_SIGNATURE_API"] = token
         }
         

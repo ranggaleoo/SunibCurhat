@@ -26,9 +26,9 @@ class AddThreadViewController: UIViewController {
         self.endEditing()
     }
     
-    @IBAction func actionPostThread(_ sender: UIButton) {
-        guard txt_post.textColor != UIColor.custom.gray && txt_post.text.count > 15 else {
-            self.showAlert(title: "Error", message: "Write what you feel, at least 15 character", OKcompletion: nil, CancelCompletion: nil)
+    func addThread() -> Void {
+        guard txt_post.textColor != UIColor.custom.gray && txt_post.text.count > ConstGlobal.MINIMUM_TEXT else {
+            self.showAlert(title: "Error", message: "Write what you feel, at least \(ConstGlobal.MINIMUM_TEXT) character", OKcompletion: nil, CancelCompletion: nil)
             return
         }
         
@@ -37,8 +37,9 @@ class AddThreadViewController: UIViewController {
             switch result {
             case .failure(let e):
                 self.dismissLoaderIndicator()
-                self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: { (act) in
-                    //
+                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                    RepoMemory.token = nil
+                    RepoMemory.pendingFunction = self.addThread.self
                 }, CancelCompletion: nil)
                 
             case .success(let s):
@@ -48,12 +49,16 @@ class AddThreadViewController: UIViewController {
                     self.tabBarController?.selectedIndex = 0
                     
                 } else {
-                    self.showAlert(title: "Error", message: s.message, OKcompletion: { (act) in
-                        //
+                    self.showAlert(title: "Error", message: s.message + "\n Try Again?", OKcompletion: { (act) in
+                        self.addThread()
                     }, CancelCompletion: nil)
                 }
             }
         }
+    }
+    
+    @IBAction func actionPostThread(_ sender: UIButton) {
+        addThread()
     }
 }
 

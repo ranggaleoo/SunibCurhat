@@ -10,6 +10,8 @@
 		1603603523018792006A0948 /* AddThread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1603603423018792006A0948 /* AddThread.storyboard */; };
 		16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16036036230187AB006A0948 /* AddThreadViewController.swift */; };
 		168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168D6F39230C0FFA007872D9 /* AddThreadService.swift */; };
+		16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */; };
+		16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */; };
 		16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4692230D2BD000AD323F /* TimelineResponse.swift */; };
 		16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4695230D5B8F00AD323F /* CommentService.swift */; };
 		79CDE8404861C4A74D31C85F /* Pods_SunibCurhat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */; };
@@ -77,6 +79,8 @@
 		1603603423018792006A0948 /* AddThread.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThread.storyboard; sourceTree = "<group>"; };
 		16036036230187AB006A0948 /* AddThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadViewController.swift; sourceTree = "<group>"; };
 		168D6F39230C0FFA007872D9 /* AddThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadService.swift; sourceTree = "<group>"; };
+		16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
+		16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		16FD4692230D2BD000AD323F /* TimelineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineResponse.swift; sourceTree = "<group>"; };
 		16FD4695230D5B8F00AD323F /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		4212E3969724C5A6980D50D0 /* Pods-SunibCurhat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +192,22 @@
 				1603603423018792006A0948 /* AddThread.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		16EDEB4F230E7C4900F5AE69 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		16EDEB52230E7D6E00F5AE69 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		16FD4691230D2BA800AD323F /* Model */ = {
@@ -557,6 +577,7 @@
 		AAF1182422F6BBC600FDA099 /* App_CommentCurhat */ = {
 			isa = PBXGroup;
 			children = (
+				16EDEB4F230E7C4900F5AE69 /* Model */,
 				16FD4694230D5B7B00AD323F /* Service */,
 				AAF1182622F6BBDB00FDA099 /* Controller */,
 				AAF1182522F6BBD400FDA099 /* View */,
@@ -575,6 +596,7 @@
 		AAF1182622F6BBDB00FDA099 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				16EDEB52230E7D6E00F5AE69 /* TableViewCell */,
 				AAF1182922F6BC3800FDA099 /* CommentCurhatViewController.swift */,
 			);
 			path = Controller;
@@ -750,6 +772,7 @@
 				AAD0E37422F70F02005CC55A /* UITextField+Extensions.swift in Sources */,
 				AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */,
 				AAF1182F22F6BD0400FDA099 /* AdsTableViewCell.swift in Sources */,
+				16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */,
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
 				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
@@ -761,6 +784,7 @@
 				AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */,
 				AAD0E3BF22F7112C005CC55A /* Contacts.swift in Sources */,
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
+				16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */,
 				AAD0E39822F71008005CC55A /* LocaleStore.swift in Sources */,
 				AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */,
 				AAD0E37D22F70F02005CC55A /* Optional+Extensions.swift in Sources */,

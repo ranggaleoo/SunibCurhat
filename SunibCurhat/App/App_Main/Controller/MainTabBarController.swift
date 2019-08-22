@@ -59,7 +59,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                     switch result {
                     case .failure(let e):
                         self.dismissLoaderIndicator()
-                        self.showAlert(title: "Error", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
+                        self.showAlert(title: "Session Expire", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
                             self.getToken()
                         }, CancelCompletion: nil)
                         
@@ -67,17 +67,21 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                         self.dismissLoaderIndicator()
                         if s.success {
                             if let data = s.data {
-                                RepoMemory.token = data["token"]
-                                self.showAlert(title: "Success", message: s.message, OKcompletion: nil, CancelCompletion: nil)
+                                RepoMemory.token        = data["token"]
+                                RepoMemory.user_name    = data["name"]
+                                self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
+                                    RepoMemory.pendingFunction?()
+                                    RepoMemory.pendingFunction = nil
+                                }, CancelCompletion: nil)
                             
                             } else {
-                                self.showAlert(title: "Error", message: "token not found \n Try Again?", OKcompletion: { (act) in
+                                self.showAlert(title: "Session Expire", message: "token not found \n Try Again?", OKcompletion: { (act) in
                                     self.getToken()
                                 }, CancelCompletion: nil)
                             }
                             
                         } else {
-                            self.showAlert(title: "Error", message: s.message + "\n Try Again?", OKcompletion: { (act) in
+                            self.showAlert(title: "Session Expire", message: s.message + "\n Try Again?", OKcompletion: { (act) in
                                 self.getToken()
                             }, CancelCompletion: nil)
                         }
