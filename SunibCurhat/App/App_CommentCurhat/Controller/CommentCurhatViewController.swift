@@ -11,6 +11,7 @@ import UIKit
 
 class CommentCurhatViewController: UIViewController {
     @IBOutlet weak var tableViewComment: UITableView!
+    @IBOutlet weak var scrollViewComment: UIScrollView!
     @IBOutlet weak var lbl_name: UILabel!
     @IBOutlet weak var lbl_text_content: UILabel!
     @IBOutlet weak var lbl_time: UILabel!
@@ -48,6 +49,7 @@ class CommentCurhatViewController: UIViewController {
     }
     
     private func delegates() {
+        self.title = "Comment"
         tableViewComment.delegate = self
         tableViewComment.dataSource = self
         txt_comment.delegate = self
@@ -65,10 +67,32 @@ class CommentCurhatViewController: UIViewController {
         }
         
         refreshControl.addTarget(self, action: #selector(getComments), for: .valueChanged)
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     @IBAction func actionSend(_ sender: UIButton) {
         addComment()
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification){
+        var userInfo      = notification.userInfo!
+        var keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        var contentInset:UIEdgeInsets = self.scrollViewComment.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollViewComment.contentInset = contentInset
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        var userInfo      = notification.userInfo!
+        var keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        var contentInset:UIEdgeInsets = self.scrollViewComment.contentInset
+        contentInset.bottom = 0.0
+        scrollViewComment.contentInset = contentInset
     }
     
     @objc func addComment() {
@@ -97,6 +121,8 @@ class CommentCurhatViewController: UIViewController {
             case .success(let s):
                 self.dismissLoaderIndicator()
                 if s.success {
+                    self.txt_comment.text = ""
+                    self.textViewDidChange(self.txt_comment)
                     self.getComments()
                 } else {
                     self.showAlert(title: "Error", message: s.message + "\n Try Again?", OKcompletion: { (act) in
@@ -134,7 +160,6 @@ class CommentCurhatViewController: UIViewController {
                 if s.success {
                     if let data = s.data {
                         self.comments = data
-                        self.txt_comment.text = nil
                     }
                 
                 } else {

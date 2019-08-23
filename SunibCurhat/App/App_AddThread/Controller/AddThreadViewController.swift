@@ -18,6 +18,7 @@ class AddThreadViewController: UIViewController {
     }
     
     private func delegates() {
+        self.title = "Add Thread"
         txt_post.delegate = self
         txt_post.isScrollEnabled = false
         txt_post.text = "What is in your heart?"

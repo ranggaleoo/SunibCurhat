@@ -40,6 +40,7 @@ class ListCurhatViewController: UIViewController {
     }
     
     private func delegates() {
+        self.title = "Timeline"
         tableViewCurhat.delegate = self
         tableViewCurhat.dataSource = self
         
