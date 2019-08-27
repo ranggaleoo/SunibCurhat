@@ -195,6 +195,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPE-n9-alI">
                                                             <rect key="frame" x="303" y="8" width="24" height="24"/>
                                                             <state key="normal" image="btn_more"/>
+                                                            <connections>
+                                                                <action selector="actionMore:" destination="Grn-us-HLX" eventType="touchUpInside" id="vUx-qc-6xt"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -313,6 +316,27 @@
                                                 <constraint firstItem="Kp0-5a-TEO" firstAttribute="top" secondItem="gDi-Rn-WbP" secondAttribute="top" constant="16" id="scg-3B-03D"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingTableViewCell" rowHeight="50" id="aT3-J6-HSZ" customClass="LoadingTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="595" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aT3-J6-HSZ" id="PDA-Dt-lHd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gwj-KF-FNj">
+                                                    <rect key="frame" x="177.5" y="8" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gwj-KF-FNj" firstAttribute="top" secondItem="PDA-Dt-lHd" secondAttribute="top" constant="8" id="0sT-zF-p3T"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Gwj-KF-FNj" secondAttribute="bottom" constant="8" id="9GR-E1-ZAn"/>
+                                                <constraint firstItem="Gwj-KF-FNj" firstAttribute="centerX" secondItem="PDA-Dt-lHd" secondAttribute="centerX" id="zqI-hr-yzS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ActIndicatorLoading" destination="Gwj-KF-FNj" id="QkU-0c-e7z"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

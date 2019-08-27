@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1603603523018792006A0948 /* AddThread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1603603423018792006A0948 /* AddThread.storyboard */; };
 		16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16036036230187AB006A0948 /* AddThreadViewController.swift */; };
+		1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */; };
+		16737D5123154BC80071ED78 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16737D5023154BC80071ED78 /* Chats.storyboard */; };
+		16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16737D5223154BE50071ED78 /* ChatsViewController.swift */; };
 		168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168D6F39230C0FFA007872D9 /* AddThreadService.swift */; };
 		16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */; };
 		16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */; };
@@ -78,6 +81,9 @@
 /* Begin PBXFileReference section */
 		1603603423018792006A0948 /* AddThread.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThread.storyboard; sourceTree = "<group>"; };
 		16036036230187AB006A0948 /* AddThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadViewController.swift; sourceTree = "<group>"; };
+		1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		16737D5023154BC80071ED78 /* Chats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
+		16737D5223154BE50071ED78 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		168D6F39230C0FFA007872D9 /* AddThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadService.swift; sourceTree = "<group>"; };
 		16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -194,6 +200,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1656C7F023154B34006F0D84 /* App_Chats */ = {
+			isa = PBXGroup;
+			children = (
+				16737D4E23154B6E0071ED78 /* Controller */,
+				16737D4D23154B600071ED78 /* View */,
+			);
+			path = App_Chats;
+			sourceTree = "<group>";
+		};
+		16737D4D23154B600071ED78 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				16737D5023154BC80071ED78 /* Chats.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		16737D4E23154B6E0071ED78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				16737D5223154BE50071ED78 /* ChatsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		16EDEB4F230E7C4900F5AE69 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +337,7 @@
 		AA5BABDF22F6541F004253AF /* App */ = {
 			isa = PBXGroup;
 			children = (
+				1656C7F023154B34006F0D84 /* App_Chats */,
 				160360312301875F006A0948 /* App_AddThread */,
 				AA3AB36322F7211E0016ADFF /* App_Main */,
 				AAF1182422F6BBC600FDA099 /* App_CommentCurhat */,
@@ -607,6 +639,7 @@
 			children = (
 				AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */,
 				AAF1182E22F6BD0400FDA099 /* AdsTableViewCell.swift */,
+				1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -682,6 +715,7 @@
 			files = (
 				AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */,
 				AAD0E38D22F70FBD005CC55A /* Countries.bundle in Resources */,
+				16737D5123154BC80071ED78 /* Chats.storyboard in Resources */,
 				AA478D8722F649A400BC23A7 /* LaunchScreen.storyboard in Resources */,
 				1603603523018792006A0948 /* AddThread.storyboard in Resources */,
 				AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */,
@@ -757,6 +791,7 @@
 				AAD0E37622F70F02005CC55A /* String+Extensions.swift in Sources */,
 				AAD0E37222F70F02005CC55A /* UIImage+Extensions.swift in Sources */,
 				16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */,
+				16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
 				AAD0E37322F70F02005CC55A /* UISearchBar+Extensions.swift in Sources */,
 				AAD0E38322F70F4B005CC55A /* AttributedTextBlock.swift in Sources */,
@@ -784,6 +819,7 @@
 				AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */,
 				AAD0E3BF22F7112C005CC55A /* Contacts.swift in Sources */,
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
+				1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */,
 				16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */,
 				AAD0E39822F71008005CC55A /* LocaleStore.swift in Sources */,
 				AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */,

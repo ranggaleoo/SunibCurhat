@@ -13,9 +13,11 @@ class TimelineService {
     
     static let shared: TimelineService = TimelineService()
     
-    func getTimeline(completion: @escaping (Result<MainResponse<[TimelineResponse]>, Error>) -> Void) {
+    func getTimeline(page: Int, completion: @escaping (Result<MainResponse<TimelineResponse>, Error>) -> Void) {
         var param: [String: Any] = [:]
-        param["device_id"] = RepoMemory.device_id
+        param["page"]       = page
+        param["limit"]      = 10
+        param["device_id"]  = RepoMemory.device_id
         
         if let token = RepoMemory.token {
             param["X_SIGNATURE_API"] = token
@@ -24,7 +26,8 @@ class TimelineService {
         let url = URLConst.api_url + "/getTimeline"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: [TimelineResponse].self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: TimelineResponse.self) { (result) in
+            print(result)
             completion(result)
         }
     }

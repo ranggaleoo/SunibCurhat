@@ -9,6 +9,12 @@
 import Foundation
 
 struct TimelineResponse: Decodable {
+    var page        : Int
+    var next_page   : Int
+    var timelines   : [TimelineItems]
+}
+
+struct TimelineItems: Decodable {
     var timeline_id : String
     var device_id   : String
     var name        : String

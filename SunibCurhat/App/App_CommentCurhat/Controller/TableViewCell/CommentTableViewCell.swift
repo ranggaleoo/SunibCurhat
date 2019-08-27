@@ -14,7 +14,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var lbl_comment: UILabel!
     @IBOutlet weak var lbl_time: UILabel!
     
-    var comment: CommentResponse? {
+    var comment: CommentItems? {
         didSet {
             self.updateUI()
         }

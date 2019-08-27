@@ -21,8 +21,9 @@ class CurhatTableViewCell: UITableViewCell {
     var btn_likes_clicked: ((UIButton) -> Void)?
     var btn_comments_clicked: ((UIButton) -> Void)?
     var btn_shares_clicked: ((UIButton) -> Void)?
+    var btn_more_clicked: ((UIButton) -> Void)?
     
-    var timeline: TimelineResponse? {
+    var timeline: TimelineItems? {
         didSet {
             self.updateUI()
         }
@@ -66,6 +67,10 @@ class CurhatTableViewCell: UITableViewCell {
     
     @IBAction private func actionShare(_ sender: UIButton) {
         btn_shares_clicked?(sender)
+    }
+    
+    @IBAction private func actionMore(_ sender: UIButton) {
+        btn_more_clicked?(sender)
     }
     
 }

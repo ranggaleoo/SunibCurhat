@@ -9,6 +9,12 @@
 import Foundation
 
 struct CommentResponse: Decodable {
+    var page: Int
+    var next_page: Int
+    var comments: [CommentItems]
+}
+
+struct CommentItems: Decodable {
     var comment_id  : String
     var timeline_id : String
     var device_id   : String

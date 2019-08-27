@@ -167,6 +167,27 @@
                                                                     <outlet property="lbl_time" destination="vnS-ko-qdd" id="JnA-IS-PyJ"/>
                                                                 </connections>
                                                             </tableViewCell>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingTableViewCell" rowHeight="64" id="MbZ-Ao-r79" customClass="LoadingTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="92" width="375" height="64"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MbZ-Ao-r79" id="gOs-1A-zMC">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="U0w-8v-idd">
+                                                                            <rect key="frame" x="177.5" y="8" width="20" height="20"/>
+                                                                        </activityIndicatorView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="U0w-8v-idd" firstAttribute="top" secondItem="gOs-1A-zMC" secondAttribute="top" constant="8" id="Pdx-Lr-jSK"/>
+                                                                        <constraint firstItem="U0w-8v-idd" firstAttribute="centerX" secondItem="gOs-1A-zMC" secondAttribute="centerX" id="VMG-F1-5dJ"/>
+                                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="U0w-8v-idd" secondAttribute="bottom" constant="8" id="cX0-fZ-d1m"/>
+                                                                    </constraints>
+                                                                </tableViewCellContentView>
+                                                                <connections>
+                                                                    <outlet property="ActIndicatorLoading" destination="U0w-8v-idd" id="oRs-sg-yIF"/>
+                                                                </connections>
+                                                            </tableViewCell>
                                                         </prototypes>
                                                     </tableView>
                                                 </subviews>

@@ -24,14 +24,16 @@ class CommentCurhatViewController: UIViewController {
         return r
     }()
     
-    var comments: [CommentResponse] = [] {
+    var commentsApi: CommentResponse?
+    var comments: [CommentItems] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.tableViewComment.reloadData()
             }
         }
     }
-    var timeline: TimelineResponse?
+    var getMoreComment: Bool = false
+    var timeline: TimelineItems?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,36 +135,50 @@ class CommentCurhatViewController: UIViewController {
         }
     }
     
+    func stopLoadingGetComment() {
+        if let cell = self.tableViewComment.cellForRow(at: IndexPath(row: 0, section: 1)) as? LoadingTableViewCell {
+            cell.ActIndicatorLoading.stopAnimating()
+            cell.isHidden = true
+        }
+    }
+    
     @objc func getComments() {
         guard
+            !getMoreComment,
             let timeline_id_not_int = timeline?.timeline_id,
             let timeline_id = Int(timeline_id_not_int)
             else {
                 return
         }
         
-        if !refreshControl.isRefreshing {
-            self.showLoaderIndicator()
-        }
-        CommentService.shared.getComments(timeline_id: timeline_id) { (result) in
+        getMoreComment = true
+        tableViewComment.reloadSections(IndexSet(integer: 1), with: .none)
+        let page = commentsApi?.next_page ?? 1
+        
+        CommentService.shared.getComments(page: page, timeline_id: timeline_id) { (result) in
             switch result {
             case .failure(let e):
-                self.dismissLoaderIndicator()
                 self.refreshControl.endRefreshing()
                 self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                    self.getMoreComment = false
+                    self.stopLoadingGetComment()
                     RepoMemory.token = nil
                     RepoMemory.pendingFunction = self.getComments.self
                 }, CancelCompletion: nil)
                 
             case .success(let s):
-                self.dismissLoaderIndicator()
                 self.refreshControl.endRefreshing()
                 if s.success {
                     if let data = s.data {
-                        self.comments = data
+                        self.getMoreComment = false
+                        self.stopLoadingGetComment()
+                        self.comments.append(data.comments)
+                        self.commentsApi = data
                     }
                 
                 } else {
+                    self.getMoreComment = false
+                    self.stopLoadingGetComment()
                     print(s.message)
                 }
             }
@@ -200,18 +216,48 @@ extension CommentCurhatViewController: UITextViewDelegate {
 }
 
 extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comments.count
+        switch section {
+        case 0: return comments.count
+        case 1: return getMoreComment ? 1 : 0
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
-        cell.comment = comments[indexPath.row]
-        return cell
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
+            cell.comment = comments[indexPath.row]
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as! LoadingTableViewCell
+            cell.isHidden = false
+            cell.ActIndicatorLoading.startAnimating()
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !getMoreComment {
+                self.getComments()
+            }
+        }
     }
     
 }
