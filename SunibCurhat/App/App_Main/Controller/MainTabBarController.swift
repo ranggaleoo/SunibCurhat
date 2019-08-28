@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
@@ -35,7 +36,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         return vc
     }()
     
-    private var observer: NSObjectProtocol!
+    private var observer: [NSObjectProtocol]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,19 +49,38 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.viewControllers = [timeline, addThread, chats]
         
         self.selectedIndex = 0
-        self.getToken()
+        self.addObservers()
     }
     
-    private func getToken() {
-        observer = NotificationCenter.default.addObserver(forName: .tokenIsChanged, object: nil, queue: .some(.main), using: { (n) in
+    private func addObservers() {
+        observer.forEach { (notif) in
+            NotificationCenter.default.removeObserver(notif)
+        }
+        observer.removeAll()
+        
+        observer.append(NotificationCenter.default.addObserver(forName: Notification.Name.AuthStateDidChange, object: nil, queue: .some(.main), using: { (n) in
+            if let user = Auth.auth().currentUser {
+                print(user)
+            } else {
+                //sign in ulang
+            }
+        }))
+        
+        observer.append(NotificationCenter.default.addObserver(forName: .tokenIsChanged, object: nil, queue: .some(.main), using: { (n) in
             if RepoMemory.token == nil {
+                do {
+                    try Auth.auth().signOut()
+                } catch {
+                    print("Error signing out: \(error.localizedDescription)")
+                }
+                
                 self.showLoaderIndicator()
                 MainService.shared.getToken(completion: { (result) in
                     switch result {
                     case .failure(let e):
                         self.dismissLoaderIndicator()
                         self.showAlert(title: "Session Expire", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
-                            self.getToken()
+                            self.addObservers()
                         }, CancelCompletion: nil)
                         
                     case .success(let s):
@@ -76,22 +96,26 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                             
                             } else {
                                 self.showAlert(title: "Session Expire", message: "token not found \n Try Again?", OKcompletion: { (act) in
-                                    self.getToken()
+                                    self.addObservers()
                                 }, CancelCompletion: nil)
                             }
                             
                         } else {
                             self.showAlert(title: "Session Expire", message: s.message + "\n Try Again?", OKcompletion: { (act) in
-                                self.getToken()
+                                self.addObservers()
                             }, CancelCompletion: nil)
                         }
                     }
                 })
                 
             } else {
+                Auth.auth().signInAnonymously { (result, error) in
+                    print("--- result", result)
+                    print("--- error", error?.localizedDescription)
+                }
                 print("Token available")
             }
-        })
+        }))
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,6 +123,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(observer)
+        observer.forEach { (notification) in
+            NotificationCenter.default.removeObserver(notification)
+        }
     }
 }

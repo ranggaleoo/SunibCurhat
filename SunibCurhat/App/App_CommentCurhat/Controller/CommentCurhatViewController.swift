@@ -84,7 +84,7 @@ class CommentCurhatViewController: UIViewController {
         var keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         var contentInset:UIEdgeInsets = self.scrollViewComment.contentInset
-        contentInset.bottom = keyboardFrame.size.height
+        contentInset.bottom = keyboardFrame.size.height + 20
         scrollViewComment.contentInset = contentInset
     }
     
@@ -153,6 +153,12 @@ class CommentCurhatViewController: UIViewController {
         
         getMoreComment = true
         tableViewComment.reloadSections(IndexSet(integer: 1), with: .none)
+        
+        if refreshControl.isRefreshing {
+            commentsApi = nil
+            comments.removeAll()
+        }
+        
         let page = commentsApi?.next_page ?? 1
         
         CommentService.shared.getComments(page: page, timeline_id: timeline_id) { (result) in

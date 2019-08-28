@@ -10,8 +10,12 @@
 		1603603523018792006A0948 /* AddThread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1603603423018792006A0948 /* AddThread.storyboard */; };
 		16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16036036230187AB006A0948 /* AddThreadViewController.swift */; };
 		1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */; };
+		1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640892023168B7800CB11A6 /* ChatsModel.swift */; };
+		164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164089232316913B00CB11A6 /* ChatsTableViewCell.swift */; };
+		1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */; };
 		16737D5123154BC80071ED78 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16737D5023154BC80071ED78 /* Chats.storyboard */; };
 		16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16737D5223154BE50071ED78 /* ChatsViewController.swift */; };
+		168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 168A6BC023167AB300C3018D /* GoogleService-Info.plist */; };
 		168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168D6F39230C0FFA007872D9 /* AddThreadService.swift */; };
 		16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */; };
 		16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */; };
@@ -82,8 +86,12 @@
 		1603603423018792006A0948 /* AddThread.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThread.storyboard; sourceTree = "<group>"; };
 		16036036230187AB006A0948 /* AddThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadViewController.swift; sourceTree = "<group>"; };
 		1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		1640892023168B7800CB11A6 /* ChatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsModel.swift; sourceTree = "<group>"; };
+		164089232316913B00CB11A6 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
+		164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chats+ManagerDocument.swift"; sourceTree = "<group>"; };
 		16737D5023154BC80071ED78 /* Chats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
 		16737D5223154BE50071ED78 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		168A6BC023167AB300C3018D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		168D6F39230C0FFA007872D9 /* AddThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadService.swift; sourceTree = "<group>"; };
 		16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -200,9 +208,34 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1640891F23168B6400CB11A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1640892023168B7800CB11A6 /* ChatsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		164089222316912400CB11A6 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				164089232316913B00CB11A6 /* ChatsTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		164089282316944300CB11A6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1656C7F023154B34006F0D84 /* App_Chats */ = {
 			isa = PBXGroup;
 			children = (
+				1640891F23168B6400CB11A6 /* Model */,
 				16737D4E23154B6E0071ED78 /* Controller */,
 				16737D4D23154B600071ED78 /* View */,
 			);
@@ -220,6 +253,8 @@
 		16737D4E23154B6E0071ED78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				164089282316944300CB11A6 /* Extensions */,
+				164089222316912400CB11A6 /* TableViewCell */,
 				16737D5223154BE50071ED78 /* ChatsViewController.swift */,
 			);
 			path = Controller;
@@ -319,6 +354,7 @@
 				AA478D7922F649A300BC23A7 /* AppDelegate.swift */,
 				AA478D8322F649A400BC23A7 /* Assets.xcassets */,
 				AA478D8522F649A400BC23A7 /* LaunchScreen.storyboard */,
+				168A6BC023167AB300C3018D /* GoogleService-Info.plist */,
 				AA478D8822F649A400BC23A7 /* Info.plist */,
 				AA478D8022F649A300BC23A7 /* SunibCurhat.xcdatamodeld */,
 			);
@@ -715,6 +751,7 @@
 			files = (
 				AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */,
 				AAD0E38D22F70FBD005CC55A /* Countries.bundle in Resources */,
+				168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */,
 				16737D5123154BC80071ED78 /* Chats.storyboard in Resources */,
 				AA478D8722F649A400BC23A7 /* LaunchScreen.storyboard in Resources */,
 				1603603523018792006A0948 /* AddThread.storyboard in Resources */,
@@ -800,6 +837,8 @@
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
+				164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */,
+				1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */,
 				AAD0E39422F70FE6005CC55A /* PhoneCodeCell.swift in Sources */,
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
@@ -810,6 +849,7 @@
 				16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */,
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
 				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
+				1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
 				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
@@ -968,13 +1008,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VC83XAQ3UM;
+				DEVELOPMENT_TEAM = 45LXT427NQ;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = leo.SunibCurhat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.sunibcurhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -987,13 +1027,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VC83XAQ3UM;
+				DEVELOPMENT_TEAM = 45LXT427NQ;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = leo.SunibCurhat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.sunibcurhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

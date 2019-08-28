@@ -16,7 +16,7 @@ class TimelineService {
     func getTimeline(page: Int, completion: @escaping (Result<MainResponse<TimelineResponse>, Error>) -> Void) {
         var param: [String: Any] = [:]
         param["page"]       = page
-        param["limit"]      = 10
+        param["limit"]      = 5
         param["device_id"]  = RepoMemory.device_id
         
         if let token = RepoMemory.token {

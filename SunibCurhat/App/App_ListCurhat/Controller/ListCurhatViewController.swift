@@ -83,6 +83,11 @@ class ListCurhatViewController: UIViewController {
         getTimelineMore = true
         tableViewCurhat.reloadSections(IndexSet(integer: 1), with: .none)
         
+        if refreshControl.isRefreshing {
+            timelineApi = nil
+            timeline.removeAll()
+        }
+        
         let page = timelineApi?.next_page ?? 1
         
         TimelineService.shared.getTimeline(page: page) { (result) in
@@ -247,11 +252,12 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
             cell.btn_more_clicked = { (btn) in
                 let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
-                    if let tab = self.tabBarController?.viewControllers {
-                        tab.forEach({ (vc) in
-                            
-                        })
-                    }
+                    self.tabBarController?.viewControllers?.forEach({ (vc) in
+                        if let c = vc as? ChatsViewController {
+                            c.timeline = cell.timeline
+                            self.tabBarController?.selectedIndex = 2
+                        }
+                    })
                 }))
                 
                 alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
