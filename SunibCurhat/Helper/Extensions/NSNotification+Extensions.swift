@@ -10,4 +10,5 @@ import Foundation
 
 extension NSNotification.Name {
     static let tokenIsChanged = NSNotification.Name(rawValue: Bundle.main.bundleIdentifier! + ".tokenIsChanged")
+    static let userFirebaseIsChanged = NSNotification.Name(rawValue: Bundle.main.bundleIdentifier! + ".userFirebaseIsChanged")
 }

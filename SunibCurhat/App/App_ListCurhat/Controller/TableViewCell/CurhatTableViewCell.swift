@@ -21,6 +21,28 @@ class CurhatTableViewCell: UITableViewCell {
     var btn_likes_clicked: ((UIButton) -> Void)?
     var btn_comments_clicked: ((UIButton) -> Void)?
     var btn_shares_clicked: ((UIButton) -> Void)?
+    var btn_more_clicked: ((UIButton) -> Void)?
+    
+    var timeline: TimelineItems? {
+        didSet {
+            self.updateUI()
+        }
+    }
+    
+    var isLiked: Bool = false {
+        didSet {
+            if isLiked {
+                DispatchQueue.main.async {
+                    self.btn_likes.setImage(UIImage(named: "btn_like_active"), for: .normal)
+                }
+            
+            } else {
+                DispatchQueue.main.async {
+                    self.btn_likes.setImage(UIImage(named: "btn_like"), for: .normal)
+                }
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +50,11 @@ class CurhatTableViewCell: UITableViewCell {
     }
     
     private func updateUI() {
-        
+        DispatchQueue.main.async {
+            self.lbl_name.text = self.timeline?.name
+            self.lbl_curhat.text = self.timeline?.text_content
+            self.lbl_time.text = self.timeline?.timed
+        }
     }
     
     @IBAction private func actionLike(_ sender: UIButton) {
@@ -41,6 +67,10 @@ class CurhatTableViewCell: UITableViewCell {
     
     @IBAction private func actionShare(_ sender: UIButton) {
         btn_shares_clicked?(sender)
+    }
+    
+    @IBAction private func actionMore(_ sender: UIButton) {
+        btn_more_clicked?(sender)
     }
     
 }

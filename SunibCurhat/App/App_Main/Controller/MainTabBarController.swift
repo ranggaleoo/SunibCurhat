@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
@@ -20,22 +21,22 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }()
     
     private lazy var addThread: UIViewController = {
-        let storyboad = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "empty")
+        let storyboad = UIStoryboard(name: "AddThread", bundle: nil)
+        let vc = storyboad.instantiateViewController(withIdentifier: "nav_add_thread")
         let image = UIImage(named: "bar_btn_add_thread")
         vc.tabBarItem = UITabBarItem(title: "Add Thread", image: image, selectedImage: image)
         return vc
     }()
     
     private lazy var chats: UIViewController = {
-        let storyboad = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "empty")
+        let storyboad = UIStoryboard(name: "Chats", bundle: nil)
+        let vc = storyboad.instantiateViewController(withIdentifier: "nav_chats")
         let image = UIImage(named: "bar_btn_chats")
         vc.tabBarItem = UITabBarItem(title: "Chats", image: image, selectedImage: image)
         return vc
     }()
     
-    private var observer: NSObjectProtocol!
+    private var observer: [NSObjectProtocol] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,37 +49,77 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.viewControllers = [timeline, addThread, chats]
         
         self.selectedIndex = 0
-        self.getToken()
+        self.addObservers()
     }
     
-    private func getToken() {
-        observer = NotificationCenter.default.addObserver(forName: .tokenIsChanged, object: nil, queue: .some(.main), using: { (n) in
+    private func addObservers() {
+        observer.forEach { (notif) in
+            NotificationCenter.default.removeObserver(notif)
+        }
+        observer.removeAll()
+        
+        observer.append(NotificationCenter.default.addObserver(forName: Notification.Name.AuthStateDidChange, object: nil, queue: .some(.main), using: { (n) in
+            if let user = Auth.auth().currentUser {
+                RepoMemory.user_firebase = user
+            } else {
+                RepoMemory.user_firebase = nil
+            }
+        }))
+        
+        observer.append(NotificationCenter.default.addObserver(forName: .userFirebaseIsChanged, object: nil, queue: .some(.main), using: { (n) in
+            if RepoMemory.user_firebase == nil {
+                Auth.auth().signInAnonymously { (result, error) in
+                    if let r = result {
+                        print("--- result \(r)")
+                    }
+                    if let e = error {
+                        self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                    }
+                }
+                
+            } else {
+                print("user firebase available")
+            }
+        }))
+        
+        observer.append(NotificationCenter.default.addObserver(forName: .tokenIsChanged, object: nil, queue: .some(.main), using: { (n) in
             if RepoMemory.token == nil {
+                do {
+                    try Auth.auth().signOut()
+                } catch {
+                    print("Error signing out: \(error.localizedDescription)")
+                }
+                
                 self.showLoaderIndicator()
                 MainService.shared.getToken(completion: { (result) in
                     switch result {
                     case .failure(let e):
                         self.dismissLoaderIndicator()
-                        self.showAlert(title: "Error", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
-                            self.getToken()
+                        self.showAlert(title: "Session Expire", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
+                            self.addObservers()
                         }, CancelCompletion: nil)
                         
                     case .success(let s):
                         self.dismissLoaderIndicator()
                         if s.success {
                             if let data = s.data {
-                                RepoMemory.token = data["token"]
-                                self.showAlert(title: "Success", message: s.message, OKcompletion: nil, CancelCompletion: nil)
+                                RepoMemory.token            = data["token"]
+                                RepoMemory.user_name        = data["name"]
+                                RepoMemory.user_firebase    = nil
+                                self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
+                                    RepoMemory.pendingFunction?()
+                                    RepoMemory.pendingFunction = nil
+                                }, CancelCompletion: nil)
                             
                             } else {
-                                self.showAlert(title: "Error", message: "token not found \n Try Again?", OKcompletion: { (act) in
-                                    self.getToken()
+                                self.showAlert(title: "Session Expire", message: "token not found \n Try Again?", OKcompletion: { (act) in
+                                    self.addObservers()
                                 }, CancelCompletion: nil)
                             }
                             
                         } else {
-                            self.showAlert(title: "Error", message: s.message + "\n Try Again?", OKcompletion: { (act) in
-                                self.getToken()
+                            self.showAlert(title: "Session Expire", message: s.message + "\n Try Again?", OKcompletion: { (act) in
+                                self.addObservers()
                             }, CancelCompletion: nil)
                         }
                     }
@@ -87,7 +128,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             } else {
                 print("Token available")
             }
-        })
+        }))
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,6 +136,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(observer)
+        observer.forEach { (notification) in
+            NotificationCenter.default.removeObserver(notification)
+        }
+        observer.removeAll()
     }
 }

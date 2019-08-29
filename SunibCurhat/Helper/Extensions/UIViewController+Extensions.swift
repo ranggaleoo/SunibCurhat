@@ -38,4 +38,12 @@ extension UIViewController {
             }
         }
     }
+    
+    func endEditing() {
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewEndEditting)))
+    }
+    
+    @objc private func viewEndEditting() {
+        self.view.endEditing(true)
+    }
 }
