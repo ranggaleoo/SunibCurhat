@@ -7,5 +7,10 @@ target 'SunibCurhat' do
 
   # Pods for SunibCurhat
   pod 'Google-Mobile-Ads-SDK'
+  pod 'MessageKit'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
 
 end
