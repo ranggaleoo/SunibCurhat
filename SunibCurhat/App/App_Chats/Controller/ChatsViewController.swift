@@ -6,7 +6,6 @@
 //  Copyright © 2019 Rangga Leo. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
@@ -15,24 +14,20 @@ class ChatsViewController: UIViewController {
     
     @IBOutlet weak var tableViewChats: UITableView!
     
-    var timeline: TimelineItems! {
-        didSet {
-            var chat_id = RepoMemory.device_id + "+" + timeline.device_id
-            var name = timeline.name
-            self.createChatRoom(chat_id: chat_id, name: name)
-        }
-    }
-    
     private let db = Firestore.firestore()
     private var chatsReference: CollectionReference {
         return db.collection("Chats")
     }
-    var chats: [Chat] = []
+    var chats: [Chat] = [] {
+        didSet {
+            tableViewChats.reloadData()
+        }
+    }
     private var chatListener: ListenerRegistration?
-    private var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegates()
         
         chatListener = chatsReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -46,11 +41,21 @@ class ChatsViewController: UIViewController {
         }
     }
     
-    private func createChatRoom(chat_id: String, name: String) {
+    private func delegates() {
+        tableViewChats.delegate = self
+        tableViewChats.dataSource = self
+    }
+    
+    func createChatRoom(chat_id: String, name: String) {
         let chat = Chat(name: name, chat_id: chat_id)
         chatsReference.addDocument(data: chat.representation) { error in
             if let e = error {
                 print("Error saving chat room: \(e.localizedDescription)")
+                
+            } else {
+                guard let user = RepoMemory.user_firebase else {return}
+                let vc = ChatViewController(user: user, chat: chat)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

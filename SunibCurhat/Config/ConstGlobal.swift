@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 struct ConstGlobal {
     static let AdMOB_APP_ID: String = "ca-app-pub-9947251997620985~4316262809"
@@ -21,6 +22,12 @@ struct RepoMemory {
     static var token: String? {
         didSet {
             NotificationCenter.default.post(name: .tokenIsChanged, object: nil)
+        }
+    }
+    
+    static var user_firebase: User? {
+        didSet {
+            NotificationCenter.default.post(name: .userFirebaseIsChanged, object: nil)
         }
     }
     

@@ -29,14 +29,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }()
     
     private lazy var chats: UIViewController = {
-        let storyboad = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "empty")
+        let storyboad = UIStoryboard(name: "Chats", bundle: nil)
+        let vc = storyboad.instantiateViewController(withIdentifier: "nav_chats")
         let image = UIImage(named: "bar_btn_chats")
         vc.tabBarItem = UITabBarItem(title: "Chats", image: image, selectedImage: image)
         return vc
     }()
     
-    private var observer: [NSObjectProtocol]!
+    private var observer: [NSObjectProtocol] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +60,25 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         observer.append(NotificationCenter.default.addObserver(forName: Notification.Name.AuthStateDidChange, object: nil, queue: .some(.main), using: { (n) in
             if let user = Auth.auth().currentUser {
-                print(user)
+                RepoMemory.user_firebase = user
             } else {
-                //sign in ulang
+                RepoMemory.user_firebase = nil
+            }
+        }))
+        
+        observer.append(NotificationCenter.default.addObserver(forName: .userFirebaseIsChanged, object: nil, queue: .some(.main), using: { (n) in
+            if RepoMemory.user_firebase == nil {
+                Auth.auth().signInAnonymously { (result, error) in
+                    if let r = result {
+                        print("--- result \(r)")
+                    }
+                    if let e = error {
+                        self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                    }
+                }
+                
+            } else {
+                print("user firebase available")
             }
         }))
         
@@ -87,8 +103,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                         self.dismissLoaderIndicator()
                         if s.success {
                             if let data = s.data {
-                                RepoMemory.token        = data["token"]
-                                RepoMemory.user_name    = data["name"]
+                                RepoMemory.token            = data["token"]
+                                RepoMemory.user_name        = data["name"]
+                                RepoMemory.user_firebase    = nil
                                 self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
                                     RepoMemory.pendingFunction?()
                                     RepoMemory.pendingFunction = nil
@@ -109,10 +126,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 })
                 
             } else {
-                Auth.auth().signInAnonymously { (result, error) in
-                    print("--- result", result)
-                    print("--- error", error?.localizedDescription)
-                }
                 print("Token available")
             }
         }))
@@ -126,5 +139,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         observer.forEach { (notification) in
             NotificationCenter.default.removeObserver(notification)
         }
+        observer.removeAll()
     }
 }

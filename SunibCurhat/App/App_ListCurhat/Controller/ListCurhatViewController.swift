@@ -252,12 +252,15 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
             cell.btn_more_clicked = { (btn) in
                 let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
-                    self.tabBarController?.viewControllers?.forEach({ (vc) in
-                        if let c = vc as? ChatsViewController {
-                            c.timeline = cell.timeline
+                    if let vc = self.tabBarController?.viewControllers {
+                        guard let navigationController = vc[2] as? UINavigationController else { return }
+                        if let c = navigationController.topViewController as? ChatsViewController {
                             self.tabBarController?.selectedIndex = 2
+                            let chat_id = RepoMemory.device_id + "+" + self.timeline[indexPath.row].device_id
+                            let name = self.timeline[indexPath.row].name
+                            c.createChatRoom(chat_id: chat_id, name: name)
                         }
-                    })
+                    }
                 }))
                 
                 alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in

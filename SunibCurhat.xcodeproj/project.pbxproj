@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		1603603523018792006A0948 /* AddThread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1603603423018792006A0948 /* AddThread.storyboard */; };
 		16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16036036230187AB006A0948 /* AddThreadViewController.swift */; };
+		1619D62E2317CACE00E5F496 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */; };
 		1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */; };
 		1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640892023168B7800CB11A6 /* ChatsModel.swift */; };
 		164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164089232316913B00CB11A6 /* ChatsTableViewCell.swift */; };
 		1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */; };
+		166F1AD2231786B500BB1151 /* Chats+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F1AD1231786B500BB1151 /* Chats+TableView.swift */; };
+		166F1AD623178CE300BB1151 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F1AD523178CE300BB1151 /* ChatViewController.swift */; };
+		166F1AD92317931F00BB1151 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F1AD82317931F00BB1151 /* ChatModel.swift */; };
 		16737D5123154BC80071ED78 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16737D5023154BC80071ED78 /* Chats.storyboard */; };
 		16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16737D5223154BE50071ED78 /* ChatsViewController.swift */; };
 		168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 168A6BC023167AB300C3018D /* GoogleService-Info.plist */; };
@@ -85,10 +89,14 @@
 /* Begin PBXFileReference section */
 		1603603423018792006A0948 /* AddThread.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThread.storyboard; sourceTree = "<group>"; };
 		16036036230187AB006A0948 /* AddThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadViewController.swift; sourceTree = "<group>"; };
+		1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		1640892023168B7800CB11A6 /* ChatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsModel.swift; sourceTree = "<group>"; };
 		164089232316913B00CB11A6 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
 		164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chats+ManagerDocument.swift"; sourceTree = "<group>"; };
+		166F1AD1231786B500BB1151 /* Chats+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chats+TableView.swift"; sourceTree = "<group>"; };
+		166F1AD523178CE300BB1151 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		166F1AD82317931F00BB1151 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		16737D5023154BC80071ED78 /* Chats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
 		16737D5223154BE50071ED78 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		168A6BC023167AB300C3018D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */,
+				166F1AD1231786B500BB1151 /* Chats+TableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,6 +249,31 @@
 				16737D4D23154B600071ED78 /* View */,
 			);
 			path = App_Chats;
+			sourceTree = "<group>";
+		};
+		166F1AD323178CC300BB1151 /* App_Chat */ = {
+			isa = PBXGroup;
+			children = (
+				166F1AD72317930E00BB1151 /* Model */,
+				166F1AD423178CCF00BB1151 /* Controller */,
+			);
+			path = App_Chat;
+			sourceTree = "<group>";
+		};
+		166F1AD423178CCF00BB1151 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				166F1AD523178CE300BB1151 /* ChatViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		166F1AD72317930E00BB1151 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				166F1AD82317931F00BB1151 /* ChatModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		16737D4D23154B600071ED78 /* View */ = {
@@ -373,6 +407,7 @@
 		AA5BABDF22F6541F004253AF /* App */ = {
 			isa = PBXGroup;
 			children = (
+				166F1AD323178CC300BB1151 /* App_Chat */,
 				1656C7F023154B34006F0D84 /* App_Chats */,
 				160360312301875F006A0948 /* App_AddThread */,
 				AA3AB36322F7211E0016ADFF /* App_Main */,
@@ -485,6 +520,7 @@
 				AAD0E35E22F70F01005CC55A /* UIViewController+Extensions.swift */,
 				AACF3F1A23075E350056EF28 /* UIFont+Extensions.swift */,
 				AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */,
+				1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -823,6 +859,7 @@
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
 				AAD0E39622F70FF9005CC55A /* LocaleInfo.swift in Sources */,
 				AAD0E38522F70F5D005CC55A /* TextViewController.swift in Sources */,
+				166F1AD2231786B500BB1151 /* Chats+TableView.swift in Sources */,
 				AAD0E37B22F70F02005CC55A /* UIColor+Extensions.swift in Sources */,
 				AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */,
 				AAD0E37622F70F02005CC55A /* String+Extensions.swift in Sources */,
@@ -837,9 +874,11 @@
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
+				1619D62E2317CACE00E5F496 /* UIScrollView+Extensions.swift in Sources */,
 				164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */,
 				1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */,
 				AAD0E39422F70FE6005CC55A /* PhoneCodeCell.swift in Sources */,
+				166F1AD92317931F00BB1151 /* ChatModel.swift in Sources */,
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
 				AAD0E37722F70F02005CC55A /* Locale+Extensions.swift in Sources */,
@@ -853,6 +892,7 @@
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
 				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
+				166F1AD623178CE300BB1151 /* ChatViewController.swift in Sources */,
 				AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */,
 				AAD0E37E22F70F02005CC55A /* Array+Extensions.swift in Sources */,
 				AAD0E39222F70FE6005CC55A /* CountryCell.swift in Sources */,

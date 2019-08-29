@@ -1,7 +1,89 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G82-fi-8TJ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Chats View Controller-->
+        <scene sceneID="cwr-ZT-HpT">
+            <objects>
+                <viewController id="i0M-US-7Zp" customClass="ChatsViewController" customModule="SunibCurhat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cZX-fm-B9N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u1N-1a-Wrn">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatsTableViewCell" rowHeight="96" id="eDK-UG-nlT" customClass="ChatsTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="96"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDK-UG-nlT" id="8eX-G5-mQU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsX-4t-Ld2">
+                                                    <rect key="frame" x="16" y="8" width="40" height="79.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YsX-4t-Ld2" firstAttribute="top" secondItem="8eX-G5-mQU" secondAttribute="top" constant="8" id="5Si-rv-MiR"/>
+                                                <constraint firstItem="YsX-4t-Ld2" firstAttribute="leading" secondItem="8eX-G5-mQU" secondAttribute="leading" constant="16" id="cDT-8L-fWT"/>
+                                                <constraint firstAttribute="bottom" secondItem="YsX-4t-Ld2" secondAttribute="bottom" constant="8" id="q2a-FS-k8S"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lbl_name" destination="YsX-4t-Ld2" id="oAc-sA-SAe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="u1N-1a-Wrn" firstAttribute="leading" secondItem="LJt-oO-yTU" secondAttribute="leading" id="Cfi-OT-avx"/>
+                            <constraint firstItem="u1N-1a-Wrn" firstAttribute="top" secondItem="LJt-oO-yTU" secondAttribute="top" id="HHB-eW-5Kv"/>
+                            <constraint firstItem="LJt-oO-yTU" firstAttribute="trailing" secondItem="u1N-1a-Wrn" secondAttribute="trailing" id="vAQ-9q-X3j"/>
+                            <constraint firstItem="LJt-oO-yTU" firstAttribute="bottom" secondItem="u1N-1a-Wrn" secondAttribute="bottom" id="yUF-uM-4nk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LJt-oO-yTU"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YSo-7w-Gc0"/>
+                    <connections>
+                        <outlet property="tableViewChats" destination="u1N-1a-Wrn" id="f7f-ci-CKs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCo-0B-peJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1087.2" y="-19.340329835082461"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aNu-pc-yC1">
+            <objects>
+                <navigationController storyboardIdentifier="nav_chats" automaticallyAdjustsScrollViewInsets="NO" id="G82-fi-8TJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4FX-j5-wNz">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="i0M-US-7Zp" kind="relationship" relationship="rootViewController" id="9hd-YY-w1M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VGp-aD-h59" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="148" y="-19.340329835082461"/>
+        </scene>
+    </scenes>
 </document>
