@@ -18,7 +18,7 @@ final class ChatViewController: MessagesViewController {
     private var isSendingPhoto = false {
         didSet {
             DispatchQueue.main.async {
-                self.messageInputBar.isHidden = !self.isSendingPhoto
+//                self.messageInputBar.isHidden = !self.isSendingPhoto
             }
         }
     }
@@ -49,8 +49,27 @@ final class ChatViewController: MessagesViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func checkPermission() {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized: print("Access is granted by user")
+        case .notDetermined: PHPhotoLibrary.requestAuthorization({ (newStatus) in
+            print("status is \(newStatus)")
+            if newStatus == PHAuthorizationStatus.authorized {
+                print("success")
+            }
+            
+        })
+        case .restricted: print("User do not have access to photo album.")
+        case .denied: print("User has denied the permission.")
+        @unknown default:
+            print("unknown authrorized")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkPermission()
         
         guard let id = chat.id else {
             print(chat)
@@ -84,7 +103,7 @@ final class ChatViewController: MessagesViewController {
         
         let cameraItem = InputBarButtonItem(type: .system) // 1
         cameraItem.tintColor = UIColor.custom.blue
-        cameraItem.image = #imageLiteral(resourceName: "camera")
+//        cameraItem.image = #imageLiteral(resourceName: "camera")
         cameraItem.addTarget(
             self,
             action: #selector(cameraButtonPressed), // 2
@@ -133,7 +152,7 @@ final class ChatViewController: MessagesViewController {
         messages.append(message)
         messages.sort()
         
-        let isLatestMessage = messages.index(of: message) == (messages.count - 1)
+        let isLatestMessage = messages.firstIndex(of: message) == (messages.count - 1)
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         
         messagesCollectionView.reloadData()
@@ -291,6 +310,10 @@ extension ChatViewController: MessagesDataSource {
         return messages.count
     }
     
+    func numberOfItems(inSection section: Int, in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messages.count
+    }
+    
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messages[indexPath.section]
     }
@@ -325,7 +348,7 @@ extension ChatViewController: MessageInputBarDelegate {
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
         if let asset = info[.phAsset] as? PHAsset { // 1

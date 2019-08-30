@@ -30,21 +30,21 @@ extension ChatsViewController {
     }
     
     private func addChannelToTable(_ chat: Chat) {
-        guard chats.contains(chat) else {
+        guard !chats.contains(chat) else {
             return
         }
         
         chats.append(chat)
         chats.sort()
         
-        guard let index = chats.index(of: chat) else {
+        guard let index = chats.firstIndex(of: chat) else {
             return
         }
         tableViewChats.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
     private func updateChannelInTable(_ chat: Chat) {
-        guard let index = chats.index(of: chat) else {
+        guard let index = chats.firstIndex(of: chat) else {
             return
         }
         
@@ -53,7 +53,7 @@ extension ChatsViewController {
     }
     
     private func removeChannelFromTable(_ chat: Chat) {
-        guard let index = chats.index(of: chat) else {
+        guard let index = chats.firstIndex(of: chat) else {
             return
         }
         

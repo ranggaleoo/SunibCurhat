@@ -18,15 +18,13 @@ class ChatsViewController: UIViewController {
     private var chatsReference: CollectionReference {
         return db.collection("Chats")
     }
-    var chats: [Chat] = [] {
-        didSet {
-            tableViewChats.reloadData()
-        }
-    }
+    var chats: [Chat] = []
     private var chatListener: ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("---- ViewDidLoad Chats")
+        print(RepoMemory.user_firebase)
         delegates()
         
         chatListener = chatsReference.addSnapshotListener { querySnapshot, error in

@@ -10,6 +10,13 @@ import Firebase
 import MessageKit
 import FirebaseFirestore
 
+extension UIImage: MediaItem {
+    public var url: URL? { return nil }
+    public var image: UIImage? { return self }
+    public var placeholderImage: UIImage { return self }
+    public var size: CGSize { return  CGSize.zero }
+}
+
 struct Message: MessageType {
     
     let id: String?
@@ -18,19 +25,26 @@ struct Message: MessageType {
     let sender: SenderType
     
     var kind: MessageKind {
-        if let media = media {
-            return .photo(media)
-            
+        if let img = image {
+            return .photo(img)
+        
         } else {
             return .text(content)
         }
     }
     
+//    var data: MessageData {
+//        if let image = image {
+//            return .photo(image)
+//        } else {
+//            return .text(content)
+//        }
+//    }
+    
     var messageId: String {
         return id ?? UUID().uuidString
     }
     
-    var media: MediaItem? = nil
     var image: UIImage? = nil
     var downloadURL: URL? = nil
     
