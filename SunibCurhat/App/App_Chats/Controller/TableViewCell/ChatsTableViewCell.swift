@@ -12,8 +12,8 @@ import UIKit
 class ChatsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lbl_name             : UILabel!
+    @IBOutlet weak var lbl_timed            : UILabel!
 //    @IBOutlet weak var lbl_message          : UILabel!
-//    @IBOutlet weak var lbl_timed            : UILabel!
 //    @IBOutlet weak var lbl_count_message    : UILabel!
     
     var chat: Chat? {
@@ -25,12 +25,12 @@ class ChatsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle  = .none
-        accessoryType   = .disclosureIndicator
     }
     
     private func updateUI() {
         DispatchQueue.main.async {
-            self.lbl_name.text = self.chat?.name
+            self.lbl_name.text  = self.chat?.name
+            self.lbl_timed.text = self.chat?.date_create.timeAgo(numericDates: true)
         }
     }
 }

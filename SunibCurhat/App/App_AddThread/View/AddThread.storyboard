@@ -46,21 +46,44 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="klN-1k-Emf">
+                                <rect key="frame" x="27.5" y="252" width="320" height="51"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzD-Sb-eJ8">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="8Tk-Yk-1cZ"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MgR-my-XeR" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="1" width="320" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="TaG-iS-CX4"/>
+                                            <constraint firstAttribute="height" constant="50" id="wwd-GG-hYt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Dej-F7-MWo" firstAttribute="top" secondItem="cML-Sg-sAx" secondAttribute="top" constant="16" id="5qj-dO-Qfk"/>
                             <constraint firstItem="frN-WX-Wps" firstAttribute="top" secondItem="Dej-F7-MWo" secondAttribute="bottom" constant="16" id="Cnh-fR-rLD"/>
+                            <constraint firstItem="klN-1k-Emf" firstAttribute="centerX" secondItem="cML-Sg-sAx" secondAttribute="centerX" id="Ffa-sb-lGl"/>
                             <constraint firstItem="frN-WX-Wps" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="NTr-VW-vJb"/>
                             <constraint firstItem="Dej-F7-MWo" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="TWW-dv-lQr"/>
-                            <constraint firstItem="cML-Sg-sAx" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="frN-WX-Wps" secondAttribute="bottom" constant="16" id="izV-KO-OnO"/>
+                            <constraint firstItem="cML-Sg-sAx" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="klN-1k-Emf" secondAttribute="bottom" constant="16" id="i2q-oO-89S"/>
                             <constraint firstItem="cML-Sg-sAx" firstAttribute="trailing" secondItem="Dej-F7-MWo" secondAttribute="trailing" constant="16" id="oVW-iD-shu"/>
+                            <constraint firstItem="klN-1k-Emf" firstAttribute="top" secondItem="frN-WX-Wps" secondAttribute="bottom" constant="16" id="pdo-1h-TAU"/>
                             <constraint firstItem="cML-Sg-sAx" firstAttribute="trailing" secondItem="frN-WX-Wps" secondAttribute="trailing" constant="16" id="xM2-t3-f8M"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cML-Sg-sAx"/>
                     </view>
                     <navigationItem key="navigationItem" id="uf2-N5-hCb"/>
                     <connections>
+                        <outlet property="bannerView" destination="MgR-my-XeR" id="xER-kS-cxR"/>
                         <outlet property="txt_post" destination="Dej-F7-MWo" id="gMe-Js-vl3"/>
                     </connections>
                 </viewController>

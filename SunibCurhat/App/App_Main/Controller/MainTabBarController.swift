@@ -58,69 +58,43 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         }
         observer.removeAll()
         
-        observer.append(NotificationCenter.default.addObserver(forName: Notification.Name.AuthStateDidChange, object: nil, queue: .some(.main), using: { (n) in
-            if let user = Auth.auth().currentUser {
-                RepoMemory.user_firebase = user
-            } else {
-                RepoMemory.user_firebase = nil
-            }
-        }))
-        
-        observer.append(NotificationCenter.default.addObserver(forName: .userFirebaseIsChanged, object: nil, queue: .some(.main), using: { (n) in
-            if RepoMemory.user_firebase == nil {
-                Auth.auth().signInAnonymously { (result, error) in
-                    if let r = result {
-                        print("--- result \(r)")
-                    }
-                    if let e = error {
-                        self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
-                    }
-                }
-                
-            } else {
-                print("user firebase available")
-            }
-        }))
-        
         observer.append(NotificationCenter.default.addObserver(forName: .tokenIsChanged, object: nil, queue: .some(.main), using: { (n) in
             if RepoMemory.token == nil {
-                do {
-                    try Auth.auth().signOut()
-                } catch {
-                    print("Error signing out: \(error.localizedDescription)")
-                }
-                
                 self.showLoaderIndicator()
                 MainService.shared.getToken(completion: { (result) in
                     switch result {
                     case .failure(let e):
                         self.dismissLoaderIndicator()
-                        self.showAlert(title: "Session Expire", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
-                            self.addObservers()
-                        }, CancelCompletion: nil)
+                        self.addObservers()
+//                        self.showAlert(title: "Session Expire", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
+//                            self.addObservers()
+//                        }, CancelCompletion: nil)
                         
                     case .success(let s):
                         self.dismissLoaderIndicator()
                         if s.success {
                             if let data = s.data {
-                                RepoMemory.token            = data["token"]
-                                RepoMemory.user_name        = data["name"]
-                                RepoMemory.user_firebase    = nil
-                                self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
-                                    RepoMemory.pendingFunction?()
-                                    RepoMemory.pendingFunction = nil
-                                }, CancelCompletion: nil)
+                                RepoMemory.token        = data["token"]
+                                RepoMemory.user_name    = data["name"]
+                                RepoMemory.pendingFunction?()
+                                RepoMemory.pendingFunction = nil
+//                                self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
+//                                    RepoMemory.pendingFunction?()
+//                                    RepoMemory.pendingFunction = nil
+//                                }, CancelCompletion: nil)
                             
                             } else {
-                                self.showAlert(title: "Session Expire", message: "token not found \n Try Again?", OKcompletion: { (act) in
-                                    self.addObservers()
-                                }, CancelCompletion: nil)
+                                self.addObservers()
+//                                self.showAlert(title: "Session Expire", message: "token not found \n Try Again?", OKcompletion: { (act) in
+//                                    self.addObservers()
+//                                }, CancelCompletion: nil)
                             }
                             
                         } else {
-                            self.showAlert(title: "Session Expire", message: s.message + "\n Try Again?", OKcompletion: { (act) in
-                                self.addObservers()
-                            }, CancelCompletion: nil)
+                            self.addObservers()
+//                            self.showAlert(title: "Session Expire", message: s.message + "\n Try Again?", OKcompletion: { (act) in
+//                                self.addObservers()
+//                            }, CancelCompletion: nil)
                         }
                     }
                 })

@@ -21,6 +21,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u1N-1a-Wrn">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatsTableViewCell" rowHeight="96" id="eDK-UG-nlT" customClass="ChatsTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="96"/>
@@ -30,20 +31,29 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsX-4t-Ld2">
-                                                    <rect key="frame" x="16" y="8" width="40" height="79.5"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <rect key="frame" x="16" y="16" width="33" height="44"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJN-hu-9BF">
+                                                    <rect key="frame" x="16" y="68" width="26.5" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="YsX-4t-Ld2" firstAttribute="top" secondItem="8eX-G5-mQU" secondAttribute="top" constant="8" id="5Si-rv-MiR"/>
+                                                <constraint firstItem="YsX-4t-Ld2" firstAttribute="top" secondItem="8eX-G5-mQU" secondAttribute="top" constant="16" id="5Si-rv-MiR"/>
+                                                <constraint firstItem="vJN-hu-9BF" firstAttribute="top" secondItem="YsX-4t-Ld2" secondAttribute="bottom" constant="8" id="LGh-wJ-86g"/>
                                                 <constraint firstItem="YsX-4t-Ld2" firstAttribute="leading" secondItem="8eX-G5-mQU" secondAttribute="leading" constant="16" id="cDT-8L-fWT"/>
-                                                <constraint firstAttribute="bottom" secondItem="YsX-4t-Ld2" secondAttribute="bottom" constant="8" id="q2a-FS-k8S"/>
+                                                <constraint firstAttribute="bottom" secondItem="vJN-hu-9BF" secondAttribute="bottom" constant="16" id="pOL-hA-XtQ"/>
+                                                <constraint firstItem="vJN-hu-9BF" firstAttribute="leading" secondItem="8eX-G5-mQU" secondAttribute="leading" constant="16" id="wpI-Po-7Yo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lbl_name" destination="YsX-4t-Ld2" id="oAc-sA-SAe"/>
+                                            <outlet property="lbl_timed" destination="vJN-hu-9BF" id="cFd-7T-X1I"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

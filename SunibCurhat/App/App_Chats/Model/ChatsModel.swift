@@ -16,12 +16,14 @@ protocol DatabaseRepresentation {
 struct Chat {
     let id          : String?
     let chat_id     : String
+    let users       : [String]
     let name        : String
     let date_create : Date
     
-    init(name: String, chat_id: String) {
+    init(name: String, chat_id: String, users: [String]) {
         self.id             = nil
         self.chat_id        = chat_id
+        self.users          = users
         self.name           = name
         self.date_create    = Date()
     }
@@ -31,23 +33,26 @@ struct Chat {
         
         guard
             let chat_id     = data["chat_id"] as? String,
+            let users       = data["users"] as? [String],
             let name        = data["name"] as? String,
-            let date_create = data["date_create"] as? Date
+            let date_create = data["date_create"] as? Timestamp
         else {
             return nil
         }
         
         self.id             = document.documentID
         self.chat_id        = chat_id
+        self.users          = users
         self.name           = name
-        self.date_create    = date_create
+        self.date_create    = date_create.dateValue()
     }
 }
 
 extension Chat: DatabaseRepresentation {
     var representation: [String : Any] {
-        var rep = [
+        var rep: [String : Any] = [
             "chat_id"       : chat_id,
+            "users"         : users,
             "name"          : name,
             "date_create"   : date_create
         ]
@@ -68,7 +73,7 @@ extension Chat: Comparable {
     }
     
     static func < (lhs: Chat, rhs: Chat) -> Bool {
-        return lhs.date_create < rhs.date_create
+        return rhs.date_create < lhs.date_create
     }
     
 }

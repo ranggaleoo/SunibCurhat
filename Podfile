@@ -13,5 +13,6 @@ target 'SunibCurhat' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
 
 end

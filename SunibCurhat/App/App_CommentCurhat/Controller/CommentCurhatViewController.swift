@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GoogleMobileAds
 
 class CommentCurhatViewController: UIViewController {
     @IBOutlet weak var tableViewComment: UITableView!
@@ -16,6 +17,7 @@ class CommentCurhatViewController: UIViewController {
     @IBOutlet weak var lbl_text_content: UILabel!
     @IBOutlet weak var lbl_time: UILabel!
     @IBOutlet weak var txt_comment: UITextView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     private lazy var refreshControl: UIRefreshControl = {
         let r = UIRefreshControl()
@@ -40,13 +42,33 @@ class CommentCurhatViewController: UIViewController {
         
         delegates()
         updateUI()
+        configAdUI()
     }
     
     private func updateUI() {
         DispatchQueue.main.async {
             self.lbl_name.text = self.timeline?.name
             self.lbl_text_content.text = self.timeline?.text_content
-            self.lbl_time.text = self.timeline?.timed
+            self.lbl_time.text = self.timeline?.timed.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
+        }
+    }
+    
+    private func configAdUI() {
+        bannerView.isHidden = true
+        MainService.shared.getAdBannerUnitID { (result) in
+            switch result {
+            case .failure(let e):
+                print(e.localizedDescription)
+            case .success(let s):
+                if s.success {
+                    if let ad_unit_id = s.data {
+                        self.bannerView.delegate = self
+                        self.bannerView.adUnitID = ad_unit_id
+                        self.bannerView.rootViewController = self
+                        self.bannerView.load(GADRequest())
+                    }
+                }
+            }
         }
     }
     
@@ -103,12 +125,7 @@ class CommentCurhatViewController: UIViewController {
             return
         }
         
-        guard
-            let timeline_id_not_int = timeline?.timeline_id,
-            let timeline_id = Int(timeline_id_not_int)
-            else {
-                return
-        }
+        guard let timeline_id = timeline?.timeline_id else { return }
         
         self.showLoaderIndicator()
         CommentService.shared.addComment(timeline_id: timeline_id, text_content: txt_comment.text) { (result) in
@@ -145,8 +162,7 @@ class CommentCurhatViewController: UIViewController {
     @objc func getComments() {
         guard
             !getMoreComment,
-            let timeline_id_not_int = timeline?.timeline_id,
-            let timeline_id = Int(timeline_id_not_int)
+            let timeline_id = timeline?.timeline_id
             else {
                 return
         }
@@ -266,4 +282,31 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
+}
+
+extension CommentCurhatViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        bannerView.isHidden = false
+        print_r(title: "ADMOB RECEIVE", message: nil)
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print_r(title: "ADMOB ERROR", message: error)
+    }
+    
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print_r(title: "ADMOB WILL PRESENT", message: nil)
+    }
+    
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print_r(title: "ADMOB WILL DISMISS", message: nil)
+    }
+    
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print_r(title: "ADMOB DID DISMISS", message: nil)
+    }
+    
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print_r(title: "ADMOB WILL LEAVE", message: nil)
+    }
 }

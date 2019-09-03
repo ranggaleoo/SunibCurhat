@@ -8,12 +8,10 @@
 
 import Foundation
 import UIKit
-import GoogleMobileAds
 
 class ListCurhatViewController: UIViewController {
     
     @IBOutlet weak var tableViewCurhat: UITableView!
-    @IBOutlet weak var admob_unit_1: GADBannerView!
     
     private lazy var refreshControl: UIRefreshControl = {
         let r = UIRefreshControl()
@@ -31,6 +29,7 @@ class ListCurhatViewController: UIViewController {
         }
     }
     
+    var fromAddThread: Bool = false
     var indexBeforeToComment: IndexPath?
     var getTimelineMore: Bool = false {
         didSet {
@@ -43,7 +42,6 @@ class ListCurhatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegates()
-        configAdUnit()
         getTimeline()
     }
     
@@ -61,12 +59,11 @@ class ListCurhatViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getTimeline), for: .valueChanged)
     }
     
-    private func configAdUnit() {
-        admob_unit_1.delegate = self
-        admob_unit_1.alpha = 0
-        admob_unit_1.adUnitID = ConstGlobal.AdMOB_UNIT_ID_TEST_BANNER
-        admob_unit_1.rootViewController = self
-        admob_unit_1.load(GADRequest())
+    func moveFromAddThread() {
+        DispatchQueue.main.async {
+            self.fromAddThread = true
+            self.getTimeline()
+        }
     }
     
     func stopLoadingGetTimeline() {
@@ -83,7 +80,7 @@ class ListCurhatViewController: UIViewController {
         getTimelineMore = true
         tableViewCurhat.reloadSections(IndexSet(integer: 1), with: .none)
         
-        if refreshControl.isRefreshing {
+        if refreshControl.isRefreshing || fromAddThread {
             timelineApi = nil
             timeline.removeAll()
         }
@@ -103,6 +100,7 @@ class ListCurhatViewController: UIViewController {
                 print(error)
             case .success(let success):
                 self.refreshControl.endRefreshing()
+                self.fromAddThread = false
                 if success.success {
                     if let data = success.data {
                         self.getTimelineMore = false
@@ -218,12 +216,18 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
+            if timeline[indexPath.row].is_ads {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "GADBannerTableViewCell") as! GADBannerTableViewCell
+                cell.root = self
+                cell.timeline = timeline[indexPath.row]
+                return cell
+            }
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "CurhatTableViewCell") as! CurhatTableViewCell
             cell.timeline = timeline[indexPath.row]
-            cell.isLiked = false
             
             cell.btn_likes_clicked = { (btn) in
-                guard let timeline_id = Int(self.timeline[indexPath.row].timeline_id) else {return}
+                let timeline_id = self.timeline[indexPath.row].timeline_id
                 let isLiked = cell.isLiked
                 if isLiked {
                     self.unlikeTimeline(timeline_id: timeline_id, cell: cell)
@@ -233,7 +237,7 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.btn_shares_clicked = { (btn) in
-                guard let timeline_id = Int(self.timeline[indexPath.row].timeline_id) else {return}
+                let timeline_id = self.timeline[indexPath.row].timeline_id
                 let shareText = self.timeline[indexPath.row].text_content + " - " + self.timeline[indexPath.row].name
                 let vc = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
                 vc.completionWithItemsHandler = { (actType: UIActivity.ActivityType?, completed: Bool, returnItems: [Any]?, error: Error?) in
@@ -255,10 +259,21 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
                     if let vc = self.tabBarController?.viewControllers {
                         guard let navigationController = vc[2] as? UINavigationController else { return }
                         if let c = navigationController.topViewController as? ChatsViewController {
+                            let myDeviceId          = RepoMemory.device_id
+                            let strangerDeviceId    = self.timeline[indexPath.row].device_id
+                            
+                            guard myDeviceId != strangerDeviceId else {
+                                self.showAlert(title: "Error", message: "You cannot chat yourself", OKcompletion: nil, CancelCompletion: nil)
+                                return
+                            }
+                            
                             self.tabBarController?.selectedIndex = 2
-                            let chat_id = RepoMemory.device_id + "+" + self.timeline[indexPath.row].device_id
-                            let name = self.timeline[indexPath.row].name
-                            c.createChatRoom(chat_id: chat_id, name: name)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                let chat_id = myDeviceId + "+" + strangerDeviceId
+                                let name = self.timeline[indexPath.row].name
+                                let users = [myDeviceId, strangerDeviceId]
+                                c.createChatRoom(chat_id: chat_id, name: name, users: users)
+                            })
                         }
                     }
                 }))
@@ -303,35 +318,5 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
                 self.getTimeline()
             }
         }
-    }
-}
-
-extension ListCurhatViewController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        admob_unit_1.alpha = 0
-        UIView.animate(withDuration: 1) {
-            self.admob_unit_1.alpha = 1
-        }
-        print_r(title: "ADMOB RECEIVE", message: nil)
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print_r(title: "ADMOB ERROR", message: error)
-    }
-    
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL PRESENT", message: nil)
-    }
-    
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL DISMISS", message: nil)
-    }
-    
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB DID DISMISS", message: nil)
-    }
-    
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL LEAVE", message: nil)
     }
 }

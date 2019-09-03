@@ -11,7 +11,13 @@ import UIKit
 
 extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
+        if chats.count == 0 {
+            tableView.setViewForEmptyData(image: UIImage(named: "img_empty_table"), message: "No chat today, let's chat")
+            return 0
+        } else {
+            tableView.backgroundView = nil
+            return chats.count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -26,8 +32,7 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chat = chats[indexPath.row]
-        guard let user = RepoMemory.user_firebase else {return}
-        let vc = ChatViewController(user: user, chat: chat)
+        let vc = ChatViewController(chat: chat)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -2,6 +2,14 @@ import UIKit
 
 extension String {
     
+    func toDate(format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let date = dateFormatter.date(from: self)
+        return date
+    }
+    
     func hexToUIColor(alpha: Double = 1.0) -> UIColor {
         var cString = self.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if cString.hasPrefix("#"){

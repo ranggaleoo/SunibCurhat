@@ -74,11 +74,18 @@
                                                     <constraint firstItem="2ok-oj-QTr" firstAttribute="top" secondItem="gxo-QV-JEk" secondAttribute="bottom" constant="8" id="u1r-pO-vWC"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehi-9l-meS" customClass="GADBannerView">
+                                                <rect key="frame" x="0.0" y="90" width="375" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Nun-w4-3hg"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FB0-uA-P8b">
-                                                <rect key="frame" x="0.0" y="90" width="375" height="557"/>
+                                                <rect key="frame" x="0.0" y="140" width="375" height="507"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IBh-WD-jNG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="507"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentTableViewCell" rowHeight="64" id="N8w-RL-ERz" customClass="CommentTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
@@ -194,8 +201,8 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="IBh-WD-jNG" firstAttribute="leading" secondItem="FB0-uA-P8b" secondAttribute="leading" id="0Ub-Xl-jfI"/>
-                                                    <constraint firstItem="IBh-WD-jNG" firstAttribute="top" secondItem="FB0-uA-P8b" secondAttribute="top" id="0tV-YH-yYb"/>
                                                     <constraint firstAttribute="bottom" secondItem="IBh-WD-jNG" secondAttribute="bottom" id="Q9A-Ug-E1e"/>
+                                                    <constraint firstItem="IBh-WD-jNG" firstAttribute="top" secondItem="FB0-uA-P8b" secondAttribute="top" id="ram-ep-nuc"/>
                                                     <constraint firstAttribute="trailing" secondItem="IBh-WD-jNG" secondAttribute="trailing" id="s14-ws-fEb"/>
                                                 </constraints>
                                             </view>
@@ -265,6 +272,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xHN-aO-9nL"/>
                     <connections>
+                        <outlet property="bannerView" destination="ehi-9l-meS" id="L8h-Vq-wt9"/>
                         <outlet property="lbl_name" destination="sgd-Vr-xYK" id="Z1u-3P-WW5"/>
                         <outlet property="lbl_text_content" destination="gxo-QV-JEk" id="Iuf-ah-WVc"/>
                         <outlet property="lbl_time" destination="2ok-oj-QTr" id="Xdl-rp-8h7"/>

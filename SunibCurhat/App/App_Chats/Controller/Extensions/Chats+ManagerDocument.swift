@@ -26,6 +26,9 @@ extension ChatsViewController {
             
         case .removed:
             removeChannelFromTable(chat)
+            
+        @unknown default:
+            print("Unknown document change \(change)")
         }
     }
     

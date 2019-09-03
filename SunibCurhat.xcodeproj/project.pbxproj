@@ -36,6 +36,13 @@
 		AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5BABE522F655BC004253AF /* ListCurhat.storyboard */; };
 		AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */; };
 		AA5BABEC22F65876004253AF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABEB22F65876004253AF /* Logger.swift */; };
+		AA7A0B4E231BF49000B8233E /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */; };
+		AA7A0B51231CE1E900B8233E /* Chat+MessageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B50231CE1E900B8233E /* Chat+MessageDisplay.swift */; };
+		AA7A0B53231CE76E00B8233E /* Chat+MessageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B52231CE76E00B8233E /* Chat+MessageLayout.swift */; };
+		AA7A0B55231CE95E00B8233E /* Chat+MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B54231CE95E00B8233E /* Chat+MessagesDataSource.swift */; };
+		AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */; };
+		AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */; };
+		AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */; };
 		AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394923077BF800DEAA63 /* HTTPRequest.swift */; };
 		AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394B23077ED900DEAA63 /* URLConst.swift */; };
 		AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394E23077F6E00DEAA63 /* TimelineService.swift */; };
@@ -119,6 +126,14 @@
 		AA5BABE522F655BC004253AF /* ListCurhat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListCurhat.storyboard; sourceTree = "<group>"; };
 		AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurhatViewController.swift; sourceTree = "<group>"; };
 		AA5BABEB22F65876004253AF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		AA66A2FB231D5F0700B90B01 /* SunibCurhat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SunibCurhat.entitlements; sourceTree = "<group>"; };
+		AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		AA7A0B50231CE1E900B8233E /* Chat+MessageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+MessageDisplay.swift"; sourceTree = "<group>"; };
+		AA7A0B52231CE76E00B8233E /* Chat+MessageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+MessageLayout.swift"; sourceTree = "<group>"; };
+		AA7A0B54231CE95E00B8233E /* Chat+MessagesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+MessagesDataSource.swift"; sourceTree = "<group>"; };
+		AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+InputBar.swift"; sourceTree = "<group>"; };
+		AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+ImagePicker.swift"; sourceTree = "<group>"; };
+		AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerTableViewCell.swift; sourceTree = "<group>"; };
 		AABF394923077BF800DEAA63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		AABF394B23077ED900DEAA63 /* URLConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConst.swift; sourceTree = "<group>"; };
 		AABF394E23077F6E00DEAA63 /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
@@ -263,6 +278,7 @@
 		166F1AD423178CCF00BB1151 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AA7A0B4F231CE1C400B8233E /* Extensions */,
 				166F1AD523178CE300BB1151 /* ChatViewController.swift */,
 			);
 			path = Controller;
@@ -382,6 +398,7 @@
 		AA478D7822F649A300BC23A7 /* SunibCurhat */ = {
 			isa = PBXGroup;
 			children = (
+				AA66A2FB231D5F0700B90B01 /* SunibCurhat.entitlements */,
 				AA5BABE922F6584F004253AF /* Helper */,
 				AA5BABDF22F6541F004253AF /* App */,
 				AA478D8E22F64FF000BC23A7 /* Config */,
@@ -465,6 +482,18 @@
 			path = GeneralHelper;
 			sourceTree = "<group>";
 		};
+		AA7A0B4F231CE1C400B8233E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA7A0B50231CE1E900B8233E /* Chat+MessageDisplay.swift */,
+				AA7A0B52231CE76E00B8233E /* Chat+MessageLayout.swift */,
+				AA7A0B54231CE95E00B8233E /* Chat+MessagesDataSource.swift */,
+				AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */,
+				AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AABF394823077BE000DEAA63 /* HTTPRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +550,7 @@
 				AACF3F1A23075E350056EF28 /* UIFont+Extensions.swift */,
 				AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */,
 				1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */,
+				AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -712,6 +742,7 @@
 				AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */,
 				AAF1182E22F6BD0400FDA099 /* AdsTableViewCell.swift */,
 				1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */,
+				AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -759,6 +790,11 @@
 				TargetAttributes = {
 					AA478D7522F649A300BC23A7 = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -849,12 +885,14 @@
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
 				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
 				AAD0E37C22F70F02005CC55A /* Date+Extension.swift in Sources */,
+				AA7A0B53231CE76E00B8233E /* Chat+MessageLayout.swift in Sources */,
 				AAD0E3BD22F71122005CC55A /* Contact.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
 				AAD0E37922F70F02005CC55A /* UIAlertController+Extensions.swift in Sources */,
 				16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */,
 				AAD0E3B922F71113005CC55A /* ContactsPickerViewController.swift in Sources */,
 				AAD0E38E22F70FBD005CC55A /* LocalePickerViewController.swift in Sources */,
+				AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */,
 				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
 				AAD0E39622F70FF9005CC55A /* LocaleInfo.swift in Sources */,
@@ -871,6 +909,7 @@
 				AAD0E38322F70F4B005CC55A /* AttributedTextBlock.swift in Sources */,
 				AA478D9022F6503000BC23A7 /* ConstGlobal.swift in Sources */,
 				AAD0E37F22F70F02005CC55A /* UITextView+Extensions.swift in Sources */,
+				AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */,
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
@@ -889,6 +928,7 @@
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
 				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
 				1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */,
+				AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
 				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
@@ -901,11 +941,14 @@
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
 				1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */,
 				16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */,
+				AA7A0B4E231BF49000B8233E /* UITableView+Extensions.swift in Sources */,
 				AAD0E39822F71008005CC55A /* LocaleStore.swift in Sources */,
 				AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */,
 				AAD0E37D22F70F02005CC55A /* Optional+Extensions.swift in Sources */,
 				AAD0E37122F70F02005CC55A /* Common+Extensions.swift in Sources */,
+				AA7A0B55231CE95E00B8233E /* Chat+MessagesDataSource.swift in Sources */,
 				AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */,
+				AA7A0B51231CE1E900B8233E /* Chat+MessageDisplay.swift in Sources */,
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
 				AA478D8222F649A300BC23A7 /* SunibCurhat.xcdatamodeld in Sources */,
 				AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */,
@@ -1047,14 +1090,15 @@
 			baseConfigurationReference = 4212E3969724C5A6980D50D0 /* Pods-SunibCurhat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45LXT427NQ;
+				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leo.sunibcurhat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranggaleoo.sunibcurhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1066,14 +1110,15 @@
 			baseConfigurationReference = 640EBA3BF5174C2A4F09B7B8 /* Pods-SunibCurhat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 45LXT427NQ;
+				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leo.sunibcurhat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranggaleoo.sunibcurhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

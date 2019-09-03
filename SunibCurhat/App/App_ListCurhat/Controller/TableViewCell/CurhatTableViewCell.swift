@@ -51,9 +51,19 @@ class CurhatTableViewCell: UITableViewCell {
     
     private func updateUI() {
         DispatchQueue.main.async {
-            self.lbl_name.text = self.timeline?.name
-            self.lbl_curhat.text = self.timeline?.text_content
-            self.lbl_time.text = self.timeline?.timed
+            self.lbl_name.text          = self.timeline?.name
+            self.lbl_curhat.text        = self.timeline?.text_content
+            self.lbl_time.text          = self.timeline?.timed.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
+            self.isLiked                = self.timeline?.is_liked ?? false
+            
+            let likes = self.timeline?.total_likes > 0 ? "\(self.timeline?.total_likes ?? 0)" : ""
+            self.lbl_count_likes.text       = likes + " likes"
+            
+            let comments = self.timeline?.total_comments > 0 ? "\(self.timeline?.total_comments ?? 0)" : ""
+            self.lbl_count_comments.text    = comments + " comments"
+            
+            let shares = self.timeline?.total_shares > 0 ? "\(self.timeline?.total_shares ?? 0)" : ""
+            self.lbl_count_shares.text      = shares + " shares"
         }
     }
     
