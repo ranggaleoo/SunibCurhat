@@ -214,13 +214,27 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let timeline_item = timeline[indexPath.row]
         switch indexPath.section {
         case 0:
-            if timeline[indexPath.row].is_ads {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "GADBannerTableViewCell") as! GADBannerTableViewCell
-                cell.root = self
-                cell.timeline = timeline[indexPath.row]
-                return cell
+            if timeline_item.is_ads {
+                if
+                    let ads_type = timeline_item.ads_type,
+                    ads_type == "google"
+                {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "GADBannerTableViewCell") as! GADBannerTableViewCell
+                    cell.root = self
+                    cell.timeline = timeline[indexPath.row]
+                    return cell
+                
+                } else if
+                    let ads_type = timeline_item.ads_type,
+                    ads_type == "sunib"
+                {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "AdsTableViewCell") as! AdsTableViewCell
+                    cell.timeline = timeline_item
+                    return cell
+                }
             }
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CurhatTableViewCell") as! CurhatTableViewCell

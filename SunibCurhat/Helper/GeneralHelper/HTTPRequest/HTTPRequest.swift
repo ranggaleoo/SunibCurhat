@@ -32,7 +32,7 @@ class HTTPRequest {
                 request.addValue(v, forHTTPHeaderField: k.string)
             }
         }
-
+        
         if let param = params {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: param, options:[])
@@ -63,6 +63,58 @@ class HTTPRequest {
                         completion(.success(responseModel))
                     } catch let jsonError {
                         completion(.failure(jsonError))
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    func _connect<T:Decodable>( url: String, params: [String:Any]?, model: T.Type, completion: @escaping (Result<T, Error>, Data?) -> Void) {
+        
+        guard let _url = URL(string: url) else {
+            fatalError("invalid url: " + url)
+        }
+        
+        var request = URLRequest(url: _url)
+        request.httpMethod = params == nil ? "GET" : "POST"
+        request.timeoutInterval = self.timeoutInterval
+        
+        if headers.count > 0 {
+            headers.forEach { (k, v) in
+                request.addValue(v, forHTTPHeaderField: k.string)
+            }
+        }
+        
+        if let param = params {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: param, options:[])
+            } catch let e {
+                print(e.localizedDescription)
+                completion(.failure(e), nil)
+            }
+        }
+        
+        self.task.dataTask(with: request) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(.failure(error), nil)
+                    return
+                }
+                if let a = response as? HTTPURLResponse {
+                    if a.statusCode != 200 {
+                        let e = NSError(domain: "Status Code", code: a.statusCode, userInfo: nil)
+                        completion(.failure(e), nil)
+                    }
+                    print("status code: ", a.statusCode)
+                }
+                if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
+                    print(stringResponse)
+                    
+                    do {
+                        let responseModel = try JSONDecoder().decode(T.self, from: _data)
+                        completion(.success(responseModel), _data)
+                    } catch let jsonError {
+                        completion(.failure(jsonError), nil)
                     }
                 }
             }

@@ -1,6 +1,14 @@
 import UIKit
 
 extension UIImageView {
+    func downloaded(urlString: String) {
+        MainService.shared.downloadMedia(url: urlString) { (result, data) in
+            guard let _data = data else { return }
+            DispatchQueue.main.async {
+                self.image = UIImage(data: _data)
+            }
+        }
+    }
     
     /// Sets the image property of the view based on initial text, a specified background color, custom text attributes, and a circular clipping
     ///

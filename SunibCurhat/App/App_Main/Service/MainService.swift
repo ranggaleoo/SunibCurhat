@@ -48,4 +48,10 @@ class MainService {
             completion(result)
         }
     }
+    
+    func downloadMedia(url: String, completion: @escaping (Result<String, Error>, Data?) -> Void) {
+        HTTPRequest.shared._connect(url: url, params: nil, model: String.self) { (result, data) in
+            completion(result, data)
+        }
+    }
 }
