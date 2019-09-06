@@ -152,13 +152,6 @@ class CommentCurhatViewController: UIViewController {
         }
     }
     
-    func stopLoadingGetComment() {
-        if let cell = self.tableViewComment.cellForRow(at: IndexPath(row: 0, section: 1)) as? LoadingTableViewCell {
-            cell.ActIndicatorLoading.stopAnimating()
-            cell.isHidden = true
-        }
-    }
-    
     @objc func getComments() {
         guard
             !getMoreComment,
@@ -168,7 +161,6 @@ class CommentCurhatViewController: UIViewController {
         }
         
         getMoreComment = true
-        tableViewComment.reloadSections(IndexSet(integer: 1), with: .none)
         
         if refreshControl.isRefreshing {
             commentsApi = nil
@@ -176,6 +168,10 @@ class CommentCurhatViewController: UIViewController {
         }
         
         let page = commentsApi?.next_page ?? 1
+        if page == 999 {
+            self.getMoreComment = false
+            return
+        }
         
         CommentService.shared.getComments(page: page, timeline_id: timeline_id) { (result) in
             switch result {
@@ -183,7 +179,6 @@ class CommentCurhatViewController: UIViewController {
                 self.refreshControl.endRefreshing()
                 self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
                     self.getMoreComment = false
-                    self.stopLoadingGetComment()
                     RepoMemory.token = nil
                     RepoMemory.pendingFunction = self.getComments.self
                 }, CancelCompletion: nil)
@@ -193,14 +188,12 @@ class CommentCurhatViewController: UIViewController {
                 if s.success {
                     if let data = s.data {
                         self.getMoreComment = false
-                        self.stopLoadingGetComment()
                         self.comments.append(data.comments)
                         self.commentsApi = data
                     }
                 
                 } else {
                     self.getMoreComment = false
-                    self.stopLoadingGetComment()
                     print(s.message)
                 }
             }
@@ -238,33 +231,22 @@ extension CommentCurhatViewController: UITextViewDelegate {
 }
 
 extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return comments.count
-        case 1: return getMoreComment ? 1 : 0
-        default:
-            return 0
-        }
+        return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
-            cell.comment = comments[indexPath.row]
-            return cell
-        case 1:
+        let isLastItem = indexPath.row + 1 == comments.count
+        
+        if isLastItem && commentsApi?.next_page != 999 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as! LoadingTableViewCell
-            cell.isHidden = false
             cell.ActIndicatorLoading.startAnimating()
             return cell
-        default:
-            return UITableViewCell()
         }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell
+        cell.comment = comments[indexPath.row]
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

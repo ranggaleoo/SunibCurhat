@@ -31,13 +31,7 @@ class ListCurhatViewController: UIViewController {
     
     var fromAddThread: Bool = false
     var indexBeforeToComment: IndexPath?
-    var getTimelineMore: Bool = false {
-        didSet {
-            if !getTimelineMore {
-                self.stopLoadingGetTimeline()
-            }
-        }
-    }
+    var getTimelineMore: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,19 +60,11 @@ class ListCurhatViewController: UIViewController {
         }
     }
     
-    func stopLoadingGetTimeline() {
-        if let cell = self.tableViewCurhat.cellForRow(at: IndexPath(row: 0, section: 1)) as? LoadingTableViewCell {
-            cell.ActIndicatorLoading.stopAnimating()
-            cell.isHidden = true
-        }
-    }
-    
     @objc func getTimeline() {
         guard !getTimelineMore else {
             return
         }
         getTimelineMore = true
-        tableViewCurhat.reloadSections(IndexSet(integer: 1), with: .none)
         
         if refreshControl.isRefreshing || fromAddThread {
             timelineApi = nil
@@ -86,6 +72,10 @@ class ListCurhatViewController: UIViewController {
         }
         
         let page = timelineApi?.next_page ?? 1
+        if page == 999 {
+            self.getTimelineMore = false
+            return
+        }
         
         TimelineService.shared.getTimeline(page: page) { (result) in
             switch result {
@@ -199,119 +189,104 @@ class ListCurhatViewController: UIViewController {
 
 extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return timeline.count
-        case 1: return getTimelineMore ? 1 : 0
-        default:
-            return 0
-        }
-        
+        return timeline.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let timeline_item = timeline[indexPath.row]
-        switch indexPath.section {
-        case 0:
-            if timeline_item.is_ads {
-                if
-                    let ads_type = timeline_item.ads_type,
-                    ads_type == "google"
-                {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "GADBannerTableViewCell") as! GADBannerTableViewCell
-                    cell.root = self
-                    cell.timeline = timeline[indexPath.row]
-                    return cell
-                
-                } else if
-                    let ads_type = timeline_item.ads_type,
-                    ads_type == "sunib"
-                {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "AdsTableViewCell") as! AdsTableViewCell
-                    cell.timeline = timeline_item
-                    return cell
-                }
-            }
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CurhatTableViewCell") as! CurhatTableViewCell
-            cell.timeline = timeline[indexPath.row]
-            
-            cell.btn_likes_clicked = { (btn) in
-                let timeline_id = self.timeline[indexPath.row].timeline_id
-                let isLiked = cell.isLiked
-                if isLiked {
-                    self.unlikeTimeline(timeline_id: timeline_id, cell: cell)
-                } else {
-                    self.likeTimeline(timeline_id: timeline_id, cell: cell)
-                }
-            }
-            
-            cell.btn_shares_clicked = { (btn) in
-                let timeline_id = self.timeline[indexPath.row].timeline_id
-                let shareText = self.timeline[indexPath.row].text_content + " - " + self.timeline[indexPath.row].name
-                let vc = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
-                vc.completionWithItemsHandler = { (actType: UIActivity.ActivityType?, completed: Bool, returnItems: [Any]?, error: Error?) in
-                    if completed {
-                        self.shareTimeline(timeline_id: timeline_id)
-                    }
-                }
-                self.present(vc, animated: true)
-            }
-            
-            cell.btn_comments_clicked = { (btn) in
-                self.indexBeforeToComment = indexPath
-                self.performSegue(withIdentifier: "toComment", sender: self)
-            }
-            
-            cell.btn_more_clicked = { (btn) in
-                let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
-                    if let vc = self.tabBarController?.viewControllers {
-                        guard let navigationController = vc[2] as? UINavigationController else { return }
-                        if let c = navigationController.topViewController as? ChatsViewController {
-                            let myDeviceId          = RepoMemory.device_id
-                            let strangerDeviceId    = self.timeline[indexPath.row].device_id
-                            
-                            guard myDeviceId != strangerDeviceId else {
-                                self.showAlert(title: "Error", message: "You cannot chat yourself", OKcompletion: nil, CancelCompletion: nil)
-                                return
-                            }
-                            
-                            self.tabBarController?.selectedIndex = 2
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                                let chat_id = myDeviceId + "+" + strangerDeviceId
-                                let name = self.timeline[indexPath.row].name
-                                let users = [myDeviceId, strangerDeviceId]
-                                c.createChatRoom(chat_id: chat_id, name: name, users: users)
-                            })
-                        }
-                    }
-                }))
-                
-                alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
-                    //report
-                }))
-                
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true, completion: nil)
-            }
-            
-            return cell
+        let isLastItem = indexPath.row + 1 == timeline.count
         
-        case 1:
+        if isLastItem && timelineApi?.next_page != 999 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as! LoadingTableViewCell
-            cell.isHidden = false
             cell.ActIndicatorLoading.startAnimating()
             return cell
-        default:
-            return UITableViewCell()
         }
         
+        if timeline[indexPath.row].is_ads {
+            if
+                let ads_type = timeline[indexPath.row].ads_type,
+                ads_type == "google"
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "GADBannerTableViewCell") as! GADBannerTableViewCell
+                cell.root = self
+                cell.timeline = timeline[indexPath.row]
+                return cell
+                
+            } else if
+                let ads_type = timeline[indexPath.row].ads_type,
+                ads_type == "sunib"
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AdsTableViewCell") as! AdsTableViewCell
+                cell.timeline = timeline[indexPath.row]
+                return cell
+            }
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurhatTableViewCell") as! CurhatTableViewCell
+        cell.timeline = timeline[indexPath.row]
+        
+        cell.btn_likes_clicked = { (btn) in
+            let timeline_id = self.timeline[indexPath.row].timeline_id
+            let isLiked = cell.isLiked
+            if isLiked {
+                self.unlikeTimeline(timeline_id: timeline_id, cell: cell)
+            } else {
+                self.likeTimeline(timeline_id: timeline_id, cell: cell)
+            }
+        }
+        
+        cell.btn_shares_clicked = { (btn) in
+            let timeline_id = self.timeline[indexPath.row].timeline_id
+            let shareText = self.timeline[indexPath.row].text_content + " - " + self.timeline[indexPath.row].name
+            let vc = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
+            vc.completionWithItemsHandler = { (actType: UIActivity.ActivityType?, completed: Bool, returnItems: [Any]?, error: Error?) in
+                if completed {
+                    self.shareTimeline(timeline_id: timeline_id)
+                }
+            }
+            self.present(vc, animated: true)
+        }
+        
+        cell.btn_comments_clicked = { (btn) in
+            self.indexBeforeToComment = indexPath
+            self.performSegue(withIdentifier: "toComment", sender: self)
+        }
+        
+        cell.btn_more_clicked = { (btn) in
+            let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
+                if let vc = self.tabBarController?.viewControllers {
+                    guard let navigationController = vc[2] as? UINavigationController else { return }
+                    if let c = navigationController.topViewController as? ChatsViewController {
+                        let myDeviceId          = RepoMemory.device_id
+                        let strangerDeviceId    = self.timeline[indexPath.row].device_id
+                        
+                        guard myDeviceId != strangerDeviceId else {
+                            self.showAlert(title: "Error", message: "You cannot chat yourself", OKcompletion: nil, CancelCompletion: nil)
+                            return
+                        }
+                        
+                        self.tabBarController?.selectedIndex = 2
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            let chat_id = myDeviceId + "+" + strangerDeviceId
+                            let name = self.timeline[indexPath.row].name
+                            let users = [myDeviceId, strangerDeviceId]
+                            c.createChatRoom(chat_id: chat_id, name: name, users: users)
+                        })
+                    }
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
+                //report
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

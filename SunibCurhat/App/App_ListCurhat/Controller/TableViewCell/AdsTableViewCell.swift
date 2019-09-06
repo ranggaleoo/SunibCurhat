@@ -26,7 +26,7 @@ class AdsTableViewCell: UITableViewCell {
     
     private func updateUI() {
         DispatchQueue.main.async {
-            self.imageViewAds.downloaded(urlString: timeline?.ad_url_iamge ?? "")
+            self.imageViewAds.downloaded(urlString: self.timeline?.ad_url_iamge ?? "")
             self.lbl_name.text = "Kang Iklan"
         }
     }
