@@ -10,8 +10,8 @@ import Foundation
 
 struct URLConst {
     
-    static let server               = "https://8093ecfa.ngrok.io"
-    static let api_path             = "/web_semua_bisa/id/apisunibcurhat"
+    static let server               = "https://semuabisa.ga"
+    static let api_path             = "/id/apisunibcurhat"
     
     // API_URL
     static let api_url              = server + api_path
