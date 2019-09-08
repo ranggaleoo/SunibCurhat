@@ -49,9 +49,15 @@ class MainService {
         }
     }
     
-    func downloadMedia(url: String, completion: @escaping (Result<String, Error>, Data?) -> Void) {
-        HTTPRequest.shared._connect(url: url, params: nil, model: String.self) { (result, data) in
-            completion(result, data)
+    func adsClicked(ad_unit_id: Int, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+        let url = URLConst.api_url + "/adsClicked"
+        var param: [String: Any]    = [:]
+        param["ad_unit_id"] = ad_unit_id
+        if let token = RepoMemory.token {
+            param["X_SIGNATURE_API"] = token
+        }
+        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+            completion(result)
         }
     }
 }

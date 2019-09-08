@@ -78,9 +78,13 @@ class ListCurhatViewController: UIViewController {
         }
         
         TimelineService.shared.getTimeline(page: page) { (result) in
+            DispatchQueue.main.async {
+                if self.refreshControl.isRefreshing {
+                    self.refreshControl.endRefreshing()
+                }
+            }
             switch result {
             case .failure(let error):
-                self.refreshControl.endRefreshing()
                 self.showAlert(title: "Error", message: error.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
                     self.getTimelineMore = false
                     RepoMemory.token = nil
@@ -89,7 +93,6 @@ class ListCurhatViewController: UIViewController {
                 
                 print(error)
             case .success(let success):
-                self.refreshControl.endRefreshing()
                 self.fromAddThread = false
                 if success.success {
                     if let data = success.data {
@@ -107,17 +110,21 @@ class ListCurhatViewController: UIViewController {
     }
     
     @objc func likeTimeline(timeline_id: Int, cell: CurhatTableViewCell) {
-        self.showLoaderIndicator()
+//        self.showLoaderIndicator()
+        cell.isLiked = true
+        cell.btn_likes.isEnabled = false
         TimelineService.shared.likeTimeline(timeline_id: timeline_id) { (result) in
             switch result {
             case .failure(let e):
-                self.dismissLoaderIndicator()
+//                self.dismissLoaderIndicator()
+                cell.btn_likes.isEnabled = true
                 self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
                     RepoMemory.token = nil
                 }, CancelCompletion: nil)
                 
             case .success(let s):
-                self.dismissLoaderIndicator()
+//                self.dismissLoaderIndicator()
+                cell.btn_likes.isEnabled = true
                 if s.success {
                     cell.isLiked = true
                 } else {
@@ -130,17 +137,21 @@ class ListCurhatViewController: UIViewController {
     }
     
     @objc func unlikeTimeline(timeline_id: Int, cell: CurhatTableViewCell) {
-        self.showLoaderIndicator()
+//        self.showLoaderIndicator()
+        cell.isLiked = false
+        cell.btn_likes.isEnabled = false
         TimelineService.shared.unlikeTimeline(timeline_id: timeline_id) { (result) in
             switch result {
             case .failure(let e):
-                self.dismissLoaderIndicator()
+//                self.dismissLoaderIndicator()
+                cell.btn_likes.isEnabled = true
                 self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
                     RepoMemory.token = nil
                 }, CancelCompletion: nil)
                 
             case .success(let s):
-                self.dismissLoaderIndicator()
+//                self.dismissLoaderIndicator()
+                cell.btn_likes.isEnabled = true
                 if s.success {
                     cell.isLiked = false
                 } else {

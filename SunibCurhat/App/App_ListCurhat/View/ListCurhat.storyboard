@@ -265,70 +265,34 @@
                                             <outlet property="lbl_time" destination="UsZ-ae-c4S" id="YKY-Xr-Tfr"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdsTableViewCell" rowHeight="300" id="6Cd-z9-Hpb" customClass="AdsTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="295" width="375" height="300"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdsTableViewCell" rowHeight="215" id="6Cd-z9-Hpb" customClass="AdsTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="295" width="375" height="215"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Cd-z9-Hpb" id="gDi-Rn-WbP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kp0-5a-TEO" userLabel="container">
-                                                    <rect key="frame" x="16" y="16" width="343" height="268"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kang Iklan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIH-0e-P17">
-                                                            <rect key="frame" x="16" y="16" width="311" height="48"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AJP-0f-O4g">
-                                                            <rect key="frame" x="16.5" y="72" width="310" height="180"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="310" id="CUZ-XN-HYH"/>
-                                                                <constraint firstAttribute="width" secondItem="AJP-0f-O4g" secondAttribute="height" multiplier="31:18" id="IMC-TU-ryV"/>
-                                                                <constraint firstAttribute="height" constant="180" id="Vd0-YA-npt"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AJP-0f-O4g">
+                                                    <rect key="frame" x="17.5" y="16" width="340" height="180"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="AJP-0f-O4g" secondAttribute="bottom" constant="16" id="Hfc-fu-CMO"/>
-                                                        <constraint firstItem="AJP-0f-O4g" firstAttribute="centerX" secondItem="Kp0-5a-TEO" secondAttribute="centerX" id="Iyc-kN-DiA"/>
-                                                        <constraint firstItem="BIH-0e-P17" firstAttribute="leading" secondItem="Kp0-5a-TEO" secondAttribute="leading" constant="16" id="J6J-2d-pRt"/>
-                                                        <constraint firstItem="AJP-0f-O4g" firstAttribute="top" secondItem="BIH-0e-P17" secondAttribute="bottom" constant="8" id="h1N-ja-3bx"/>
-                                                        <constraint firstAttribute="trailing" secondItem="BIH-0e-P17" secondAttribute="trailing" constant="16" id="krB-ye-kwN"/>
-                                                        <constraint firstItem="BIH-0e-P17" firstAttribute="top" secondItem="Kp0-5a-TEO" secondAttribute="top" constant="16" id="xNs-Vv-ghl"/>
+                                                        <constraint firstAttribute="width" secondItem="AJP-0f-O4g" secondAttribute="height" multiplier="17:9" id="SLD-xs-sfz"/>
+                                                        <constraint firstAttribute="height" constant="180" id="cY7-Fa-CFc"/>
+                                                        <constraint firstAttribute="width" constant="340" id="xNy-vN-Uh1"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="circleCorner" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                            <size key="value" width="2" height="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Kp0-5a-TEO" secondAttribute="bottom" constant="16" id="Gqk-d3-uiM"/>
-                                                <constraint firstItem="Kp0-5a-TEO" firstAttribute="leading" secondItem="gDi-Rn-WbP" secondAttribute="leading" constant="16" id="HvT-S2-oVA"/>
-                                                <constraint firstAttribute="trailing" secondItem="Kp0-5a-TEO" secondAttribute="trailing" constant="16" id="kxV-bW-QdV"/>
-                                                <constraint firstItem="Kp0-5a-TEO" firstAttribute="top" secondItem="gDi-Rn-WbP" secondAttribute="top" constant="16" id="scg-3B-03D"/>
+                                                <constraint firstItem="AJP-0f-O4g" firstAttribute="centerX" secondItem="gDi-Rn-WbP" secondAttribute="centerX" id="3He-ye-B6Z"/>
+                                                <constraint firstItem="AJP-0f-O4g" firstAttribute="top" secondItem="gDi-Rn-WbP" secondAttribute="top" constant="16" id="M4o-fJ-KDU"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AJP-0f-O4g" secondAttribute="bottom" constant="16" id="alb-HQ-Jv7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageViewAds" destination="AJP-0f-O4g" id="RJZ-AV-tuq"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingTableViewCell" rowHeight="50" id="aT3-J6-HSZ" customClass="LoadingTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="595" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="510" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aT3-J6-HSZ" id="PDA-Dt-lHd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -349,7 +313,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GADBannerTableViewCell" rowHeight="68" id="8yJ-RN-234" customClass="GADBannerTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="645" width="375" height="68"/>
+                                        <rect key="frame" x="0.0" y="560" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8yJ-RN-234" id="dBW-mo-0kp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>

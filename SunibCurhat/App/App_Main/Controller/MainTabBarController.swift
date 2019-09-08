@@ -82,6 +82,28 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 //                                    RepoMemory.pendingFunction?()
 //                                    RepoMemory.pendingFunction = nil
 //                                }, CancelCompletion: nil)
+                                
+                                if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                                    guard
+                                        let version = Int(appVersion.replacingOccurrences(of: ".", with: "")),
+                                        let versionServer = Int(data["version"]?.replacingOccurrences(of: ".", with: "") ?? appVersion.replacingOccurrences(of: ".", with: "")),
+                                        let urlUpdate = URL(string: data["url_update_version"] ?? "")
+                                    else {
+                                        return
+                                    }
+                                    
+                                    if version < versionServer {
+                                        self.showAlert(title: "New Version Available", message: "Please, update app to new version to continue tell what in your heart :)", OKcompletion: { (act) in
+                                            if UIApplication.shared.canOpenURL(urlUpdate) {
+                                                UIApplication.shared.open(urlUpdate, options: [:], completionHandler: { (clicked) in
+                                                    if clicked {
+                                                        print("-----user will update version")
+                                                    }
+                                                })
+                                            }
+                                        }, CancelCompletion: nil)
+                                    }
+                                }
                             
                             } else {
                                 self.addObservers()

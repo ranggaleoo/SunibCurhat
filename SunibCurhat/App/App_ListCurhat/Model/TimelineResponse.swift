@@ -29,8 +29,8 @@ struct TimelineItems: Decodable {
     var is_ads          : Bool
     var ads_type        : String?
     var ad_unit_id      : String?
-    var ad_url_iamge    : String?
-    var ad_url_cpm      : String?
+    var ad_url_media    : String?
+    var ad_url_action   : String?
     
     enum Keys: String, CodingKey {
         case timeline_id
@@ -47,8 +47,8 @@ struct TimelineItems: Decodable {
         case is_ads
         case ads_type
         case ad_unit_id
-        case ad_url_iamge
-        case ad_url_cpm
+        case ad_url_media
+        case ad_url_action
     }
     
     init(from decoder: Decoder) throws {
@@ -67,8 +67,8 @@ struct TimelineItems: Decodable {
         self.is_ads         = try container.decodeIfPresent(Bool.self, forKey: .is_ads) ?? false
         self.ads_type       = try container.decodeIfPresent(String.self, forKey: .ads_type) ?? ""
         self.ad_unit_id     = try container.decodeIfPresent(String.self, forKey: .ad_unit_id) ?? ""
-        self.ad_url_iamge   = try container.decodeIfPresent(String.self, forKey: .ad_url_iamge) ?? ""
-        self.ad_url_cpm     = try container.decodeIfPresent(String.self, forKey: .ad_url_cpm) ?? ""
+        self.ad_url_media   = try container.decodeIfPresent(String.self, forKey: .ad_url_media) ?? ""
+        self.ad_url_action  = try container.decodeIfPresent(String.self, forKey: .ad_url_action) ?? ""
     }
 }
 
