@@ -3,7 +3,6 @@ import Foundation
 
 // MARK: - Designable Extension
 
-@IBDesignable
 extension UIView {
     
     @IBInspectable
