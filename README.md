@@ -20,6 +20,7 @@ Practice session = The period started when you press "Saya Siap" button on the h
 # Information Collection and Use
 
 For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained by us and used as described in this privacy policy.
+Camera in Sunib Curhat confide is used to take pictures when you want to send pictures in the chat feature, contact is used to share the word thread to your contacts, Photo Library in Sunib Curhat confide is used to take pictures when you want to send pictures in the chat feature. we are never save your data.
 
 
 # Log Data
@@ -48,7 +49,7 @@ We may update our Privacy Policy from time to time. Thus, you are advised to rev
 
 # Contact Us
 
-If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at hello\.tech@gmail.com
+If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at ranggaleo@icloud.com
 
 
 Thank you for using Sunib Curhat, and we hope you can achieve better interview skill so that you can get that job!
