@@ -50,6 +50,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.selectedIndex = 0
         self.addObservers()
+        RepoMemory.token = nil
     }
     
     private func addObservers() {
