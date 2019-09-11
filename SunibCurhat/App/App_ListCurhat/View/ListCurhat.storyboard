@@ -368,11 +368,20 @@
                     <connections>
                         <outlet property="tableViewCurhat" destination="A0p-JA-ykd" id="Xdc-Bl-VcH"/>
                         <segue destination="JaL-gA-2eC" kind="show" identifier="toComment" id="cd5-bv-xMS"/>
+                        <segue destination="cx8-9S-ib6" kind="show" identifier="toReport" id="Y6F-Ij-37s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kln-FN-wqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="903.20000000000005" y="92.653673163418304"/>
+        </scene>
+        <!--Report-->
+        <scene sceneID="L7j-IN-Y7N">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Report" id="cx8-9S-ib6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tPZ-TZ-WaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618" y="24"/>
         </scene>
         <!--CommentCurhat-->
         <scene sceneID="B1U-wn-kgg">

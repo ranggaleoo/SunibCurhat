@@ -41,6 +41,7 @@ class ListCurhatViewController: UIViewController {
     
     private func delegates() {
         self.title = "Timeline"
+        self.setupMenuBarButtonItem()
         tableViewCurhat.delegate = self
         tableViewCurhat.dataSource = self
         
@@ -184,10 +185,37 @@ class ListCurhatViewController: UIViewController {
         }
     }
     
+    @objc func deleteTimeline(timeline_id: Int) {
+//        self.showLoaderIndicator()
+        TimelineService.shared.deleteTimeline(timeline_id: timeline_id, completion: { (result) in
+            switch result {
+            case .failure(let e):
+//                self.dismissLoaderIndicator()
+                self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: { (act) in
+                    RepoMemory.token = nil
+                }, CancelCompletion: nil)
+                
+            case .success(let s):
+//                self.dismissLoaderIndicator()
+                if s.success {
+                    //
+                } else {
+                    print(s.message);
+                }
+            }
+        })
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "toComment":
             let d = segue.destination as! CommentCurhatViewController
+            if let index = indexBeforeToComment?.row {
+                d.timeline = self.timeline[index]
+            }
+            
+        case "toReport":
+            let d = segue.destination as! ReportViewController
             if let index = indexBeforeToComment?.row {
                 d.timeline = self.timeline[index]
             }
@@ -265,6 +293,15 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.btn_more_clicked = { (btn) in
             let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+            
+            if self.timeline[indexPath.row].device_id == RepoMemory.device_id {
+                alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (act) in
+                    self.timeline.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .left)
+                    self.deleteTimeline(timeline_id: self.timeline[indexPath.row].timeline_id)
+                }))
+            }
+            
             alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
                 if let vc = self.tabBarController?.viewControllers {
                     guard let navigationController = vc[2] as? UINavigationController else { return }
@@ -289,7 +326,8 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
             }))
             
             alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
-                //report
+                self.indexBeforeToComment = indexPath
+                self.performSegue(withIdentifier: "toReport", sender: self)
             }))
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

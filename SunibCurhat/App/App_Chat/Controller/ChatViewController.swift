@@ -58,13 +58,26 @@ final class ChatViewController: MessagesViewController {
                 return
             }
             
-            snapshot.documentChanges.forEach { change in
-                self.handleDocumentChange(change)
-            }
+            snapshot.query.limit(to: 50).getDocuments(completion: { (querySnap, error) in
+                guard let s = querySnap else {
+                    print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                    return
+                }
+                
+                s.documentChanges.forEach { change in
+                    self.handleDocumentChange(change)
+                }
+            })
         }
     }
     
     private func delegates() {
+        self.setupMoreBarButtonItem { (act) in
+            let sb = UIStoryboard(name: "Report", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "view_report") as! ReportViewController
+            vc.chat = self.chat
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         navigationItem.largeTitleDisplayMode        = .never
         maintainPositionOnKeyboardFrameChanged      = true
         messageInputBar.inputTextView.tintColor     = UIColor.custom.blue

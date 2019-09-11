@@ -82,4 +82,19 @@ class TimelineService {
             completion(result)
         }
     }
+    
+    func deleteTimeline(timeline_id: Int, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+        let url = URLConst.api_url + "/deleteTimeline"
+        var param: [String: Any] = [:]
+        param["timeline_id"] = timeline_id
+        
+        if let token = RepoMemory.token {
+            param["X_SIGNATURE_API"] = token
+        }
+        HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
+        HTTPRequest.shared.headers[.referer] = URLConst.server
+        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+            completion(result)
+        }
+    }
 }

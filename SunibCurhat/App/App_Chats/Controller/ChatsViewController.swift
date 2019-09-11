@@ -21,7 +21,7 @@ class ChatsViewController: UIViewController {
     }()
     
     private let db = Firestore.firestore()
-    private var chatsReference: CollectionReference {
+    var chatsReference: CollectionReference {
         return db.collection("Chats")
     }
     var chats: [Chat] = []
