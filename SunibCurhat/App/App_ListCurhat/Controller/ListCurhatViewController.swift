@@ -185,8 +185,11 @@ class ListCurhatViewController: UIViewController {
         }
     }
     
-    @objc func deleteTimeline(timeline_id: Int) {
+    @objc func deleteTimeline(timeline_id: Int, indexPath: IndexPath) {
 //        self.showLoaderIndicator()
+        print("----- delete", timeline_id)
+        self.timeline.remove(at: indexPath.row)
+        self.tableViewCurhat.deleteRows(at: [indexPath], with: .left)
         TimelineService.shared.deleteTimeline(timeline_id: timeline_id, completion: { (result) in
             switch result {
             case .failure(let e):
@@ -196,7 +199,7 @@ class ListCurhatViewController: UIViewController {
                 }, CancelCompletion: nil)
                 
             case .success(let s):
-//                self.dismissLoaderIndicator()
+                self.dismissLoaderIndicator()
                 if s.success {
                     //
                 } else {
@@ -296,9 +299,7 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
             
             if self.timeline[indexPath.row].device_id == RepoMemory.device_id {
                 alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (act) in
-                    self.timeline.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .left)
-                    self.deleteTimeline(timeline_id: self.timeline[indexPath.row].timeline_id)
+                    self.deleteTimeline(timeline_id: self.timeline[indexPath.row].timeline_id, indexPath: indexPath)
                 }))
             }
             
