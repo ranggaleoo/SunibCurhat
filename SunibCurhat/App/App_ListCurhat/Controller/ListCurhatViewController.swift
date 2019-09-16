@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MessageUI
 
 class ListCurhatViewController: UIViewController {
     
@@ -52,6 +53,82 @@ class ListCurhatViewController: UIViewController {
         }
         
         refreshControl.addTarget(self, action: #selector(getTimeline), for: .valueChanged)
+    }
+    
+    func setupMenuBarButtonItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "bar_btn_more_vert"), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
+    }
+    
+    @objc private func actionMenuBarButtonItem(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Contact Us", style: .default, handler: { (act) in
+            let alert2 = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
+            
+            alert2.addAction(UIAlertAction(title: "Email", style: .default, handler: { (act) in
+                if MFMailComposeViewController.canSendMail() {
+                    let mail = MFMailComposeViewController()
+                    mail.mailComposeDelegate = self
+                    mail.setToRecipients(["ranggaleo@icloud.com"])
+                    mail.setSubject("Sunib Curhat")
+                    mail.setMessageBody("<p>Hi Sunib Curhat!</p>", isHTML: true)
+                    
+                    self.present(mail, animated: true)
+                } else {
+                    // show failure alert
+                }
+            }))
+            
+            alert2.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { (act) in
+                guard let url = URL(string: "https://www.instagram.com/sunibcurhat/") else {return}
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                        if success {
+                            print("----- open instagram")
+                        }
+                    })
+                }
+            }))
+            
+            alert2.addAction(UIAlertAction(title: "Whatsapp", style: .default, handler: { (act) in
+                guard let url = URL(string: "https://api.whatsapp.com/send?phone=6287828636531&text=Halo%20Sunib%20Curhat!") else {return}
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                        if success {
+                            print("----- open whatsapp")
+                        }
+                    })
+                }
+            }))
+            
+            alert2.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert2, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Privacy Policy", style: .default, handler: { (act) in
+            guard let url_privacy = URL(string: "https://bit.ly/privacypolicesunib") else {return}
+            if UIApplication.shared.canOpenURL(url_privacy) {
+                UIApplication.shared.open(url_privacy, options: [:], completionHandler: { (success) in
+                    if success {
+                        print("----- open privacy policy")
+                    }
+                })
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "User Agreement", style: .default, handler: { (act) in
+            guard let url_eula = URL(string: "https://bit.ly/uelasunibcurhat") else {return}
+            if UIApplication.shared.canOpenURL(url_eula) {
+                UIApplication.shared.open(url_eula, options: [:], completionHandler: { (success) in
+                    if success {
+                        print("----- user agreement")
+                    }
+                })
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func moveFromAddThread() {
@@ -357,5 +434,14 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
                 self.getTimeline()
             }
         }
+    }
+}
+
+extension UIViewController: MFMailComposeViewControllerDelegate {
+    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let e = error {
+            print(e.localizedDescription)
+        }
+        controller.dismiss(animated: true, completion: nil)
     }
 }

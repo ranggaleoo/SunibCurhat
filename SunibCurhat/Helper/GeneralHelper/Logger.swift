@@ -13,3 +13,7 @@ func print_r(title: String, message: Any?) {
     print(message ?? "nothing")
     print("=====[END OF \(title.uppercased())=====]")
 }
+
+func checkRange(_ range: NSRange, contain index: Int) -> Bool {
+    return index > range.location && index < range.location + range.length
+}

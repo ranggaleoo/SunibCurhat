@@ -9,38 +9,6 @@ extension UIViewController {
         return alert
     }
     
-    func setupMenuBarButtonItem() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "bar_btn_more_vert"), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
-    }
-    
-    @objc private func actionMenuBarButtonItem(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Privacy Police", style: .default, handler: { (act) in
-            guard let url_privacy = URL(string: "https://bit.ly/privacypolicesunib") else {return}
-            if UIApplication.shared.canOpenURL(url_privacy) {
-                UIApplication.shared.open(url_privacy, options: [:], completionHandler: { (success) in
-                    if success {
-                        print("----- open privacy police")
-                    }
-                })
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "User Agreement", style: .default, handler: { (act) in
-            guard let url_eula = URL(string: "https://bit.ly/uelasunibcurhat") else {return}
-            if UIApplication.shared.canOpenURL(url_eula) {
-                UIApplication.shared.open(url_eula, options: [:], completionHandler: { (success) in
-                    if success {
-                        print("----- user agreement")
-                    }
-                })
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     func setupMoreBarButtonItem(handler: @escaping (UIAlertAction) -> Void) {
         UIViewController.alertActions["more_bar_button_item"] = handler
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "bar_btn_more_vert"), style: .plain, target: self, action: #selector(actionMoreBarButtonItem(_:)))

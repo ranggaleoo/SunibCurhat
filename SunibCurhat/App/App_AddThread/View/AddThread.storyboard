@@ -47,7 +47,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="klN-1k-Emf">
-                                <rect key="frame" x="27.5" y="252" width="320" height="51"/>
+                                <rect key="frame" x="27.5" y="306" width="320" height="51"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzD-Sb-eJ8">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -66,24 +66,76 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-kY-auc">
+                                <rect key="frame" x="16" y="240" width="343" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lji-0i-wY3">
+                                        <rect key="frame" x="0.0" y="0.0" width="34" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynU-1A-1BN">
+                                                <rect key="frame" x="0.0" y="8" width="34" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="34" id="Aee-Ph-NBf"/>
+                                                    <constraint firstAttribute="width" secondItem="ynU-1A-1BN" secondAttribute="height" multiplier="1:1" id="Iet-W6-etu"/>
+                                                </constraints>
+                                                <state key="normal" image="btn_uncheck_box"/>
+                                                <connections>
+                                                    <action selector="actionCheck:" destination="ske-sO-CkN" eventType="touchUpInside" id="57l-d1-LJZ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ynU-1A-1BN" firstAttribute="leading" secondItem="Lji-0i-wY3" secondAttribute="leading" id="91q-SP-j3f"/>
+                                            <constraint firstItem="ynU-1A-1BN" firstAttribute="top" secondItem="Lji-0i-wY3" secondAttribute="top" constant="8" id="KHh-EM-SuZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="ynU-1A-1BN" secondAttribute="bottom" constant="8" id="VfZ-Up-OWf"/>
+                                            <constraint firstAttribute="trailing" secondItem="ynU-1A-1BN" secondAttribute="trailing" id="smf-FK-rzz"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPc-Mb-zuu">
+                                        <rect key="frame" x="34" y="0.0" width="309" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By clicking on the &quot;Post&quot; button, you agree to our User Agreement and our Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNM-d9-sjb">
+                                                <rect key="frame" x="0.0" y="0.0" width="309" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="xNM-d9-sjb" firstAttribute="top" secondItem="BPc-Mb-zuu" secondAttribute="top" id="hpn-eI-5E5"/>
+                                            <constraint firstItem="xNM-d9-sjb" firstAttribute="leading" secondItem="BPc-Mb-zuu" secondAttribute="leading" id="hrD-sx-eVu"/>
+                                            <constraint firstAttribute="trailing" secondItem="xNM-d9-sjb" secondAttribute="trailing" id="npm-dx-aUi"/>
+                                            <constraint firstAttribute="bottom" secondItem="xNM-d9-sjb" secondAttribute="bottom" id="oXK-Xq-l9X"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="1Th-kY-auc" firstAttribute="top" secondItem="frN-WX-Wps" secondAttribute="bottom" constant="4" id="3Aw-Bx-NcN"/>
                             <constraint firstItem="Dej-F7-MWo" firstAttribute="top" secondItem="cML-Sg-sAx" secondAttribute="top" constant="16" id="5qj-dO-Qfk"/>
+                            <constraint firstAttribute="trailing" secondItem="1Th-kY-auc" secondAttribute="trailing" constant="16" id="Be2-Mg-VrF"/>
                             <constraint firstItem="frN-WX-Wps" firstAttribute="top" secondItem="Dej-F7-MWo" secondAttribute="bottom" constant="16" id="Cnh-fR-rLD"/>
                             <constraint firstItem="klN-1k-Emf" firstAttribute="centerX" secondItem="cML-Sg-sAx" secondAttribute="centerX" id="Ffa-sb-lGl"/>
                             <constraint firstItem="frN-WX-Wps" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="NTr-VW-vJb"/>
                             <constraint firstItem="Dej-F7-MWo" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="TWW-dv-lQr"/>
                             <constraint firstItem="cML-Sg-sAx" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="klN-1k-Emf" secondAttribute="bottom" constant="16" id="i2q-oO-89S"/>
                             <constraint firstItem="cML-Sg-sAx" firstAttribute="trailing" secondItem="Dej-F7-MWo" secondAttribute="trailing" constant="16" id="oVW-iD-shu"/>
-                            <constraint firstItem="klN-1k-Emf" firstAttribute="top" secondItem="frN-WX-Wps" secondAttribute="bottom" constant="16" id="pdo-1h-TAU"/>
+                            <constraint firstItem="klN-1k-Emf" firstAttribute="top" secondItem="1Th-kY-auc" secondAttribute="bottom" constant="16" id="wqo-ya-4MH"/>
                             <constraint firstItem="cML-Sg-sAx" firstAttribute="trailing" secondItem="frN-WX-Wps" secondAttribute="trailing" constant="16" id="xM2-t3-f8M"/>
+                            <constraint firstItem="1Th-kY-auc" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="z9n-Ws-SDA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cML-Sg-sAx"/>
                     </view>
                     <navigationItem key="navigationItem" id="uf2-N5-hCb"/>
                     <connections>
                         <outlet property="bannerView" destination="MgR-my-XeR" id="xER-kS-cxR"/>
+                        <outlet property="btn_check" destination="ynU-1A-1BN" id="PKx-dY-k0L"/>
+                        <outlet property="btn_post" destination="frN-WX-Wps" id="Xqw-3C-0Dx"/>
+                        <outlet property="lbl_eula" destination="xNM-d9-sjb" id="HtZ-FQ-BID"/>
                         <outlet property="txt_post" destination="Dej-F7-MWo" id="gMe-Js-vl3"/>
                     </connections>
                 </viewController>
@@ -110,4 +162,7 @@
             <point key="canvasLocation" x="224.80000000000001" y="39.130434782608695"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_uncheck_box" width="24" height="24"/>
+    </resources>
 </document>

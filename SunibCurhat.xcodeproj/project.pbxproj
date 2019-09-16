@@ -30,6 +30,8 @@
 		16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4692230D2BD000AD323F /* TimelineResponse.swift */; };
 		16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4695230D5B8F00AD323F /* CommentService.swift */; };
 		79CDE8404861C4A74D31C85F /* Pods_SunibCurhat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */; };
+		AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F0E232EF05C0047BC99 /* UDHelpers.swift */; };
+		AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */; };
 		AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA3AB36522F7213D0016ADFF /* Main.storyboard */; };
 		AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AB36822F721A30016ADFF /* MainTabBarController.swift */; };
 		AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA478D7922F649A300BC23A7 /* AppDelegate.swift */; };
@@ -121,6 +123,8 @@
 		16FD4695230D5B8F00AD323F /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		4212E3969724C5A6980D50D0 /* Pods-SunibCurhat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.debug.xcconfig"; sourceTree = "<group>"; };
 		640EBA3BF5174C2A4F09B7B8 /* Pods-SunibCurhat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.release.xcconfig"; sourceTree = "<group>"; };
+		AA249F0E232EF05C0047BC99 /* UDHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDHelpers.swift; sourceTree = "<group>"; };
+		AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		AA3AB36522F7213D0016ADFF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA3AB36822F721A30016ADFF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		AA478D7622F649A300BC23A7 /* SunibCurhat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunibCurhat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +394,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AA249F0D232EF0400047BC99 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				AA249F0E232EF05C0047BC99 /* UDHelpers.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		AA3AB36322F7211E0016ADFF /* App_Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +529,7 @@
 		AA5BABEA22F65860004253AF /* GeneralHelper */ = {
 			isa = PBXGroup;
 			children = (
+				AA249F0D232EF0400047BC99 /* UserDefaults */,
 				AABF394823077BE000DEAA63 /* HTTPRequest */,
 				AA5BABEB22F65876004253AF /* Logger.swift */,
 			);
@@ -592,6 +605,7 @@
 				AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */,
 				1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */,
 				AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */,
+				AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -927,6 +941,7 @@
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
 				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
 				AAD0E37C22F70F02005CC55A /* Date+Extension.swift in Sources */,
+				AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */,
 				AAD0E3BD22F71122005CC55A /* Contact.swift in Sources */,
 				16C3C7FD232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
@@ -961,6 +976,7 @@
 				AAD0E39422F70FE6005CC55A /* PhoneCodeCell.swift in Sources */,
 				166F1AD92317931F00BB1151 /* ChatModel.swift in Sources */,
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
+				AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
 				AAD0E37722F70F02005CC55A /* Locale+Extensions.swift in Sources */,
 				AAD0E37422F70F02005CC55A /* UITextField+Extensions.swift in Sources */,
