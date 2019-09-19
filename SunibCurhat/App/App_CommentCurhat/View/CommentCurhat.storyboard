@@ -212,7 +212,7 @@
                                         <rect key="frame" x="0.0" y="591" width="375" height="56"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter a comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zIF-4l-R1d">
-                                                <rect key="frame" x="16" y="0.0" width="297" height="56"/>
+                                                <rect key="frame" x="16" y="0.0" width="287" height="56"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="GgO-ma-1Xm"/>
@@ -222,7 +222,10 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ2-yd-fiI">
-                                                <rect key="frame" x="329" y="0.0" width="30" height="56"/>
+                                                <rect key="frame" x="319" y="0.0" width="40" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="ztB-mh-GO8"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Send"/>
                                                 <connections>

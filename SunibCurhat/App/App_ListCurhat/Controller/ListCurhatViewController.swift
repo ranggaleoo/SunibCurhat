@@ -437,7 +437,7 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension UIViewController: MFMailComposeViewControllerDelegate {
+extension ListCurhatViewController: MFMailComposeViewControllerDelegate {
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let e = error {
             print(e.localizedDescription)

@@ -38,7 +38,7 @@ class AddThreadViewController: UIViewController {
                 }
             }
             
-            UDHelpers.shared.set(value: isChecked, key: Bundle.main.bundleIdentifier ?? "Sunib" + ".EulaIsChecked")
+            UDHelpers.shared.set(value: isChecked, key: .eulaIsChecked)
         }
     }
     
@@ -70,7 +70,7 @@ class AddThreadViewController: UIViewController {
         lbl_eula.addGestureRecognizer(tap)
         lbl_eula.isUserInteractionEnabled = true
         
-        let isChecked = UDHelpers.shared.getBool(key: Bundle.main.bundleIdentifier ?? "Sunib" + ".EulaIsChecked")
+        let isChecked = UDHelpers.shared.getBool(key: .eulaIsChecked)
         self.isChecked = isChecked
     }
     

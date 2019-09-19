@@ -75,8 +75,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                         self.dismissLoaderIndicator()
                         if s.success {
                             if let data = s.data {
-                                RepoMemory.token        = data["token"]
-                                RepoMemory.user_name    = data["name"]
+                                let tmpToken = UDHelpers.shared.getString(key: .tmpToken)
+                                if tmpToken != data["token"] {
+                                    RepoMemory.user_name = data["name"]
+                                    UDHelpers.shared.set(value: data["token"] ?? "", key: .tmpToken)
+                                }
+                                
+                                RepoMemory.token = data["token"]
                                 RepoMemory.pendingFunction?()
                                 RepoMemory.pendingFunction = nil
 //                                self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
