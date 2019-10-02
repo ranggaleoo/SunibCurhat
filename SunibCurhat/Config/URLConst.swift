@@ -11,7 +11,7 @@ import Foundation
 struct URLConst {
     
     // MARK: - DEVELOPMENT
-//    static let server               = "https://cc1f6fed.ngrok.io"
+//    static let server               = "https://3ae8012f.ngrok.io"
 //    static let api_path             = "/web_semua_bisa/id/apisunibcurhat"
     
     // MARK: - PRODUCTION

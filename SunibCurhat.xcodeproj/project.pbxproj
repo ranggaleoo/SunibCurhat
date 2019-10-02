@@ -48,6 +48,8 @@
 		AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */; };
 		AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */; };
 		AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */; };
+		AA8868822336617E0086F538 /* Timeline+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8868812336617E0086F538 /* Timeline+TableView.swift */; };
+		AA886884233661BD0086F538 /* Timeline+Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA886883233661BD0086F538 /* Timeline+Email.swift */; };
 		AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394923077BF800DEAA63 /* HTTPRequest.swift */; };
 		AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394B23077ED900DEAA63 /* URLConst.swift */; };
 		AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394E23077F6E00DEAA63 /* TimelineService.swift */; };
@@ -144,6 +146,8 @@
 		AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+InputBar.swift"; sourceTree = "<group>"; };
 		AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+ImagePicker.swift"; sourceTree = "<group>"; };
 		AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerTableViewCell.swift; sourceTree = "<group>"; };
+		AA8868812336617E0086F538 /* Timeline+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timeline+TableView.swift"; sourceTree = "<group>"; };
+		AA886883233661BD0086F538 /* Timeline+Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timeline+Email.swift"; sourceTree = "<group>"; };
 		AABF394923077BF800DEAA63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		AABF394B23077ED900DEAA63 /* URLConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConst.swift; sourceTree = "<group>"; };
 		AABF394E23077F6E00DEAA63 /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 		AA5BABE322F6559C004253AF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AA8868802336615D0086F538 /* Extensions */,
 				AABF394D23077F4C00DEAA63 /* Service */,
 				AAF1182B22F6BCD200FDA099 /* TableViewCell */,
 				AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */,
@@ -544,6 +549,15 @@
 				AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */,
 				AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */,
 				16C3C7FC232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AA8868802336615D0086F538 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA8868812336617E0086F538 /* Timeline+TableView.swift */,
+				AA886883233661BD0086F538 /* Timeline+Email.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -944,6 +958,7 @@
 				AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */,
 				AAD0E3BD22F71122005CC55A /* Contact.swift in Sources */,
 				16C3C7FD232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift in Sources */,
+				AA8868822336617E0086F538 /* Timeline+TableView.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
 				AAD0E37922F70F02005CC55A /* UIAlertController+Extensions.swift in Sources */,
 				16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */,
@@ -990,6 +1005,7 @@
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
 				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
+				AA886884233661BD0086F538 /* Timeline+Email.swift in Sources */,
 				166F1AD623178CE300BB1151 /* ChatViewController.swift in Sources */,
 				AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */,
 				AAD0E37E22F70F02005CC55A /* Array+Extensions.swift in Sources */,

@@ -55,7 +55,7 @@ struct TimelineItems: Decodable {
         let container = try decoder.container(keyedBy: Keys.self)
         self.timeline_id    = try container.decodeIfPresent(Int.self, forKey: .timeline_id) ?? 0
         self.device_id      = try container.decodeIfPresent(String.self, forKey: .device_id) ?? ""
-        self.name           = try container.decodeIfPresent(String.self, forKey: .name) ?? "Sunib Curhat"
+        self.name           = try container.decodeIfPresent(String.self, forKey: .name) ?? "user_name"
         self.text_content   = try container.decodeIfPresent(String.self, forKey: .text_content) ?? "Content"
         self.timed          = try container.decodeIfPresent(String.self, forKey: .timed) ?? ""
         

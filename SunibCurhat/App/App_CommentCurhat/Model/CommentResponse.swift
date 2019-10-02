@@ -36,7 +36,7 @@ struct CommentItems: Decodable {
         self.comment_id     = try container.decodeIfPresent(String.self, forKey: .comment_id) ?? ""
         self.timeline_id    = try container.decodeIfPresent(String.self, forKey: .timeline_id) ?? ""
         self.device_id      = try container.decodeIfPresent(String.self, forKey: .device_id) ?? ""
-        self.name           = try container.decodeIfPresent(String.self, forKey: .name) ?? "Sunib Curhat"
+        self.name           = try container.decodeIfPresent(String.self, forKey: .name) ?? "user_name"
         self.text_content   = try container.decodeIfPresent(String.self, forKey: .text_content) ?? "Content"
         self.timed          = try container.decodeIfPresent(String.self, forKey: .timed) ?? ""
     }

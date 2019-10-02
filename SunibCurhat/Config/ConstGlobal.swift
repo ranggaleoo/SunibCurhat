@@ -11,9 +11,15 @@ import UIKit
 import Firebase
 
 struct ConstGlobal {
-    static let SERVER_KEY_FCM: String   = "AIzaSyCwS8paxxv_b1CLEJwnuUi6rCM2_3XJr18"
-    static let AdMOB_APP_ID: String     = "ca-app-pub-9947251997620985~4316262809"
-    static let MINIMUM_TEXT: Int        = 5
+    static let SERVER_KEY_FCM: String       = "AIzaSyCwS8paxxv_b1CLEJwnuUi6rCM2_3XJr18"
+    static let AdMOB_APP_ID: String         = "ca-app-pub-9947251997620985~4316262809"
+    static let MINIMUM_TEXT: Int            = 5
+    static let TIMES_REQUEST_REVIEW: Int    = 10
+    
+    static var app_name: String?
+    static var contact_email: String?
+    static var contact_whatsapp: String?
+    static var contact_instagram: String?
 }
 
 struct RepoMemory {

@@ -84,6 +84,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                                 RepoMemory.token = data["token"]
                                 RepoMemory.pendingFunction?()
                                 RepoMemory.pendingFunction = nil
+                                
+                                ConstGlobal.app_name            = data["app_name"]
+                                ConstGlobal.contact_email       = data["contact_email"]
+                                ConstGlobal.contact_whatsapp    = data["contact_whatsapp"]
+                                ConstGlobal.contact_instagram   = data["contact_instagram"]
+                                
 //                                self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
 //                                    RepoMemory.pendingFunction?()
 //                                    RepoMemory.pendingFunction = nil
@@ -92,8 +98,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                                 if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
                                     guard
                                         let version = Int(appVersion.replacingOccurrences(of: ".", with: "")),
-                                        let versionServer = Int(data["version"]?.replacingOccurrences(of: ".", with: "") ?? appVersion.replacingOccurrences(of: ".", with: "")),
-                                        let urlUpdate = URL(string: data["url_update_version"] ?? "")
+                                        let versionServer = Int(data["version_ios"]?.replacingOccurrences(of: ".", with: "") ?? appVersion.replacingOccurrences(of: ".", with: "")),
+                                        let urlUpdate = URL(string: data["url_update_version_ios"] ?? "")
                                     else {
                                         return
                                     }
@@ -131,6 +137,20 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 print("Token available")
             }
         }))
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if
+            let nav = timeline as? UINavigationController,
+            let vc = nav.topViewController as? ListCurhatViewController,
+            let title = item.title,
+            title == "Timeline",
+            selectedIndex == 0
+        {
+            DispatchQueue.main.async {
+                vc.tableViewCurhat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

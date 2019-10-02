@@ -42,7 +42,7 @@ struct Message: MessageType {
     init(text_message: String) {
         self.id             = nil
         self.text_message   = text_message
-        self.sender         = Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "Sunib Curhat")
+        self.sender         = Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "user_name")
         self.sentDate       = Date()
         self.token_fcm      = RepoMemory.token_notif ?? "token"
     }
@@ -51,7 +51,7 @@ struct Message: MessageType {
         self.id             = nil
         self.image          = image
         self.text_message   = ""
-        self.sender         = Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "Sunib Curhat")
+        self.sender         = Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "user_name")
         self.sentDate       = Date()
         self.token_fcm      = RepoMemory.token_notif ?? "token"
     }

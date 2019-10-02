@@ -11,7 +11,7 @@ import MessageKit
 
 extension ChatViewController: MessagesDataSource {
     func currentSender() -> SenderType {
-        return Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "Sunib Curhat")
+        return Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "user_name")
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {

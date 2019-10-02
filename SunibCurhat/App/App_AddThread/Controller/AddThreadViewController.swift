@@ -156,6 +156,7 @@ class AddThreadViewController: UIViewController {
                         if let c = navigationController.topViewController as? ListCurhatViewController {
                             self.tabBarController?.selectedIndex = 0
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                                self.txt_post.text = nil
                                 c.moveFromAddThread()
                             })
                         }
