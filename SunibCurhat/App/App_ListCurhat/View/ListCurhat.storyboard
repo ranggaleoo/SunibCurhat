@@ -369,6 +369,7 @@
                         <outlet property="tableViewCurhat" destination="A0p-JA-ykd" id="Xdc-Bl-VcH"/>
                         <segue destination="JaL-gA-2eC" kind="show" identifier="toComment" id="cd5-bv-xMS"/>
                         <segue destination="cx8-9S-ib6" kind="show" identifier="toReport" id="Y6F-Ij-37s"/>
+                        <segue destination="OVj-od-wzN" kind="show" identifier="toPayment" id="hsM-Zg-p6U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kln-FN-wqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -390,6 +391,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkx-Di-K22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1593" y="93"/>
+        </scene>
+        <!--Payment-->
+        <scene sceneID="Awt-2e-1Mg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Payment" id="OVj-od-wzN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Xf-Fp-Inh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1606" y="168"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IFO-y1-14j">

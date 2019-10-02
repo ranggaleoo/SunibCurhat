@@ -62,6 +62,10 @@ class ListCurhatViewController: UIViewController {
     @objc private func actionMenuBarButtonItem(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
         
+        alert.addAction(UIAlertAction(title: "Premium", style: .default, handler: { (act) in
+            self.performSegue(withIdentifier: "toPayment", sender: self)
+        }))
+        
         alert.addAction(UIAlertAction(title: "Contact Us", style: .default, handler: { (act) in
             let alert2 = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
             

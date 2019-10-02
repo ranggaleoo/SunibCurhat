@@ -10,6 +10,9 @@
 		1603603523018792006A0948 /* AddThread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1603603423018792006A0948 /* AddThread.storyboard */; };
 		16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16036036230187AB006A0948 /* AddThreadViewController.swift */; };
 		1619D62E2317CACE00E5F496 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */; };
+		1621AD2B23445749008F15D8 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1621AD2A23445749008F15D8 /* Payment.storyboard */; };
+		1621AD2D23445787008F15D8 /* PaymentWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621AD2C23445787008F15D8 /* PaymentWebViewController.swift */; };
+		1621AD2F2344947C008F15D8 /* WKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621AD2E2344947B008F15D8 /* WKWebViewController.swift */; };
 		1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */; };
 		1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640892023168B7800CB11A6 /* ChatsModel.swift */; };
 		164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164089232316913B00CB11A6 /* ChatsTableViewCell.swift */; };
@@ -104,6 +107,9 @@
 		1603603423018792006A0948 /* AddThread.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddThread.storyboard; sourceTree = "<group>"; };
 		16036036230187AB006A0948 /* AddThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddThreadViewController.swift; sourceTree = "<group>"; };
 		1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
+		1621AD2A23445749008F15D8 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		1621AD2C23445787008F15D8 /* PaymentWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWebViewController.swift; sourceTree = "<group>"; };
+		1621AD2E2344947B008F15D8 /* WKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewController.swift; sourceTree = "<group>"; };
 		1639CB4F23152802002DDDA4 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		1640892023168B7800CB11A6 /* ChatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsModel.swift; sourceTree = "<group>"; };
 		164089232316913B00CB11A6 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
@@ -243,6 +249,31 @@
 				1603603423018792006A0948 /* AddThread.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1621AD25234456E4008F15D8 /* App_PaymentWebView */ = {
+			isa = PBXGroup;
+			children = (
+				1621AD2723445707008F15D8 /* Controller */,
+				1621AD26234456FE008F15D8 /* View */,
+			);
+			path = App_PaymentWebView;
+			sourceTree = "<group>";
+		};
+		1621AD26234456FE008F15D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1621AD2A23445749008F15D8 /* Payment.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1621AD2723445707008F15D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1621AD2C23445787008F15D8 /* PaymentWebViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		1640891F23168B6400CB11A6 /* Model */ = {
@@ -480,6 +511,7 @@
 		AA5BABDF22F6541F004253AF /* App */ = {
 			isa = PBXGroup;
 			children = (
+				1621AD25234456E4008F15D8 /* App_PaymentWebView */,
 				16C3C7F22328EDC600D6B4EE /* App_Report */,
 				166F1AD323178CC300BB1151 /* App_Chat */,
 				1656C7F023154B34006F0D84 /* App_Chats */,
@@ -567,6 +599,7 @@
 			children = (
 				AABF394923077BF800DEAA63 /* HTTPRequest.swift */,
 				AABF39522307B57200DEAA63 /* HTTPRequestHeader.swift */,
+				1621AD2E2344947B008F15D8 /* WKWebViewController.swift */,
 			);
 			path = HTTPRequest;
 			sourceTree = "<group>";
@@ -900,6 +933,7 @@
 				AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */,
 				AA478D8422F649A400BC23A7 /* Assets.xcassets in Resources */,
 				AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */,
+				1621AD2B23445749008F15D8 /* Payment.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,6 +1012,7 @@
 				16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
 				AAD0E37322F70F02005CC55A /* UISearchBar+Extensions.swift in Sources */,
+				1621AD2D23445787008F15D8 /* PaymentWebViewController.swift in Sources */,
 				AAD0E38322F70F4B005CC55A /* AttributedTextBlock.swift in Sources */,
 				AA478D9022F6503000BC23A7 /* ConstGlobal.swift in Sources */,
 				AAD0E37F22F70F02005CC55A /* UITextView+Extensions.swift in Sources */,
@@ -1016,6 +1051,7 @@
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
 				1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */,
 				16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */,
+				1621AD2F2344947C008F15D8 /* WKWebViewController.swift in Sources */,
 				16C3C7FB2328F52300D6B4EE /* ReportService.swift in Sources */,
 				AA7A0B4E231BF49000B8233E /* UITableView+Extensions.swift in Sources */,
 				AAD0E39822F71008005CC55A /* LocaleStore.swift in Sources */,
@@ -1170,6 +1206,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1190,6 +1227,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

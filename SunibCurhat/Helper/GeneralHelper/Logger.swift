@@ -23,7 +23,12 @@ func requestReviewAppStore() {
     let timesAccess = UDHelpers.shared.getInt(key: .counterUserAccessApp)
     
     if timesAccess == ConstGlobal.TIMES_REQUEST_REVIEW {
-        SKStoreReviewController.requestReview()
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        } else {
+            // Fallback on earlier versions
+        }
+        UDHelpers.shared.set(value: timesAccess + 1, key: .counterUserAccessApp)
     
     } else {
         UDHelpers.shared.set(value: timesAccess + 1, key: .counterUserAccessApp)

@@ -78,7 +78,11 @@ final class ChatViewController: MessagesViewController {
             vc.chat = self.chat
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        navigationItem.largeTitleDisplayMode        = .never
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode        = .never
+        } else {
+            // Fallback on earlier versions
+        }
         maintainPositionOnKeyboardFrameChanged      = true
         messageInputBar.inputTextView.tintColor     = UIColor.custom.blue
         messageInputBar.sendButton.setTitleColor(UIColor.custom.blue, for: .normal)

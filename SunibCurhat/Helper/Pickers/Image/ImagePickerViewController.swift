@@ -73,7 +73,11 @@ final class ImagePickerViewController: UIViewController {
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
         $0.decelerationRate = UIScrollView.DecelerationRate.fast
-        $0.contentInsetAdjustmentBehavior = .never
+        if #available(iOS 11.0, *) {
+            $0.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
         $0.bounces = false
         $0.backgroundColor = .clear
         $0.maskToBounds = false

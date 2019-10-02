@@ -11,10 +11,11 @@ import UIKit
 import Firebase
 
 struct ConstGlobal {
-    static let SERVER_KEY_FCM: String       = "AIzaSyCwS8paxxv_b1CLEJwnuUi6rCM2_3XJr18"
-    static let AdMOB_APP_ID: String         = "ca-app-pub-9947251997620985~4316262809"
-    static let MINIMUM_TEXT: Int            = 5
-    static let TIMES_REQUEST_REVIEW: Int    = 10
+    static let SERVER_KEY_FCM       : String    = "AIzaSyCwS8paxxv_b1CLEJwnuUi6rCM2_3XJr18"
+    static let AdMOB_APP_ID         : String    = "ca-app-pub-9947251997620985~4316262809"
+    static let API_SEMUABISA        : String    = "612a69190bcc77d63d4f8e24a3e15e88"
+    static let MINIMUM_TEXT         : Int       = 5
+    static let TIMES_REQUEST_REVIEW : Int       = 10
     
     static var app_name: String?
     static var contact_email: String?
