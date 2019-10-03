@@ -99,7 +99,7 @@ extension Message: DatabaseRepresentation {
             "date_create"   : self.sentDate,
             "sender_id"     : self.sender.senderId,
             "sender_name"   : self.sender.displayName,
-            "token_fcm"     : self.token_fcm
+            "token_fcm"     : self.token_fcm ?? ""
         ]
         
         if let url = self.url_image {

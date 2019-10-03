@@ -870,6 +870,7 @@
 				AA478D7322F649A300BC23A7 /* Frameworks */,
 				AA478D7422F649A300BC23A7 /* Resources */,
 				1564E4B870F3D59FAC0F4EE0 /* [CP] Embed Pods Frameworks */,
+				AA56529E2344DDD600AFEB3D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -956,6 +957,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AA56529E2344DDD600AFEB3D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		F42292DF51C843A89504AAAC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1204,6 +1223,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

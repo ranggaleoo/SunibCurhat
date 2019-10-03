@@ -56,7 +56,7 @@ class PaymentWebViewController: WKWebViewController {
             switch result {
             case .failure(let e):
                 print(e.localizedDescription)
-            case .success(let s):
+            case .success(let s): break
             }
         }
     }

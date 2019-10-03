@@ -47,7 +47,7 @@ extension UIViewController {
     
     func dismissLoaderIndicator() {
         DispatchQueue.main.async {
-            self.view.subviews.flatMap {  $0 as? UIActivityIndicatorView }.forEach {
+            self.view.subviews.compactMap { $0 as? UIActivityIndicatorView }.forEach {
                 $0.backgroundColor = .clear
                 $0.removeFromSuperview()
             }

@@ -43,7 +43,7 @@ class ChatsViewController: UIViewController {
             
             snapshot.query.whereField("users", arrayContains: RepoMemory.device_id).getDocuments(completion: { (s, e) in
                 guard let snapshot = s else {
-                    print(e?.localizedDescription)
+                    print(e?.localizedDescription ?? "error snapshot")
                     return
                 }
                 

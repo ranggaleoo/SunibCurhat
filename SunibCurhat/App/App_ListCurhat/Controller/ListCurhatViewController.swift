@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MessageUI
+import Crashlytics
 
 class ListCurhatViewController: UIViewController {
     
@@ -305,7 +306,7 @@ class ListCurhatViewController: UIViewController {
             }
             
         default:
-            print(segue.identifier, "not found")
+            print(segue.identifier ?? "segue", "not found")
         }
     }
 }

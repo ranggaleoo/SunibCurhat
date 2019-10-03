@@ -65,6 +65,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 MainService.shared.getToken(completion: { (result) in
                     switch result {
                     case .failure(let e):
+                        print(e.localizedDescription)
                         self.dismissLoaderIndicator()
                         self.addObservers()
 //                        self.showAlert(title: "Session Expire", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in

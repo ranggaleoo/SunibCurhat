@@ -6,6 +6,8 @@ target 'SunibCurhat' do
   use_frameworks!
 
   # Pods for SunibCurhat
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'Google-Mobile-Ads-SDK'
   pod 'MessageKit'
   pod 'Firebase/Analytics'
