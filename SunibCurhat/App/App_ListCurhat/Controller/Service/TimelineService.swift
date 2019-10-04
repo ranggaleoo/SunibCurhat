@@ -26,7 +26,7 @@ class TimelineService {
         let url = URLConst.api_url + "/getTimeline"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: TimelineResponse.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<TimelineResponse>.self) { (result) in
             print(result)
             completion(result)
         }
@@ -44,7 +44,7 @@ class TimelineService {
         let url = URLConst.api_url + "/likeTimeline"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
             completion(result)
         }
     }
@@ -61,7 +61,7 @@ class TimelineService {
         let url = URLConst.api_url + "/unlikeTimeline"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
             completion(result)
         }
     }
@@ -78,7 +78,7 @@ class TimelineService {
         let url = URLConst.api_url + "/shareTimeline"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
             completion(result)
         }
     }
@@ -93,7 +93,7 @@ class TimelineService {
         }
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
             completion(result)
         }
     }

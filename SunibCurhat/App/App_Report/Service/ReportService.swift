@@ -24,7 +24,7 @@ class ReportService {
         }
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
             completion(result)
         }
     }

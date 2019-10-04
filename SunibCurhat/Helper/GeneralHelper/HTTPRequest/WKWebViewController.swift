@@ -14,6 +14,13 @@ class WKWebViewController: UIViewController, WKNavigationDelegate {
     
     var timeoutInterval: TimeInterval = 60
     var headers: [HTTPRequestHeader.key : String] = [:]
+    private var isRequestJson: Bool = false
+    
+    var url: URL? {
+        get {
+            return self.webview.url
+        }
+    }
     
     private lazy var webview: WKWebView = {
         let preferences = WKPreferences()
@@ -67,7 +74,7 @@ class WKWebViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    func load(url: String, params: [String: Any]?) {
+    func loadWebView(url: String, params: [String: Any]?) {
         guard let _url = URL(string: url) else {
             fatalError("invalid url: " + url)
         }
@@ -92,34 +99,41 @@ class WKWebViewController: UIViewController, WKNavigationDelegate {
         self.webview.load(request)
     }
     
-    func getJson<T:Decodable>(webView: WKWebView, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
-        webView.evaluateJavaScript("document.getElementsByTagName('pre')[0].innerHTML") { (result, error) in
-            if let e = error {
-                completion(.failure(e))
-            }
-            
-            if let _result = result as? String {
-                if let _data = _result.data(using: .utf8) {
-                    print("data", _data)
-                    do {
-                        let responseModel = try JSONDecoder().decode(T.self, from: _data)
-                        print("model", responseModel)
-                        completion(.success(responseModel))
-                    } catch let jsonError {
-                        completion(.failure(jsonError))
+    func loadWebViewWithJson<T:Decodable>(url: String, params: [String: Any]?, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+        isRequestJson = true
+        loadWebView(url: url, params: params)
+        
+        NotificationCenter.default.addObserver(forName: .webViewDidFinish, object: nil, queue: .some(.main)) { (n) in
+            self.isRequestJson = false
+            self.webview.evaluateJavaScript("document.getElementsByTagName('pre')[0].innerHTML", completionHandler: { (result, error) in
+                if let e = error {
+                    completion(.failure(e))
+                }
+                
+                if let _result = result as? String {
+                    if let _data = _result.data(using: .utf8) {
+                        do {
+                            let responseModel = try JSONDecoder().decode(T.self, from: _data)
+                            completion(.success(responseModel))
+                        } catch let jsonError {
+                            completion(.failure(jsonError))
+                        }
+                        
+                    } else {
+                        completion(.failure(NSError(domain: "result is cannot convert to data with encode utf8", code: 100, userInfo: nil)))
                     }
                     
                 } else {
-                    completion(.failure(NSError(domain: "result is cannot convert to data with encode utf8", code: 100, userInfo: nil)))
+                    completion(.failure(NSError(domain: "result is not String or html", code: 100, userInfo: nil)))
                 }
-                
-            } else {
-                completion(.failure(NSError(domain: "result is not String or html", code: 100, userInfo: nil)))
-            }
+            })
         }
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if isRequestJson {
+            NotificationCenter.default.post(name: .webViewDidFinish, object: nil)
+        }
         DispatchQueue.main.async {
             self.progressView.removeFromSuperview()
         }
@@ -130,4 +144,8 @@ class WKWebViewController: UIViewController, WKNavigationDelegate {
             self.progressView.removeFromSuperview()
         }
     }
+}
+
+extension NSNotification.Name {
+    static let webViewDidFinish = NSNotification.Name(rawValue: Bundle.main.bundleIdentifier! + ".webViewDidFinish")
 }

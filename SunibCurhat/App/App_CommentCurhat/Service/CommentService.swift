@@ -28,7 +28,7 @@ class CommentService {
         let url = URLConst.api_url + "/addComment"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: String.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
             completion(result)
         }
     }
@@ -46,7 +46,7 @@ class CommentService {
         let url = URLConst.api_url + "/getComments"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
-        HTTPRequest.shared.connect(url: url, params: param, model: CommentResponse.self) { (result) in
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<CommentResponse>.self) { (result) in
             completion(result)
         }
     }

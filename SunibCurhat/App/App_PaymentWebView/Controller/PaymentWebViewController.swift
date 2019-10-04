@@ -24,14 +24,20 @@ class PaymentWebViewController: WKWebViewController {
         
         headers[.referer]       = URLConst.server_sb
         headers[.authorization] = "Bearer " + ConstGlobal.API_SEMUABISA
-        load(url: URLConst.api_url_sb + "/paymentWebView", params: param)
-    }
-    
-    private func handleJson(webview: WKWebView, completion: @escaping (Result<MainResponse<PaymentResponse>, Error>) -> Void) {
-        getJson(webView: webview, model: MainResponse<PaymentResponse>.self) { (result) in
-            print(result)
-            completion(result)
+
+//        loadWebView(url: URLConst.api_url_sb + "/paymentWebView", params: param)
+        loadWebViewWithJson(url: URLConst.api_url_sb + "/paymentWebView", params: param, model: MainResponse<PaymentResponse>.self) { (result) in
+            switch result {
+            case .failure(let e):
+                print(self.url ?? "nothing")
+                print(e.localizedDescription)
+            case .success(let s):
+                print(self.url ?? "nothing")
+                print(s)
+            }
         }
+        
+        print(url ?? "nothing")
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
@@ -49,16 +55,6 @@ class PaymentWebViewController: WKWebViewController {
         }
         
         decisionHandler(.allow)
-    }
-    
-    override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        handleJson(webview: webView) { (result) in
-            switch result {
-            case .failure(let e):
-                print(e.localizedDescription)
-            case .success(let s): break
-            }
-        }
     }
 }
 
