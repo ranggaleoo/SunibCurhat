@@ -10,6 +10,7 @@ extension UIColor {
         static var gray_absolute    : UIColor { return "8E8E93".hexToUIColor() }
         static var gray             : UIColor { return "8E8E93".hexToUIColor() }
         static var black_absolute   : UIColor { return "000000".hexToUIColor() }
+        static var yellow           : UIColor { return "F5D31E".hexToUIColor() }
     }
     
     /// SwifterSwift: https://github.com/SwifterSwift/SwifterSwift

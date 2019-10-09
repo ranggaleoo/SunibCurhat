@@ -36,6 +36,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         return vc
     }()
     
+    private lazy var premium: UIViewController = {
+        let storyboad = UIStoryboard(name: "Premium", bundle: nil)
+        let vc = storyboad.instantiateViewController(withIdentifier: "nav_premium")
+        let image = UIImage(named: "bar_btn_premium")
+        vc.tabBarItem = UITabBarItem(title: "Upgrade PRO", image: image, selectedImage: image)
+        return vc
+    }()
+    
     private var observer: [NSObjectProtocol] = []
     
     override func viewDidLoad() {
@@ -46,7 +54,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor.custom.blue_absolute
         self.tabBar.barTintColor = UIColor.white
         self.tabBar.unselectedItemTintColor = UIColor.custom.gray_absolute
-        self.viewControllers = [timeline, addThread, chats]
+        self.viewControllers = [timeline, addThread, chats, premium]
         
         self.selectedIndex = 0
         self.addObservers()
