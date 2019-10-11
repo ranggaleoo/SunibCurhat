@@ -10,53 +10,41 @@ import Foundation
 
 class UDHelpers {
     static var shared = UDHelpers()
-    private var defaults: UserDefaults?
+    private var defaults = UserDefaults.standard
     
     init() {
-        defaults = UserDefaults.standard
+        print("initialize user default")
     }
     
     public func set(value defaultValue: Any, key defaultKey: UDHelpersKey) {
-        defaults?.set(defaultValue, forKey: defaultKey.rawValue)
+        defaults.set(defaultValue, forKey: defaultKey.rawValue)
     }
     
     public func getString(key defaultKey: UDHelpersKey) -> String {
-        if let result = defaults?.object(forKey: defaultKey.rawValue) as? String {
+        if let result = defaults.string(forKey: defaultKey.rawValue) {
             return result
         }
         return ""
     }
     
     public func getBool(key defaultKey: UDHelpersKey) -> Bool {
-        if let result = defaults?.object(forKey: defaultKey.rawValue) as? Bool {
-            return result
-        }
-        return false
+        return defaults.bool(forKey: defaultKey.rawValue)
     }
     
     public func getInt(key defaultKey: UDHelpersKey) -> Int {
-        if let result = defaults?.object(forKey: defaultKey.rawValue) as? Int {
-            return result
-        }
-        return 0
+        return defaults.integer(forKey: defaultKey.rawValue)
     }
     
     public func getDouble(key defaultKey: UDHelpersKey) -> Double {
-        if let result = defaults?.object(forKey: defaultKey.rawValue) as? Double {
-            return result
-        }
-        return 0.0
+        return defaults.double(forKey: defaultKey.rawValue)
     }
     
     public func getFloat(key defaultKey: UDHelpersKey) -> Float {
-        if let result = defaults?.object(forKey: defaultKey.rawValue) as? Float {
-            return result
-        }
-        return 0.0
+        return defaults.float(forKey: defaultKey.rawValue)
     }
     
     public func getUrl(key defaultKey: UDHelpersKey) -> URL {
-        if let result = defaults?.object(forKey: defaultKey.rawValue) as? URL {
+        if let result = defaults.url(forKey: defaultKey.rawValue) {
             return result
         }
         return URL(string: "https://google.com/")!

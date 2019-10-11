@@ -102,7 +102,7 @@ class CommentCurhatViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification){
-        var userInfo      = notification.userInfo!
+        let userInfo      = notification.userInfo!
         var keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         var contentInset:UIEdgeInsets = self.scrollViewComment.contentInset
@@ -111,7 +111,7 @@ class CommentCurhatViewController: UIViewController {
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
-        var userInfo      = notification.userInfo!
+        let userInfo      = notification.userInfo!
         var keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         var contentInset:UIEdgeInsets = self.scrollViewComment.contentInset

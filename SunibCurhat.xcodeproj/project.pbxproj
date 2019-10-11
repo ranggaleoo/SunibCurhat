@@ -17,6 +17,11 @@
 		1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640892023168B7800CB11A6 /* ChatsModel.swift */; };
 		164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164089232316913B00CB11A6 /* ChatsTableViewCell.swift */; };
 		1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */; };
+		16456DBD2350B8270058474C /* Premium+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16456DBC2350B8270058474C /* Premium+TableView.swift */; };
+		16456DBF2350B8400058474C /* Premium+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16456DBE2350B8400058474C /* Premium+CollectionView.swift */; };
+		16456DC12350B8860058474C /* PremiumAdvantageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16456DC02350B8860058474C /* PremiumAdvantageCollectionViewCell.swift */; };
+		16456DC32350B8970058474C /* PremiumSubscriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16456DC22350B8970058474C /* PremiumSubscriptionTableViewCell.swift */; };
+		16456DC62350BA420058474C /* PremiumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16456DC52350BA420058474C /* PremiumModel.swift */; };
 		166F1AD2231786B500BB1151 /* Chats+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F1AD1231786B500BB1151 /* Chats+TableView.swift */; };
 		166F1AD623178CE300BB1151 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F1AD523178CE300BB1151 /* ChatViewController.swift */; };
 		166F1AD92317931F00BB1151 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F1AD82317931F00BB1151 /* ChatModel.swift */; };
@@ -116,6 +121,11 @@
 		1640892023168B7800CB11A6 /* ChatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsModel.swift; sourceTree = "<group>"; };
 		164089232316913B00CB11A6 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
 		164089292316945B00CB11A6 /* Chats+ManagerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chats+ManagerDocument.swift"; sourceTree = "<group>"; };
+		16456DBC2350B8270058474C /* Premium+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Premium+TableView.swift"; sourceTree = "<group>"; };
+		16456DBE2350B8400058474C /* Premium+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Premium+CollectionView.swift"; sourceTree = "<group>"; };
+		16456DC02350B8860058474C /* PremiumAdvantageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumAdvantageCollectionViewCell.swift; sourceTree = "<group>"; };
+		16456DC22350B8970058474C /* PremiumSubscriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSubscriptionTableViewCell.swift; sourceTree = "<group>"; };
+		16456DC52350BA420058474C /* PremiumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumModel.swift; sourceTree = "<group>"; };
 		166F1AD1231786B500BB1151 /* Chats+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chats+TableView.swift"; sourceTree = "<group>"; };
 		166F1AD523178CE300BB1151 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		166F1AD82317931F00BB1151 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -303,6 +313,32 @@
 				166F1AD1231786B500BB1151 /* Chats+TableView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		16456DBA2350B7F80058474C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				16456DBC2350B8270058474C /* Premium+TableView.swift */,
+				16456DBE2350B8400058474C /* Premium+CollectionView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		16456DBB2350B80E0058474C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				16456DC02350B8860058474C /* PremiumAdvantageCollectionViewCell.swift */,
+				16456DC22350B8970058474C /* PremiumSubscriptionTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		16456DC42350BA2E0058474C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				16456DC52350BA420058474C /* PremiumModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1656C7F023154B34006F0D84 /* App_Chats */ = {
@@ -581,6 +617,7 @@
 		AA75AD462347C88400C8F739 /* App_Premium */ = {
 			isa = PBXGroup;
 			children = (
+				16456DC42350BA2E0058474C /* Model */,
 				AA75AD4A2347CA5F00C8F739 /* Controller */,
 				AA75AD472347C89500C8F739 /* View */,
 			);
@@ -598,6 +635,8 @@
 		AA75AD4A2347CA5F00C8F739 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				16456DBB2350B80E0058474C /* Cell */,
+				16456DBA2350B7F80058474C /* Extensions */,
 				AA75AD4B2347CA7700C8F739 /* PremiumViewController.swift */,
 			);
 			path = Controller;
@@ -1032,6 +1071,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16456DC32350B8970058474C /* PremiumSubscriptionTableViewCell.swift in Sources */,
 				AAD0E3BB22F7111A005CC55A /* ContactCell.swift in Sources */,
 				AAD0E39322F70FE6005CC55A /* CurrencyCell.swift in Sources */,
 				AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */,
@@ -1045,6 +1085,7 @@
 				AA8868822336617E0086F538 /* Timeline+TableView.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
 				AAD0E37922F70F02005CC55A /* UIAlertController+Extensions.swift in Sources */,
+				16456DBF2350B8400058474C /* Premium+CollectionView.swift in Sources */,
 				16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */,
 				AAD0E3B922F71113005CC55A /* ContactsPickerViewController.swift in Sources */,
 				AAD0E38E22F70FBD005CC55A /* LocalePickerViewController.swift in Sources */,
@@ -1067,6 +1108,7 @@
 				AA478D9022F6503000BC23A7 /* ConstGlobal.swift in Sources */,
 				AAD0E37F22F70F02005CC55A /* UITextView+Extensions.swift in Sources */,
 				AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */,
+				16456DC62350BA420058474C /* PremiumModel.swift in Sources */,
 				AA75AD4C2347CA7700C8F739 /* PremiumViewController.swift in Sources */,
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
@@ -1081,12 +1123,14 @@
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
 				AAD0E37722F70F02005CC55A /* Locale+Extensions.swift in Sources */,
 				AAD0E37422F70F02005CC55A /* UITextField+Extensions.swift in Sources */,
+				16456DC12350B8860058474C /* PremiumAdvantageCollectionViewCell.swift in Sources */,
 				AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */,
 				AAF1182F22F6BD0400FDA099 /* AdsTableViewCell.swift in Sources */,
 				16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */,
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
 				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
 				1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */,
+				16456DBD2350B8270058474C /* Premium+TableView.swift in Sources */,
 				AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
