@@ -20,4 +20,8 @@ extension PremiumViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.advantage = advantages[indexPath.item]
         return cell
     }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        premiumCollectionView.autoCenterToCellWhileScrollDidFinish(scrollView: scrollView, targetContentOffset: targetContentOffset)
+    }
 }

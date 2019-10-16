@@ -28,6 +28,7 @@ class PremiumViewController: UIViewController {
     private func delegates() {
         self.title = "Upgrade PRO"
         
+        premiumCollectionView.makeInsetCenter()
         premiumCollectionView.delegate      = self
         premiumCollectionView.dataSource    = self
         premiumTableView.delegate           = self

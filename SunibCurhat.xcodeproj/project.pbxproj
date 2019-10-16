@@ -33,6 +33,7 @@
 		16C3C7F82328EF2900D6B4EE /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C3C7F72328EF2900D6B4EE /* ReportViewController.swift */; };
 		16C3C7FB2328F52300D6B4EE /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C3C7FA2328F52300D6B4EE /* ReportService.swift */; };
 		16C3C7FD232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C3C7FC232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift */; };
+		16E670512357098B008B3108 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E670502357098B008B3108 /* UICollectionView+Extensions.swift */; };
 		16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */; };
 		16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */; };
 		16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4692230D2BD000AD323F /* TimelineResponse.swift */; };
@@ -137,6 +138,7 @@
 		16C3C7F72328EF2900D6B4EE /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		16C3C7FA2328F52300D6B4EE /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
 		16C3C7FC232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+MessageLayoutDelegate.swift"; sourceTree = "<group>"; };
+		16E670502357098B008B3108 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		16EDEB53230E7D8700F5AE69 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		16FD4692230D2BD000AD323F /* TimelineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineResponse.swift; sourceTree = "<group>"; };
@@ -722,6 +724,7 @@
 				1619D62D2317CACE00E5F496 /* UIScrollView+Extensions.swift */,
 				AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */,
 				AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */,
+				16E670502357098B008B3108 /* UICollectionView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1159,6 +1162,7 @@
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
 				AA478D8222F649A300BC23A7 /* SunibCurhat.xcdatamodeld in Sources */,
 				AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */,
+				16E670512357098B008B3108 /* UICollectionView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
