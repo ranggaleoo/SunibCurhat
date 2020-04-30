@@ -241,14 +241,14 @@
 			path = AddThreadService;
 			sourceTree = "<group>";
 		};
-		160360312301875F006A0948 /* App_AddThread */ = {
+		160360312301875F006A0948 /* feature-add-thread */ = {
 			isa = PBXGroup;
 			children = (
 				16034F87230C0FB2004A79DA /* AddThreadService */,
 				1603603323018780006A0948 /* View */,
 				1603603223018777006A0948 /* Controller */,
 			);
-			path = App_AddThread;
+			path = "feature-add-thread";
 			sourceTree = "<group>";
 		};
 		1603603223018777006A0948 /* Controller */ = {
@@ -267,13 +267,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1621AD25234456E4008F15D8 /* App_PaymentWebView */ = {
+		1621AD25234456E4008F15D8 /* feature-payment-webview */ = {
 			isa = PBXGroup;
 			children = (
 				1621AD2723445707008F15D8 /* Controller */,
 				1621AD26234456FE008F15D8 /* View */,
 			);
-			path = App_PaymentWebView;
+			path = "feature-payment-webview";
 			sourceTree = "<group>";
 		};
 		1621AD26234456FE008F15D8 /* View */ = {
@@ -343,23 +343,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1656C7F023154B34006F0D84 /* App_Chats */ = {
+		1656C7F023154B34006F0D84 /* feature-chats */ = {
 			isa = PBXGroup;
 			children = (
 				1640891F23168B6400CB11A6 /* Model */,
 				16737D4E23154B6E0071ED78 /* Controller */,
 				16737D4D23154B600071ED78 /* View */,
 			);
-			path = App_Chats;
+			path = "feature-chats";
 			sourceTree = "<group>";
 		};
-		166F1AD323178CC300BB1151 /* App_Chat */ = {
+		166F1AD323178CC300BB1151 /* feature-chat */ = {
 			isa = PBXGroup;
 			children = (
 				166F1AD72317930E00BB1151 /* Model */,
 				166F1AD423178CCF00BB1151 /* Controller */,
 			);
-			path = App_Chat;
+			path = "feature-chat";
 			sourceTree = "<group>";
 		};
 		166F1AD423178CCF00BB1151 /* Controller */ = {
@@ -397,14 +397,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		16C3C7F22328EDC600D6B4EE /* App_Report */ = {
+		16C3C7F22328EDC600D6B4EE /* feature-report */ = {
 			isa = PBXGroup;
 			children = (
 				16C3C7F92328F51300D6B4EE /* Service */,
 				16C3C7F62328EECB00D6B4EE /* Controller */,
 				16C3C7F32328EDD100D6B4EE /* View */,
 			);
-			path = App_Report;
+			path = "feature-report";
 			sourceTree = "<group>";
 		};
 		16C3C7F32328EDD100D6B4EE /* View */ = {
@@ -479,7 +479,7 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
-		AA3AB36322F7211E0016ADFF /* App_Main */ = {
+		AA3AB36322F7211E0016ADFF /* feature-main */ = {
 			isa = PBXGroup;
 			children = (
 				AABF39572307C42100DEAA63 /* Model */,
@@ -487,7 +487,7 @@
 				AA3AB36722F721810016ADFF /* Controller */,
 				AA3AB36422F7212A0016ADFF /* View */,
 			);
-			path = App_Main;
+			path = "feature-main";
 			sourceTree = "<group>";
 		};
 		AA3AB36422F7212A0016ADFF /* View */ = {
@@ -528,9 +528,9 @@
 			isa = PBXGroup;
 			children = (
 				AA66A2FB231D5F0700B90B01 /* SunibCurhat.entitlements */,
-				AA5BABE922F6584F004253AF /* Helper */,
-				AA5BABDF22F6541F004253AF /* App */,
-				AA478D8E22F64FF000BC23A7 /* Config */,
+				AA5BABE922F6584F004253AF /* app-helper */,
+				AA5BABDF22F6541F004253AF /* app-feature */,
+				AA478D8E22F64FF000BC23A7 /* app-config */,
 				AA478D7922F649A300BC23A7 /* AppDelegate.swift */,
 				AA478D8322F649A400BC23A7 /* Assets.xcassets */,
 				AA478D8522F649A400BC23A7 /* LaunchScreen.storyboard */,
@@ -541,39 +541,39 @@
 			path = SunibCurhat;
 			sourceTree = "<group>";
 		};
-		AA478D8E22F64FF000BC23A7 /* Config */ = {
+		AA478D8E22F64FF000BC23A7 /* app-config */ = {
 			isa = PBXGroup;
 			children = (
 				AA478D8F22F6503000BC23A7 /* ConstGlobal.swift */,
 				AABF394B23077ED900DEAA63 /* URLConst.swift */,
 			);
-			path = Config;
+			path = "app-config";
 			sourceTree = "<group>";
 		};
-		AA5BABDF22F6541F004253AF /* App */ = {
+		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
-				AA75AD462347C88400C8F739 /* App_Premium */,
-				1621AD25234456E4008F15D8 /* App_PaymentWebView */,
-				16C3C7F22328EDC600D6B4EE /* App_Report */,
-				166F1AD323178CC300BB1151 /* App_Chat */,
-				1656C7F023154B34006F0D84 /* App_Chats */,
-				160360312301875F006A0948 /* App_AddThread */,
-				AA3AB36322F7211E0016ADFF /* App_Main */,
-				AAF1182422F6BBC600FDA099 /* App_CommentCurhat */,
-				AA5BABE222F65573004253AF /* App_ListCurhat */,
+				AA75AD462347C88400C8F739 /* feature-premium */,
+				1621AD25234456E4008F15D8 /* feature-payment-webview */,
+				16C3C7F22328EDC600D6B4EE /* feature-report */,
+				166F1AD323178CC300BB1151 /* feature-chat */,
+				1656C7F023154B34006F0D84 /* feature-chats */,
+				160360312301875F006A0948 /* feature-add-thread */,
+				AA3AB36322F7211E0016ADFF /* feature-main */,
+				AAF1182422F6BBC600FDA099 /* feature-comment */,
+				AA5BABE222F65573004253AF /* feature-list-thread */,
 			);
-			path = App;
+			path = "app-feature";
 			sourceTree = "<group>";
 		};
-		AA5BABE222F65573004253AF /* App_ListCurhat */ = {
+		AA5BABE222F65573004253AF /* feature-list-thread */ = {
 			isa = PBXGroup;
 			children = (
 				16FD4691230D2BA800AD323F /* Model */,
 				AA5BABE422F655A3004253AF /* View */,
 				AA5BABE322F6559C004253AF /* Controller */,
 			);
-			path = App_ListCurhat;
+			path = "feature-list-thread";
 			sourceTree = "<group>";
 		};
 		AA5BABE322F6559C004253AF /* Controller */ = {
@@ -595,7 +595,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AA5BABE922F6584F004253AF /* Helper */ = {
+		AA5BABE922F6584F004253AF /* app-helper */ = {
 			isa = PBXGroup;
 			children = (
 				AAD0E38622F70F7F005CC55A /* Pickers */,
@@ -603,7 +603,7 @@
 				AAD0E35D22F70EE6005CC55A /* Extensions */,
 				AA5BABEA22F65860004253AF /* GeneralHelper */,
 			);
-			path = Helper;
+			path = "app-helper";
 			sourceTree = "<group>";
 		};
 		AA5BABEA22F65860004253AF /* GeneralHelper */ = {
@@ -616,14 +616,14 @@
 			path = GeneralHelper;
 			sourceTree = "<group>";
 		};
-		AA75AD462347C88400C8F739 /* App_Premium */ = {
+		AA75AD462347C88400C8F739 /* feature-premium */ = {
 			isa = PBXGroup;
 			children = (
 				16456DC42350BA2E0058474C /* Model */,
 				AA75AD4A2347CA5F00C8F739 /* Controller */,
 				AA75AD472347C89500C8F739 /* View */,
 			);
-			path = App_Premium;
+			path = "feature-premium";
 			sourceTree = "<group>";
 		};
 		AA75AD472347C89500C8F739 /* View */ = {
@@ -882,7 +882,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		AAF1182422F6BBC600FDA099 /* App_CommentCurhat */ = {
+		AAF1182422F6BBC600FDA099 /* feature-comment */ = {
 			isa = PBXGroup;
 			children = (
 				16EDEB4F230E7C4900F5AE69 /* Model */,
@@ -890,7 +890,7 @@
 				AAF1182622F6BBDB00FDA099 /* Controller */,
 				AAF1182522F6BBD400FDA099 /* View */,
 			);
-			path = App_CommentCurhat;
+			path = "feature-comment";
 			sourceTree = "<group>";
 		};
 		AAF1182522F6BBD400FDA099 /* View */ = {
@@ -1231,7 +1231,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1286,7 +1286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

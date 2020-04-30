@@ -54,7 +54,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor.custom.blue_absolute
         self.tabBar.barTintColor = UIColor.white
         self.tabBar.unselectedItemTintColor = UIColor.custom.gray_absolute
-        self.viewControllers = [timeline, addThread, chats, premium]
+        self.viewControllers = [timeline, addThread, chats]
         
         self.selectedIndex = 0
         self.addObservers()

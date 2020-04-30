@@ -135,6 +135,7 @@ PODS:
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.2.2)
   - InputBarAccessoryView (4.2.2)
+  - IQKeyboardManagerSwift (6.5.5)
   - leveldb-library (1.22)
   - MessageKit (3.0.0):
     - InputBarAccessoryView (~> 4.2.2)
@@ -144,6 +145,10 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.9.0)
+  - Siren (5.4.0)
+  - SPPermissions (4.1.4):
+    - SPPermissions/Core (= 4.1.4)
+  - SPPermissions/Core (4.1.4)
 
 DEPENDENCIES:
   - Crashlytics
@@ -155,10 +160,13 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - Google-Mobile-Ads-SDK
+  - IQKeyboardManagerSwift
   - MessageKit
+  - Siren
+  - SPPermissions
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - BoringSSL-GRPC
     - Crashlytics
     - Fabric
@@ -187,6 +195,10 @@ SPEC REPOS:
     - MessageKit
     - nanopb
     - Protobuf
+  trunk:
+    - IQKeyboardManagerSwift
+    - Siren
+    - SPPermissions
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
@@ -213,11 +225,14 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  Siren: 9df16ed5278cfaad7ea034f3d2206e4f6983e9b8
+  SPPermissions: 9fafa3125a66ec00e36a4c8e3ad8684f5499afbc
 
-PODFILE CHECKSUM: b18e636f82ec899b2a207fe1e46f1ccbbbda8b1b
+PODFILE CHECKSUM: 3bfe7f0c55f83426ae5d50d93f320cdeabd827cb
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

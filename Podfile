@@ -16,5 +16,8 @@ target 'SunibCurhat' do
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
   pod 'Firebase/Messaging'
+  pod 'Siren'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SPPermissions'
 
 end
