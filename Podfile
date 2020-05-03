@@ -6,6 +6,8 @@ target 'SunibCurhat' do
   use_frameworks!
 
   # Pods for SunibCurhat
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'Google-Mobile-Ads-SDK'
   pod 'MessageKit'
   pod 'Firebase/Analytics'
@@ -14,5 +16,13 @@ target 'SunibCurhat' do
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
   pod 'Firebase/Messaging'
+  pod 'Siren'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SPPermissions'
+  pod 'SPPermissions/Location'
+  pod 'SPPermissions/Notification'
+  pod 'SPPermissions/Camera'
+  pod 'SPPermissions/PhotoLibrary'
+  pod 'SPPermissions/Contacts'
 
 end

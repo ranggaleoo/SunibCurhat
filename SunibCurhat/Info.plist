@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key></key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Netijen Curhat</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>GADApplicationIdentifier</key>
@@ -26,6 +30,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to send photos from the Camera.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Used to share thread word to your contact</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to know your position about spreading Covid-19</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to send a photo from your Camera Roll.</string>
 	<key>UILaunchStoryboardName</key>
@@ -47,5 +55,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

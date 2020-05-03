@@ -5,6 +5,9 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
   - Firebase/Analytics (6.7.0):
     - Firebase/Core
   - Firebase/Auth (6.7.0):
@@ -132,6 +135,7 @@ PODS:
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.2.2)
   - InputBarAccessoryView (4.2.2)
+  - IQKeyboardManagerSwift (6.5.5)
   - leveldb-library (1.22)
   - MessageKit (3.0.0):
     - InputBarAccessoryView (~> 4.2.2)
@@ -141,8 +145,24 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.9.0)
+  - Siren (5.4.0)
+  - SPPermissions (4.1.4):
+    - SPPermissions/Core (= 4.1.4)
+  - SPPermissions/Camera (4.1.4):
+    - SPPermissions/Core
+  - SPPermissions/Contacts (4.1.4):
+    - SPPermissions/Core
+  - SPPermissions/Core (4.1.4)
+  - SPPermissions/Location (4.1.4):
+    - SPPermissions/Core
+  - SPPermissions/Notification (4.1.4):
+    - SPPermissions/Core
+  - SPPermissions/PhotoLibrary (4.1.4):
+    - SPPermissions/Core
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -150,11 +170,21 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - Google-Mobile-Ads-SDK
+  - IQKeyboardManagerSwift
   - MessageKit
+  - Siren
+  - SPPermissions
+  - SPPermissions/Camera
+  - SPPermissions/Contacts
+  - SPPermissions/Location
+  - SPPermissions/Notification
+  - SPPermissions/PhotoLibrary
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - BoringSSL-GRPC
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -180,9 +210,15 @@ SPEC REPOS:
     - MessageKit
     - nanopb
     - Protobuf
+  trunk:
+    - IQKeyboardManagerSwift
+    - Siren
+    - SPPermissions
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 291d7b0a7b393f252358083b5d224884126fa46d
   FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
@@ -204,11 +240,14 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  Siren: 9df16ed5278cfaad7ea034f3d2206e4f6983e9b8
+  SPPermissions: 9fafa3125a66ec00e36a4c8e3ad8684f5499afbc
 
-PODFILE CHECKSUM: cd861f642b9a5924dbb769b18cfea9ed5ff6ebad
+PODFILE CHECKSUM: c48dc4d339841928d086ce5e2fcf9e98d0e31800
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.1

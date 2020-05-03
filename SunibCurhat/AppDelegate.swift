@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import GoogleMobileAds
 import Firebase
+import IQKeyboardManagerSwift
+import Siren
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        Fabric.sharedSDK().debug = true
+        IQKeyboardManager.shared.enable = true
+        checkVersion()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         if #available(iOS 10.0, *) {
@@ -38,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Messaging.messaging().delegate = self
         application.registerForRemoteNotifications()
+        requestReviewAppStore()
         return true
     }
 
@@ -206,3 +212,21 @@ extension AppDelegate: MessagingDelegate {
     }
 }
 
+extension AppDelegate {
+    func checkVersion() {
+        let siren = Siren.shared
+        let rules = Rules(promptFrequency: .immediately, forAlertType: .none)
+        siren.rulesManager = RulesManager(globalRules: rules, showAlertAfterCurrentVersionHasBeenReleasedForDays: 0)
+        siren.wail(performCheck: .onDemand) { (result) in
+            switch result {
+            case .failure(let e):
+                Crashlytics.sharedInstance().recordError(e)
+            case .success(let s):
+                print(s)
+                let sb = UIStoryboard(name: "UpdateApp", bundle: nil)
+                let update_app = sb.instantiateViewController(withIdentifier: "update_app")
+                UIApplication.shared.replaceRootViewController(controller: update_app)
+            }
+        }
+    }
+}
