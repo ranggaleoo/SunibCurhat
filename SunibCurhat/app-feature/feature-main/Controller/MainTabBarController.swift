@@ -15,7 +15,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     private lazy var timeline: UIViewController = {
         let storyboad = UIStoryboard(name: "ListCurhat", bundle: nil)
         let vc = storyboad.instantiateViewController(withIdentifier: "nav_timeline")
-        let image = UIImage(named: "bar_btn_timeline")
+        var image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(symbol: .text_bubble_fill, configuration: nil)
+        } else {
+            image = UIImage(named: "bar_btn_timeline")
+        }
         vc.tabBarItem = UITabBarItem(title: "Timeline", image: image, selectedImage: image)
         return vc
     }()
@@ -23,7 +28,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     private lazy var addThread: UIViewController = {
         let storyboad = UIStoryboard(name: "AddThread", bundle: nil)
         let vc = storyboad.instantiateViewController(withIdentifier: "nav_add_thread")
-        let image = UIImage(named: "bar_btn_add_thread")
+        var image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(symbol: .plus_bubble_fill, configuration: nil)
+        } else {
+            image = UIImage(named: "bar_btn_add_thread")
+        }
         vc.tabBarItem = UITabBarItem(title: "Add Thread", image: image, selectedImage: image)
         return vc
     }()
@@ -31,7 +41,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     private lazy var chats: UIViewController = {
         let storyboad = UIStoryboard(name: "Chats", bundle: nil)
         let vc = storyboad.instantiateViewController(withIdentifier: "nav_chats")
-        let image = UIImage(named: "bar_btn_chats")
+        var image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(symbol: .double_bubble_fill, configuration: nil)
+        } else {
+            image = UIImage(named: "bar_btn_chats")
+        }
         vc.tabBarItem = UITabBarItem(title: "Chats", image: image, selectedImage: image)
         return vc
     }()
@@ -41,6 +56,19 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let vc = storyboad.instantiateViewController(withIdentifier: "nav_premium")
         let image = UIImage(named: "bar_btn_premium")
         vc.tabBarItem = UITabBarItem(title: "Upgrade PRO", image: image, selectedImage: image)
+        return vc
+    }()
+    
+    private lazy var corona: UIViewController = {
+        let storyboad = UIStoryboard(name: "Corona", bundle: nil)
+        let vc = storyboad.instantiateViewController(withIdentifier: "nav_corona")
+        var image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(symbol: .shield_checkmark_fill, configuration: nil)
+        } else {
+            image = UIImage(named: "bar_btn_corona")
+        }
+        vc.tabBarItem = UITabBarItem(title: "Covid-19", image: image, selectedImage: image)
         return vc
     }()
     
@@ -54,7 +82,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor.custom.blue_absolute
         self.tabBar.barTintColor = UIColor.white
         self.tabBar.unselectedItemTintColor = UIColor.custom.gray_absolute
-        self.viewControllers = [timeline, addThread, chats]
+        self.viewControllers = [timeline, corona, chats]
         
         self.selectedIndex = 0
         self.addObservers()
@@ -76,9 +104,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                         print(e.localizedDescription)
                         self.dismissLoaderIndicator()
                         self.addObservers()
-//                        self.showAlert(title: "Session Expire", message: e.localizedDescription + "\n Try Again?", OKcompletion: { (act) in
-//                            self.addObservers()
-//                        }, CancelCompletion: nil)
                         
                     case .success(let s):
                         self.dismissLoaderIndicator()
@@ -86,7 +111,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                             if let data = s.data {
                                 let tmpToken = UDHelpers.shared.getString(key: .tmpToken)
                                 if tmpToken != data["token"] {
-                                    RepoMemory.user_name = data["name"]
+                                    if (RepoMemory.user_name?.isEmpty ?? false) || RepoMemory.user_name == nil {
+                                        RepoMemory.user_name = data["name"]
+                                    }
                                     UDHelpers.shared.set(value: data["token"] ?? "", key: .tmpToken)
                                 }
                                 
@@ -98,11 +125,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                                 ConstGlobal.contact_email       = data["contact_email"]
                                 ConstGlobal.contact_whatsapp    = data["contact_whatsapp"]
                                 ConstGlobal.contact_instagram   = data["contact_instagram"]
-                                
-//                                self.showAlert(title: "Session has been updated", message: s.message + "\n Try Again?", OKcompletion: { (act) in
-//                                    RepoMemory.pendingFunction?()
-//                                    RepoMemory.pendingFunction = nil
-//                                }, CancelCompletion: nil)
                                 
                                 if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
                                     guard
@@ -128,16 +150,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                             
                             } else {
                                 self.addObservers()
-//                                self.showAlert(title: "Session Expire", message: "token not found \n Try Again?", OKcompletion: { (act) in
-//                                    self.addObservers()
-//                                }, CancelCompletion: nil)
                             }
                             
                         } else {
                             self.addObservers()
-//                            self.showAlert(title: "Session Expire", message: s.message + "\n Try Again?", OKcompletion: { (act) in
-//                                self.addObservers()
-//                            }, CancelCompletion: nil)
                         }
                     }
                 })

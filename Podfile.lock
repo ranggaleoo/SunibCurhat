@@ -148,7 +148,17 @@ PODS:
   - Siren (5.4.0)
   - SPPermissions (4.1.4):
     - SPPermissions/Core (= 4.1.4)
+  - SPPermissions/Camera (4.1.4):
+    - SPPermissions/Core
+  - SPPermissions/Contacts (4.1.4):
+    - SPPermissions/Core
   - SPPermissions/Core (4.1.4)
+  - SPPermissions/Location (4.1.4):
+    - SPPermissions/Core
+  - SPPermissions/Notification (4.1.4):
+    - SPPermissions/Core
+  - SPPermissions/PhotoLibrary (4.1.4):
+    - SPPermissions/Core
 
 DEPENDENCIES:
   - Crashlytics
@@ -164,6 +174,11 @@ DEPENDENCIES:
   - MessageKit
   - Siren
   - SPPermissions
+  - SPPermissions/Camera
+  - SPPermissions/Contacts
+  - SPPermissions/Location
+  - SPPermissions/Notification
+  - SPPermissions/PhotoLibrary
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -233,6 +248,6 @@ SPEC CHECKSUMS:
   Siren: 9df16ed5278cfaad7ea034f3d2206e4f6983e9b8
   SPPermissions: 9fafa3125a66ec00e36a4c8e3ad8684f5499afbc
 
-PODFILE CHECKSUM: 3bfe7f0c55f83426ae5d50d93f320cdeabd827cb
+PODFILE CHECKSUM: c48dc4d339841928d086ce5e2fcf9e98d0e31800
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

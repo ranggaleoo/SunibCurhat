@@ -2,6 +2,11 @@ import UIKit
 
 extension UIImage {
     
+    @available(iOS 13.0, *)
+    convenience init?(symbol: Identifier.imageSymbolName, configuration: UIImage.SymbolConfiguration? = nil) {
+        self.init(systemName: symbol.rawValue, withConfiguration: configuration)
+    }
+    
     /// Resizes an image to the specified size.
     ///
     /// - Parameters:

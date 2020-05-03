@@ -17,8 +17,12 @@ class HTTPRequest {
     var timeoutInterval: TimeInterval = 60
     var headers: [HTTPRequestHeader.key : String] = [:]
     
+    private func resetValueToDefault() {
+        timeoutInterval = 60
+        headers.removeAll()
+    }
+    
     func connect<T:Decodable>( url: String, params: [String:Any]?, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
-        
         guard let _url = URL(string: url) else {
             fatalError("invalid url: " + url)
         }
@@ -49,11 +53,12 @@ class HTTPRequest {
                     return
                 }
                 if let a = response as? HTTPURLResponse {
+                    print("status code: ", a.statusCode)
                     if a.statusCode != 200 {
                         let e = NSError(domain: "Status Code", code: a.statusCode, userInfo: nil)
                         completion(.failure(e))
+                        return
                     }
-                    print("status code: ", a.statusCode)
                 }
                 if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
                     print(stringResponse)
@@ -67,5 +72,6 @@ class HTTPRequest {
                 }
             }
         }.resume()
+        resetValueToDefault()
     }
 }

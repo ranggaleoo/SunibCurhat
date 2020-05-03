@@ -4,6 +4,11 @@ extension UIViewController {
     
     static var alertActions: [String: (UIAlertAction) -> Void] = [:]
     
+    public func navigationDefault() {
+        self.navigationItem.backBarButtonItem               = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.tintColor  = UIColor.custom.blue
+    }
+    
     var alertController: UIAlertController? {
         guard let alert = UIApplication.topViewController() as? UIAlertController else { return nil }
         return alert
@@ -34,22 +39,26 @@ extension UIViewController {
     }
     
     func showLoaderIndicator() {
-        DispatchQueue.main.async {
-            let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
-            activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            activityIndicator.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-            activityIndicator.startAnimating()
-            
-            self.view.addSubview(activityIndicator)
-            activityIndicator.center = self.view.center
+        if let window = UIApplication.shared.keyWindow {
+            DispatchQueue.main.async {
+                let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+                activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                activityIndicator.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+                activityIndicator.startAnimating()
+                
+                window.addSubview(activityIndicator)
+                activityIndicator.center = window.center
+            }
         }
     }
     
     func dismissLoaderIndicator() {
-        DispatchQueue.main.async {
-            self.view.subviews.compactMap { $0 as? UIActivityIndicatorView }.forEach {
-                $0.backgroundColor = .clear
-                $0.removeFromSuperview()
+        if let window = UIApplication.shared.keyWindow {
+            DispatchQueue.main.async {
+                window.subviews.compactMap { $0 as? UIActivityIndicatorView }.forEach {
+                    $0.backgroundColor = .clear
+                    $0.removeFromSuperview()
+                }
             }
         }
     }

@@ -223,9 +223,9 @@ extension AppDelegate {
                 Crashlytics.sharedInstance().recordError(e)
             case .success(let s):
                 print(s)
-//                let sb = UIStoryboard(name: "UpdateApp", bundle: nil)
-//                let update_app = sb.instantiateViewController(withIdentifier: "update_app")s
-//                UIApplication.shared.replaceRootViewController(controller: update_app)
+                let sb = UIStoryboard(name: "UpdateApp", bundle: nil)
+                let update_app = sb.instantiateViewController(withIdentifier: "update_app")
+                UIApplication.shared.replaceRootViewController(controller: update_app)
             }
         }
     }

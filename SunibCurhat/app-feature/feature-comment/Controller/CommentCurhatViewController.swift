@@ -132,17 +132,19 @@ class CommentCurhatViewController: UIViewController {
             switch result {
             case .failure(let e):
                 self.dismissLoaderIndicator()
-                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                if e.localizedDescription.contains("403") {
                     RepoMemory.token = nil
                     RepoMemory.pendingFunction = self.addComment.self
-                }, CancelCompletion: nil)
+                } else {
+                    self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                }
                 
             case .success(let s):
                 self.dismissLoaderIndicator()
                 if s.success {
                     self.txt_comment.text = ""
                     self.textViewDidChange(self.txt_comment)
-                    self.getComments()
+                    self.refreshControl.beginRefreshing()
                 } else {
                     self.showAlert(title: "Error", message: s.message + "\n Try Again?", OKcompletion: { (act) in
                         self.addComment()
@@ -177,11 +179,13 @@ class CommentCurhatViewController: UIViewController {
             switch result {
             case .failure(let e):
                 self.refreshControl.endRefreshing()
-                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                if e.localizedDescription.contains("403") {
                     self.getMoreComment = false
                     RepoMemory.token = nil
                     RepoMemory.pendingFunction = self.getComments.self
-                }, CancelCompletion: nil)
+                } else {
+                    self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                }
                 
             case .success(let s):
                 self.refreshControl.endRefreshing()

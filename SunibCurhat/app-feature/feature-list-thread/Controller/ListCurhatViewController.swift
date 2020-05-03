@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MessageUI
 import Crashlytics
+import SPPermissions
 
 class ListCurhatViewController: UIViewController {
     
@@ -38,15 +39,20 @@ class ListCurhatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegates()
+        setupViews()
         getTimeline()
     }
     
     private func delegates() {
-        self.title = "Timeline"
-        self.setupMenuBarButtonItem()
         tableViewCurhat.delegate = self
         tableViewCurhat.dataSource = self
-        
+    }
+    
+    private func setupViews() {
+        SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .contacts, .photoLibrary, .locationWhenInUse], on: self, delegate: self, dataSource: self)
+        self.navigationDefault()
+        self.title = "Timeline"
+        self.setupMenuBarButtonItem()
         if #available(iOS 10.0, *) {
             tableViewCurhat.refreshControl = refreshControl
         } else {
@@ -57,15 +63,28 @@ class ListCurhatViewController: UIViewController {
     }
     
     func setupMenuBarButtonItem() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "bar_btn_more_vert"), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
+        var image_add_thread: UIImage?
+        if #available(iOS 13.0, *) {
+            image_add_thread = UIImage(symbol: .plus_bubble_fill, configuration: nil)
+        } else {
+            image_add_thread = UIImage(named: "bar_btn_add_thread")
+        }
+        
+        let buttonAddThread = UIBarButtonItem(image: image_add_thread, style: .plain, target: self, action: #selector(toAddThread))
+        let buttonBarMenu = UIBarButtonItem(image: UIImage(named: "bar_btn_more_vert"), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
+        navigationItem.rightBarButtonItems = [buttonBarMenu, buttonAddThread]
+    }
+    
+    @objc private func toAddThread() {
+        performSegue(withIdentifier: "toAddThread", sender: self)
     }
     
     @objc private func actionMenuBarButtonItem(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Premium", style: .default, handler: { (act) in
-            self.performSegue(withIdentifier: "toPayment", sender: self)
-        }))
+//        alert.addAction(UIAlertAction(title: "Premium", style: .default, handler: { (act) in
+//            self.performSegue(withIdentifier: "toPayment", sender: self)
+//        }))
         
         alert.addAction(UIAlertAction(title: "Contact Us", style: .default, handler: { (act) in
             let alert2 = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
@@ -167,14 +186,14 @@ class ListCurhatViewController: UIViewController {
                 }
             }
             switch result {
-            case .failure(let error):
-                self.showAlert(title: "Error", message: error.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+            case .failure(let e):
+                if e.localizedDescription.contains("403") {
                     self.getTimelineMore = false
                     RepoMemory.token = nil
                     RepoMemory.pendingFunction = self.getTimeline.self
-                }, CancelCompletion: nil)
-                
-                print(error)
+                } else {
+                    self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                }
             case .success(let success):
                 self.fromAddThread = false
                 if success.success {
@@ -193,20 +212,19 @@ class ListCurhatViewController: UIViewController {
     }
     
     @objc func likeTimeline(timeline_id: Int, cell: CurhatTableViewCell) {
-//        self.showLoaderIndicator()
         cell.isLiked = true
         cell.btn_likes.isEnabled = false
         TimelineService.shared.likeTimeline(timeline_id: timeline_id) { (result) in
             switch result {
             case .failure(let e):
-//                self.dismissLoaderIndicator()
                 cell.btn_likes.isEnabled = true
-                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                if e.localizedDescription.contains("403") {
                     RepoMemory.token = nil
-                }, CancelCompletion: nil)
+                } else {
+                    self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                }
                 
             case .success(let s):
-//                self.dismissLoaderIndicator()
                 cell.btn_likes.isEnabled = true
                 if s.success {
                     cell.isLiked = true
@@ -220,20 +238,19 @@ class ListCurhatViewController: UIViewController {
     }
     
     @objc func unlikeTimeline(timeline_id: Int, cell: CurhatTableViewCell) {
-//        self.showLoaderIndicator()
         cell.isLiked = false
         cell.btn_likes.isEnabled = false
         TimelineService.shared.unlikeTimeline(timeline_id: timeline_id) { (result) in
             switch result {
             case .failure(let e):
-//                self.dismissLoaderIndicator()
                 cell.btn_likes.isEnabled = true
-                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                if e.localizedDescription.contains("403") {
                     RepoMemory.token = nil
-                }, CancelCompletion: nil)
+                } else {
+                    self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                }
                 
             case .success(let s):
-//                self.dismissLoaderIndicator()
                 cell.btn_likes.isEnabled = true
                 if s.success {
                     cell.isLiked = false

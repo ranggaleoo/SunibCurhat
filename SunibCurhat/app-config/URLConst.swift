@@ -11,14 +11,15 @@ import Foundation
 struct URLConst {
     
     // MARK: - DEVELOPMENT
-    static let server               = "https://2395900f.ngrok.io"
-    static let api_path             = "/web_semua_bisa/id/apisunibcurhat"
+//    static let server               = "https://2395900f.ngrok.io"
+//    static let api_path             = "/web_semua_bisa/id/apisunibcurhat"
     static let server_sb            = "https://eb3eb79a.ngrok.io"
     static let api_path_sb          = "/web_semua_bisa/id/apisemuabisa"
+    static let api_corona           = "https://api.kawalcorona.com"
     
     // MARK: - PRODUCTION
-//    static let server               = "https://semuabisa.ga"
-//    static let api_path             = "/id/apisunibcurhat"
+    static let server               = "https://semuabisa.ga"
+    static let api_path             = "/id/apisunibcurhat"
     
     // API_URL
     static let api_url              = server + api_path

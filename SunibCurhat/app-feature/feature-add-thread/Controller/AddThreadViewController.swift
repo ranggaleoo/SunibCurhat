@@ -27,14 +27,12 @@ class AddThreadViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.btn_check.setImage(UIImage(named: "btn_check_box"), for: .normal)
                     self.btn_post.isEnabled = true
-                    self.btn_post.backgroundColor = UIColor.custom.blue
                 }
                 
             } else {
                 DispatchQueue.main.async {
                     self.btn_check.setImage(UIImage(named: "btn_uncheck_box"), for: .normal)
                     self.btn_post.isEnabled = false
-                    self.btn_post.backgroundColor = UIColor.custom.gray
                 }
             }
             
@@ -142,24 +140,20 @@ class AddThreadViewController: UIViewController {
             switch result {
             case .failure(let e):
                 self.dismissLoaderIndicator()
-                self.showAlert(title: "Error", message: e.localizedDescription + "\n Update Session?", OKcompletion: { (act) in
+                if e.localizedDescription.contains("403") {
                     RepoMemory.token = nil
                     RepoMemory.pendingFunction = self.addThread.self
-                }, CancelCompletion: nil)
-                
+                } else {
+                    self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: nil, CancelCompletion: nil)
+                }                
             case .success(let s):
                 self.dismissLoaderIndicator()
                 if s.success {
                     print(s.message)
-                    if let vc = self.tabBarController?.viewControllers {
-                        guard let navigationController = vc[0] as? UINavigationController else { return }
-                        if let c = navigationController.topViewController as? ListCurhatViewController {
-                            self.tabBarController?.selectedIndex = 0
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                                self.txt_post.text = nil
-                                c.moveFromAddThread()
-                            })
-                        }
+                    if let vc = self.navigationController?.viewControllers[0] as? ListCurhatViewController {
+                        self.txt_post.text = nil
+                        self.navigationController?.popToViewController(vc, animated: true)
+                        vc.moveFromAddThread()
                     }
                     
                 } else {

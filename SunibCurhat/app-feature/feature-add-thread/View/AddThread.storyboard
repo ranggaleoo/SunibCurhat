@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XGW-eb-0G9">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ske-sO-CkN">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,27 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frN-WX-Wps">
-                                <rect key="frame" x="16" y="196" width="343" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.55294117647058827" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ZgN-mF-d5o"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="POST">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="actionPostThread:" destination="ske-sO-CkN" eventType="touchUpInside" id="pk0-oH-SN3"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dej-F7-MWo">
-                                <rect key="frame" x="16" y="80" width="343" height="100"/>
+                                <rect key="frame" x="16" y="60" width="343" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="rYE-x1-chC"/>
@@ -46,6 +25,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXp-ns-2cX" customClass="UINCButtonPrimaryRounded" customModule="SunibCurhat" customModuleProvider="target">
+                                <rect key="frame" x="16" y="176" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="BRd-Ge-lH8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="POST"/>
+                                <connections>
+                                    <action selector="actionPostThread:" destination="ske-sO-CkN" eventType="touchUpInside" id="RtP-vg-AiE"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="klN-1k-Emf">
                                 <rect key="frame" x="27.5" y="306" width="320" height="51"/>
                                 <subviews>
@@ -115,17 +105,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1Th-kY-auc" firstAttribute="top" secondItem="frN-WX-Wps" secondAttribute="bottom" constant="4" id="3Aw-Bx-NcN"/>
                             <constraint firstItem="Dej-F7-MWo" firstAttribute="top" secondItem="cML-Sg-sAx" secondAttribute="top" constant="16" id="5qj-dO-Qfk"/>
+                            <constraint firstItem="1Th-kY-auc" firstAttribute="top" secondItem="DXp-ns-2cX" secondAttribute="bottom" constant="16" id="9eg-av-DXS"/>
                             <constraint firstAttribute="trailing" secondItem="1Th-kY-auc" secondAttribute="trailing" constant="16" id="Be2-Mg-VrF"/>
-                            <constraint firstItem="frN-WX-Wps" firstAttribute="top" secondItem="Dej-F7-MWo" secondAttribute="bottom" constant="16" id="Cnh-fR-rLD"/>
                             <constraint firstItem="klN-1k-Emf" firstAttribute="centerX" secondItem="cML-Sg-sAx" secondAttribute="centerX" id="Ffa-sb-lGl"/>
-                            <constraint firstItem="frN-WX-Wps" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="NTr-VW-vJb"/>
                             <constraint firstItem="Dej-F7-MWo" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="TWW-dv-lQr"/>
+                            <constraint firstItem="cML-Sg-sAx" firstAttribute="trailing" secondItem="DXp-ns-2cX" secondAttribute="trailing" constant="16" id="VkE-oA-rQH"/>
+                            <constraint firstItem="DXp-ns-2cX" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="a8i-Q9-KzZ"/>
                             <constraint firstItem="cML-Sg-sAx" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="klN-1k-Emf" secondAttribute="bottom" constant="16" id="i2q-oO-89S"/>
                             <constraint firstItem="cML-Sg-sAx" firstAttribute="trailing" secondItem="Dej-F7-MWo" secondAttribute="trailing" constant="16" id="oVW-iD-shu"/>
+                            <constraint firstItem="DXp-ns-2cX" firstAttribute="top" secondItem="Dej-F7-MWo" secondAttribute="bottom" constant="16" id="ptu-I0-Mpe"/>
                             <constraint firstItem="klN-1k-Emf" firstAttribute="top" secondItem="1Th-kY-auc" secondAttribute="bottom" constant="16" id="wqo-ya-4MH"/>
-                            <constraint firstItem="cML-Sg-sAx" firstAttribute="trailing" secondItem="frN-WX-Wps" secondAttribute="trailing" constant="16" id="xM2-t3-f8M"/>
                             <constraint firstItem="1Th-kY-auc" firstAttribute="leading" secondItem="cML-Sg-sAx" secondAttribute="leading" constant="16" id="z9n-Ws-SDA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cML-Sg-sAx"/>
@@ -134,7 +124,7 @@
                     <connections>
                         <outlet property="bannerView" destination="MgR-my-XeR" id="xER-kS-cxR"/>
                         <outlet property="btn_check" destination="ynU-1A-1BN" id="PKx-dY-k0L"/>
-                        <outlet property="btn_post" destination="frN-WX-Wps" id="Xqw-3C-0Dx"/>
+                        <outlet property="btn_post" destination="DXp-ns-2cX" id="7Pz-LA-ySc"/>
                         <outlet property="lbl_eula" destination="xNM-d9-sjb" id="HtZ-FQ-BID"/>
                         <outlet property="txt_post" destination="Dej-F7-MWo" id="gMe-Js-vl3"/>
                     </connections>
@@ -149,7 +139,7 @@
                 <navigationController storyboardIdentifier="nav_add_thread" automaticallyAdjustsScrollViewInsets="NO" id="XGW-eb-0G9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cuC-6M-leI">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

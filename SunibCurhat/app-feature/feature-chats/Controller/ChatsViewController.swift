@@ -32,6 +32,7 @@ class ChatsViewController: UIViewController {
         print("---- ViewDidLoad Chats")
         delegates()
         setupListener()
+        setupViews()
     }
     
     @objc private func setupListener() {
@@ -56,9 +57,13 @@ class ChatsViewController: UIViewController {
     }
     
     private func delegates() {
-        title = "Chats"
         tableViewChats.delegate = self
         tableViewChats.dataSource = self
+    }
+    
+    private func setupViews() {
+        self.navigationDefault()
+        title = "Chats"
         tableViewChats.tableFooterView = UIView()
         if #available(iOS 10.0, *) {
             tableViewChats.refreshControl = refreshControl
