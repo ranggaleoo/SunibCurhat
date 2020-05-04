@@ -40,7 +40,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bayangin diri lu gapunya apa2, otak lu bakal mikir buat cari cara." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-RN-4J5">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bayangin diri lu gapunya apa2, otak lu bakal mikir buat cari cara." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-RN-4J5" customClass="UINCLabelClickable" customModule="SunibCurhat" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="49" width="311" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="auS-y5-UW4"/>
@@ -261,7 +261,7 @@
                                             <outlet property="lbl_count_comments" destination="TUp-Nu-x5A" id="Wxs-Ro-HLP"/>
                                             <outlet property="lbl_count_likes" destination="vma-u6-Oaf" id="u5b-2l-O0l"/>
                                             <outlet property="lbl_count_shares" destination="O7q-dP-QS9" id="SJE-c4-meO"/>
-                                            <outlet property="lbl_curhat" destination="L9X-RN-4J5" id="1Ki-SQ-D8c"/>
+                                            <outlet property="lbl_curhat" destination="L9X-RN-4J5" id="Xun-OO-PYt"/>
                                             <outlet property="lbl_name" destination="VRK-eU-20F" id="4Uo-4u-Avt"/>
                                             <outlet property="lbl_time" destination="UsZ-ae-c4S" id="YKY-Xr-Tfr"/>
                                         </connections>

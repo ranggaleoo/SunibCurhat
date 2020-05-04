@@ -64,6 +64,8 @@
 		AA478D8422F649A400BC23A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA478D8322F649A400BC23A7 /* Assets.xcassets */; };
 		AA478D8722F649A400BC23A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA478D8522F649A400BC23A7 /* LaunchScreen.storyboard */; };
 		AA478D9022F6503000BC23A7 /* ConstGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA478D8F22F6503000BC23A7 /* ConstGlobal.swift */; };
+		AA505E12245FA7DA002FD204 /* UINCLabelClickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA505E11245FA7DA002FD204 /* UINCLabelClickable.swift */; };
+		AA505E14245FA910002FD204 /* UITapGestureRecognizer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA505E13245FA910002FD204 /* UITapGestureRecognizer+Ext.swift */; };
 		AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5BABE522F655BC004253AF /* ListCurhat.storyboard */; };
 		AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */; };
 		AA5BABEC22F65876004253AF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABEB22F65876004253AF /* Logger.swift */; };
@@ -188,6 +190,8 @@
 		AA478D8622F649A400BC23A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA478D8822F649A400BC23A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA478D8F22F6503000BC23A7 /* ConstGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstGlobal.swift; sourceTree = "<group>"; };
+		AA505E11245FA7DA002FD204 /* UINCLabelClickable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCLabelClickable.swift; sourceTree = "<group>"; };
+		AA505E13245FA910002FD204 /* UITapGestureRecognizer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Ext.swift"; sourceTree = "<group>"; };
 		AA5BABE522F655BC004253AF /* ListCurhat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListCurhat.storyboard; sourceTree = "<group>"; };
 		AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurhatViewController.swift; sourceTree = "<group>"; };
 		AA5BABEB22F65876004253AF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -586,6 +590,7 @@
 			children = (
 				AA46E2E9245C55EC00735490 /* UINCLabelBody.swift */,
 				AA46E2FD245D6C5A00735490 /* UINCLabelTitle.swift */,
+				AA505E11245FA7DA002FD204 /* UINCLabelClickable.swift */,
 			);
 			path = UINCLabel;
 			sourceTree = "<group>";
@@ -877,6 +882,7 @@
 				AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */,
 				AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */,
 				16E670502357098B008B3108 /* UICollectionView+Extensions.swift */,
+				AA505E13245FA910002FD204 /* UITapGestureRecognizer+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1280,6 +1286,7 @@
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
+				AA505E14245FA910002FD204 /* UITapGestureRecognizer+Ext.swift in Sources */,
 				1619D62E2317CACE00E5F496 /* UIScrollView+Extensions.swift in Sources */,
 				164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */,
 				1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */,
@@ -1312,6 +1319,7 @@
 				AAD0E39222F70FE6005CC55A /* CountryCell.swift in Sources */,
 				AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */,
 				AAD0E3BF22F7112C005CC55A /* Contacts.swift in Sources */,
+				AA505E12245FA7DA002FD204 /* UINCLabelClickable.swift in Sources */,
 				AA46E303245D96FE00735490 /* CoronaCell.swift in Sources */,
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
 				1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */,
@@ -1471,6 +1479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
@@ -1494,6 +1503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

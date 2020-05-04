@@ -153,8 +153,6 @@ PODS:
   - SPPermissions/Contacts (4.1.4):
     - SPPermissions/Core
   - SPPermissions/Core (4.1.4)
-  - SPPermissions/Location (4.1.4):
-    - SPPermissions/Core
   - SPPermissions/Notification (4.1.4):
     - SPPermissions/Core
   - SPPermissions/PhotoLibrary (4.1.4):
@@ -176,7 +174,6 @@ DEPENDENCIES:
   - SPPermissions
   - SPPermissions/Camera
   - SPPermissions/Contacts
-  - SPPermissions/Location
   - SPPermissions/Notification
   - SPPermissions/PhotoLibrary
 
@@ -248,6 +245,6 @@ SPEC CHECKSUMS:
   Siren: 9df16ed5278cfaad7ea034f3d2206e4f6983e9b8
   SPPermissions: 9fafa3125a66ec00e36a4c8e3ad8684f5499afbc
 
-PODFILE CHECKSUM: c48dc4d339841928d086ce5e2fcf9e98d0e31800
+PODFILE CHECKSUM: 8b03487133e427dde1754e9a2aa912bbba91d05b
 
 COCOAPODS: 1.9.1
