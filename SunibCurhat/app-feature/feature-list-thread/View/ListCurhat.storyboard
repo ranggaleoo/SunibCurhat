@@ -21,15 +21,15 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurhatTableViewCell" rowHeight="267" id="Grn-us-HLX" customClass="CurhatTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="267"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurhatTableViewCell" id="Grn-us-HLX" customClass="CurhatTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="244"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Grn-us-HLX" id="jrV-mp-cKu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fan-lR-Swy" userLabel="container">
-                                                    <rect key="frame" x="16" y="16" width="343" height="235"/>
+                                                    <rect key="frame" x="16" y="16" width="343" height="212"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pocong Jalanan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRK-eU-20F">
                                                             <rect key="frame" x="16" y="16" width="311" height="25"/>
@@ -41,7 +41,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bayangin diri lu gapunya apa2, otak lu bakal mikir buat cari cara." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-RN-4J5" customClass="UINCLabelClickable" customModule="SunibCurhat" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="49" width="311" height="50"/>
+                                                            <rect key="frame" x="16" y="49" width="311" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="auS-y5-UW4"/>
                                                             </constraints>
@@ -50,13 +50,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NKQ-u2-2hT">
-                                                            <rect key="frame" x="16" y="115" width="122" height="52"/>
+                                                            <rect key="frame" x="16" y="94" width="122" height="50"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSC-8j-Wkp">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="52"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tg-O1-UA0">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="52"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="3ee-nL-cCr"/>
                                                                                 <constraint firstAttribute="height" constant="50" id="xy4-in-jCs"/>
@@ -76,10 +76,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ueZ-lZ-3uO">
-                                                                    <rect key="frame" x="46" y="0.0" width="30" height="52"/>
+                                                                    <rect key="frame" x="46" y="0.0" width="30" height="50"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTH-sN-7u9">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="52"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="Y6D-1K-GHd"/>
                                                                                 <constraint firstAttribute="height" constant="50" id="iLu-w3-3ZR"/>
@@ -99,10 +99,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjM-ch-SMD">
-                                                                    <rect key="frame" x="92" y="0.0" width="30" height="52"/>
+                                                                    <rect key="frame" x="92" y="0.0" width="30" height="50"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGO-rO-ndL">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="52"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="8hS-4M-l0q"/>
                                                                                 <constraint firstAttribute="width" constant="30" id="jhO-Pq-VTX"/>
@@ -124,7 +124,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Z29-zh-euZ">
-                                                            <rect key="frame" x="16" y="175" width="266" height="20"/>
+                                                            <rect key="frame" x="16" y="152" width="266" height="20"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZnR-xg-iRw">
                                                                     <rect key="frame" x="0.0" y="0.0" width="61" height="20"/>
@@ -192,7 +192,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsZ-ae-c4S">
-                                                            <rect key="frame" x="16" y="199" width="311" height="20"/>
+                                                            <rect key="frame" x="16" y="176" width="311" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="ZaB-5c-867"/>
                                                             </constraints>
@@ -267,7 +267,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdsTableViewCell" rowHeight="215" id="6Cd-z9-Hpb" customClass="AdsTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="295" width="375" height="215"/>
+                                        <rect key="frame" x="0.0" y="272" width="375" height="215"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Cd-z9-Hpb" id="gDi-Rn-WbP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
@@ -293,7 +293,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingTableViewCell" rowHeight="50" id="aT3-J6-HSZ" customClass="LoadingTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="510" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="487" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aT3-J6-HSZ" id="PDA-Dt-lHd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -314,7 +314,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GADBannerTableViewCell" rowHeight="68" id="8yJ-RN-234" customClass="GADBannerTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="560" width="375" height="68"/>
+                                        <rect key="frame" x="0.0" y="537" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8yJ-RN-234" id="dBW-mo-0kp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>

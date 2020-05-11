@@ -257,6 +257,37 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var buttons: [UITableViewRowAction] = []
+        let sendChatButton = UITableViewRowAction(style: .normal, title: "Chat") { (action, index) in
+            if let vc = self.tabBarController?.viewControllers {
+                guard let navigationController = vc[1] as? UINavigationController else { return }
+                if let c = navigationController.topViewController as? ChatsViewController {
+                    let myDeviceId          = RepoMemory.device_id
+                    let strangerDeviceId    = self.comments[index.row].device_id
+                    
+                    guard myDeviceId != strangerDeviceId else {
+                        self.showAlert(title: "Error", message: "You cannot chat yourself", OKcompletion: nil, CancelCompletion: nil)
+                        return
+                    }
+                    
+                    self.tabBarController?.selectedIndex = 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        let chat_id = myDeviceId + "+" + strangerDeviceId
+                        let name = self.comments[index.row].name
+                        let users = [myDeviceId, strangerDeviceId]
+                        c.createChatRoom(chat_id: chat_id, name: name, users: users)
+                    })
+                }
+            }
+        }
+        if comments[indexPath.row].device_id != RepoMemory.device_id {
+            sendChatButton.backgroundColor = UIColor.custom.blue
+            buttons.append(sendChatButton)
+        }
+        return buttons
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

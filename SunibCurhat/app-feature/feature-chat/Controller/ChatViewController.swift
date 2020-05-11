@@ -72,6 +72,7 @@ final class ChatViewController: MessagesViewController {
     }
     
     private func delegates() {
+        self.navigationDefault()
         self.setupMoreBarButtonItem { (act) in
             let sb = UIStoryboard(name: "Report", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "view_report") as! ReportViewController

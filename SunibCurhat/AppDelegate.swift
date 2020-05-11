@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Fabric.sharedSDK().debug = true
         IQKeyboardManager.shared.enable = true
-        checkVersion()
+        checkVersionSiren()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         if #available(iOS 10.0, *) {
@@ -228,5 +228,12 @@ extension AppDelegate {
                 UIApplication.shared.replaceRootViewController(controller: update_app)
             }
         }
+    }
+    
+    func checkVersionSiren() {
+        let siren = Siren.shared
+        let rules = RulesManager(majorUpdateRules: .critical, minorUpdateRules: .annoying, patchUpdateRules: .default, revisionUpdateRules: .relaxed, showAlertAfterCurrentVersionHasBeenReleasedForDays: 0)
+        siren.rulesManager = rules
+        siren.wail()
     }
 }
