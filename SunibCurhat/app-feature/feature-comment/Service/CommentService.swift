@@ -50,4 +50,19 @@ class CommentService {
             completion(result)
         }
     }
+    
+    func deleteComment(comment_id: String, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+        let url = URLConst.api_url + "/deleteComment"
+        var param: [String: Any] = [:]
+        param["comment_id"] = comment_id
+        
+        if let token = RepoMemory.token {
+            param["X_SIGNATURE_API"] = token
+        }
+        HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
+        HTTPRequest.shared.headers[.referer] = URLConst.server
+        HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
+            completion(result)
+        }
+    }
 }

@@ -154,6 +154,27 @@ class CommentCurhatViewController: UIViewController {
         }
     }
     
+    @objc func deleteComment(comment_id: String, indexPath: IndexPath) {
+        print("----- delete", comment_id)
+        self.comments.remove(at: indexPath.row)
+        self.tableViewComment.deleteRows(at: [indexPath], with: .left)
+        CommentService.shared.deleteComment(comment_id: comment_id, completion: { (result) in
+            switch result {
+            case .failure(let e):
+                self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: { (act) in
+                    RepoMemory.token = nil
+                }, CancelCompletion: nil)
+                
+            case .success(let s):
+                if s.success {
+                    //do nothing
+                } else {
+                    print(s.message);
+                }
+            }
+        })
+    }
+    
     @objc func getComments() {
         guard
             !getMoreComment,
@@ -281,10 +302,19 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             }
         }
+        
+        let deleteButton = UITableViewRowAction(style: .normal, title: "Delete") { (action, indexPath) in
+            self.deleteComment(comment_id: self.comments[indexPath.row].comment_id, indexPath: indexPath)
+        }
         if comments[indexPath.row].device_id != RepoMemory.device_id {
             sendChatButton.backgroundColor = UIColor.custom.blue
             buttons.append(sendChatButton)
+        
+        } else {
+            deleteButton.backgroundColor = UIColor.custom.red_absolute
+            buttons.append(deleteButton)
         }
+        
         return buttons
     }
     
