@@ -23,5 +23,6 @@ target 'SunibCurhat' do
   pod 'SPPermissions/Camera'
   pod 'SPPermissions/PhotoLibrary'
   pod 'SPPermissions/Contacts'
+  pod 'LeoPopScreen'
 
 end
