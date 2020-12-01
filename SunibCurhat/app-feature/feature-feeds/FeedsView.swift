@@ -15,6 +15,8 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     
     @IBOutlet weak var tableView: UITableView!
     private var refreshControl: UINCRefreshControl = UINCRefreshControl()
+    private var storeKit = LeoStoreKit()
+    private var product: LeoStoreKitProduct?
     
     init() {
         super.init(nibName: String(describing: FeedsView.self), bundle: Bundle(for: FeedsView.self))
@@ -30,6 +32,8 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     }
     
     func setupViews() {
+        storeKit.delegate = self
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -89,7 +93,8 @@ extension FeedsView: UITableViewDataSource, UITableViewDelegate {
 
 extension FeedsView: FeedAdmobCellDelegate {
     func didTapRemoveAds(cell: FeedAdmobCell) {
-        LeoPopScreen(on: self, delegate: self, dataSource: self)
+        showLoaderIndicator()
+        storeKit.fetchProducts()
     }
     
     func didReceivedAd(cell: FeedAdmobCell) {
@@ -97,9 +102,21 @@ extension FeedsView: FeedAdmobCellDelegate {
     }
 }
 
+extension FeedsView: LeoStoreKitDelegate {
+    func didFetchProduct(store: LeoStoreKit) {
+        dismissLoaderIndicator()
+        self.product = store.get(product: .removeads)
+        _ = LeoPopScreen(on: self, delegate: self, dataSource: self)
+    }
+    
+    func didBuyProduct(store: LeoStoreKit) {
+        //
+    }
+}
+
 extension FeedsView: LeoPopScreenDelegate {
     func didTapPrimaryButton(view: LeoPopScreen) {
-        view.dismiss(animated: true, completion: nil)
+        storeKit.buy(identifier: product?.id ?? .removeads)
     }
     
     func didTapSecondaryButton(view: LeoPopScreen) {
@@ -117,26 +134,26 @@ extension FeedsView: LeoPopScreenDataSource {
     }
     
     var titleText: String? {
-        return "Remove Ads"
+        return product?.title
     }
     
     var bodyText: String? {
-        return "remove all ads"
+        return product?.desc
     }
     
     var buttonPrimaryText: String? {
-        return "Purchase"
+        return "Remove for " + (product?.price ?? "")
     }
     
     var buttonSecondaryText: String? {
-        return nil
+        return "Cancel"
     }
     
     var presentationStyle: UIModalPresentationStyle {
-        return .fullScreen
+        return .popover
     }
     
-    var showButtonCancelAtNavBar: Bool {
-        return true
+    var buttonPrimaryColor: UIColor {
+        return UIColor.custom.blue
     }
 }

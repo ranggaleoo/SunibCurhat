@@ -69,6 +69,8 @@
 		AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5BABE522F655BC004253AF /* ListCurhat.storyboard */; };
 		AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */; };
 		AA5BABEC22F65876004253AF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5BABEB22F65876004253AF /* Logger.swift */; };
+		AA6749842576253B00640A2D /* LeoStoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6749832576253B00640A2D /* LeoStoreKit.swift */; };
+		AA67498C2576320700640A2D /* LeoStoreKitProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA67498B2576320700640A2D /* LeoStoreKitProduct.swift */; };
 		AA75AD492347C8AC00C8F739 /* Premium.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA75AD482347C8AC00C8F739 /* Premium.storyboard */; };
 		AA75AD4C2347CA7700C8F739 /* PremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75AD4B2347CA7700C8F739 /* PremiumViewController.swift */; };
 		AA7A0B4E231BF49000B8233E /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */; };
@@ -208,6 +210,8 @@
 		AA5BABE722F655F4004253AF /* ListCurhatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurhatViewController.swift; sourceTree = "<group>"; };
 		AA5BABEB22F65876004253AF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		AA66A2FB231D5F0700B90B01 /* SunibCurhat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SunibCurhat.entitlements; sourceTree = "<group>"; };
+		AA6749832576253B00640A2D /* LeoStoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeoStoreKit.swift; sourceTree = "<group>"; };
+		AA67498B2576320700640A2D /* LeoStoreKitProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeoStoreKitProduct.swift; sourceTree = "<group>"; };
 		AA75AD482347C8AC00C8F739 /* Premium.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Premium.storyboard; sourceTree = "<group>"; };
 		AA75AD4B2347CA7700C8F739 /* PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewController.swift; sourceTree = "<group>"; };
 		AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -781,6 +785,7 @@
 		AA5BABE922F6584F004253AF /* app-helper */ = {
 			isa = PBXGroup;
 			children = (
+				AA674982257624D400640A2D /* LeoStoreKit */,
 				AAD0E38622F70F7F005CC55A /* Pickers */,
 				AAD0E38022F70F34005CC55A /* Viewers */,
 				AAD0E35D22F70EE6005CC55A /* Extensions */,
@@ -797,6 +802,15 @@
 				AA5BABEB22F65876004253AF /* Logger.swift */,
 			);
 			path = GeneralHelper;
+			sourceTree = "<group>";
+		};
+		AA674982257624D400640A2D /* LeoStoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				AA6749832576253B00640A2D /* LeoStoreKit.swift */,
+				AA67498B2576320700640A2D /* LeoStoreKitProduct.swift */,
+			);
+			path = LeoStoreKit;
 			sourceTree = "<group>";
 		};
 		AA75AD462347C88400C8F739 /* feature-premium */ = {
@@ -1339,6 +1353,7 @@
 				AACDFE742570E42200485828 /* FeedsPresenter.swift in Sources */,
 				16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
+				AA67498C2576320700640A2D /* LeoStoreKitProduct.swift in Sources */,
 				AAD0E37322F70F02005CC55A /* UISearchBar+Extensions.swift in Sources */,
 				1621AD2D23445787008F15D8 /* PaymentWebViewController.swift in Sources */,
 				AAD0E38322F70F4B005CC55A /* AttributedTextBlock.swift in Sources */,
@@ -1381,6 +1396,7 @@
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
 				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
 				AA886884233661BD0086F538 /* Timeline+Email.swift in Sources */,
+				AA6749842576253B00640A2D /* LeoStoreKit.swift in Sources */,
 				166F1AD623178CE300BB1151 /* ChatViewController.swift in Sources */,
 				AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */,
 				AAD0E37E22F70F02005CC55A /* Array+Extensions.swift in Sources */,
