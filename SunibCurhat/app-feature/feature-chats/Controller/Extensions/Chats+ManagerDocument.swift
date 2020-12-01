@@ -16,19 +16,13 @@ extension ChatsViewController {
         guard let chat = Chat(document: change.document) else {
             return
         }
-        
         switch change.type {
         case .added:
             addChannelToTable(chat)
-            
         case .modified:
             updateChannelInTable(chat)
-            
         case .removed:
             removeChannelFromTable(chat)
-            
-        @unknown default:
-            print("Unknown document change \(change)")
         }
     }
     

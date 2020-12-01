@@ -86,6 +86,14 @@
 		AABF39562307C05900DEAA63 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF39552307C05900DEAA63 /* MainService.swift */; };
 		AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF39582307C43B00DEAA63 /* MainResponse.swift */; };
 		AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */; };
+		AACDFE742570E42200485828 /* FeedsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACDFE6E2570E42200485828 /* FeedsPresenter.swift */; };
+		AACDFE752570E42200485828 /* FeedsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACDFE6F2570E42200485828 /* FeedsRouter.swift */; };
+		AACDFE762570E42200485828 /* FeedsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACDFE702570E42200485828 /* FeedsProtocols.swift */; };
+		AACDFE772570E42200485828 /* FeedsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACDFE712570E42200485828 /* FeedsInteractor.swift */; };
+		AACDFE782570E42200485828 /* FeedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACDFE722570E42200485828 /* FeedsView.swift */; };
+		AACDFE792570E42200485828 /* FeedsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AACDFE732570E42200485828 /* FeedsView.xib */; };
+		AACDFE7D2570E51100485828 /* FeedDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AACDFE7C2570E51100485828 /* FeedDefaultCell.xib */; };
+		AACDFE802570E52C00485828 /* FeedDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACDFE7F2570E52C00485828 /* FeedDefaultCell.swift */; };
 		AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACF3F1A23075E350056EF28 /* UIFont+Extensions.swift */; };
 		AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E35E22F70F01005CC55A /* UIViewController+Extensions.swift */; };
 		AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E35F22F70F01005CC55A /* UIView+Extensions.swift */; };
@@ -127,6 +135,10 @@
 		AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1182922F6BC3800FDA099 /* CommentCurhatViewController.swift */; };
 		AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */; };
 		AAF1182F22F6BD0400FDA099 /* AdsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1182E22F6BD0400FDA099 /* AdsTableViewCell.swift */; };
+		AAF548472575F7B000176378 /* UINCLabelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF548462575F7B000176378 /* UINCLabelNote.swift */; };
+		AAF5484B257606C300176378 /* UINCRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5484A257606C300176378 /* UINCRefreshControl.swift */; };
+		AAF5487425760CF000176378 /* FeedAdmobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF5487325760CF000176378 /* FeedAdmobCell.xib */; };
+		AAF5487725760D0500176378 /* FeedAdmobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5487625760D0500176378 /* FeedAdmobCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -213,6 +225,14 @@
 		AABF39552307C05900DEAA63 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		AABF39582307C43B00DEAA63 /* MainResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainResponse.swift; sourceTree = "<group>"; };
 		AABF395D230B774200DEAA63 /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
+		AACDFE6E2570E42200485828 /* FeedsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsPresenter.swift; sourceTree = "<group>"; };
+		AACDFE6F2570E42200485828 /* FeedsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsRouter.swift; sourceTree = "<group>"; };
+		AACDFE702570E42200485828 /* FeedsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsProtocols.swift; sourceTree = "<group>"; };
+		AACDFE712570E42200485828 /* FeedsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsInteractor.swift; sourceTree = "<group>"; };
+		AACDFE722570E42200485828 /* FeedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsView.swift; sourceTree = "<group>"; };
+		AACDFE732570E42200485828 /* FeedsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedsView.xib; sourceTree = "<group>"; };
+		AACDFE7C2570E51100485828 /* FeedDefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedDefaultCell.xib; sourceTree = "<group>"; };
+		AACDFE7F2570E52C00485828 /* FeedDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDefaultCell.swift; sourceTree = "<group>"; };
 		AACF3F1A23075E350056EF28 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		AAD0E35E22F70F01005CC55A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AAD0E35F22F70F01005CC55A /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -254,6 +274,10 @@
 		AAF1182922F6BC3800FDA099 /* CommentCurhatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCurhatViewController.swift; sourceTree = "<group>"; };
 		AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurhatTableViewCell.swift; sourceTree = "<group>"; };
 		AAF1182E22F6BD0400FDA099 /* AdsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTableViewCell.swift; sourceTree = "<group>"; };
+		AAF548462575F7B000176378 /* UINCLabelNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCLabelNote.swift; sourceTree = "<group>"; };
+		AAF5484A257606C300176378 /* UINCRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCRefreshControl.swift; sourceTree = "<group>"; };
+		AAF5487325760CF000176378 /* FeedAdmobCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedAdmobCell.xib; sourceTree = "<group>"; };
+		AAF5487625760D0500176378 /* FeedAdmobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdmobCell.swift; sourceTree = "<group>"; };
 		EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunibCurhat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -570,6 +594,7 @@
 		AA46E2E4245C54D600735490 /* app-template */ = {
 			isa = PBXGroup;
 			children = (
+				AAF548492576068700176378 /* UINCRefreshControl */,
 				AA46E2FA245D6BF300735490 /* UINCCard */,
 				AA46E2E8245C55D400735490 /* UINCLabel */,
 				AA46E2E5245C54EC00735490 /* UINCButton */,
@@ -591,6 +616,7 @@
 				AA46E2E9245C55EC00735490 /* UINCLabelBody.swift */,
 				AA46E2FD245D6C5A00735490 /* UINCLabelTitle.swift */,
 				AA505E11245FA7DA002FD204 /* UINCLabelClickable.swift */,
+				AAF548462575F7B000176378 /* UINCLabelNote.swift */,
 			);
 			path = UINCLabel;
 			sourceTree = "<group>";
@@ -707,6 +733,7 @@
 		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
+				AACDFE6D2570E2D800485828 /* feature-feeds */,
 				AA46E2EB245C74E700735490 /* feature-corona */,
 				AA46E2DD245C526D00735490 /* feature-update-app */,
 				AA75AD462347C88400C8F739 /* feature-premium */,
@@ -854,6 +881,31 @@
 				AABF39582307C43B00DEAA63 /* MainResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AACDFE6D2570E2D800485828 /* feature-feeds */ = {
+			isa = PBXGroup;
+			children = (
+				AACDFE7B2570E4C700485828 /* cell */,
+				AACDFE6E2570E42200485828 /* FeedsPresenter.swift */,
+				AACDFE6F2570E42200485828 /* FeedsRouter.swift */,
+				AACDFE702570E42200485828 /* FeedsProtocols.swift */,
+				AACDFE712570E42200485828 /* FeedsInteractor.swift */,
+				AACDFE722570E42200485828 /* FeedsView.swift */,
+				AACDFE732570E42200485828 /* FeedsView.xib */,
+			);
+			path = "feature-feeds";
+			sourceTree = "<group>";
+		};
+		AACDFE7B2570E4C700485828 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				AACDFE7C2570E51100485828 /* FeedDefaultCell.xib */,
+				AACDFE7F2570E52C00485828 /* FeedDefaultCell.swift */,
+				AAF5487325760CF000176378 /* FeedAdmobCell.xib */,
+				AAF5487625760D0500176378 /* FeedAdmobCell.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		AAD0E35D22F70EE6005CC55A /* Extensions */ = {
@@ -1079,6 +1131,14 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
+		AAF548492576068700176378 /* UINCRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				AAF5484A257606C300176378 /* UINCRefreshControl.swift */,
+			);
+			path = UINCRefreshControl;
+			sourceTree = "<group>";
+		};
 		DD3FEE4FCF2EF1B4E9DBED08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1154,6 +1214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACDFE792570E42200485828 /* FeedsView.xib in Resources */,
 				AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */,
 				AAD0E38D22F70FBD005CC55A /* Countries.bundle in Resources */,
 				168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */,
@@ -1161,11 +1222,13 @@
 				16C3C7F52328EDF100D6B4EE /* Report.storyboard in Resources */,
 				AA478D8722F649A400BC23A7 /* LaunchScreen.storyboard in Resources */,
 				1603603523018792006A0948 /* AddThread.storyboard in Resources */,
+				AAF5487425760CF000176378 /* FeedAdmobCell.xib in Resources */,
 				AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */,
 				AA46E2F1245C752F00735490 /* Corona.storyboard in Resources */,
 				AA75AD492347C8AC00C8F739 /* Premium.storyboard in Resources */,
 				AA478D8422F649A400BC23A7 /* Assets.xcassets in Resources */,
 				AA46E2E3245C52C000735490 /* UpdateApp.storyboard in Resources */,
+				AACDFE7D2570E51100485828 /* FeedDefaultCell.xib in Resources */,
 				AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */,
 				1621AD2B23445749008F15D8 /* Payment.storyboard in Resources */,
 			);
@@ -1253,6 +1316,7 @@
 				AAD0E37922F70F02005CC55A /* UIAlertController+Extensions.swift in Sources */,
 				16456DBF2350B8400058474C /* Premium+CollectionView.swift in Sources */,
 				AA46E2EA245C55EC00735490 /* UINCLabelBody.swift in Sources */,
+				AAF548472575F7B000176378 /* UINCLabelNote.swift in Sources */,
 				16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */,
 				AAD0E3B922F71113005CC55A /* ContactsPickerViewController.swift in Sources */,
 				AAD0E38E22F70FBD005CC55A /* LocalePickerViewController.swift in Sources */,
@@ -1272,6 +1336,7 @@
 				AA46E2E7245C551A00735490 /* UINCButtonPrimaryRounded.swift in Sources */,
 				16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */,
 				AA46E2F6245D44B400735490 /* CoronaService.swift in Sources */,
+				AACDFE742570E42200485828 /* FeedsPresenter.swift in Sources */,
 				16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
 				AAD0E37322F70F02005CC55A /* UISearchBar+Extensions.swift in Sources */,
@@ -1283,9 +1348,11 @@
 				AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */,
 				16456DC62350BA420058474C /* PremiumModel.swift in Sources */,
 				AA75AD4C2347CA7700C8F739 /* PremiumViewController.swift in Sources */,
+				AAF5487725760D0500176378 /* FeedAdmobCell.swift in Sources */,
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
+				AACDFE772570E42200485828 /* FeedsInteractor.swift in Sources */,
 				AA505E14245FA910002FD204 /* UITapGestureRecognizer+Ext.swift in Sources */,
 				1619D62E2317CACE00E5F496 /* UIScrollView+Extensions.swift in Sources */,
 				164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */,
@@ -1296,6 +1363,8 @@
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
 				AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
+				AACDFE802570E52C00485828 /* FeedDefaultCell.swift in Sources */,
+				AACDFE782570E42200485828 /* FeedsView.swift in Sources */,
 				AAD0E37722F70F02005CC55A /* Locale+Extensions.swift in Sources */,
 				AAD0E37422F70F02005CC55A /* UITextField+Extensions.swift in Sources */,
 				16456DC12350B8860058474C /* PremiumAdvantageCollectionViewCell.swift in Sources */,
@@ -1320,6 +1389,7 @@
 				AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */,
 				AAD0E3BF22F7112C005CC55A /* Contacts.swift in Sources */,
 				AA505E12245FA7DA002FD204 /* UINCLabelClickable.swift in Sources */,
+				AACDFE762570E42200485828 /* FeedsProtocols.swift in Sources */,
 				AA46E303245D96FE00735490 /* CoronaCell.swift in Sources */,
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
 				1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */,
@@ -1331,10 +1401,12 @@
 				AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */,
 				AAD0E37D22F70F02005CC55A /* Optional+Extensions.swift in Sources */,
 				AAD0E37122F70F02005CC55A /* Common+Extensions.swift in Sources */,
+				AAF5484B257606C300176378 /* UINCRefreshControl.swift in Sources */,
 				AA7A0B55231CE95E00B8233E /* Chat+MessagesDataSource.swift in Sources */,
 				AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */,
 				AA7A0B51231CE1E900B8233E /* Chat+MessageDisplay.swift in Sources */,
 				AA46E2F3245D2EEA00735490 /* Timeline+Permission.swift in Sources */,
+				AACDFE752570E42200485828 /* FeedsRouter.swift in Sources */,
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
 				AA478D8222F649A300BC23A7 /* SunibCurhat.xcdatamodeld in Sources */,
 				AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */,

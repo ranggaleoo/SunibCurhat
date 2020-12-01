@@ -1,17 +1,17 @@
 //
-//  UINCLabelTitle.swift
+//  UINCLabelNote.swift
 //  SunibCurhat
 //
-//  Created by Rangga Leo on 02/05/20.
+//  Created by Rangga Leo on 01/12/20.
 //  Copyright © 2020 Rangga Leo. All rights reserved.
 //
 
 import UIKit
 
-class UINCLabelTitle: UILabel {
+class UINCLabelNote: UILabel {
     private var fontSize: CGFloat = 0 {
         didSet {
-            self.font = UIFont.custom.bold.size(of: self.fontSize)
+            self.font = UIFont.custom.regular.size(of: self.fontSize)
         }
     }
     
@@ -27,8 +27,8 @@ class UINCLabelTitle: UILabel {
     
     private func setupViews() {
         let size_font: CGFloat  = self.font.pointSize
-        self.font = UIFont.custom.bold.size(of: size_font)
-        self.textColor = UIColor.custom.black_absolute
+        self.font = UIFont.custom.regular.size(of: size_font)
+        self.textColor = UIColor.custom.gray
     }
     
     public func changeFontSize(size: CGFloat) {

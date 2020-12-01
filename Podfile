@@ -23,6 +23,8 @@ target 'SunibCurhat' do
   pod 'SPPermissions/Camera'
   pod 'SPPermissions/PhotoLibrary'
   pod 'SPPermissions/Contacts'
-  pod 'LeoPopScreen'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'LeoPopScreen', '~> 1.0.1'
 
 end

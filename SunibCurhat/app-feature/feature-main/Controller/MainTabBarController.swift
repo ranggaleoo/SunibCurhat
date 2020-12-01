@@ -14,7 +14,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private lazy var timeline: UIViewController = {
         let storyboad = UIStoryboard(name: "ListCurhat", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "nav_timeline")
+//        let vc = storyboad.instantiateViewController(withIdentifier: "nav_timeline")
+        let vc = FeedsRouter.createFeedsModule()
         var image: UIImage?
         if #available(iOS 13.0, *) {
             image = UIImage(symbol: .text_bubble_fill, configuration: nil)

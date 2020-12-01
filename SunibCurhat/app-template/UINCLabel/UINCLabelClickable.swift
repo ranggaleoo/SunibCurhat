@@ -35,8 +35,8 @@ class UINCLabelClickable: UILabel {
         if let matchTexts = matches {
             for match in matchTexts {
                 print(match)
-                print(match.replacementString)
-                print(match.alternativeStrings)
+                print(match.replacementString ?? "")
+                print(match.alternativeStrings ?? "")
                 guard let range = Range(match.range, in: text) else { continue }
                 let url_text = "\(text[range])"
                 if let url = URL(string: url_text) {
