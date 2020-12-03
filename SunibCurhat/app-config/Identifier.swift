@@ -17,6 +17,11 @@ public enum Identifier {
         case NSLocationWhenInUseUsageDescription
     }
     
+    public enum imageName: String {
+        // MARK: - IMAGE ASSETS
+        case image_super_thankyou
+    }
+    
     public enum imageSymbolName: String {
         // MARK: - INFO
         case info               = "info"

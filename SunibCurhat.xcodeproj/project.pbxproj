@@ -214,6 +214,7 @@
 		AA67498B2576320700640A2D /* LeoStoreKitProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeoStoreKitProduct.swift; sourceTree = "<group>"; };
 		AA75AD482347C8AC00C8F739 /* Premium.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Premium.storyboard; sourceTree = "<group>"; };
 		AA75AD4B2347CA7700C8F739 /* PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewController.swift; sourceTree = "<group>"; };
+		AA77D69825770FE10077B521 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		AA7A0B4D231BF49000B8233E /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		AA7A0B50231CE1E900B8233E /* Chat+MessageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+MessageDisplay.swift"; sourceTree = "<group>"; };
 		AA7A0B54231CE95E00B8233E /* Chat+MessagesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+MessagesDataSource.swift"; sourceTree = "<group>"; };
@@ -720,6 +721,7 @@
 				168A6BC023167AB300C3018D /* GoogleService-Info.plist */,
 				AA478D8822F649A400BC23A7 /* Info.plist */,
 				AA478D8022F649A300BC23A7 /* SunibCurhat.xcdatamodeld */,
+				AA77D69825770FE10077B521 /* Configuration.storekit */,
 			);
 			path = SunibCurhat;
 			sourceTree = "<group>";

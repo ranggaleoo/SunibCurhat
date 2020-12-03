@@ -103,10 +103,26 @@ extension FeedsView: FeedAdmobCellDelegate {
 }
 
 extension FeedsView: LeoStoreKitDelegate {
-    func didFetchProduct(store: LeoStoreKit) {
-        dismissLoaderIndicator()
+    func didFetchProduct(store: LeoStoreKit, product: [LeoStoreKitProduct]) {
         self.product = store.get(product: .removeads)
-        _ = LeoPopScreen(on: self, delegate: self, dataSource: self)
+        DispatchQueue.main.async {
+            self.dismissLoaderIndicator()
+            _ = LeoPopScreen(on: self, delegate: self, dataSource: self)
+        }
+    }
+    
+    func didFetchInvalidProduct(store: LeoStoreKit, product: [LeoStoreKitProduct.Identifier?]) {
+        DispatchQueue.main.async {
+            self.dismissLoaderIndicator()
+        }
+        debugPrint(product)
+    }
+    
+    func failFetchProduct(store: LeoStoreKit) {
+        DispatchQueue.main.async {
+            self.dismissLoaderIndicator()
+        }
+        debugPrint("FAILED")
     }
     
     func didBuyProduct(store: LeoStoreKit) {
@@ -116,7 +132,7 @@ extension FeedsView: LeoStoreKitDelegate {
 
 extension FeedsView: LeoPopScreenDelegate {
     func didTapPrimaryButton(view: LeoPopScreen) {
-        storeKit.buy(identifier: product?.id ?? .removeads)
+        storeKit.buy(identifier: product?.id ?? .example)
     }
     
     func didTapSecondaryButton(view: LeoPopScreen) {
@@ -130,7 +146,7 @@ extension FeedsView: LeoPopScreenDelegate {
 
 extension FeedsView: LeoPopScreenDataSource {
     var image: UIImage? {
-        return nil
+        return UIImage(identifierName: .image_super_thankyou)
     }
     
     var titleText: String? {
@@ -142,7 +158,7 @@ extension FeedsView: LeoPopScreenDataSource {
     }
     
     var buttonPrimaryText: String? {
-        return "Remove for " + (product?.price ?? "")
+        return "Remove for " + (product?.currencySymbol ?? "") + (String(describing: product?.price ?? 0.00))
     }
     
     var buttonSecondaryText: String? {

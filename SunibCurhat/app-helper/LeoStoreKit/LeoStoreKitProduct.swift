@@ -11,18 +11,21 @@ import StoreKit
 
 struct LeoStoreKitProduct {
     let id: Identifier
-    let price: String
+    let price: NSDecimalNumber
+    let currencySymbol: String
     let title: String
     let desc: String
     let item: SKProduct
     
     public enum Identifier: String, CaseIterable {
+        case example
         case removeads
     }
 }
 
 extension LeoStoreKitProduct.Identifier {
     func get() -> String {
-        return Bundle.main.bundleIdentifier ?? "" + "." + self.rawValue
+        let result = (Bundle.main.bundleIdentifier ?? "") + "." + self.rawValue
+        return result
     }
 }

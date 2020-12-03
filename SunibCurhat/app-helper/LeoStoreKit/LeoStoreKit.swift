@@ -9,7 +9,9 @@
 import StoreKit
 
 protocol LeoStoreKitDelegate: class {
-    func didFetchProduct(store: LeoStoreKit)
+    func didFetchProduct(store: LeoStoreKit, product: [LeoStoreKitProduct])
+    func didFetchInvalidProduct(store: LeoStoreKit, product: [LeoStoreKitProduct.Identifier?])
+    func failFetchProduct(store: LeoStoreKit)
     func didBuyProduct(store: LeoStoreKit)
 }
 
@@ -42,18 +44,41 @@ class LeoStoreKit: NSObject {
 
 extension LeoStoreKit: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        let leoProducts = response
-            .products
-            .map({
-                    LeoStoreKitProduct(
-                        id: LeoStoreKitProduct.Identifier(rawValue: $0.productIdentifier) ?? .removeads,
-                        price: "\($0.price)",
+        if response.invalidProductIdentifiers.count > 0 {
+            let products = response.invalidProductIdentifiers.map({LeoStoreKitProduct.Identifier(rawValue: $0)})
+            delegate?.didFetchInvalidProduct(store: self, product: products)
+        }
+        
+        if response.products.count > 0 {
+            let leoProducts: [LeoStoreKitProduct?] = response
+                .products
+                .compactMap({
+                    guard let identifier = $0.productIdentifier.split(separator: ".").last else { return nil }
+                    return LeoStoreKitProduct(
+                        id: LeoStoreKitProduct.Identifier(rawValue: String(identifier)) ?? .example,
+                        price: $0.price,
+                        currencySymbol: $0.priceLocale.currencySymbol ?? "",
                         title: $0.localizedTitle,
                         desc: $0.localizedDescription,
                         item: $0)
-            })
-        products = leoProducts
-        delegate?.didFetchProduct(store: self)
+                })
+            
+            var result: [LeoStoreKitProduct] = []
+            for product in leoProducts {
+                if let prod = product {
+                    result.append(prod)
+                }
+            }
+            if result.count > 0 {
+                products = result
+                delegate?.didFetchProduct(store: self, product: result)
+            } else {
+                delegate?.failFetchProduct(store: self)
+            }
+            
+        } else {
+            delegate?.failFetchProduct(store: self)
+        }
     }
 }
 
