@@ -18,6 +18,7 @@ protocol FeedsPresenterToView: class {
     func reloadTableView()
     func finishRefershControl()
     func updateLikeCell(indexPath: IndexPath)
+    func showShareController(items: [Any], completion: @escaping (() -> Void))
 }
 
 // MARK: Interactor -
@@ -27,6 +28,7 @@ protocol FeedsPresenterToInteractor: class {
     func getTimelines(page: Int)
     func likeTimeline(timelineID: Int)
     func unlikeTimeline(timelineID: Int)
+    func shareTimeline(timelineID: Int)
 }
 
 

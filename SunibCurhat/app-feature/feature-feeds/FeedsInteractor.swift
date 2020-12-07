@@ -49,4 +49,13 @@ class FeedsInteractor: FeedsPresenterToInteractor {
             }
         }
     }
+    
+    func shareTimeline(timelineID: Int) {
+        TimelineService.shared.shareTimeline(timeline_id: timelineID) { (result) in
+            switch result {
+            case .failure(_): break
+            case .success(_): break
+            }
+        }
+    }
 }

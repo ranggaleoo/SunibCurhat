@@ -76,7 +76,11 @@ class FeedsPresenter: FeedsViewToPresenter {
     }
     
     func requestShare(indexPath: IndexPath) {
-        
+        let timeline_id = timelines[indexPath.row].timeline_id
+        let shareText = timelines[indexPath.row].text_content + " - " + timelines[indexPath.row].name
+        view?.showShareController(items: [shareText], completion: {
+            self.interactor?.shareTimeline(timelineID: timeline_id)
+        })
     }
 }
 

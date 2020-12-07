@@ -86,6 +86,16 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         }
     }
     
+    func showShareController(items: [Any], completion: @escaping (() -> Void)) {
+        let vc = UIActivityViewController(activityItems: items, applicationActivities: [])
+        vc.completionWithItemsHandler = { (actType: UIActivity.ActivityType?, completed: Bool, returnItems: [Any]?, error: Error?) in
+            if completed {
+                completion()
+            }
+        }
+        self.present(vc, animated: true)
+    }
+    
     func moveFromAddThread() {
         presenter?.requestGetTimeline(resetData: true)
     }
