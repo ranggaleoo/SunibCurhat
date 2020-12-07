@@ -24,4 +24,15 @@ class FeedsRouter: FeedsPresenterToRouter {
         
         return view
     }
+    
+    func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?) {
+        if let controller = view as? UIViewController {
+            let storyboad = UIStoryboard(name: "CommentCurhat", bundle: nil)
+            if let vc = storyboad.instantiateViewController(withIdentifier: "comment") as? CommentCurhatViewController {
+                vc.timeline = timeline
+                controller.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
+    }
 }

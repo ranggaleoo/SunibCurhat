@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ID3-iV-Kj1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ID3-iV-Kj1">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <!--Comment Curhat View Controller-->
         <scene sceneID="SiY-eR-Pym">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="ID3-iV-Kj1" customClass="CommentCurhatViewController" customModule="SunibCurhat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comment" hidesBottomBarWhenPushed="YES" id="ID3-iV-Kj1" customClass="CommentCurhatViewController" customModule="SunibCurhat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z16-pO-Nag">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -219,7 +219,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ2-yd-fiI">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ2-yd-fiI">
                                                 <rect key="frame" x="319" y="0.0" width="40" height="56"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="ztB-mh-GO8"/>
@@ -257,6 +257,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="pZJ-XU-s54"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DRU-Af-mZm" secondAttribute="bottom" id="CbP-Fp-KWl"/>
@@ -269,7 +270,6 @@
                             <constraint firstItem="yeP-N9-TbE" firstAttribute="centerX" secondItem="pZJ-XU-s54" secondAttribute="centerX" id="gDj-Pn-53g"/>
                             <constraint firstItem="yeP-N9-TbE" firstAttribute="leading" secondItem="pZJ-XU-s54" secondAttribute="leading" id="y1I-E0-qSy"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="pZJ-XU-s54"/>
                     </view>
                     <navigationItem key="navigationItem" id="xHN-aO-9nL"/>
                     <connections>

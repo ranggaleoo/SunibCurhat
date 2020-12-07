@@ -13,6 +13,8 @@ protocol LeoStoreKitDelegate: class {
     func didFetchInvalidProduct(store: LeoStoreKit, product: [LeoStoreKitProduct.Identifier?])
     func failFetchProduct(store: LeoStoreKit)
     func didBuyProduct(store: LeoStoreKit)
+    func failBuyProduct(store: LeoStoreKit)
+    func onBuyProcessing(store: LeoStoreKit)
 }
 
 class LeoStoreKit: NSObject {
@@ -87,11 +89,12 @@ extension LeoStoreKit: SKPaymentTransactionObserver {
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchasing:
-                break
+                delegate?.onBuyProcessing(store: self)
                 
             case .deferred, .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 SKPaymentQueue.default().remove(self)
+                delegate?.failBuyProduct(store: self)
                 
             case .purchased, .restored:
                 SKPaymentQueue.default().finishTransaction(transaction)
@@ -101,6 +104,7 @@ extension LeoStoreKit: SKPaymentTransactionObserver {
             @unknown default:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 SKPaymentQueue.default().remove(self)
+                delegate?.failBuyProduct(store: self)
             }
         }
     }

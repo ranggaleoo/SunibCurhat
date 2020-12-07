@@ -46,9 +46,14 @@ class FeedAdmobCell: UITableViewCell {
     }
     
     private func updateUI() {
-        ads_view.adUnitID = self.timeline?.ad_unit_id
-        ads_view.rootViewController = root
-        ads_view.load(GADRequest())
+        if UDHelpers.shared.getBool(key: .isFreeAds) {
+            btn_remove.isHidden = true
+            ads_view.isHidden = true
+        } else {
+            ads_view.adUnitID = self.timeline?.ad_unit_id
+            ads_view.rootViewController = root
+            ads_view.load(GADRequest())
+        }
     }
     
     @objc func actionRemoveAds(_ sender: UIButton) {

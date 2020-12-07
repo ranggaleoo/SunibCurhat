@@ -300,4 +300,8 @@ class UINCRefreshControl: UIView {
             self?.refreshingStatus = false
         })
     }
+    
+    func isRefreshing() -> Bool {
+        return refreshingStatus
+    }
 }

@@ -14,10 +14,32 @@ class FeedsPresenter: FeedsViewToPresenter {
     var router: FeedsPresenterToRouter?
     
     private var timelines: [TimelineItems] = []
+    private var next_page: Int = 1
+    private var getTimelineMore: Bool = false
     
     func didLoad() {
         view?.setupViews()
-        interactor?.getTimelines()
+        requestGetTimeline(resetData: false)
+    }
+    
+    func requestGetTimeline(resetData: Bool) {
+        guard !getTimelineMore else {
+            return
+        }
+        getTimelineMore = true
+        
+        if resetData {
+            next_page = 1
+            timelines.removeAll()
+            view?.reloadTableView()
+        }
+        
+        if next_page == 999 {
+            self.getTimelineMore = false
+            return
+        }
+        
+        interactor?.getTimelines(page: next_page)
     }
     
     func numberOfRowsInSection() -> Int {
@@ -29,21 +51,64 @@ class FeedsPresenter: FeedsViewToPresenter {
     }
     
     func didSelectRowAt(indexPath: IndexPath) {
-        
+        let timeline = timelines[indexPath.row]
+        router?.navigateToComment(timeline: timeline, view: view)
     }
     
     func scrollViewDidScroll() {
+        if !getTimelineMore {
+            requestGetTimeline(resetData: false)
+        }
+    }
+    
+    func requestComment(indexPath: IndexPath) {
+        let timeline = timelines[indexPath.row]
+        router?.navigateToComment(timeline: timeline, view: view)
+    }
+    
+    func requestLike(indexPath: IndexPath, isLiked: Bool) {
+        let timelineId = timelines[indexPath.row].timeline_id
+        if isLiked {
+            interactor?.unlikeTimeline(timelineID: timelineId)
+        } else {
+            interactor?.likeTimeline(timelineID: timelineId)
+        }
+    }
+    
+    func requestShare(indexPath: IndexPath) {
         
     }
 }
 
 extension FeedsPresenter: FeedsInteractorToPresenter {
-    func didGetTimelines(timelines: [TimelineItems]) {
-        self.timelines = timelines
+    func didGetTimelines(timelines: [TimelineItems], next_page: Int) {
+        getTimelineMore = false
+        self.next_page = next_page
+        self.timelines.append(timelines)
         view?.reloadTableView()
+        view?.finishRefershControl()
     }
     
     func failedGetTimelines(title: String, message: String) {
+        getTimelineMore = false
         view?.showAlert(title: title, message: message)
+    }
+    
+    func didLikeTimeline(id: Int) {
+        if let timeline = timelines.filter({$0.timeline_id == id}).first {
+            if let index = timelines.firstIndex(of: timeline) {
+                let indexPath = IndexPath(row: index, section: 0)
+                view?.updateLikeCell(indexPath: indexPath)
+            }
+        }
+    }
+    
+    func didUnlikeTimeline(id: Int) {
+        if let timeline = timelines.filter({$0.timeline_id == id}).first {
+            if let index = timelines.firstIndex(of: timeline) {
+                let indexPath = IndexPath(row: index, section: 0)
+                view?.updateLikeCell(indexPath: indexPath)
+            }
+        }
     }
 }
