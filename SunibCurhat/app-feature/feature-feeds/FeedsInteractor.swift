@@ -58,4 +58,15 @@ class FeedsInteractor: FeedsPresenterToInteractor {
             }
         }
     }
+    
+    func deleteTimelime(timelineID: Int) {
+        TimelineService.shared.deleteTimeline(timeline_id: timelineID) { (result) in
+            switch result {
+            case .failure(let err):
+                print(err.localizedDescription)
+            case .success(let res):
+                print(res)
+            }
+        }
+    }
 }

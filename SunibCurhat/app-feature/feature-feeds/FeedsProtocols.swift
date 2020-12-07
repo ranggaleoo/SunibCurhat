@@ -19,6 +19,7 @@ protocol FeedsPresenterToView: class {
     func finishRefershControl()
     func updateLikeCell(indexPath: IndexPath)
     func showShareController(items: [Any], completion: @escaping (() -> Void))
+    func removeCell(index: [IndexPath])
 }
 
 // MARK: Interactor -
@@ -29,6 +30,7 @@ protocol FeedsPresenterToInteractor: class {
     func likeTimeline(timelineID: Int)
     func unlikeTimeline(timelineID: Int)
     func shareTimeline(timelineID: Int)
+    func deleteTimelime(timelineID: Int)
 }
 
 
@@ -36,6 +38,7 @@ protocol FeedsPresenterToInteractor: class {
 protocol FeedsPresenterToRouter: class {
     static func createFeedsModule() -> UIViewController
     func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?)
+    func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?)
 }
 
 // MARK: Presenter -
@@ -50,6 +53,9 @@ protocol FeedsViewToPresenter: class {
     func cellForRowAt(indexPath: IndexPath) -> TimelineItems
     func didSelectRowAt(indexPath: IndexPath)
     func scrollViewDidScroll()
+    func getTimelineItem(indexPath: IndexPath) -> TimelineItems
+    func requestDeleteTimeline(indexPath: IndexPath)
+    func requestReport(indexPath: IndexPath)
     func requestComment(indexPath: IndexPath)
     func requestLike(indexPath: IndexPath, isLiked: Bool)
     func requestShare(indexPath: IndexPath)

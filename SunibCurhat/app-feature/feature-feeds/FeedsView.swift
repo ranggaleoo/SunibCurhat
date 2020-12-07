@@ -34,7 +34,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     }
     
     func setupViews() {
-        SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary, .contacts], on: self, delegate: self, dataSource: self)
+        SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary], on: self, delegate: self, dataSource: self)
         storeKit.delegate = self
         
         tableView.delegate = self
@@ -94,6 +94,10 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             }
         }
         self.present(vc, animated: true)
+    }
+    
+    func removeCell(index: [IndexPath]) {
+        tableView.deleteRows(at: index, with: .left)
     }
     
     func moveFromAddThread() {
@@ -238,11 +242,50 @@ extension FeedsView: FeedDefaultCellDelegate {
     }
     
     func didTapShare(cell: FeedDefaultCell) {
-        
+        if let index = tableView.indexPath(for: cell) {
+            presenter?.requestShare(indexPath: index)
+        }
     }
     
     func didTapMore(cell: FeedDefaultCell) {
-        
+        if let index = tableView.indexPath(for: cell) {
+            if let timelineItem = presenter?.getTimelineItem(indexPath: index) {
+                
+                let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+                if timelineItem.device_id == RepoMemory.device_id {
+                    alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (act) in
+                        self.presenter?.requestDeleteTimeline(indexPath: index)
+                    }))
+                
+                } else if timelineItem.device_id != RepoMemory.device_id {
+                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
+                        if let vc = self.tabBarController?.viewControllers {
+                            guard let navigationController = vc[1] as? UINavigationController else { return }
+                            if let c = navigationController.topViewController as? ChatsViewController {
+                                let myDeviceId          = RepoMemory.device_id
+                                let strangerDeviceId    = timelineItem.device_id
+                                
+                                self.tabBarController?.selectedIndex = 1
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                    let chat_id = myDeviceId + "+" + strangerDeviceId
+                                    let name = timelineItem.name
+                                    let users = [myDeviceId, strangerDeviceId]
+                                    c.createChatRoom(chat_id: chat_id, name: name, users: users)
+                                })
+                            }
+                        }
+                    }))
+                }
+                
+                alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
+                    self.presenter?.requestReport(indexPath: index)
+                }))
+                
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 }
 
@@ -346,7 +389,7 @@ extension FeedsView: SPPermissionDialogDataSource {
         switch permission {
         case .camera            : return UIApplication.shared.infoPlist(key: .NSCameraUsageDescription)
         case .photoLibrary      : return UIApplication.shared.infoPlist(key: .NSPhotoLibraryUsageDescription)
-        case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
+//        case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
         default: return "Need Allow for use this Application"
         }
     }

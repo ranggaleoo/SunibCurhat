@@ -61,6 +61,22 @@ class FeedsPresenter: FeedsViewToPresenter {
         }
     }
     
+    func getTimelineItem(indexPath: IndexPath) -> TimelineItems {
+        return timelines[indexPath.row]
+    }
+    
+    func requestDeleteTimeline(indexPath: IndexPath) {
+        let timelineId = timelines[indexPath.row].timeline_id
+        timelines.remove(at: indexPath.row)
+        view?.removeCell(index: [indexPath])
+        interactor?.deleteTimelime(timelineID: timelineId)
+    }
+    
+    func requestReport(indexPath: IndexPath) {
+        let timeline = timelines[indexPath.row]
+        router?.navigateToReport(timeline: timeline, view: view)
+    }
+
     func requestComment(indexPath: IndexPath) {
         let timeline = timelines[indexPath.row]
         router?.navigateToComment(timeline: timeline, view: view)

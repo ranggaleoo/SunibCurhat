@@ -54,7 +54,10 @@ class CommentCurhatViewController: UIViewController {
     }
     
     private func configAdUI() {
-        bannerView.isHidden = true
+        if UDHelpers.shared.getBool(key: .isFreeAds) {
+            bannerView.isHidden = true
+        }
+//        bannerView.isHidden = true
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
@@ -333,7 +336,7 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
 
 extension CommentCurhatViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        bannerView.isHidden = false
+//        bannerView.isHidden = false
         print_r(title: "ADMOB RECEIVE", message: nil)
     }
     

@@ -33,6 +33,15 @@ class FeedsRouter: FeedsPresenterToRouter {
                 controller.navigationController?.pushViewController(vc, animated: true)
             }
         }
-        
+    }
+    
+    func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?) {
+        if let controller = view as? UIViewController {
+            let storyboad = UIStoryboard(name: "Report", bundle: nil)
+            if let vc = storyboad.instantiateViewController(withIdentifier: "view_report") as? ReportViewController {
+                vc.timeline = timeline
+                controller.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }
