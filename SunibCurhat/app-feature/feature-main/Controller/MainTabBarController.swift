@@ -14,7 +14,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private lazy var timeline: UIViewController = {
         let storyboad = UIStoryboard(name: "ListCurhat", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "nav_timeline")
+//        let vc = storyboad.instantiateViewController(withIdentifier: "nav_timeline")
+        let vc = UINavigationController(rootViewController: FeedsRouter.createFeedsModule())
         var image: UIImage?
         if #available(iOS 13.0, *) {
             image = UIImage(symbol: .text_bubble_fill, configuration: nil)
@@ -82,7 +83,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor.custom.blue_absolute
         self.tabBar.barTintColor = UIColor.white
         self.tabBar.unselectedItemTintColor = UIColor.custom.gray_absolute
-        self.viewControllers = [timeline, corona, chats]
+        self.viewControllers = [timeline, chats]
         
         self.selectedIndex = 0
         self.addObservers()

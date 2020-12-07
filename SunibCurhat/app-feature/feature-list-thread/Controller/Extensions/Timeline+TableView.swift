@@ -85,7 +85,7 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
             
             alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
                 if let vc = self.tabBarController?.viewControllers {
-                    guard let navigationController = vc[2] as? UINavigationController else { return }
+                    guard let navigationController = vc[1] as? UINavigationController else { return }
                     if let c = navigationController.topViewController as? ChatsViewController {
                         let myDeviceId          = RepoMemory.device_id
                         let strangerDeviceId    = self.timeline[indexPath.row].device_id
@@ -95,7 +95,7 @@ extension ListCurhatViewController: UITableViewDelegate, UITableViewDataSource {
                             return
                         }
                         
-                        self.tabBarController?.selectedIndex = 2
+                        self.tabBarController?.selectedIndex = 1
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                             let chat_id = myDeviceId + "+" + strangerDeviceId
                             let name = self.timeline[indexPath.row].name

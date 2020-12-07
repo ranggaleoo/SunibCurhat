@@ -49,7 +49,7 @@ class ListCurhatViewController: UIViewController {
     }
     
     private func setupViews() {
-        SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .contacts, .photoLibrary, .locationWhenInUse], on: self, delegate: self, dataSource: self)
+        SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary, .contacts], on: self, delegate: self, dataSource: self)
         self.navigationDefault()
         self.title = "Timeline"
         self.setupMenuBarButtonItem()

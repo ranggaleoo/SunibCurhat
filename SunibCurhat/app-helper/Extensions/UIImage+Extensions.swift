@@ -2,6 +2,10 @@ import UIKit
 
 extension UIImage {
     
+    convenience init?(identifierName: Identifier.imageName) {
+        self.init(named: identifierName.rawValue)
+    }
+    
     @available(iOS 13.0, *)
     convenience init?(symbol: Identifier.imageSymbolName, configuration: UIImage.SymbolConfiguration? = nil) {
         self.init(systemName: symbol.rawValue, withConfiguration: configuration)

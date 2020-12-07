@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ID3-iV-Kj1">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ID3-iV-Kj1">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,20 +11,20 @@
         <!--Comment Curhat View Controller-->
         <scene sceneID="SiY-eR-Pym">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="ID3-iV-Kj1" customClass="CommentCurhatViewController" customModule="SunibCurhat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comment" hidesBottomBarWhenPushed="YES" id="ID3-iV-Kj1" customClass="CommentCurhatViewController" customModule="SunibCurhat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z16-pO-Nag">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRU-Af-mZm" userLabel="black safearea">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeP-N9-TbE">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pq7-I7-md7">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMh-By-Bnn">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -82,21 +80,21 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FB0-uA-P8b">
-                                                <rect key="frame" x="0.0" y="140" width="375" height="507"/>
+                                                <rect key="frame" x="0.0" y="140" width="375" height="527"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IBh-WD-jNG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="507"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentTableViewCell" rowHeight="64" id="N8w-RL-ERz" customClass="CommentTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentTableViewCell" id="N8w-RL-ERz" customClass="CommentTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="28" width="375" height="97"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N8w-RL-ERz" id="ALp-50-wbk">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9iG-jS-VZB">
-                                                                            <rect key="frame" x="16" y="8" width="343" height="47.5"/>
+                                                                            <rect key="frame" x="16" y="8" width="343" height="81"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZp-jG-aW5">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="15"/>
@@ -120,10 +118,10 @@
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-Pa-0DI">
-                                                                                    <rect key="frame" x="0.0" y="17" width="343" height="16.5"/>
+                                                                                    <rect key="frame" x="0.0" y="17" width="343" height="50"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hai kamu apa kabar?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycR-Mx-86G">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="16.5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
@@ -138,7 +136,7 @@
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-RW-Mcg">
-                                                                                    <rect key="frame" x="0.0" y="35.5" width="343" height="12"/>
+                                                                                    <rect key="frame" x="0.0" y="69" width="343" height="12"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One hour ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnS-ko-qdd">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="12"/>
@@ -175,7 +173,7 @@
                                                                 </connections>
                                                             </tableViewCell>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingTableViewCell" rowHeight="64" id="MbZ-Ao-r79" customClass="LoadingTableViewCell" customModule="SunibCurhat" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="92" width="375" height="64"/>
+                                                                <rect key="frame" x="0.0" y="125" width="375" height="64"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MbZ-Ao-r79" id="gOs-1A-zMC">
                                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -209,7 +207,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-r4-wQS">
-                                        <rect key="frame" x="0.0" y="591" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="611" width="375" height="56"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter a comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zIF-4l-R1d">
                                                 <rect key="frame" x="16" y="0.0" width="287" height="56"/>
@@ -221,7 +219,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ2-yd-fiI">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ2-yd-fiI">
                                                 <rect key="frame" x="319" y="0.0" width="40" height="56"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="ztB-mh-GO8"/>
@@ -259,6 +257,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="pZJ-XU-s54"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DRU-Af-mZm" secondAttribute="bottom" id="CbP-Fp-KWl"/>
@@ -271,13 +270,12 @@
                             <constraint firstItem="yeP-N9-TbE" firstAttribute="centerX" secondItem="pZJ-XU-s54" secondAttribute="centerX" id="gDj-Pn-53g"/>
                             <constraint firstItem="yeP-N9-TbE" firstAttribute="leading" secondItem="pZJ-XU-s54" secondAttribute="leading" id="y1I-E0-qSy"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="pZJ-XU-s54"/>
                     </view>
                     <navigationItem key="navigationItem" id="xHN-aO-9nL"/>
                     <connections>
                         <outlet property="bannerView" destination="ehi-9l-meS" id="L8h-Vq-wt9"/>
                         <outlet property="lbl_name" destination="sgd-Vr-xYK" id="Z1u-3P-WW5"/>
-                        <outlet property="lbl_text_content" destination="gxo-QV-JEk" id="Iuf-ah-WVc"/>
+                        <outlet property="lbl_text_content" destination="gxo-QV-JEk" id="7MH-QT-Rbl"/>
                         <outlet property="lbl_time" destination="2ok-oj-QTr" id="Xdl-rp-8h7"/>
                         <outlet property="scrollViewComment" destination="yeP-N9-TbE" id="0nc-hR-NpS"/>
                         <outlet property="tableViewComment" destination="IBh-WD-jNG" id="qtp-N9-6ok"/>

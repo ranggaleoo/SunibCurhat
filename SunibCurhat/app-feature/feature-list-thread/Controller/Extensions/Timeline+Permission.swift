@@ -17,7 +17,6 @@ extension ListCurhatViewController: SPPermissionDialogDataSource {
         case .camera            : return UIApplication.shared.infoPlist(key: .NSCameraUsageDescription)
         case .photoLibrary      : return UIApplication.shared.infoPlist(key: .NSPhotoLibraryUsageDescription)
         case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
-        case .locationWhenInUse : return UIApplication.shared.infoPlist(key: .NSLocationWhenInUseUsageDescription)
         default: return "Need Allow for use this Application"
         }
     }

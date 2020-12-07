@@ -30,17 +30,6 @@ class UINCButtonPrimaryRounded: UIButton {
         }
     }
     
-    override var isHighlighted: Bool {
-        didSet {
-            if isHighlighted {
-                self.backgroundColor = UIColor.custom.blue
-                
-            } else {
-                self.backgroundColor = UIColor.custom.blue
-            }
-        }
-    }
-    
     private func setupViews() {
         self.setTitleColor(.white, for: .normal)
         let size_font: CGFloat      = self.titleLabel?.font.pointSize ?? 20.0

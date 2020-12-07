@@ -26,10 +26,8 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     private func updateUI() {
-        DispatchQueue.main.async {
-            self.lbl_name.text = self.comment?.name
-            self.lbl_comment.text = self.comment?.text_content
-            self.lbl_time.text = self.comment?.timed.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
-        }
+        self.lbl_name.text = self.comment?.name
+        self.lbl_comment.text = self.comment?.text_content
+        self.lbl_time.text = self.comment?.timed.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
     }
 }

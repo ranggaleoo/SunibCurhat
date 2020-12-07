@@ -1,0 +1,34 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "CC52BFA5",
+      "localizations" : [
+        {
+          "description" : "Remove all ads forever, go away ADS!",
+          "displayName" : "Remove Ads",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Hapus semua iklan! SELAMANYA!",
+          "displayName" : "Hapus Iklan",
+          "locale" : "id"
+        }
+      ],
+      "productID" : "com.ranggaleoo.sunibcurhat.removeads",
+      "referenceName" : "Remove Ads",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

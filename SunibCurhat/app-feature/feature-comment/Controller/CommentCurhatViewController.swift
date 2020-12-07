@@ -54,7 +54,10 @@ class CommentCurhatViewController: UIViewController {
     }
     
     private func configAdUI() {
-        bannerView.isHidden = true
+        if UDHelpers.shared.getBool(key: .isFreeAds) {
+            bannerView.isHidden = true
+        }
+//        bannerView.isHidden = true
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
@@ -152,6 +155,27 @@ class CommentCurhatViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func deleteComment(comment_id: String, indexPath: IndexPath) {
+        print("----- delete", comment_id)
+        self.comments.remove(at: indexPath.row)
+        self.tableViewComment.deleteRows(at: [indexPath], with: .left)
+        CommentService.shared.deleteComment(comment_id: comment_id, completion: { (result) in
+            switch result {
+            case .failure(let e):
+                self.showAlert(title: "Error", message: e.localizedDescription, OKcompletion: { (act) in
+                    RepoMemory.token = nil
+                }, CancelCompletion: nil)
+                
+            case .success(let s):
+                if s.success {
+                    //do nothing
+                } else {
+                    print(s.message);
+                }
+            }
+        })
     }
     
     @objc func getComments() {
@@ -257,6 +281,46 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
         return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var buttons: [UITableViewRowAction] = []
+        let sendChatButton = UITableViewRowAction(style: .normal, title: "Chat") { (action, index) in
+            if let vc = self.tabBarController?.viewControllers {
+                guard let navigationController = vc[1] as? UINavigationController else { return }
+                if let c = navigationController.topViewController as? ChatsViewController {
+                    let myDeviceId          = RepoMemory.device_id
+                    let strangerDeviceId    = self.comments[index.row].device_id
+                    
+                    guard myDeviceId != strangerDeviceId else {
+                        self.showAlert(title: "Error", message: "You cannot chat yourself", OKcompletion: nil, CancelCompletion: nil)
+                        return
+                    }
+                    
+                    self.tabBarController?.selectedIndex = 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        let chat_id = myDeviceId + "+" + strangerDeviceId
+                        let name = self.comments[index.row].name
+                        let users = [myDeviceId, strangerDeviceId]
+                        c.createChatRoom(chat_id: chat_id, name: name, users: users)
+                    })
+                }
+            }
+        }
+        
+        let deleteButton = UITableViewRowAction(style: .normal, title: "Delete") { (action, indexPath) in
+            self.deleteComment(comment_id: self.comments[indexPath.row].comment_id, indexPath: indexPath)
+        }
+        if comments[indexPath.row].device_id != RepoMemory.device_id {
+            sendChatButton.backgroundColor = UIColor.custom.blue
+            buttons.append(sendChatButton)
+        
+        } else {
+            deleteButton.backgroundColor = UIColor.custom.red_absolute
+            buttons.append(deleteButton)
+        }
+        
+        return buttons
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -272,7 +336,7 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
 
 extension CommentCurhatViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        bannerView.isHidden = false
+//        bannerView.isHidden = false
         print_r(title: "ADMOB RECEIVE", message: nil)
     }
     

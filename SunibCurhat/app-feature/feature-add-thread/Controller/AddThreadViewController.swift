@@ -73,7 +73,10 @@ class AddThreadViewController: UIViewController {
     }
     
     private func configAdUI() {
-        bannerView.isHidden = true
+        if UDHelpers.shared.getBool(key: .isFreeAds) {
+            bannerView.isHidden = true
+        }
+//        bannerView.isHidden = true
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
@@ -150,7 +153,7 @@ class AddThreadViewController: UIViewController {
                 self.dismissLoaderIndicator()
                 if s.success {
                     print(s.message)
-                    if let vc = self.navigationController?.viewControllers[0] as? ListCurhatViewController {
+                    if let vc = self.navigationController?.viewControllers[0] as? FeedsView {
                         self.txt_post.text = nil
                         self.navigationController?.popToViewController(vc, animated: true)
                         vc.moveFromAddThread()
@@ -201,7 +204,7 @@ extension AddThreadViewController: UITextViewDelegate {
 
 extension AddThreadViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        bannerView.isHidden = false
+//        bannerView.isHidden = false
         print_r(title: "ADMOB RECEIVE", message: nil)
     }
     

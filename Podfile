@@ -19,10 +19,12 @@ target 'SunibCurhat' do
   pod 'Siren'
   pod 'IQKeyboardManagerSwift'
   pod 'SPPermissions'
-  pod 'SPPermissions/Location'
   pod 'SPPermissions/Notification'
   pod 'SPPermissions/Camera'
   pod 'SPPermissions/PhotoLibrary'
   pod 'SPPermissions/Contacts'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'LeoPopScreen', '~> 1.0.1'
 
 end

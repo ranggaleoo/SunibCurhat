@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Fabric.sharedSDK().debug = true
         IQKeyboardManager.shared.enable = true
-        checkVersion()
+        checkVersionSiren()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         if #available(iOS 10.0, *) {
@@ -196,19 +196,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 }
 
 extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         RepoMemory.token_notif = fcmToken
         
-        print("Firebase registration token: \(fcmToken)")
+        print("Firebase registration token: \(fcmToken ?? "")")
         
-        let dataDict:[String: String] = ["token": fcmToken]
+        let dataDict:[String: String] = ["token": fcmToken ?? ""]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
-    }
-    
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("Message data", remoteMessage.appData)
     }
 }
 
@@ -228,5 +224,12 @@ extension AppDelegate {
                 UIApplication.shared.replaceRootViewController(controller: update_app)
             }
         }
+    }
+    
+    func checkVersionSiren() {
+        let siren = Siren.shared
+        let rules = RulesManager(majorUpdateRules: .critical, minorUpdateRules: .annoying, patchUpdateRules: .default, revisionUpdateRules: .relaxed, showAlertAfterCurrentVersionHasBeenReleasedForDays: 0)
+        siren.rulesManager = rules
+        siren.wail()
     }
 }
