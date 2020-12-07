@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 // MARK: View -
 protocol FeedsPresenterToView: class {
     var presenter: FeedsViewToPresenter? { get set }
