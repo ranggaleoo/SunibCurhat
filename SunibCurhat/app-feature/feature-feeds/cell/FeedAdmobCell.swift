@@ -43,6 +43,7 @@ class FeedAdmobCell: UITableViewCell {
         ads_view.delegate = self
         btn_remove.setTitle("Remove Ads FOREVER!", for: .normal)
         btn_remove.addTarget(self, action: #selector(actionRemoveAds(_:)), for: .touchUpInside)
+        btn_remove.isHidden = true // delete in-app purchase
     }
     
     private func updateUI() {
