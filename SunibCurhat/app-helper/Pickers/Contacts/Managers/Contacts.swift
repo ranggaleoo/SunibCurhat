@@ -252,7 +252,7 @@ public struct Telephone {
     public static func makeCall(CNPhoneNumber: CNPhoneNumber) {
         if let phoneNumber: String = CNPhoneNumber.value(forKey: "digits") as? String {
             guard let url: URL = URL(string: "tel://" + "\(phoneNumber)") else {
-                print("Error in Making Call")
+                debugLog("Error in Making Call")
                 return
             }
             if #available(iOS 10.0, *) {

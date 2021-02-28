@@ -26,3 +26,7 @@ struct MainResponse<T: Decodable>: Decodable {
         self.message  = try container.decodeIfPresent(String.self, forKey: .message) ?? "message unknown"
     }
 }
+
+struct EndpointResponse: Codable {
+    let endpoint: String
+}

@@ -43,6 +43,13 @@
 		AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */; };
 		AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA3AB36522F7213D0016ADFF /* Main.storyboard */; };
 		AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AB36822F721A30016ADFF /* MainTabBarController.swift */; };
+		AA43D96025EAC151008B2364 /* HTTPRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D95F25EAC151008B2364 /* HTTPRequestMethod.swift */; };
+		AA43D96725EAF900008B2364 /* CompositeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D96625EAF900008B2364 /* CompositeAppDelegate.swift */; };
+		AA43D96A25EAF928008B2364 /* AppDelegateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D96925EAF928008B2364 /* AppDelegateFactory.swift */; };
+		AA43D96E25EAF9BB008B2364 /* AppLifecycleMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D96D25EAF9BB008B2364 /* AppLifecycleMediator.swift */; };
+		AA43D97425EAFAA2008B2364 /* StartupAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D97325EAFAA2008B2364 /* StartupAppDelegate.swift */; };
+		AA43D97825EAFAE5008B2364 /* ThirdPartyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D97725EAFAE5008B2364 /* ThirdPartyAppDelegate.swift */; };
+		AA43D97B25EAFB32008B2364 /* NotificationAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D97A25EAFB32008B2364 /* NotificationAppDelegate.swift */; };
 		AA46E2DC245BD56A00735490 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46E2DB245BD56A00735490 /* Identifier.swift */; };
 		AA46E2E1245C52A800735490 /* UpdateAppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46E2E0245C52A800735490 /* UpdateAppController.swift */; };
 		AA46E2E3245C52C000735490 /* UpdateApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA46E2E2245C52C000735490 /* UpdateApp.storyboard */; };
@@ -133,6 +140,7 @@
 		AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3C622F711CD005CC55A /* DatePickerViewController.swift */; };
 		AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3C822F711D7005CC55A /* ImagePickerViewController.swift */; };
 		AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3CB22F711EA005CC55A /* ItemWithImage.swift */; };
+		AAE1029425EB5B230001F026 /* CoreDataAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029325EB5B230001F026 /* CoreDataAppDelegate.swift */; };
 		AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAF1182722F6BBF100FDA099 /* CommentCurhat.storyboard */; };
 		AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1182922F6BC3800FDA099 /* CommentCurhatViewController.swift */; };
 		AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */; };
@@ -181,6 +189,13 @@
 		AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		AA3AB36522F7213D0016ADFF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA3AB36822F721A30016ADFF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		AA43D95F25EAC151008B2364 /* HTTPRequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestMethod.swift; sourceTree = "<group>"; };
+		AA43D96625EAF900008B2364 /* CompositeAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeAppDelegate.swift; sourceTree = "<group>"; };
+		AA43D96925EAF928008B2364 /* AppDelegateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateFactory.swift; sourceTree = "<group>"; };
+		AA43D96D25EAF9BB008B2364 /* AppLifecycleMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleMediator.swift; sourceTree = "<group>"; };
+		AA43D97325EAFAA2008B2364 /* StartupAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupAppDelegate.swift; sourceTree = "<group>"; };
+		AA43D97725EAFAE5008B2364 /* ThirdPartyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyAppDelegate.swift; sourceTree = "<group>"; };
+		AA43D97A25EAFB32008B2364 /* NotificationAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAppDelegate.swift; sourceTree = "<group>"; };
 		AA46E2DB245BD56A00735490 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		AA46E2E0245C52A800735490 /* UpdateAppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppController.swift; sourceTree = "<group>"; };
 		AA46E2E2245C52C000735490 /* UpdateApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UpdateApp.storyboard; sourceTree = "<group>"; };
@@ -275,6 +290,7 @@
 		AAD0E3C622F711CD005CC55A /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		AAD0E3C822F711D7005CC55A /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		AAD0E3CB22F711EA005CC55A /* ItemWithImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWithImage.swift; sourceTree = "<group>"; };
+		AAE1029325EB5B230001F026 /* CoreDataAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAppDelegate.swift; sourceTree = "<group>"; };
 		AAF1182722F6BBF100FDA099 /* CommentCurhat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentCurhat.storyboard; sourceTree = "<group>"; };
 		AAF1182922F6BC3800FDA099 /* CommentCurhatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCurhatViewController.swift; sourceTree = "<group>"; };
 		AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurhatTableViewCell.swift; sourceTree = "<group>"; };
@@ -571,6 +587,52 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		AA43D96325EAF8A8008B2364 /* app-common */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D96425EAF8B4008B2364 /* MachineCycle */,
+			);
+			path = "app-common";
+			sourceTree = "<group>";
+		};
+		AA43D96425EAF8B4008B2364 /* MachineCycle */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D96C25EAF9A0008B2364 /* Mediator */,
+				AA43D96525EAF8DD008B2364 /* Composite */,
+			);
+			path = MachineCycle;
+			sourceTree = "<group>";
+		};
+		AA43D96525EAF8DD008B2364 /* Composite */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D97225EAFA8A008B2364 /* AppDelegates */,
+				AA43D96625EAF900008B2364 /* CompositeAppDelegate.swift */,
+				AA43D96925EAF928008B2364 /* AppDelegateFactory.swift */,
+			);
+			path = Composite;
+			sourceTree = "<group>";
+		};
+		AA43D96C25EAF9A0008B2364 /* Mediator */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D96D25EAF9BB008B2364 /* AppLifecycleMediator.swift */,
+			);
+			path = Mediator;
+			sourceTree = "<group>";
+		};
+		AA43D97225EAFA8A008B2364 /* AppDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D97325EAFAA2008B2364 /* StartupAppDelegate.swift */,
+				AA43D97725EAFAE5008B2364 /* ThirdPartyAppDelegate.swift */,
+				AA43D97A25EAFB32008B2364 /* NotificationAppDelegate.swift */,
+				AAE1029325EB5B230001F026 /* CoreDataAppDelegate.swift */,
+			);
+			path = AppDelegates;
+			sourceTree = "<group>";
+		};
 		AA46E2DD245C526D00735490 /* feature-update-app */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +772,7 @@
 		AA478D7822F649A300BC23A7 /* SunibCurhat */ = {
 			isa = PBXGroup;
 			children = (
+				AA43D96325EAF8A8008B2364 /* app-common */,
 				AA46E2E4245C54D600735490 /* app-template */,
 				AA66A2FB231D5F0700B90B01 /* SunibCurhat.entitlements */,
 				AA5BABE922F6584F004253AF /* app-helper */,
@@ -871,6 +934,7 @@
 				AABF394923077BF800DEAA63 /* HTTPRequest.swift */,
 				AABF39522307B57200DEAA63 /* HTTPRequestHeader.swift */,
 				1621AD2E2344947B008F15D8 /* WKWebViewController.swift */,
+				AA43D95F25EAC151008B2364 /* HTTPRequestMethod.swift */,
 			);
 			path = HTTPRequest;
 			sourceTree = "<group>";
@@ -1319,6 +1383,7 @@
 				AAD0E3BB22F7111A005CC55A /* ContactCell.swift in Sources */,
 				AAD0E39322F70FE6005CC55A /* CurrencyCell.swift in Sources */,
 				AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */,
+				AA43D96A25EAF928008B2364 /* AppDelegateFactory.swift in Sources */,
 				AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */,
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
 				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
@@ -1344,6 +1409,7 @@
 				AAD0E39622F70FF9005CC55A /* LocaleInfo.swift in Sources */,
 				AAD0E38522F70F5D005CC55A /* TextViewController.swift in Sources */,
 				166F1AD2231786B500BB1151 /* Chats+TableView.swift in Sources */,
+				AA43D96025EAC151008B2364 /* HTTPRequestMethod.swift in Sources */,
 				AA46E2FC245D6C0900735490 /* UINCCardCorona.swift in Sources */,
 				AAD0E37B22F70F02005CC55A /* UIColor+Extensions.swift in Sources */,
 				AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */,
@@ -1363,6 +1429,7 @@
 				AA46E307245E704800735490 /* Corona+Ads.swift in Sources */,
 				AAD0E37F22F70F02005CC55A /* UITextView+Extensions.swift in Sources */,
 				AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */,
+				AA43D97425EAFAA2008B2364 /* StartupAppDelegate.swift in Sources */,
 				16456DC62350BA420058474C /* PremiumModel.swift in Sources */,
 				AA75AD4C2347CA7700C8F739 /* PremiumViewController.swift in Sources */,
 				AAF5487725760D0500176378 /* FeedAdmobCell.swift in Sources */,
@@ -1381,6 +1448,7 @@
 				AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
 				AACDFE802570E52C00485828 /* FeedDefaultCell.swift in Sources */,
+				AAE1029425EB5B230001F026 /* CoreDataAppDelegate.swift in Sources */,
 				AACDFE782570E42200485828 /* FeedsView.swift in Sources */,
 				AAD0E37722F70F02005CC55A /* Locale+Extensions.swift in Sources */,
 				AAD0E37422F70F02005CC55A /* UITextField+Extensions.swift in Sources */,
@@ -1395,6 +1463,7 @@
 				16456DBD2350B8270058474C /* Premium+TableView.swift in Sources */,
 				AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
+				AA43D97825EAFAE5008B2364 /* ThirdPartyAppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
 				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
 				AA886884233661BD0086F538 /* Timeline+Email.swift in Sources */,
@@ -1419,6 +1488,7 @@
 				AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */,
 				AAD0E37D22F70F02005CC55A /* Optional+Extensions.swift in Sources */,
 				AAD0E37122F70F02005CC55A /* Common+Extensions.swift in Sources */,
+				AA43D97B25EAFB32008B2364 /* NotificationAppDelegate.swift in Sources */,
 				AAF5484B257606C300176378 /* UINCRefreshControl.swift in Sources */,
 				AA7A0B55231CE95E00B8233E /* Chat+MessagesDataSource.swift in Sources */,
 				AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */,
@@ -1426,8 +1496,10 @@
 				AA46E2F3245D2EEA00735490 /* Timeline+Permission.swift in Sources */,
 				AACDFE752570E42200485828 /* FeedsRouter.swift in Sources */,
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
+				AA43D96E25EAF9BB008B2364 /* AppLifecycleMediator.swift in Sources */,
 				AA478D8222F649A300BC23A7 /* SunibCurhat.xcdatamodeld in Sources */,
 				AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */,
+				AA43D96725EAF900008B2364 /* CompositeAppDelegate.swift in Sources */,
 				16E670512357098B008B3108 /* UICollectionView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1569,7 +1641,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
@@ -1578,7 +1650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranggaleoo.sunibcurhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1593,7 +1665,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1601,7 +1673,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranggaleoo.sunibcurhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

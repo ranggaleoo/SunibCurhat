@@ -93,7 +93,7 @@ class WKWebViewController: UIViewController, WKNavigationDelegate {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: param, options:[])
             } catch let e {
-                print(e.localizedDescription)
+                debugLog(e.localizedDescription)
             }
         }
         self.webview.load(request)

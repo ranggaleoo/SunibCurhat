@@ -47,15 +47,15 @@ class AdsTableViewCell: UITableViewCell {
                             case .failure(let e):
                                 RepoMemory.token = nil
                                 RepoMemory.pendingFunction = self.actionOpenAds.self
-                                print(e.localizedDescription)
+                                debugLog(e.localizedDescription)
                             case .success(let s):
-                                print(s)
+                                debugLog(s)
                             }
                         })
                     }
                 }
             } else {
-                print("---- cannot open link")
+                debugLog("---- cannot open link")
             }
         }
     }

@@ -50,7 +50,7 @@ class PremiumViewController: UIViewController {
         switch segue.identifier {
         case "toPayment":
             if let dest = segue.destination as? PaymentWebViewController {
-                print(dest)
+                debugLog(dest)
             }
         default: return
         }

@@ -27,7 +27,7 @@ class TimelineService {
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
         HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<TimelineResponse>.self) { (result) in
-            print(result)
+            debugLog(result)
             completion(result)
         }
     }

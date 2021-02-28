@@ -12,7 +12,7 @@ import MessageUI
 extension ListCurhatViewController: MFMailComposeViewControllerDelegate {
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let e = error {
-            print(e.localizedDescription)
+            debugLog(e.localizedDescription)
         }
         controller.dismiss(animated: true, completion: nil)
     }

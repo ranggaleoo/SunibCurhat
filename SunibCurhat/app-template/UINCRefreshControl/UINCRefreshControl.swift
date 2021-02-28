@@ -87,7 +87,7 @@ class UINCRefreshControl: UIView {
     
     ///called when user refresh is triggered
     private var onRefreshing : () -> Void = {
-        debugPrint("refresh triggerd. Implement setOnRefreshing of RefreshControl to call your own function, and dont forget to call endRefreshing() at end of that task you perform inside that function")
+        debugLog("refresh triggerd. Implement setOnRefreshing of RefreshControl to call your own function, and dont forget to call endRefreshing() at end of that task you perform inside that function")
     }
     
     ///fill color of refresh control

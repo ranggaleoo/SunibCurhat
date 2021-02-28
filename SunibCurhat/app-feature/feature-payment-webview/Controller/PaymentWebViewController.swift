@@ -29,15 +29,15 @@ class PaymentWebViewController: WKWebViewController {
         loadWebViewWithJson(url: URLConst.api_url_sb + "/paymentWebView", params: param, model: MainResponse<PaymentResponse>.self) { (result) in
             switch result {
             case .failure(let e):
-                print(self.url ?? "nothing")
-                print(e.localizedDescription)
+                debugLog(self.url ?? "nothing")
+                debugLog(e.localizedDescription)
             case .success(let s):
-                print(self.url ?? "nothing")
-                print(s)
+                debugLog(self.url ?? "nothing")
+                debugLog(s)
             }
         }
         
-        print(url ?? "nothing")
+        debugLog(url ?? "nothing")
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {

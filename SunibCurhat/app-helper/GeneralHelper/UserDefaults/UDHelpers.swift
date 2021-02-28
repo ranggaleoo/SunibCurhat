@@ -13,7 +13,7 @@ class UDHelpers {
     private var defaults = UserDefaults.standard
     
     init() {
-        print("initialize user default")
+        debugLog("initialize user default")
     }
     
     public func set(value defaultValue: Any, key defaultKey: UDHelpersKey) {

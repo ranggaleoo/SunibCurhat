@@ -15,22 +15,20 @@ func print_r(title: String, message: Any?) {
     print("=====[END OF \(title.uppercased())=====]")
 }
 
-func checkRange(_ range: NSRange, contain index: Int) -> Bool {
-    return index > range.location && index < range.location + range.length
+func debugLog(_ items: Any..., fileName: String = #file,
+                     functionName: String = #function,
+                     lineNumber: Int = #line,
+                     separator: String = "\n",
+                     terminator: String = "\n") {
+//    #if DEBUG
+    let file = fileName.components(separatedBy: "/").last ?? ""
+    let prefix = "❌ File: \(file), Function: \(functionName), Line: \(lineNumber), Message: "
+    let output = items.map { "\($0)" }.joined(separator: separator)
+    Swift.print(prefix + output, terminator: terminator)
+//    #else
+//    #endif
 }
 
-func requestReviewAppStore() {
-    let timesAccess = UDHelpers.shared.getInt(key: .counterUserAccessApp)
-    
-    if timesAccess == ConstGlobal.TIMES_REQUEST_REVIEW {
-        if #available(iOS 10.3, *) {
-            SKStoreReviewController.requestReview()
-        } else {
-            // Fallback on earlier versions
-        }
-        UDHelpers.shared.set(value: timesAccess + 1, key: .counterUserAccessApp)
-    
-    } else {
-        UDHelpers.shared.set(value: timesAccess + 1, key: .counterUserAccessApp)
-    }
+func checkRange(_ range: NSRange, contain index: Int) -> Bool {
+    return index > range.location && index < range.location + range.length
 }

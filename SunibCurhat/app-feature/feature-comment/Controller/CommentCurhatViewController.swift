@@ -61,7 +61,7 @@ class CommentCurhatViewController: UIViewController {
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
-                print(e.localizedDescription)
+                debugLog(e.localizedDescription)
             case .success(let s):
                 if s.success {
                     if let ad_unit_id = s.data {
@@ -158,7 +158,7 @@ class CommentCurhatViewController: UIViewController {
     }
     
     @objc func deleteComment(comment_id: String, indexPath: IndexPath) {
-        print("----- delete", comment_id)
+        debugLog("----- delete", comment_id)
         self.comments.remove(at: indexPath.row)
         self.tableViewComment.deleteRows(at: [indexPath], with: .left)
         CommentService.shared.deleteComment(comment_id: comment_id, completion: { (result) in
@@ -172,7 +172,7 @@ class CommentCurhatViewController: UIViewController {
                 if s.success {
                     //do nothing
                 } else {
-                    print(s.message);
+                    debugLog(s.message);
                 }
             }
         })
@@ -222,7 +222,7 @@ class CommentCurhatViewController: UIViewController {
                 
                 } else {
                     self.getMoreComment = false
-                    print(s.message)
+                    debugLog(s.message)
                 }
             }
         }

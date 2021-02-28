@@ -40,7 +40,7 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             guard let chat_id = chats[indexPath.row].id else {return}
             self.chatsReference.document(chat_id).delete { (e) in
-                print(e?.localizedDescription ?? "no error when delete chat")
+                debugLog(e?.localizedDescription ?? "no error when delete chat")
                 if e == nil {
                     self.chats.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .left)

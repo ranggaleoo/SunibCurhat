@@ -102,7 +102,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 MainService.shared.getToken(completion: { (result) in
                     switch result {
                     case .failure(let e):
-                        print(e.localizedDescription)
+                        debugLog(e.localizedDescription)
                         self.dismissLoaderIndicator()
                         self.addObservers()
                         
@@ -141,7 +141,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                                             if UIApplication.shared.canOpenURL(urlUpdate) {
                                                 UIApplication.shared.open(urlUpdate, options: [:], completionHandler: { (clicked) in
                                                     if clicked {
-                                                        print("-----user will update version")
+                                                        debugLog("-----user will update version")
                                                     }
                                                 })
                                             }
@@ -160,7 +160,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 })
                 
             } else {
-                print("Token available")
+                debugLog("Token available")
             }
         }))
     }

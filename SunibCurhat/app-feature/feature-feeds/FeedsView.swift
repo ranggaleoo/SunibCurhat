@@ -139,7 +139,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                         if success {
-                            print("----- open instagram")
+                            debugLog("----- open instagram")
                         }
                     })
                 }
@@ -150,7 +150,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                         if success {
-                            print("----- open whatsapp")
+                            debugLog("----- open whatsapp")
                         }
                     })
                 }
@@ -165,7 +165,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             if UIApplication.shared.canOpenURL(url_privacy) {
                 UIApplication.shared.open(url_privacy, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- open privacy policy")
+                        debugLog("----- open privacy policy")
                     }
                 })
             }
@@ -176,7 +176,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             if UIApplication.shared.canOpenURL(url_eula) {
                 UIApplication.shared.open(url_eula, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- user agreement")
+                        debugLog("----- user agreement")
                     }
                 })
             }
@@ -313,28 +313,28 @@ extension FeedsView: LeoStoreKitDelegate {
         DispatchQueue.main.async {
             self.dismissLoaderIndicator()
         }
-        debugPrint(product)
+        debugLog(product)
     }
     
     func failFetchProduct(store: LeoStoreKit) {
         DispatchQueue.main.async {
             self.dismissLoaderIndicator()
         }
-        debugPrint("FAILED")
+        debugLog("FAILED")
     }
     
     func didBuyProduct(store: LeoStoreKit) {
-        debugPrint(#function)
+        debugLog(#function)
         UDHelpers.shared.set(value: true, key: .isFreeAds)
         dismiss(animated: true, completion: nil)
     }
     
     func failBuyProduct(store: LeoStoreKit) {
-        debugPrint(#function)
+        debugLog(#function)
     }
     
     func onBuyProcessing(store: LeoStoreKit) {
-        debugPrint(#function)
+        debugLog(#function)
     }
 }
 
@@ -398,7 +398,7 @@ extension FeedsView: SPPermissionDialogDataSource {
 extension FeedsView: MFMailComposeViewControllerDelegate {
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let e = error {
-            print(e.localizedDescription)
+            debugLog(e.localizedDescription)
         }
         controller.dismiss(animated: true, completion: nil)
     }
