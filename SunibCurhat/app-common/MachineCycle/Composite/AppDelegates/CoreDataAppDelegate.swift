@@ -22,7 +22,7 @@ class CoreDataAppDelegate: AppDelegateType {
     }()
     
     func applicationWillTerminate(_ application: UIApplication) {
-        
+        saveContext()
     }
     
     // MARK: - Core Data Saving support

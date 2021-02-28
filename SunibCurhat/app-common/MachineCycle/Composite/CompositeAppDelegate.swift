@@ -21,4 +21,12 @@ class CompositeAppDelegate: AppDelegateType {
         appDelegates.forEach({ _ = $0.application?(application, didFinishLaunchingWithOptions: launchOptions) })
         return true
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        appDelegates.forEach({ $0.application?(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler) })
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        appDelegates.forEach({ $0.applicationWillTerminate?(application) })
+    }
 }
