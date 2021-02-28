@@ -30,8 +30,6 @@ class StartupAppDelegate: AppDelegateType {
 
 extension StartupAppDelegate {
     private func getInitial() -> UIViewController {
-        let view = UIViewController()
-        view.view.backgroundColor = .red
-        return FeedsRouter.createFeedsModule()
+        SplashRouter.createSplashModule()
     }
 }

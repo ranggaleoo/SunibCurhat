@@ -18,8 +18,12 @@ public enum Identifier {
     }
     
     public enum imageName: String {
+        // MARK: - ICON APP
+        case AppIcon
+        
         // MARK: - IMAGE ASSETS
         case image_super_thankyou
+        case image_logo
     }
     
     public enum imageSymbolName: String {

@@ -141,6 +141,13 @@
 		AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3C822F711D7005CC55A /* ImagePickerViewController.swift */; };
 		AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3CB22F711EA005CC55A /* ItemWithImage.swift */; };
 		AAE1029425EB5B230001F026 /* CoreDataAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029325EB5B230001F026 /* CoreDataAppDelegate.swift */; };
+		AAE1029D25EB6A4D0001F026 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029725EB6A4D0001F026 /* SplashPresenter.swift */; };
+		AAE1029E25EB6A4D0001F026 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029825EB6A4D0001F026 /* SplashRouter.swift */; };
+		AAE1029F25EB6A4D0001F026 /* SplashProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029925EB6A4D0001F026 /* SplashProtocols.swift */; };
+		AAE102A025EB6A4D0001F026 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029A25EB6A4D0001F026 /* SplashInteractor.swift */; };
+		AAE102A125EB6A4D0001F026 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029B25EB6A4D0001F026 /* SplashView.swift */; };
+		AAE102A225EB6A4D0001F026 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE1029C25EB6A4D0001F026 /* SplashView.xib */; };
+		AAE102A625EB79C00001F026 /* UINCLoaderCircular.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE102A525EB79C00001F026 /* UINCLoaderCircular.swift */; };
 		AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAF1182722F6BBF100FDA099 /* CommentCurhat.storyboard */; };
 		AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1182922F6BC3800FDA099 /* CommentCurhatViewController.swift */; };
 		AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */; };
@@ -291,6 +298,13 @@
 		AAD0E3C822F711D7005CC55A /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		AAD0E3CB22F711EA005CC55A /* ItemWithImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWithImage.swift; sourceTree = "<group>"; };
 		AAE1029325EB5B230001F026 /* CoreDataAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAppDelegate.swift; sourceTree = "<group>"; };
+		AAE1029725EB6A4D0001F026 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		AAE1029825EB6A4D0001F026 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		AAE1029925EB6A4D0001F026 /* SplashProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashProtocols.swift; sourceTree = "<group>"; };
+		AAE1029A25EB6A4D0001F026 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		AAE1029B25EB6A4D0001F026 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		AAE1029C25EB6A4D0001F026 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
+		AAE102A525EB79C00001F026 /* UINCLoaderCircular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCLoaderCircular.swift; sourceTree = "<group>"; };
 		AAF1182722F6BBF100FDA099 /* CommentCurhat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentCurhat.storyboard; sourceTree = "<group>"; };
 		AAF1182922F6BC3800FDA099 /* CommentCurhatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCurhatViewController.swift; sourceTree = "<group>"; };
 		AAF1182C22F6BCF100FDA099 /* CurhatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurhatTableViewCell.swift; sourceTree = "<group>"; };
@@ -661,6 +675,7 @@
 		AA46E2E4245C54D600735490 /* app-template */ = {
 			isa = PBXGroup;
 			children = (
+				AAE102A425EB79A40001F026 /* UINCLoader */,
 				AAF548492576068700176378 /* UINCRefreshControl */,
 				AA46E2FA245D6BF300735490 /* UINCCard */,
 				AA46E2E8245C55D400735490 /* UINCLabel */,
@@ -802,6 +817,7 @@
 		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
+				AAE1029625EB6A2D0001F026 /* feature-splash */,
 				AACDFE6D2570E2D800485828 /* feature-feeds */,
 				AA46E2EB245C74E700735490 /* feature-corona */,
 				AA46E2DD245C526D00735490 /* feature-update-app */,
@@ -1172,6 +1188,27 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		AAE1029625EB6A2D0001F026 /* feature-splash */ = {
+			isa = PBXGroup;
+			children = (
+				AAE1029725EB6A4D0001F026 /* SplashPresenter.swift */,
+				AAE1029825EB6A4D0001F026 /* SplashRouter.swift */,
+				AAE1029925EB6A4D0001F026 /* SplashProtocols.swift */,
+				AAE1029A25EB6A4D0001F026 /* SplashInteractor.swift */,
+				AAE1029B25EB6A4D0001F026 /* SplashView.swift */,
+				AAE1029C25EB6A4D0001F026 /* SplashView.xib */,
+			);
+			path = "feature-splash";
+			sourceTree = "<group>";
+		};
+		AAE102A425EB79A40001F026 /* UINCLoader */ = {
+			isa = PBXGroup;
+			children = (
+				AAE102A525EB79C00001F026 /* UINCLoaderCircular.swift */,
+			);
+			path = UINCLoader;
+			sourceTree = "<group>";
+		};
 		AAF1182422F6BBC600FDA099 /* feature-comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1295,6 +1332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACDFE792570E42200485828 /* FeedsView.xib in Resources */,
+				AAE102A225EB6A4D0001F026 /* SplashView.xib in Resources */,
 				AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */,
 				AAD0E38D22F70FBD005CC55A /* Countries.bundle in Resources */,
 				168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */,
@@ -1377,6 +1415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE102A625EB79C00001F026 /* UINCLoaderCircular.swift in Sources */,
 				AA46E305245DC2A000735490 /* Corona+Map.swift in Sources */,
 				AA46E2F9245D46AD00735490 /* CoronaModel.swift in Sources */,
 				16456DC32350B8970058474C /* PremiumSubscriptionTableViewCell.swift in Sources */,
@@ -1421,6 +1460,7 @@
 				AACDFE742570E42200485828 /* FeedsPresenter.swift in Sources */,
 				16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
+				AAE102A125EB6A4D0001F026 /* SplashView.swift in Sources */,
 				AA67498C2576320700640A2D /* LeoStoreKitProduct.swift in Sources */,
 				AAD0E37322F70F02005CC55A /* UISearchBar+Extensions.swift in Sources */,
 				1621AD2D23445787008F15D8 /* PaymentWebViewController.swift in Sources */,
@@ -1438,6 +1478,7 @@
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
 				AACDFE772570E42200485828 /* FeedsInteractor.swift in Sources */,
 				AA505E14245FA910002FD204 /* UITapGestureRecognizer+Ext.swift in Sources */,
+				AAE1029D25EB6A4D0001F026 /* SplashPresenter.swift in Sources */,
 				1619D62E2317CACE00E5F496 /* UIScrollView+Extensions.swift in Sources */,
 				164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */,
 				1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */,
@@ -1455,6 +1496,7 @@
 				16456DC12350B8860058474C /* PremiumAdvantageCollectionViewCell.swift in Sources */,
 				AA46E2FE245D6C5A00735490 /* UINCLabelTitle.swift in Sources */,
 				AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */,
+				AAE1029E25EB6A4D0001F026 /* SplashRouter.swift in Sources */,
 				AAF1182F22F6BD0400FDA099 /* AdsTableViewCell.swift in Sources */,
 				16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */,
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
@@ -1491,8 +1533,10 @@
 				AA43D97B25EAFB32008B2364 /* NotificationAppDelegate.swift in Sources */,
 				AAF5484B257606C300176378 /* UINCRefreshControl.swift in Sources */,
 				AA7A0B55231CE95E00B8233E /* Chat+MessagesDataSource.swift in Sources */,
+				AAE1029F25EB6A4D0001F026 /* SplashProtocols.swift in Sources */,
 				AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */,
 				AA7A0B51231CE1E900B8233E /* Chat+MessageDisplay.swift in Sources */,
+				AAE102A025EB6A4D0001F026 /* SplashInteractor.swift in Sources */,
 				AA46E2F3245D2EEA00735490 /* Timeline+Permission.swift in Sources */,
 				AACDFE752570E42200485828 /* FeedsRouter.swift in Sources */,
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
