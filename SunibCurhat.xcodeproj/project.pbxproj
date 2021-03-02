@@ -41,6 +41,19 @@
 		79CDE8404861C4A74D31C85F /* Pods_SunibCurhat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */; };
 		AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F0E232EF05C0047BC99 /* UDHelpers.swift */; };
 		AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */; };
+		AA2BF02625EDB08E00E037AE /* CodableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02525EDB08E00E037AE /* CodableStorage.swift */; };
+		AA2BF02925EDB0B100E037AE /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02825EDB0B100E037AE /* DiskStorage.swift */; };
+		AA2BF02C25EDB0D500E037AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02B25EDB0D500E037AE /* Storage.swift */; };
+		AA2BF03525EDB11B00E037AE /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02F25EDB11B00E037AE /* SettingsPresenter.swift */; };
+		AA2BF03625EDB11B00E037AE /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF03025EDB11B00E037AE /* SettingsRouter.swift */; };
+		AA2BF03725EDB11B00E037AE /* SettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF03125EDB11B00E037AE /* SettingsProtocols.swift */; };
+		AA2BF03825EDB11B00E037AE /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF03225EDB11B00E037AE /* SettingsInteractor.swift */; };
+		AA2BF03925EDB11B00E037AE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF03325EDB11B00E037AE /* SettingsView.swift */; };
+		AA2BF03A25EDB11B00E037AE /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2BF03425EDB11B00E037AE /* SettingsView.xib */; };
+		AA2BF03E25EDB21000E037AE /* SettingsSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2BF03D25EDB21000E037AE /* SettingsSwitchCell.xib */; };
+		AA2BF04125EDB21B00E037AE /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF04025EDB21B00E037AE /* SettingsSwitchCell.swift */; };
+		AA2BF04525EDB26E00E037AE /* UINCSwitchDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF04425EDB26E00E037AE /* UINCSwitchDefault.swift */; };
+		AA2BF04925EDB33700E037AE /* UINCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF04825EDB33700E037AE /* UINCColor.swift */; };
 		AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA3AB36522F7213D0016ADFF /* Main.storyboard */; };
 		AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AB36822F721A30016ADFF /* MainTabBarController.swift */; };
 		AA43D96025EAC151008B2364 /* HTTPRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D95F25EAC151008B2364 /* HTTPRequestMethod.swift */; };
@@ -194,6 +207,19 @@
 		640EBA3BF5174C2A4F09B7B8 /* Pods-SunibCurhat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.release.xcconfig"; sourceTree = "<group>"; };
 		AA249F0E232EF05C0047BC99 /* UDHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDHelpers.swift; sourceTree = "<group>"; };
 		AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		AA2BF02525EDB08E00E037AE /* CodableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
+		AA2BF02825EDB0B100E037AE /* DiskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
+		AA2BF02B25EDB0D500E037AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		AA2BF02F25EDB11B00E037AE /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		AA2BF03025EDB11B00E037AE /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		AA2BF03125EDB11B00E037AE /* SettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProtocols.swift; sourceTree = "<group>"; };
+		AA2BF03225EDB11B00E037AE /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		AA2BF03325EDB11B00E037AE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA2BF03425EDB11B00E037AE /* SettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		AA2BF03D25EDB21000E037AE /* SettingsSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSwitchCell.xib; sourceTree = "<group>"; };
+		AA2BF04025EDB21B00E037AE /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
+		AA2BF04425EDB26E00E037AE /* UINCSwitchDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCSwitchDefault.swift; sourceTree = "<group>"; };
+		AA2BF04825EDB33700E037AE /* UINCColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCColor.swift; sourceTree = "<group>"; };
 		AA3AB36522F7213D0016ADFF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA3AB36822F721A30016ADFF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		AA43D95F25EAC151008B2364 /* HTTPRequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestMethod.swift; sourceTree = "<group>"; };
@@ -574,6 +600,55 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		AA2BF02425EDB07100E037AE /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				AA2BF02525EDB08E00E037AE /* CodableStorage.swift */,
+				AA2BF02825EDB0B100E037AE /* DiskStorage.swift */,
+				AA2BF02B25EDB0D500E037AE /* Storage.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		AA2BF02E25EDB0FE00E037AE /* feature-settings */ = {
+			isa = PBXGroup;
+			children = (
+				AA2BF03C25EDB1B700E037AE /* cell */,
+				AA2BF02F25EDB11B00E037AE /* SettingsPresenter.swift */,
+				AA2BF03025EDB11B00E037AE /* SettingsRouter.swift */,
+				AA2BF03125EDB11B00E037AE /* SettingsProtocols.swift */,
+				AA2BF03225EDB11B00E037AE /* SettingsInteractor.swift */,
+				AA2BF03325EDB11B00E037AE /* SettingsView.swift */,
+				AA2BF03425EDB11B00E037AE /* SettingsView.xib */,
+			);
+			path = "feature-settings";
+			sourceTree = "<group>";
+		};
+		AA2BF03C25EDB1B700E037AE /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				AA2BF03D25EDB21000E037AE /* SettingsSwitchCell.xib */,
+				AA2BF04025EDB21B00E037AE /* SettingsSwitchCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		AA2BF04325EDB25400E037AE /* UIINCSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				AA2BF04425EDB26E00E037AE /* UINCSwitchDefault.swift */,
+			);
+			path = UIINCSwitch;
+			sourceTree = "<group>";
+		};
+		AA2BF04725EDB32600E037AE /* UINCColor */ = {
+			isa = PBXGroup;
+			children = (
+				AA2BF04825EDB33700E037AE /* UINCColor.swift */,
+			);
+			path = UINCColor;
+			sourceTree = "<group>";
+		};
 		AA3AB36322F7211E0016ADFF /* feature-main */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +750,8 @@
 		AA46E2E4245C54D600735490 /* app-template */ = {
 			isa = PBXGroup;
 			children = (
+				AA2BF04725EDB32600E037AE /* UINCColor */,
+				AA2BF04325EDB25400E037AE /* UIINCSwitch */,
 				AAE102A425EB79A40001F026 /* UINCLoader */,
 				AAF548492576068700176378 /* UINCRefreshControl */,
 				AA46E2FA245D6BF300735490 /* UINCCard */,
@@ -817,6 +894,7 @@
 		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
+				AA2BF02E25EDB0FE00E037AE /* feature-settings */,
 				AAE1029625EB6A2D0001F026 /* feature-splash */,
 				AACDFE6D2570E2D800485828 /* feature-feeds */,
 				AA46E2EB245C74E700735490 /* feature-corona */,
@@ -866,6 +944,7 @@
 		AA5BABE922F6584F004253AF /* app-helper */ = {
 			isa = PBXGroup;
 			children = (
+				AA2BF02425EDB07100E037AE /* Cache */,
 				AA674982257624D400640A2D /* LeoStoreKit */,
 				AAD0E38622F70F7F005CC55A /* Pickers */,
 				AAD0E38022F70F34005CC55A /* Viewers */,
@@ -1349,6 +1428,8 @@
 				AACDFE7D2570E51100485828 /* FeedDefaultCell.xib in Resources */,
 				AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */,
 				1621AD2B23445749008F15D8 /* Payment.storyboard in Resources */,
+				AA2BF03E25EDB21000E037AE /* SettingsSwitchCell.xib in Resources */,
+				AA2BF03A25EDB11B00E037AE /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,6 +1507,7 @@
 				AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */,
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
 				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
+				AA2BF02625EDB08E00E037AE /* CodableStorage.swift in Sources */,
 				AAD0E37C22F70F02005CC55A /* Date+Extension.swift in Sources */,
 				AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */,
 				AAD0E3BD22F71122005CC55A /* Contact.swift in Sources */,
@@ -1434,7 +1516,9 @@
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
 				AA46E2E1245C52A800735490 /* UpdateAppController.swift in Sources */,
 				AAD0E37922F70F02005CC55A /* UIAlertController+Extensions.swift in Sources */,
+				AA2BF02925EDB0B100E037AE /* DiskStorage.swift in Sources */,
 				16456DBF2350B8400058474C /* Premium+CollectionView.swift in Sources */,
+				AA2BF02C25EDB0D500E037AE /* Storage.swift in Sources */,
 				AA46E2EA245C55EC00735490 /* UINCLabelBody.swift in Sources */,
 				AAF548472575F7B000176378 /* UINCLabelNote.swift in Sources */,
 				16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */,
@@ -1444,11 +1528,13 @@
 				AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */,
 				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
+				AA2BF03725EDB11B00E037AE /* SettingsProtocols.swift in Sources */,
 				AA46E2EF245C750A00735490 /* CoronaController.swift in Sources */,
 				AAD0E39622F70FF9005CC55A /* LocaleInfo.swift in Sources */,
 				AAD0E38522F70F5D005CC55A /* TextViewController.swift in Sources */,
 				166F1AD2231786B500BB1151 /* Chats+TableView.swift in Sources */,
 				AA43D96025EAC151008B2364 /* HTTPRequestMethod.swift in Sources */,
+				AA2BF04925EDB33700E037AE /* UINCColor.swift in Sources */,
 				AA46E2FC245D6C0900735490 /* UINCCardCorona.swift in Sources */,
 				AAD0E37B22F70F02005CC55A /* UIColor+Extensions.swift in Sources */,
 				AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */,
@@ -1483,6 +1569,7 @@
 				164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */,
 				1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */,
 				AAD0E39422F70FE6005CC55A /* PhoneCodeCell.swift in Sources */,
+				AA2BF03525EDB11B00E037AE /* SettingsPresenter.swift in Sources */,
 				AA46E2DC245BD56A00735490 /* Identifier.swift in Sources */,
 				166F1AD92317931F00BB1151 /* ChatModel.swift in Sources */,
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
@@ -1495,6 +1582,7 @@
 				AAD0E37422F70F02005CC55A /* UITextField+Extensions.swift in Sources */,
 				16456DC12350B8860058474C /* PremiumAdvantageCollectionViewCell.swift in Sources */,
 				AA46E2FE245D6C5A00735490 /* UINCLabelTitle.swift in Sources */,
+				AA2BF03625EDB11B00E037AE /* SettingsRouter.swift in Sources */,
 				AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */,
 				AAE1029E25EB6A4D0001F026 /* SplashRouter.swift in Sources */,
 				AAF1182F22F6BD0400FDA099 /* AdsTableViewCell.swift in Sources */,
@@ -1502,6 +1590,7 @@
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
 				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
 				1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */,
+				AA2BF03925EDB11B00E037AE /* SettingsView.swift in Sources */,
 				16456DBD2350B8270058474C /* Premium+TableView.swift in Sources */,
 				AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
@@ -1519,6 +1608,7 @@
 				AAD0E3BF22F7112C005CC55A /* Contacts.swift in Sources */,
 				AA505E12245FA7DA002FD204 /* UINCLabelClickable.swift in Sources */,
 				AACDFE762570E42200485828 /* FeedsProtocols.swift in Sources */,
+				AA2BF04125EDB21B00E037AE /* SettingsSwitchCell.swift in Sources */,
 				AA46E303245D96FE00735490 /* CoronaCell.swift in Sources */,
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
 				1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */,
@@ -1528,6 +1618,7 @@
 				AA7A0B4E231BF49000B8233E /* UITableView+Extensions.swift in Sources */,
 				AAD0E39822F71008005CC55A /* LocaleStore.swift in Sources */,
 				AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */,
+				AA2BF03825EDB11B00E037AE /* SettingsInteractor.swift in Sources */,
 				AAD0E37D22F70F02005CC55A /* Optional+Extensions.swift in Sources */,
 				AAD0E37122F70F02005CC55A /* Common+Extensions.swift in Sources */,
 				AA43D97B25EAFB32008B2364 /* NotificationAppDelegate.swift in Sources */,
@@ -1542,6 +1633,7 @@
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
 				AA43D96E25EAF9BB008B2364 /* AppLifecycleMediator.swift in Sources */,
 				AA478D8222F649A300BC23A7 /* SunibCurhat.xcdatamodeld in Sources */,
+				AA2BF04525EDB26E00E037AE /* UINCSwitchDefault.swift in Sources */,
 				AABF395E230B774200DEAA63 /* NSNotification+Extensions.swift in Sources */,
 				AA43D96725EAF900008B2364 /* CompositeAppDelegate.swift in Sources */,
 				16E670512357098B008B3108 /* UICollectionView+Extensions.swift in Sources */,
@@ -1685,7 +1777,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
@@ -1709,7 +1801,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VC83XAQ3UM;
 				INFOPLIST_FILE = SunibCurhat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
