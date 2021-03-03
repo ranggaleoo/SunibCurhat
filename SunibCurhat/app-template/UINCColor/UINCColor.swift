@@ -15,7 +15,6 @@ enum UINCColor: String {
     case blue_absolute = "006CEA"
     case blue = "008DDD"
     case gray_absolute = "8E8E93"
-    case gray = "8E8E93"
     case black_absolute = "000000"
     case yellow = "F5D31E"
         

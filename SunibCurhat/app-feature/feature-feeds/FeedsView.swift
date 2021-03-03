@@ -117,6 +117,11 @@ class FeedsView: UIViewController, FeedsPresenterToView {
 //            self.performSegue(withIdentifier: "toPayment", sender: self)
 //        }))
         
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { [weak self] (_) in
+            let settingVC = SettingsRouter.createSettingsModule()
+            self?.navigationController?.pushViewController(settingVC, animated: true)
+        }))
+        
         alert.addAction(UIAlertAction(title: "Contact Us", style: .default, handler: { (act) in
             let alert2 = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
             

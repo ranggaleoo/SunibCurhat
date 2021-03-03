@@ -20,8 +20,6 @@ protocol WritableStorage {
     func save(value: Data, for key: String, handler: @escaping Handler<Data>)
 }
 
-typealias Storage = ReadableStorage & WritableStorage
-
 enum StorageError: Error {
     case notFound
     case cantWrite(Error)

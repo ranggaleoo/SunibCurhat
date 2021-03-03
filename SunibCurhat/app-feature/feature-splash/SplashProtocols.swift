@@ -40,6 +40,7 @@ protocol SplashViewToPresenter: class {
     var router: SplashPresenterToRouter? {get set}
     
     func didLoad()
+    func initialSettings()
 }
 
 protocol SplashInteractorToPresenter: class {

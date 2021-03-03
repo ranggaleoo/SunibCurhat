@@ -13,13 +13,52 @@ class SplashPresenter: SplashViewToPresenter {
     var interactor: SplashPresenterToInteractor?
     var router: SplashPresenterToRouter?
     
-    private var timer: Timer?
-    private var counter: Int = 0
+    private var settingIsAvailable: Bool = false {
+        didSet {
+            if settingIsAvailable {
+                interactor?.getEndpoint()
+            }
+        }
+    }
     
     func didLoad() {
         view?.setupViews()
         view?.startLoader()
-        interactor?.getEndpoint()
+        initialSettings()
+    }
+    
+    func initialSettings() {
+        settingIsAvailable = false
+        let disk = DiskStorage()
+        let storage = CodableStorage(storage: disk)
+        var settings: [SettingItem] = []
+        settings.append(SettingItem(title: "Push Notification", description: "currently the push notification feature is used for chat notifications", type: .pushNotification, defaultValue: true))
+        
+        storage.fetch(for: ConstGlobal.settings_identifier, object: [SettingItem].self) { [weak self] (result) in
+            switch result {
+            case .failure(let err):
+                do {
+                    try storage.save(settings, for: ConstGlobal.settings_identifier)
+                    self?.settingIsAvailable = true
+                } catch {
+                    debugLog(error.localizedDescription)
+                    debugLog(err.localizedDescription)
+                }
+                
+            case .success(let res):
+                debugLog(res)
+                if res.count == settings.count {
+                    self?.settingIsAvailable = true
+                } else {
+                    do {
+                        try storage.save(settings, for: ConstGlobal.settings_identifier)
+                        self?.settingIsAvailable = true
+                    } catch {
+                        debugLog(error.localizedDescription)
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -21,6 +21,8 @@ struct ConstGlobal {
     static var contact_email: String?
     static var contact_whatsapp: String?
     static var contact_instagram: String?
+    
+    static let settings_identifier : String = "app-netijen-curhat"
 }
 
 struct RepoMemory {
