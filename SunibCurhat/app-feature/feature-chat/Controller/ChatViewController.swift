@@ -23,7 +23,7 @@ final class ChatViewController: MessagesViewController {
     private let chat: Chat
     
     var isSendingImage: Bool = false
-    var token_fcm_target: String = ""
+    var token_fcm_target: String?
     deinit {
         messageListener?.remove()
     }
@@ -147,21 +147,25 @@ final class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     func save(_ message: Message) {
-        reference?.addDocument(data: message.representation) { error in
+        reference?.addDocument(data: message.representation) { [weak self] error in
             if let e = error {
                 debugLog("Error sending message: \(e.localizedDescription)")
                 return
             }
             
-            self.messagesCollectionView.scrollToBottom()
-            MainService.shared.sendNotif(title: self.chat.name, text: message.text_message, fcmToken: self.token_fcm_target, completion: { (result) in
-                switch result {
-                case .failure(let e):
-                    debugLog(e.localizedDescription)
-                case .success(let s):
-                    debugLog(s)
-                }
-            })
+            self?.messagesCollectionView.scrollToBottom()
+            if
+                let token_fcm_targetted = self?.token_fcm_target,
+                let chat_name = self?.chat.name {
+                MainService.shared.sendNotif(title: chat_name, text: message.text_message, fcmToken: token_fcm_targetted, completion: { (result) in
+                    switch result {
+                    case .failure(let e):
+                        debugLog(e.localizedDescription)
+                    case .success(let s):
+                        debugLog(s)
+                    }
+                })
+            }
         }
     }
     

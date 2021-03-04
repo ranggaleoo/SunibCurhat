@@ -11,6 +11,7 @@ import GoogleMobileAds
 import Firebase
 import IQKeyboardManagerSwift
 import Siren
+import StoreKit
 
 class ThirdPartyAppDelegate: AppDelegateType {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -42,7 +43,7 @@ extension ThirdPartyAppDelegate {
             } else {
                 // Fallback on earlier versions
             }
-            UDHelpers.shared.set(value: timesAccess + 1, key: .counterUserAccessApp)
+            UDHelpers.shared.set(value: 0, key: .counterUserAccessApp)
         
         } else {
             UDHelpers.shared.set(value: timesAccess + 1, key: .counterUserAccessApp)

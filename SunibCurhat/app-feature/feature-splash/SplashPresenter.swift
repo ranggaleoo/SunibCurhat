@@ -39,6 +39,7 @@ class SplashPresenter: SplashViewToPresenter {
             case .failure(let err):
                 do {
                     try storage.save(settings, for: ConstGlobal.settings_identifier)
+                    ConstGlobal.setting_list = settings
                     self?.settingIsAvailable = true
                 } catch {
                     debugLog(error.localizedDescription)
@@ -48,10 +49,12 @@ class SplashPresenter: SplashViewToPresenter {
             case .success(let res):
                 debugLog(res)
                 if res.count == settings.count {
+                    ConstGlobal.setting_list = settings
                     self?.settingIsAvailable = true
                 } else {
                     do {
                         try storage.save(settings, for: ConstGlobal.settings_identifier)
+                        ConstGlobal.setting_list = settings
                         self?.settingIsAvailable = true
                     } catch {
                         debugLog(error.localizedDescription)

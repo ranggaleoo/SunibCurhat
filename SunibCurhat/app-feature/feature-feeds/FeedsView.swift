@@ -34,7 +34,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     }
     
     func setupViews() {
-        SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary], on: self, delegate: self, dataSource: self)
+        requestPermission()
         storeKit.delegate = self
         
         tableView.delegate = self
@@ -102,6 +102,19 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     
     func moveFromAddThread() {
         presenter?.requestGetTimeline(resetData: true)
+    }
+    
+    func requestPermission() {
+        let timesPermission = UDHelpers.shared.getInt(key: .counterRequestPermission)
+        debugLog("time permission", timesPermission)
+        
+        if timesPermission == ConstGlobal.TIMES_REQUEST_PERMISSION || timesPermission == 0 {
+            SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary], on: self, delegate: self, dataSource: self)
+            UDHelpers.shared.set(value: 1, key: .counterRequestPermission)
+        
+        } else {
+            UDHelpers.shared.set(value: timesPermission + 1, key: .counterRequestPermission)
+        }
     }
     
     @objc private func toAddThread() {
@@ -397,6 +410,10 @@ extension FeedsView: SPPermissionDialogDataSource {
 //        case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
         default: return "Need Allow for use this Application"
         }
+    }
+    
+    var showCloseButton: Bool {
+        true
     }
 }
 

@@ -36,6 +36,7 @@ class SettingsPresenter: SettingsViewToPresenter {
         view?.showLoaderIndicator()
         do {
             try storage.save(items, for: ConstGlobal.settings_identifier)
+            ConstGlobal.setting_list = items
             view?.dismissLoaderIndicator()
             view?.enableSwitcher(indexPath: indexPath)
         } catch {

@@ -55,5 +55,7 @@ enum UDHelpersKey: String {
     case eulaIsChecked          = "EULA_IS_CHEKED"
     case tmpToken               = "TMP_TOKEN"
     case counterUserAccessApp   = "COUNTER_USER_ACCESS_APP"
+    case counterRequestPermission
+    case isFirstPermission
     case isFreeAds
 }

@@ -203,28 +203,29 @@ extension AddThreadViewController: UITextViewDelegate {
 }
 
 extension AddThreadViewController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-//        bannerView.isHidden = false
-        print_r(title: "ADMOB RECEIVE", message: nil)
+    // request lifecycle
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print_r(title: "ADMOB ERROR", message: error)
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        debugLog(#function)
     }
     
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL PRESENT", message: nil)
+    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL DISMISS", message: nil)
+    //click-time lifecycle
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB DID DISMISS", message: nil)
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL LEAVE", message: nil)
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
 }

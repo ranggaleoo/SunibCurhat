@@ -26,6 +26,14 @@ struct SettingItem: Codable, Equatable {
     }
 }
 
+typealias SettingList = [SettingItem]
+
+extension SettingList {
+    func get(_ type: SettingItemType) -> SettingItem? {
+        self.first(where: { $0.type == type })
+    }
+}
+
 protocol SettingsSwitchCellDelegate: class {
     func didChangeSwitchState(cell: SettingsSwitchCell, isOn: Bool)
 }
