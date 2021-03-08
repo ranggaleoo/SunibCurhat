@@ -168,13 +168,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if
             let nav = timeline as? UINavigationController,
-            let vc = nav.topViewController as? ListCurhatViewController,
+            let vc = nav.topViewController as? FeedsView,
             let title = item.title,
             title == "Timeline",
             selectedIndex == 0
         {
             DispatchQueue.main.async {
-                vc.tableViewCurhat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                vc.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }
     }

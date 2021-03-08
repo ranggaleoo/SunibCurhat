@@ -7,11 +7,6 @@
 //
 
 import UIKit
-import CoreData
-import GoogleMobileAds
-import Firebase
-import IQKeyboardManagerSwift
-import Siren
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -67,6 +67,7 @@ class SettingsSwitchCell: UITableViewCell {
         lblTitle.changeFontSize(size: 14)
         lblDesc.changeFontSize(size: 12)
         lblDesc.numberOfLines = 0
+        switcher.onTintColor = UINCColor.brandColor()
         switcher.addTarget(self, action: #selector(didChangeSwitchState(_:)), for: .valueChanged)
     }
     

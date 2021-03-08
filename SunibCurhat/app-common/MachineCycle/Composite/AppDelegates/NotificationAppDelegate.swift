@@ -24,8 +24,10 @@ class NotificationAppDelegate: AppDelegateType {
             debugLog("Message ID: \(messageID)")
         }
         debugLog(userInfo)
-        
-        completionHandler(UIBackgroundFetchResult.newData)
+        let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
+        if pushIsOn {
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
     }
 }
 
@@ -68,8 +70,10 @@ extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
         }
         debugLog(userInfo)
         debugLog("Received notification with ID = \(id)")
-        completionHandler([])
-        
+        let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
+        if pushIsOn {
+            completionHandler([])
+        }
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -80,6 +84,9 @@ extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
         }
         debugLog(userInfo)
         debugLog("Received notification with ID = \(id)")
-        completionHandler()
+        let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
+        if pushIsOn {
+            completionHandler()
+        }
     }
 }
