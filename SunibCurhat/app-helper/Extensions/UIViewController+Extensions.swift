@@ -39,8 +39,8 @@ extension UIViewController {
     }
     
     func showLoaderIndicator() {
-        if let window = UIApplication.shared.keyWindow {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let window = UIApplication.shared.keyWindow {
                 let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
                 activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
                 activityIndicator.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
@@ -53,8 +53,8 @@ extension UIViewController {
     }
     
     func dismissLoaderIndicator() {
-        if let window = UIApplication.shared.keyWindow {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let window = UIApplication.shared.keyWindow {
                 window.subviews.compactMap { $0 as? UIActivityIndicatorView }.forEach {
                     $0.backgroundColor = .clear
                     $0.removeFromSuperview()

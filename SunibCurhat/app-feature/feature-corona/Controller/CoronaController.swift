@@ -164,7 +164,7 @@ class CoronaController: UIViewController {
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
-                print(e.localizedDescription)
+                debugLog(e.localizedDescription)
             case .success(let s):
                 if s.success {
                     if let ad_unit_id = s.data {

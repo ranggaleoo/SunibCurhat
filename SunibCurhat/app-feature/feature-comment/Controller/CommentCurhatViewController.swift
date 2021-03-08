@@ -61,7 +61,7 @@ class CommentCurhatViewController: UIViewController {
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
-                print(e.localizedDescription)
+                debugLog(e.localizedDescription)
             case .success(let s):
                 if s.success {
                     if let ad_unit_id = s.data {
@@ -158,7 +158,7 @@ class CommentCurhatViewController: UIViewController {
     }
     
     @objc func deleteComment(comment_id: String, indexPath: IndexPath) {
-        print("----- delete", comment_id)
+        debugLog("----- delete", comment_id)
         self.comments.remove(at: indexPath.row)
         self.tableViewComment.deleteRows(at: [indexPath], with: .left)
         CommentService.shared.deleteComment(comment_id: comment_id, completion: { (result) in
@@ -172,7 +172,7 @@ class CommentCurhatViewController: UIViewController {
                 if s.success {
                     //do nothing
                 } else {
-                    print(s.message);
+                    debugLog(s.message);
                 }
             }
         })
@@ -222,7 +222,7 @@ class CommentCurhatViewController: UIViewController {
                 
                 } else {
                     self.getMoreComment = false
-                    print(s.message)
+                    debugLog(s.message)
                 }
             }
         }
@@ -335,28 +335,29 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 extension CommentCurhatViewController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-//        bannerView.isHidden = false
-        print_r(title: "ADMOB RECEIVE", message: nil)
+    // request lifecycle
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print_r(title: "ADMOB ERROR", message: error)
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        debugLog(#function)
     }
     
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL PRESENT", message: nil)
+    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL DISMISS", message: nil)
+    //click-time lifecycle
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB DID DISMISS", message: nil)
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL LEAVE", message: nil)
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
 }

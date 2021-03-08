@@ -102,7 +102,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 MainService.shared.getToken(completion: { (result) in
                     switch result {
                     case .failure(let e):
-                        print(e.localizedDescription)
+                        debugLog(e.localizedDescription)
                         self.dismissLoaderIndicator()
                         self.addObservers()
                         
@@ -141,7 +141,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                                             if UIApplication.shared.canOpenURL(urlUpdate) {
                                                 UIApplication.shared.open(urlUpdate, options: [:], completionHandler: { (clicked) in
                                                     if clicked {
-                                                        print("-----user will update version")
+                                                        debugLog("-----user will update version")
                                                     }
                                                 })
                                             }
@@ -160,7 +160,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 })
                 
             } else {
-                print("Token available")
+                debugLog("Token available")
             }
         }))
     }
@@ -168,13 +168,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if
             let nav = timeline as? UINavigationController,
-            let vc = nav.topViewController as? ListCurhatViewController,
+            let vc = nav.topViewController as? FeedsView,
             let title = item.title,
             title == "Timeline",
             selectedIndex == 0
         {
             DispatchQueue.main.async {
-                vc.tableViewCurhat.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                vc.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }
     }

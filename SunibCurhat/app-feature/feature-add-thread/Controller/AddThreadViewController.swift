@@ -80,7 +80,7 @@ class AddThreadViewController: UIViewController {
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
-                print(e.localizedDescription)
+                debugLog(e.localizedDescription)
             case .success(let s):
                 if s.success {
                     if let ad_unit_id = s.data {
@@ -112,7 +112,7 @@ class AddThreadViewController: UIViewController {
             if UIApplication.shared.canOpenURL(url_eula) {
                 UIApplication.shared.open(url_eula, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- user agreement")
+                        debugLog("----- user agreement")
                     }
                 })
             }
@@ -124,7 +124,7 @@ class AddThreadViewController: UIViewController {
             if UIApplication.shared.canOpenURL(url_privacy) {
                 UIApplication.shared.open(url_privacy, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- open privacy policy")
+                        debugLog("----- open privacy policy")
                     }
                 })
             }
@@ -152,7 +152,7 @@ class AddThreadViewController: UIViewController {
             case .success(let s):
                 self.dismissLoaderIndicator()
                 if s.success {
-                    print(s.message)
+                    debugLog(s.message)
                     if let vc = self.navigationController?.viewControllers[0] as? FeedsView {
                         self.txt_post.text = nil
                         self.navigationController?.popToViewController(vc, animated: true)
@@ -203,28 +203,29 @@ extension AddThreadViewController: UITextViewDelegate {
 }
 
 extension AddThreadViewController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-//        bannerView.isHidden = false
-        print_r(title: "ADMOB RECEIVE", message: nil)
+    // request lifecycle
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print_r(title: "ADMOB ERROR", message: error)
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        debugLog(#function)
     }
     
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL PRESENT", message: nil)
+    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL DISMISS", message: nil)
+    //click-time lifecycle
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB DID DISMISS", message: nil)
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
     
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        print_r(title: "ADMOB WILL LEAVE", message: nil)
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+        debugLog(#function)
     }
 }

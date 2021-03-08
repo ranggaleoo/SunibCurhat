@@ -13,7 +13,7 @@ class UDHelpers {
     private var defaults = UserDefaults.standard
     
     init() {
-        print("initialize user default")
+        debugLog("initialize user default")
     }
     
     public func set(value defaultValue: Any, key defaultKey: UDHelpersKey) {
@@ -55,5 +55,7 @@ enum UDHelpersKey: String {
     case eulaIsChecked          = "EULA_IS_CHEKED"
     case tmpToken               = "TMP_TOKEN"
     case counterUserAccessApp   = "COUNTER_USER_ACCESS_APP"
+    case counterRequestPermission
+    case isFirstPermission
     case isFreeAds
 }

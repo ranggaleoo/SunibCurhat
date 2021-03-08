@@ -34,7 +34,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     }
     
     func setupViews() {
-        SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary], on: self, delegate: self, dataSource: self)
+        requestPermission()
         storeKit.delegate = self
         
         tableView.delegate = self
@@ -104,6 +104,19 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         presenter?.requestGetTimeline(resetData: true)
     }
     
+    func requestPermission() {
+        let timesPermission = UDHelpers.shared.getInt(key: .counterRequestPermission)
+        debugLog("time permission", timesPermission)
+        
+        if timesPermission == ConstGlobal.TIMES_REQUEST_PERMISSION || timesPermission == 0 {
+            SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary], on: self, delegate: self, dataSource: self)
+            UDHelpers.shared.set(value: 1, key: .counterRequestPermission)
+        
+        } else {
+            UDHelpers.shared.set(value: timesPermission + 1, key: .counterRequestPermission)
+        }
+    }
+    
     @objc private func toAddThread() {
         let storyboad = UIStoryboard(name: "AddThread", bundle: nil)
         let vc = storyboad.instantiateViewController(withIdentifier: "add_thread")
@@ -116,6 +129,11 @@ class FeedsView: UIViewController, FeedsPresenterToView {
 //        alert.addAction(UIAlertAction(title: "Premium", style: .default, handler: { (act) in
 //            self.performSegue(withIdentifier: "toPayment", sender: self)
 //        }))
+        
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { [weak self] (_) in
+            let settingVC = SettingsRouter.createSettingsModule()
+            self?.navigationController?.pushViewController(settingVC, animated: true)
+        }))
         
         alert.addAction(UIAlertAction(title: "Contact Us", style: .default, handler: { (act) in
             let alert2 = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
@@ -139,7 +157,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                         if success {
-                            print("----- open instagram")
+                            debugLog("----- open instagram")
                         }
                     })
                 }
@@ -150,7 +168,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                         if success {
-                            print("----- open whatsapp")
+                            debugLog("----- open whatsapp")
                         }
                     })
                 }
@@ -165,7 +183,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             if UIApplication.shared.canOpenURL(url_privacy) {
                 UIApplication.shared.open(url_privacy, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- open privacy policy")
+                        debugLog("----- open privacy policy")
                     }
                 })
             }
@@ -176,7 +194,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             if UIApplication.shared.canOpenURL(url_eula) {
                 UIApplication.shared.open(url_eula, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- user agreement")
+                        debugLog("----- user agreement")
                     }
                 })
             }
@@ -313,28 +331,28 @@ extension FeedsView: LeoStoreKitDelegate {
         DispatchQueue.main.async {
             self.dismissLoaderIndicator()
         }
-        debugPrint(product)
+        debugLog(product)
     }
     
     func failFetchProduct(store: LeoStoreKit) {
         DispatchQueue.main.async {
             self.dismissLoaderIndicator()
         }
-        debugPrint("FAILED")
+        debugLog("FAILED")
     }
     
     func didBuyProduct(store: LeoStoreKit) {
-        debugPrint(#function)
+        debugLog(#function)
         UDHelpers.shared.set(value: true, key: .isFreeAds)
         dismiss(animated: true, completion: nil)
     }
     
     func failBuyProduct(store: LeoStoreKit) {
-        debugPrint(#function)
+        debugLog(#function)
     }
     
     func onBuyProcessing(store: LeoStoreKit) {
-        debugPrint(#function)
+        debugLog(#function)
     }
 }
 
@@ -393,12 +411,16 @@ extension FeedsView: SPPermissionDialogDataSource {
         default: return "Need Allow for use this Application"
         }
     }
+    
+    var showCloseButton: Bool {
+        true
+    }
 }
 
 extension FeedsView: MFMailComposeViewControllerDelegate {
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let e = error {
-            print(e.localizedDescription)
+            debugLog(e.localizedDescription)
         }
         controller.dismiss(animated: true, completion: nil)
     }

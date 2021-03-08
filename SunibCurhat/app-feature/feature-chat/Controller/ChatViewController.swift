@@ -23,7 +23,7 @@ final class ChatViewController: MessagesViewController {
     private let chat: Chat
     
     var isSendingImage: Bool = false
-    var token_fcm_target: String = ""
+    var token_fcm_target: String?
     deinit {
         messageListener?.remove()
     }
@@ -54,13 +54,13 @@ final class ChatViewController: MessagesViewController {
         
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                debugLog("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
                 return
             }
             
             snapshot.query.limit(to: 50).getDocuments(completion: { (querySnap, error) in
                 guard let s = querySnap else {
-                    print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                    debugLog("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
                     return
                 }
                 
@@ -147,21 +147,25 @@ final class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     func save(_ message: Message) {
-        reference?.addDocument(data: message.representation) { error in
+        reference?.addDocument(data: message.representation) { [weak self] error in
             if let e = error {
-                print("Error sending message: \(e.localizedDescription)")
+                debugLog("Error sending message: \(e.localizedDescription)")
                 return
             }
             
-            self.messagesCollectionView.scrollToBottom()
-            MainService.shared.sendNotif(title: self.chat.name, text: message.text_message, fcmToken: self.token_fcm_target, completion: { (result) in
-                switch result {
-                case .failure(let e):
-                    print(e.localizedDescription)
-                case .success(let s):
-                    print(s)
-                }
-            })
+            self?.messagesCollectionView.scrollToBottom()
+            if
+                let token_fcm_targetted = self?.token_fcm_target,
+                let chat_name = self?.chat.name {
+                MainService.shared.sendNotif(title: chat_name, text: message.text_message, fcmToken: token_fcm_targetted, completion: { (result) in
+                    switch result {
+                    case .failure(let e):
+                        debugLog(e.localizedDescription)
+                    case .success(let s):
+                        debugLog(s)
+                    }
+                })
+            }
         }
     }
     
@@ -239,11 +243,11 @@ final class ChatViewController: MessagesViewController {
             
         storageRef.putData(data, metadata: metadata) { meta, error in
             if let m = meta {
-                print(m)
+                debugLog(m)
             }
             
             if let e = error {
-                print(e.localizedDescription)
+                debugLog(e.localizedDescription)
             }
             
             storageRef.downloadURL(completion: { (url, e) in
@@ -253,7 +257,7 @@ final class ChatViewController: MessagesViewController {
                 }
                 
                 if let error = e {
-                    print(error.localizedDescription)
+                    debugLog(error.localizedDescription)
                 }
             })
         }

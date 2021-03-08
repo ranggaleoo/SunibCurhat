@@ -40,20 +40,22 @@ struct Message: MessageType {
     var token_fcm       : String?
     
     init(text_message: String) {
+        let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
         self.id             = nil
         self.text_message   = text_message
         self.sender         = Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "user_name")
         self.sentDate       = Date()
-        self.token_fcm      = RepoMemory.token_notif ?? "token"
+        self.token_fcm      = pushIsOn ? RepoMemory.token_notif : nil
     }
     
     init(image: UIImage) {
+        let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
         self.id             = nil
         self.image          = image
         self.text_message   = ""
         self.sender         = Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "user_name")
         self.sentDate       = Date()
-        self.token_fcm      = RepoMemory.token_notif ?? "token"
+        self.token_fcm      = pushIsOn ? RepoMemory.token_notif : nil
     }
     
     init?(document: QueryDocumentSnapshot) {

@@ -16,11 +16,15 @@ struct ConstGlobal {
     static let API_SEMUABISA        : String    = "612a69190bcc77d63d4f8e24a3e15e88"
     static let MINIMUM_TEXT         : Int       = 5
     static let TIMES_REQUEST_REVIEW : Int       = 10
+    static let TIMES_REQUEST_PERMISSION: Int    = 10
     
     static var app_name: String?
     static var contact_email: String?
     static var contact_whatsapp: String?
     static var contact_instagram: String?
+    
+    static let settings_identifier : String = "app-netijen-curhat"
+    static var setting_list: [SettingItem] = []
 }
 
 struct RepoMemory {

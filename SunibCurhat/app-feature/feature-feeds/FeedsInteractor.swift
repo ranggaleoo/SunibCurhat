@@ -28,7 +28,7 @@ class FeedsInteractor: FeedsPresenterToInteractor {
         TimelineService.shared.likeTimeline(timeline_id: timelineID) { (result) in
             switch result {
             case .failure(let err):
-                print(err.localizedDescription)
+                debugLog(err.localizedDescription)
             case .success(let res):
                 if res.success {
                     self.presenter?.didLikeTimeline(id: timelineID)
@@ -41,7 +41,7 @@ class FeedsInteractor: FeedsPresenterToInteractor {
         TimelineService.shared.unlikeTimeline(timeline_id: timelineID) { (result) in
             switch result {
             case .failure(let err):
-                print(err.localizedDescription)
+                debugLog(err.localizedDescription)
             case .success(let res):
                 if res.success {
                     self.presenter?.didUnlikeTimeline(id: timelineID)
@@ -63,9 +63,9 @@ class FeedsInteractor: FeedsPresenterToInteractor {
         TimelineService.shared.deleteTimeline(timeline_id: timelineID) { (result) in
             switch result {
             case .failure(let err):
-                print(err.localizedDescription)
+                debugLog(err.localizedDescription)
             case .success(let res):
-                print(res)
+                debugLog(res)
             }
         }
     }

@@ -8,18 +8,21 @@
 
 import Foundation
 
-class HTTPRequest {
+class HTTPRequest: NSObject {
     static let shared: HTTPRequest = {
         return HTTPRequest()
     }()
     
+    var session: URLSession!
     let task = URLSession.shared
     var timeoutInterval: TimeInterval = 60
     var headers: [HTTPRequestHeader.key : String] = [:]
+    var method: HTTPRequestMethod?
     
     private func resetValueToDefault() {
         timeoutInterval = 60
         headers.removeAll()
+        method = nil
     }
     
     func connect<T:Decodable>( url: String, params: [String:Any]?, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
@@ -37,11 +40,15 @@ class HTTPRequest {
             }
         }
         
+        if let _method = self.method {
+            request.httpMethod = _method.rawValue
+        }
+        
         if let param = params {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: param, options:[])
             } catch let e {
-                print(e.localizedDescription)
+                debugLog(e.localizedDescription)
                 completion(.failure(e))
             }
         }
@@ -52,22 +59,24 @@ class HTTPRequest {
                     completion(.failure(error))
                     return
                 }
-                if let a = response as? HTTPURLResponse {
-                    print("status code: ", a.statusCode)
-                    if a.statusCode != 200 {
-                        let e = NSError(domain: "Status Code", code: a.statusCode, userInfo: nil)
-                        completion(.failure(e))
-                        return
-                    }
-                }
-                if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
-                    print(stringResponse)
+                if let responses = response as? HTTPURLResponse {
+                    debugLog("status code", responses.statusCode)
                     
-                    do {
-                        let responseModel = try JSONDecoder().decode(T.self, from: _data)
-                        completion(.success(responseModel))
-                    } catch let jsonError {
-                        completion(.failure(jsonError))
+                    if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
+                        debugLog(stringResponse)
+                        
+                        if responses.statusCode != 200 {
+                            let e = NSError(domain: "Status Code", code: responses.statusCode, userInfo: nil)
+                            completion(.failure(e))
+                            return
+                        }
+                        
+                        do {
+                            let responseModel = try JSONDecoder().decode(T.self, from: _data)
+                            completion(.success(responseModel))
+                        } catch let jsonError {
+                            completion(.failure(jsonError))
+                        }
                     }
                 }
             }

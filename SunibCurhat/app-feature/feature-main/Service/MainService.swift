@@ -13,6 +13,16 @@ class MainService {
     
     static let shared: MainService = MainService()
     
+    func getEndpoint(completion: @escaping (Result<MainResponse<EndpointResponse>, Error>) -> Void) {
+        let url = URLConst.server_core + "/project/router/"
+        var params: [String: Any] = [:]
+        params["service"] = "ENDPOINT_NETIJEN_CURHAT"
+        
+        HTTPRequest.shared.connect(url: url, params: params, model: MainResponse<EndpointResponse>.self) { (result) in
+            completion(result)
+        }
+    }
+    
     func getToken(completion: @escaping (Result<MainResponse<[String:String]>, Error>) -> Void) {
         let url = URLConst.api_url + "/getToken"
         HTTPRequest.shared.connect(url: url, params: nil, model: MainResponse<[String:String]>.self) { (result) in

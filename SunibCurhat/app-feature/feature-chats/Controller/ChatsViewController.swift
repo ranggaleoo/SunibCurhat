@@ -29,7 +29,7 @@ class ChatsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("---- ViewDidLoad Chats")
+        debugLog("---- ViewDidLoad Chats")
         delegates()
         setupListener()
         setupViews()
@@ -38,13 +38,13 @@ class ChatsViewController: UIViewController {
     @objc private func setupListener() {
         chatListener = chatsReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                debugLog("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
                 return
             }
             
             snapshot.query.whereField("users", arrayContains: RepoMemory.device_id).getDocuments(completion: { (s, e) in
                 guard let snapshot = s else {
-                    print(e?.localizedDescription ?? "error snapshot")
+                    debugLog(e?.localizedDescription ?? "error snapshot")
                     return
                 }
                 
@@ -84,7 +84,7 @@ class ChatsViewController: UIViewController {
         } else {
             chatsReference.addDocument(data: chat.representation) { error in
                 if let e = error {
-                    print("Error saving chat room: \(e.localizedDescription)")
+                    debugLog("Error saving chat room: \(e.localizedDescription)")
                     
                 } else {
                     let vc = ChatViewController(chat: chat)

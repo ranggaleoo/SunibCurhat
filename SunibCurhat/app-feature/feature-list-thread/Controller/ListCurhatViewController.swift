@@ -108,7 +108,7 @@ class ListCurhatViewController: UIViewController {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                         if success {
-                            print("----- open instagram")
+                            debugLog("----- open instagram")
                         }
                     })
                 }
@@ -119,7 +119,7 @@ class ListCurhatViewController: UIViewController {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                         if success {
-                            print("----- open whatsapp")
+                            debugLog("----- open whatsapp")
                         }
                     })
                 }
@@ -134,7 +134,7 @@ class ListCurhatViewController: UIViewController {
             if UIApplication.shared.canOpenURL(url_privacy) {
                 UIApplication.shared.open(url_privacy, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- open privacy policy")
+                        debugLog("----- open privacy policy")
                     }
                 })
             }
@@ -145,7 +145,7 @@ class ListCurhatViewController: UIViewController {
             if UIApplication.shared.canOpenURL(url_eula) {
                 UIApplication.shared.open(url_eula, options: [:], completionHandler: { (success) in
                     if success {
-                        print("----- user agreement")
+                        debugLog("----- user agreement")
                     }
                 })
             }
@@ -205,7 +205,7 @@ class ListCurhatViewController: UIViewController {
                 
                 } else {
                     self.getTimelineMore = false
-                    print(success.message)
+                    debugLog(success.message)
                 }
             }
         }
@@ -286,7 +286,7 @@ class ListCurhatViewController: UIViewController {
     
     @objc func deleteTimeline(timeline_id: Int, indexPath: IndexPath) {
 //        self.showLoaderIndicator()
-        print("----- delete", timeline_id)
+        debugLog("----- delete", timeline_id)
         self.timeline.remove(at: indexPath.row)
         self.tableViewCurhat.deleteRows(at: [indexPath], with: .left)
         TimelineService.shared.deleteTimeline(timeline_id: timeline_id, completion: { (result) in
@@ -302,7 +302,7 @@ class ListCurhatViewController: UIViewController {
                 if s.success {
                     //
                 } else {
-                    print(s.message);
+                    debugLog(s.message);
                 }
             }
         })
@@ -323,7 +323,7 @@ class ListCurhatViewController: UIViewController {
             }
             
         default:
-            print(segue.identifier ?? "segue", "not found")
+            debugLog(segue.identifier ?? "segue", "not found")
         }
     }
 }

@@ -19,7 +19,7 @@ extension UIImageView {
                 let data = data, error == nil,
                 let image = UIImage(data: data)
                 else {
-                    print(error?.localizedDescription ?? "failed get image")
+                    debugLog(error?.localizedDescription ?? "failed get image")
                     return
             }
             DispatchQueue.main.async() {
