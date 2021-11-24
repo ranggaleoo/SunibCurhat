@@ -31,5 +31,6 @@ class StartupAppDelegate: AppDelegateType {
 extension StartupAppDelegate {
     private func getInitial() -> UIViewController {
         SplashRouter.createSplashModule()
+//        ChatRouter.createChatModule()
     }
 }

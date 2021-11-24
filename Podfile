@@ -10,6 +10,7 @@ target 'SunibCurhat' do
   pod 'Crashlytics'
   pod 'Google-Mobile-Ads-SDK'
   pod 'MessageKit'
+  pod 'Kingfisher'
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
