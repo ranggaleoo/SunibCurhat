@@ -355,6 +355,7 @@ PODS:
     - InputBarAccessoryView/Core (= 4.3.3)
   - InputBarAccessoryView/Core (4.3.3)
   - IQKeyboardManagerSwift (6.5.6)
+  - Kingfisher (6.1.1)
   - LeoPopScreen (1.0.1)
   - leveldb-library (1.22)
   - MessageKit (3.1.0):
@@ -395,6 +396,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Google-Mobile-Ads-SDK
   - IQKeyboardManagerSwift
+  - Kingfisher
   - LeoPopScreen (~> 1.0.1)
   - MessageKit
   - RxCocoa
@@ -432,6 +434,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - InputBarAccessoryView
     - IQKeyboardManagerSwift
+    - Kingfisher
     - LeoPopScreen
     - leveldb-library
     - MessageKit
@@ -468,6 +471,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   InputBarAccessoryView: 8e7fc09e9cba75e0fee5da13450e15c194806f69
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Kingfisher: 676d63307fbef6ed5d5ed400bff36983480d7500
   LeoPopScreen: 56928138ace2397160d29bbdd17aac7e64ce1838
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MessageKit: 3beb578737a5aa2bba25cc27c7b6d6faa09af5a7
@@ -479,6 +483,6 @@ SPEC CHECKSUMS:
   Siren: 645909bdb55ace938ea73a85942acb5a88494284
   SPPermissions: 9fafa3125a66ec00e36a4c8e3ad8684f5499afbc
 
-PODFILE CHECKSUM: dd1d994aba97c7fdd5a57cd20d35fe29b8aeeb88
+PODFILE CHECKSUM: 431b76209a3886a6d522df62114a5c0560ded399
 
 COCOAPODS: 1.10.1

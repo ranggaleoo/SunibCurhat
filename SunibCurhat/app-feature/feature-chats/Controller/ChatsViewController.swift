@@ -78,7 +78,7 @@ class ChatsViewController: UIViewController {
         guard chatListener != nil else { return }
         
         if chats.contains(chat) {
-            let vc = ChatViewController(chat: chat)
+            let vc = ChatRouter.createChatModule(chat: chat)
             self.navigationController?.pushViewController(vc, animated: true)
         
         } else {
@@ -87,7 +87,7 @@ class ChatsViewController: UIViewController {
                     debugLog("Error saving chat room: \(e.localizedDescription)")
                     
                 } else {
-                    let vc = ChatViewController(chat: chat)
+                    let vc = ChatRouter.createChatModule(chat: chat)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }

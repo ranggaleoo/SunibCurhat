@@ -32,7 +32,7 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chat = chats[indexPath.row]
-        let vc = ChatViewController(chat: chat)
+        let vc = ChatRouter.createChatModule(chat: chat)
         navigationController?.pushViewController(vc, animated: true)
     }
     

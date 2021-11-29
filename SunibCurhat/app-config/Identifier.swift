@@ -24,6 +24,9 @@ public enum Identifier {
         // MARK: - IMAGE ASSETS
         case image_super_thankyou
         case image_logo
+        
+        // MARK: - BUTTON
+        case btn_camera
     }
     
     public enum imageSymbolName: String {

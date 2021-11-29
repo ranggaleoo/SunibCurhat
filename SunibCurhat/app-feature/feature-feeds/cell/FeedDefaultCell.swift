@@ -98,6 +98,7 @@ class FeedDefaultCell: UITableViewCell {
         lbl_textcontent.changeFontSize(size: 14)
         lbl_like_counter.changeFontSize(size: 12)
         lbl_comment_counter.changeFontSize(size: 12)
+        lbl_textcontent.changeParagraphLineSpacing(size: 5)
         
         if let likes = timeline?.total_likes, likes > 0 {
             lbl_like_counter.text = "\(likes)"
