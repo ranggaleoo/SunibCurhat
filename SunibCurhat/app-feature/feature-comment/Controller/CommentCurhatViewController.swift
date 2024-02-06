@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class CommentCurhatViewController: UIViewController {
     @IBOutlet weak var tableViewComment: UITableView!
@@ -17,7 +17,7 @@ class CommentCurhatViewController: UIViewController {
     @IBOutlet weak var lbl_text_content: UILabel!
     @IBOutlet weak var lbl_time: UILabel!
     @IBOutlet weak var txt_comment: UITextView!
-    @IBOutlet weak var bannerView: GADBannerView!
+//    @IBOutlet weak var bannerView: GADBannerView!
     
     private lazy var refreshControl: UIRefreshControl = {
         let r = UIRefreshControl()
@@ -55,7 +55,7 @@ class CommentCurhatViewController: UIViewController {
     
     private func configAdUI() {
         if UDHelpers.shared.getBool(key: .isFreeAds) {
-            bannerView.isHidden = true
+//            bannerView.isHidden = true
         }
 //        bannerView.isHidden = true
         MainService.shared.getAdBannerUnitID { (result) in
@@ -65,10 +65,10 @@ class CommentCurhatViewController: UIViewController {
             case .success(let s):
                 if s.success {
                     if let ad_unit_id = s.data {
-                        self.bannerView.delegate = self
-                        self.bannerView.adUnitID = ad_unit_id
-                        self.bannerView.rootViewController = self
-                        self.bannerView.load(GADRequest())
+//                        self.bannerView.delegate = self
+//                        self.bannerView.adUnitID = ad_unit_id
+//                        self.bannerView.rootViewController = self
+//                        self.bannerView.load(GADRequest())
                     }
                 }
             }
@@ -334,30 +334,30 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
     
 }
 
-extension CommentCurhatViewController: GADBannerViewDelegate {
-    // request lifecycle
-    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        debugLog(#function)
-    }
-    
-    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    //click-time lifecycle
-    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-}
+//extension CommentCurhatViewController: GADBannerViewDelegate {
+//    // request lifecycle
+//    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    //click-time lifecycle
+//    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//}

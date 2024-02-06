@@ -8,8 +8,7 @@
 
 import UIKit
 import MapKit
-import Crashlytics
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class CoronaController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -19,7 +18,7 @@ class CoronaController: UIViewController {
     @IBOutlet weak var card_positif: UINCCardCorona!
     @IBOutlet weak var card_sembuh: UINCCardCorona!
     @IBOutlet weak var card_meninggal: UINCCardCorona!
-    @IBOutlet weak var bannerView: GADBannerView!
+//    @IBOutlet weak var bannerView: GADBannerView!
     
     private lazy var refreshControl: UIRefreshControl = {
         let r = UIRefreshControl()
@@ -123,7 +122,8 @@ class CoronaController: UIViewController {
                     self.map_view.addAnnotation(annotation)
                 }
             case .failure(let e):
-                Crashlytics.sharedInstance().recordError(e)
+//                Crashlytics.sharedInstance().recordError(e)
+                break
             }
         }
         
@@ -138,7 +138,8 @@ class CoronaController: UIViewController {
                 self.tableView.reloadData()
                 
             case .failure(let e):
-                Crashlytics.sharedInstance().recordError(e)
+//                Crashlytics.sharedInstance().recordError(e)
+                break
             }
         }
         
@@ -154,13 +155,14 @@ class CoronaController: UIViewController {
                 self.card_meninggal.body_text  = "Deaths"
                 
             case .failure(let e):
-                Crashlytics.sharedInstance().recordError(e)
+//                Crashlytics.sharedInstance().recordError(e)
+                break
             }
         }
     }
     
     private func configAdUI() {
-        bannerView.isHidden = true
+//        bannerView.isHidden = true
         MainService.shared.getAdBannerUnitID { (result) in
             switch result {
             case .failure(let e):
@@ -168,10 +170,10 @@ class CoronaController: UIViewController {
             case .success(let s):
                 if s.success {
                     if let ad_unit_id = s.data {
-                        self.bannerView.delegate = self
-                        self.bannerView.adUnitID = ad_unit_id
-                        self.bannerView.rootViewController = self
-                        self.bannerView.load(GADRequest())
+//                        self.bannerView.delegate = self
+//                        self.bannerView.adUnitID = ad_unit_id
+//                        self.bannerView.rootViewController = self
+//                        self.bannerView.load(GADRequest())
                     }
                 }
             }

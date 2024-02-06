@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
 class ChatsViewController: UIViewController {
     
@@ -20,12 +18,7 @@ class ChatsViewController: UIViewController {
         return r
     }()
     
-    private let db = Firestore.firestore()
-    var chatsReference: CollectionReference {
-        return db.collection("Chats")
-    }
     var chats: [Chat] = []
-    private var chatListener: ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,24 +29,7 @@ class ChatsViewController: UIViewController {
     }
     
     @objc private func setupListener() {
-        chatListener = chatsReference.addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                debugLog("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-            
-            snapshot.query.whereField("users", arrayContains: RepoMemory.device_id).getDocuments(completion: { (s, e) in
-                guard let snapshot = s else {
-                    debugLog(e?.localizedDescription ?? "error snapshot")
-                    return
-                }
-                
-                snapshot.documentChanges.forEach({ (change) in
-                    self.handleDocumentChange(change)
-                    self.refreshControl.endRefreshing()
-                })
-            })
-        }
+        
     }
     
     private func delegates() {
@@ -74,27 +50,9 @@ class ChatsViewController: UIViewController {
     }
     
     func createChatRoom(chat_id: String, name: String, users: [String]) {
-        let chat = Chat(name: name, chat_id: chat_id, users: users)
-        guard chatListener != nil else { return }
         
-        if chats.contains(chat) {
-            let vc = ChatRouter.createChatModule(chat: chat)
-            self.navigationController?.pushViewController(vc, animated: true)
-        
-        } else {
-            chatsReference.addDocument(data: chat.representation) { error in
-                if let e = error {
-                    debugLog("Error saving chat room: \(e.localizedDescription)")
-                    
-                } else {
-                    let vc = ChatRouter.createChatModule(chat: chat)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-        }
     }
     
     deinit {
-        chatListener?.remove()
     }
 }

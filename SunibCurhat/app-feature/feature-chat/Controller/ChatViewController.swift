@@ -7,25 +7,17 @@
 //
 
 import UIKit
-import Firebase
 import MessageKit
-import FirebaseFirestore
 import InputBarAccessoryView
 
 final class ChatViewController: MessagesViewController {
     
-    private let db = Firestore.firestore()
-    private var reference: CollectionReference?
-    private let storage = Storage.storage().reference()
-    
     var messages: [Message] = []
-    private var messageListener: ListenerRegistration?
     private let chat: Chat
     
     var isSendingImage: Bool = false
     var token_fcm_target: String?
     deinit {
-        messageListener?.remove()
     }
     
     init(chat: Chat) {
@@ -46,29 +38,7 @@ final class ChatViewController: MessagesViewController {
     
     // MARK: - Setups
     private func setupListener() {
-        guard let id = chat.id else {
-            navigationController?.popViewController(animated: true)
-            return
-        }
-        reference = db.collection(["Chats", id, "thread"].joined(separator: "/"))
         
-        messageListener = reference?.addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                debugLog("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-            
-            snapshot.query.limit(to: 50).getDocuments(completion: { (querySnap, error) in
-                guard let s = querySnap else {
-                    debugLog("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                    return
-                }
-                
-                s.documentChanges.forEach { change in
-                    self.handleDocumentChange(change)
-                }
-            })
-        }
     }
     
     private func delegates() {
@@ -147,26 +117,7 @@ final class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     func save(_ message: Message) {
-        reference?.addDocument(data: message.representation) { [weak self] error in
-            if let e = error {
-                debugLog("Error sending message: \(e.localizedDescription)")
-                return
-            }
-            
-            self?.messagesCollectionView.scrollToBottom()
-            if
-                let token_fcm_targetted = self?.token_fcm_target,
-                let chat_name = self?.chat.name {
-                MainService.shared.sendNotif(title: chat_name, text: message.text_message, fcmToken: token_fcm_targetted, completion: { (result) in
-                    switch result {
-                    case .failure(let e):
-                        debugLog(e.localizedDescription)
-                    case .success(let s):
-                        debugLog(s)
-                    }
-                })
-            }
-        }
+        
     }
     
     private func insertNewMessage(_ message: Message) {
@@ -184,83 +135,13 @@ final class ChatViewController: MessagesViewController {
         
         if shouldScrollToBottom {
             DispatchQueue.main.async {
-                self.messagesCollectionView.scrollToBottom(animated: true)
+                self.messagesCollectionView.scrollToLastItem(animated: true)
             }
-        }
-    }
-    
-    private func handleDocumentChange(_ change: DocumentChange) {
-        guard var message = Message(document: change.document) else {
-            return
-        }
-        
-        switch change.type {
-        case .added:
-            if let url = message.url_image {
-                downloadImage(at: url) { [weak self] image in
-                    guard let `self` = self else {
-                        return
-                    }
-                    guard let image = image else {
-                        return
-                    }
-                    
-                    message.image = image
-                    self.insertNewMessage(message)
-                }
-            } else {
-                insertNewMessage(message)
-            }
-            
-        default:
-            break
-        }
-        
-        let device_id = message.sender.senderId
-        if device_id != RepoMemory.device_id {
-            token_fcm_target = message.token_fcm ?? "token"
         }
     }
     
     private func uploadImage(_ image: UIImage, to chat: Chat, completion: @escaping (URL?) -> Void) {
-        guard let id = chat.id else {
-            completion(nil)
-            return
-        }
         
-        guard let scaledImage = image.scaledToSafeUploadSize, let data = scaledImage.jpegData(compressionQuality: 0.5) else {
-            completion(nil)
-            return
-        }
-        
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
-        
-        let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
-        let storageRef = storage.child(id).child(imageName)
-        
-        guard self.isSendingImage else { return }
-            
-        storageRef.putData(data, metadata: metadata) { meta, error in
-            if let m = meta {
-                debugLog(m)
-            }
-            
-            if let e = error {
-                debugLog(e.localizedDescription)
-            }
-            
-            storageRef.downloadURL(completion: { (url, e) in
-                if let u = url {
-                    completion(u)
-                    self.isSendingImage = false
-                }
-                
-                if let error = e {
-                    debugLog(error.localizedDescription)
-                }
-            })
-        }
     }
     
     func sendPhoto(_ image: UIImage) {
@@ -280,22 +161,12 @@ final class ChatViewController: MessagesViewController {
             message.url_image = url_image
             
             self.save(message)
-            self.messagesCollectionView.scrollToBottom()
+            self.messagesCollectionView.scrollToLastItem(animated: true)
         }
     }
     
     private func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
-        let ref = Storage.storage().reference(forURL: url.absoluteString)
-        let megaByte = Int64(1 * 1024 * 1024)
         
-        ref.getData(maxSize: megaByte) { data, error in
-            guard let imageData = data else {
-                completion(nil)
-                return
-            }
-            
-            completion(UIImage(data: imageData))
-        }
     }
     
 }

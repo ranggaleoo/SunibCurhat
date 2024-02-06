@@ -8,11 +8,11 @@
 
 import Foundation
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class AddThreadViewController: UIViewController {
     @IBOutlet weak var txt_post: UITextView!
-    @IBOutlet weak var bannerView: GADBannerView!
+//    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var btn_post: UIButton!
     @IBOutlet weak var btn_check: UIButton!
     @IBOutlet weak var lbl_eula: UILabel!
@@ -74,7 +74,7 @@ class AddThreadViewController: UIViewController {
     
     private func configAdUI() {
         if UDHelpers.shared.getBool(key: .isFreeAds) {
-            bannerView.isHidden = true
+//            bannerView.isHidden = true
         }
 //        bannerView.isHidden = true
         MainService.shared.getAdBannerUnitID { (result) in
@@ -84,10 +84,10 @@ class AddThreadViewController: UIViewController {
             case .success(let s):
                 if s.success {
                     if let ad_unit_id = s.data {
-                        self.bannerView.delegate = self
-                        self.bannerView.adUnitID = ad_unit_id
-                        self.bannerView.rootViewController = self
-                        self.bannerView.load(GADRequest())
+//                        self.bannerView.delegate = self
+//                        self.bannerView.adUnitID = ad_unit_id
+//                        self.bannerView.rootViewController = self
+//                        self.bannerView.load(GADRequest())
                     }
                 }
             }
@@ -202,30 +202,30 @@ extension AddThreadViewController: UITextViewDelegate {
     }
 }
 
-extension AddThreadViewController: GADBannerViewDelegate {
-    // request lifecycle
-    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        debugLog(#function)
-    }
-    
-    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    //click-time lifecycle
-    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-}
+//extension AddThreadViewController: GADBannerViewDelegate {
+//    // request lifecycle
+//    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    //click-time lifecycle
+//    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//}

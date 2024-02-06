@@ -6,9 +6,7 @@
 //  Copyright © 2019 Rangga Leo. All rights reserved.
 //
 
-import Firebase
 import MessageKit
-import FirebaseFirestore
 
 extension UIImage: MediaItem {
     public var url: URL? { return nil }
@@ -56,42 +54,7 @@ struct Message: MessageType {
         self.sender         = Sender(senderId: RepoMemory.device_id, displayName: RepoMemory.user_name ?? "user_name")
         self.sentDate       = Date()
         self.token_fcm      = pushIsOn ? RepoMemory.token_notif : nil
-    }
-    
-    init?(document: QueryDocumentSnapshot) {
-        let data = document.data()
-        
-        guard let sentDate = data["date_create"] as? Timestamp else {
-            return nil
-        }
-        guard let senderID = data["sender_id"] as? String else {
-            return nil
-        }
-        guard let senderName = data["sender_name"] as? String else {
-            return nil
-        }
-        guard let token_fcm = data["token_fcm"] as? String else {
-            return nil
-        }
-        
-        self.id         = document.documentID
-        self.sentDate   = sentDate.dateValue()
-        self.sender     = Sender(senderId: senderID, displayName: senderName)
-        self.token_fcm  = token_fcm
-        
-        if let text = data["text_message"] as? String {
-            self.text_message   = text
-            self.url_image      = nil
-        
-        } else if let urlString = data["url_image"] as? String, let url_image = URL(string: urlString) {
-            self.url_image      = url_image
-            self.text_message   = ""
-        
-        } else {
-            return nil
-        }
-    }
-    
+    }    
 }
 
 extension Message: DatabaseRepresentation {

@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import LeoPopScreen
 import SPPermissions
 import MessageUI
 
@@ -109,7 +108,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         debugLog("time permission", timesPermission)
         
         if timesPermission == ConstGlobal.TIMES_REQUEST_PERMISSION || timesPermission == 0 {
-            SPPermission.Dialog.requestIfNeeded(with: [.notification, .camera, .photoLibrary], on: self, delegate: self, dataSource: self)
+            SPPermissions.dialog([.notification, .camera, .photoLibrary]).show(self, sender: self)
             UDHelpers.shared.set(value: 1, key: .counterRequestPermission)
         
         } else {
@@ -323,7 +322,6 @@ extension FeedsView: LeoStoreKitDelegate {
         self.product = store.get(product: .removeads)
         DispatchQueue.main.async {
             self.dismissLoaderIndicator()
-            _ = LeoPopScreen(on: self, delegate: self, dataSource: self)
         }
     }
     
@@ -356,66 +354,22 @@ extension FeedsView: LeoStoreKitDelegate {
     }
 }
 
-extension FeedsView: LeoPopScreenDelegate {
-    func didTapPrimaryButton(view: LeoPopScreen) {
-        storeKit.buy(identifier: product?.id ?? .example)
-    }
-    
-    func didTapSecondaryButton(view: LeoPopScreen) {
-        view.dismiss(animated: true, completion: nil)
-    }
-    
-    func didCancel(view: LeoPopScreen) {
-        view.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension FeedsView: LeoPopScreenDataSource {
-    var image: UIImage? {
-        return UIImage(identifierName: .image_super_thankyou)
-    }
-    
-    var titleText: String? {
-        return product?.title
-    }
-    
-    var bodyText: String? {
-        return product?.desc
-    }
-    
-    var buttonPrimaryText: String? {
-        return "Remove for " + (product?.currencySymbol ?? "") + (String(describing: product?.price ?? 0.00))
-    }
-    
-    var buttonSecondaryText: String? {
-        return "Cancel"
-    }
-    
-    var presentationStyle: UIModalPresentationStyle {
-        return .popover
-    }
-    
-    var buttonPrimaryColor: UIColor {
-        return UIColor.custom.blue
-    }
-}
-
-extension FeedsView: SPPermissionDialogDelegate {}
-
-extension FeedsView: SPPermissionDialogDataSource {
-    func description(for permission: SPPermissionType) -> String? {
-        switch permission {
-        case .camera            : return UIApplication.shared.infoPlist(key: .NSCameraUsageDescription)
-        case .photoLibrary      : return UIApplication.shared.infoPlist(key: .NSPhotoLibraryUsageDescription)
-//        case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
-        default: return "Need Allow for use this Application"
-        }
-    }
-    
-    var showCloseButton: Bool {
-        true
-    }
-}
+//extension FeedsView: SPPermissionDialogDelegate {}
+//
+//extension FeedsView: SPPermissionDialogDataSource {
+//    func description(for permission: SPPermissionType) -> String? {
+//        switch permission {
+//        case .camera            : return UIApplication.shared.infoPlist(key: .NSCameraUsageDescription)
+//        case .photoLibrary      : return UIApplication.shared.infoPlist(key: .NSPhotoLibraryUsageDescription)
+////        case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
+//        default: return "Need Allow for use this Application"
+//        }
+//    }
+//    
+//    var showCloseButton: Bool {
+//        true
+//    }
+//}
 
 extension FeedsView: MFMailComposeViewControllerDelegate {
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

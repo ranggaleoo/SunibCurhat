@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import GoogleMobileAds
+//import GoogleMobileAds
 
-extension CoronaController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        bannerView.isHidden = false
-        print_r(title: "ADMOB RECEIVE", message: nil)
-    }
-}
+//extension CoronaController: GADBannerViewDelegate {
+//    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+//        bannerView.isHidden = false
+//        print_r(title: "ADMOB RECEIVE", message: nil)
+//    }
+//}

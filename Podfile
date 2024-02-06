@@ -6,7 +6,6 @@ target 'SunibCurhat' do
   use_frameworks!
 
   # Pods for SunibCurhat
-  pod 'Google-Mobile-Ads-SDK'
   pod 'MessageKit'
   pod 'Kingfisher'
   pod 'Siren'

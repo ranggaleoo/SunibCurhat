@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Firebase
 
 class NotificationAppDelegate: AppDelegateType {
     var gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        Messaging.messaging().delegate = self
+//        Messaging.messaging().delegate = self
         requestPermissionNotification(application: application)
         application.registerForRemoteNotifications()
         return true
@@ -48,17 +47,17 @@ extension NotificationAppDelegate {
         }
     }
 }
-
-extension NotificationAppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        RepoMemory.token_notif = fcmToken
-        
-        debugLog("Firebase registration token: \(fcmToken ?? "")")
-        
-        let dataDict:[String: String] = ["token": fcmToken ?? ""]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-    }
-}
+//
+//extension NotificationAppDelegate: MessagingDelegate {
+//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+//        RepoMemory.token_notif = fcmToken
+//        
+//        debugLog("Firebase registration token: \(fcmToken ?? "")")
+//        
+//        let dataDict:[String: String] = ["token": fcmToken ?? ""]
+//        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+//    }
+//}
 
 extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
     

@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import GoogleMobileAds
-import Firebase
+//import GoogleMobileAds
 import IQKeyboardManagerSwift
 import Siren
 import StoreKit
@@ -16,11 +15,9 @@ import StoreKit
 class ThirdPartyAppDelegate: AppDelegateType {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        FirebaseApp.configure()
-        Fabric.sharedSDK().debug = true
         IQKeyboardManager.shared.enable = true
         checkVersionSiren()
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+//        GADMobileAds.sharedInstance().start(completionHandler: nil)
         requestReviewAppStore()
         return true
     }

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Firebase
 
 struct ConstGlobal {
     static let SERVER_KEY_FCM       : String    = "AIzaSyCwS8paxxv_b1CLEJwnuUi6rCM2_3XJr18"

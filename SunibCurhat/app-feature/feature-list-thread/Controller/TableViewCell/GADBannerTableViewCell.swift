@@ -8,11 +8,11 @@
 
 import Foundation
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class GADBannerTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var bannerView: GADBannerView!
+//    @IBOutlet weak var bannerView: GADBannerView!
     var root: UIViewController!
     
     var timeline: TimelineItems? {
@@ -28,40 +28,40 @@ class GADBannerTableViewCell: UITableViewCell {
     
     private func updateUI() {
         DispatchQueue.main.async {
-            self.bannerView.isHidden = true
-            self.bannerView.delegate = self
-            self.bannerView.adUnitID = self.timeline?.ad_unit_id
-            self.bannerView.rootViewController = self.root
-            self.bannerView.load(GADRequest())
+//            self.bannerView.isHidden = true
+//            self.bannerView.delegate = self
+//            self.bannerView.adUnitID = self.timeline?.ad_unit_id
+//            self.bannerView.rootViewController = self.root
+//            self.bannerView.load(GADRequest())
         }
     }
 }
 
-extension GADBannerTableViewCell: GADBannerViewDelegate {
-    // request lifecycle
-    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        bannerView.isHidden = false
-        debugLog(#function)
-    }
-    
-    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        debugLog(#function)
-    }
-    
-    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    //click-time lifecycle
-    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-    
-    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
-        debugLog(#function)
-    }
-}
+//extension GADBannerTableViewCell: GADBannerViewDelegate {
+//    // request lifecycle
+//    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+//        bannerView.isHidden = false
+//        debugLog(#function)
+//    }
+//    
+//    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    //click-time lifecycle
+//    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//    
+//    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+//        debugLog(#function)
+//    }
+//}

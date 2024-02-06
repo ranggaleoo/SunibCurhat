@@ -9,15 +9,15 @@
 import Foundation
 import SPPermissions
 
-extension ListCurhatViewController: SPPermissionDialogDelegate {}
-
-extension ListCurhatViewController: SPPermissionDialogDataSource {
-    func description(for permission: SPPermissionType) -> String? {
-        switch permission {
-        case .camera            : return UIApplication.shared.infoPlist(key: .NSCameraUsageDescription)
-        case .photoLibrary      : return UIApplication.shared.infoPlist(key: .NSPhotoLibraryUsageDescription)
-        case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
-        default: return "Need Allow for use this Application"
-        }
-    }
-}
+//extension ListCurhatViewController: SPPermissionDialogDelegate {}
+//
+//extension ListCurhatViewController: SPPermissionDialogDataSource {
+//    func description(for permission: SPPermissionType) -> String? {
+//        switch permission {
+//        case .camera            : return UIApplication.shared.infoPlist(key: .NSCameraUsageDescription)
+//        case .photoLibrary      : return UIApplication.shared.infoPlist(key: .NSPhotoLibraryUsageDescription)
+//        case .contacts          : return UIApplication.shared.infoPlist(key: .NSContactsUsageDescription)
+//        default: return "Need Allow for use this Application"
+//        }
+//    }
+//}

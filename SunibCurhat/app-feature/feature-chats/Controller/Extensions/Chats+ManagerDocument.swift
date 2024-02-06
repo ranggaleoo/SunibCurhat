@@ -8,24 +8,8 @@
 
 import Foundation
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
-extension ChatsViewController {
-    func handleDocumentChange(_ change: DocumentChange) {
-        guard let chat = Chat(document: change.document) else {
-            return
-        }
-        switch change.type {
-        case .added:
-            addChannelToTable(chat)
-        case .modified:
-            updateChannelInTable(chat)
-        case .removed:
-            removeChannelFromTable(chat)
-        }
-    }
-    
+extension ChatsViewController {    
     private func addChannelToTable(_ chat: Chat) {
         guard !chats.contains(chat) else {
             return
