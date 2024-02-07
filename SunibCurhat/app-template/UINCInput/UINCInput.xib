@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UINCInput" customModule="SunibCurhat" customModuleProvider="target">
+            <connections>
+                <outlet property="lbl_field" destination="f8h-ke-65G" id="8Ph-lI-b4f"/>
+                <outlet property="lbl_status_field" destination="Ax3-30-TcH" id="PBB-Gw-T9B"/>
+                <outlet property="stack_container" destination="soB-g3-HS1" id="MMM-ra-2lm"/>
+                <outlet property="txt_field" destination="hC5-JT-ePq" id="qeg-Ck-VXN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="9YM-Er-zJp">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="soB-g3-HS1">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="109"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8h-ke-65G" customClass="UINCLabelTitle" customModule="SunibCurhat" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="Q77-SX-f2Q"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hC5-JT-ePq">
+                            <rect key="frame" x="0.0" y="34" width="393" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="fQg-0w-JyZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax3-30-TcH" customClass="UINCLabelNote" customModule="SunibCurhat" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="96" width="393" height="13"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="soB-g3-HS1" firstAttribute="leading" secondItem="9YM-Er-zJp" secondAttribute="leading" id="3Bx-q7-FC6"/>
+                <constraint firstItem="soB-g3-HS1" firstAttribute="top" secondItem="9YM-Er-zJp" secondAttribute="top" id="Ilh-TR-gV6"/>
+                <constraint firstAttribute="bottom" secondItem="soB-g3-HS1" secondAttribute="bottom" id="npt-VU-4UY"/>
+                <constraint firstAttribute="trailing" secondItem="soB-g3-HS1" secondAttribute="trailing" id="wc6-DP-0ir"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-402.29007633587787" y="-100.35211267605634"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

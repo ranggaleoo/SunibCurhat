@@ -13,6 +13,30 @@ class MainService {
     
     static let shared: MainService = MainService()
     
+    func getUser(completion: @escaping (Result<MainResponse<User>, Error>) -> Void) {
+        let base_url = URLConst.server + URLConst.path_v1
+        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let auth = "Bearer \(access_token)"
+        HTTPRequest.shared.headers[.authorization] = auth
+        HTTPRequest.shared.connect(url: base_url + "/user/me/", params: nil, model: MainResponse<User>.self) { (result) in
+            completion(result)
+        }
+    }
+    
+    func getPreferences(completion: @escaping (Result<MainResponse<Preferences>, Error>) -> Void) {
+        let base_url = URLConst.server + URLConst.path_v1
+        HTTPRequest.shared.connect(url: base_url + "/preferences/", params: nil, model: MainResponse<Preferences>.self) { (result) in
+            completion(result)
+        }
+    }
+    
+    func refreshToken(completion: @escaping (Result<MainResponse<RefreshTokenData>, Error>) -> Void) {
+        let base_url = URLConst.server + URLConst.path_v1
+        HTTPRequest.shared.connect(url: base_url + "/auth/refresh/", params: nil, model: MainResponse<RefreshTokenData>.self) { (result) in
+            completion(result)
+        }
+    }
+    
     func getEndpoint(completion: @escaping (Result<MainResponse<EndpointResponse>, Error>) -> Void) {
         let url = URLConst.server_core + "/project/router/"
         var params: [String: Any] = [:]

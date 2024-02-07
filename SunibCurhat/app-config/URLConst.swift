@@ -23,7 +23,10 @@ struct URLConst {
     static var server               = ""
     static let api_path             = "/id/apisunibcurhat"
     
+    static let path_v1              = "/api/v1"
+    
     // API_URL
+    static let base_api_url         = server + path_v1
     static let api_url              = server + api_path
     static let api_url_sb           = server_sb + api_path_sb
     static let fcm_url              = "https://fcm.googleapis.com/fcm/send"

@@ -108,6 +108,21 @@
 		AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */; };
 		AA8868822336617E0086F538 /* Timeline+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8868812336617E0086F538 /* Timeline+TableView.swift */; };
 		AA886884233661BD0086F538 /* Timeline+Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA886883233661BD0086F538 /* Timeline+Email.swift */; };
+		AAA8D1132B724561007C579B /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D10D2B724561007C579B /* LoginPresenter.swift */; };
+		AAA8D1142B724561007C579B /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D10E2B724561007C579B /* LoginRouter.swift */; };
+		AAA8D1152B724561007C579B /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D10F2B724561007C579B /* LoginProtocols.swift */; };
+		AAA8D1162B724561007C579B /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D1102B724561007C579B /* LoginInteractor.swift */; };
+		AAA8D1172B724561007C579B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D1112B724561007C579B /* LoginView.swift */; };
+		AAA8D1182B724561007C579B /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAA8D1122B724561007C579B /* LoginView.xib */; };
+		AAA8D11B2B72B756007C579B /* UINCInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D11A2B72B756007C579B /* UINCInput.swift */; };
+		AAA8D11D2B72BD4A007C579B /* UINCInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAA8D11C2B72BD4A007C579B /* UINCInput.xib */; };
+		AAA8D11F2B72C1EB007C579B /* UINCButtonSecondaryRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D11E2B72C1EB007C579B /* UINCButtonSecondaryRounded.swift */; };
+		AAA8D1272B739456007C579B /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D1212B739456007C579B /* RegisterPresenter.swift */; };
+		AAA8D1282B739456007C579B /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D1222B739456007C579B /* RegisterRouter.swift */; };
+		AAA8D1292B739456007C579B /* RegisterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D1232B739456007C579B /* RegisterProtocols.swift */; };
+		AAA8D12A2B739456007C579B /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D1242B739456007C579B /* RegisterInteractor.swift */; };
+		AAA8D12B2B739456007C579B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D1252B739456007C579B /* RegisterView.swift */; };
+		AAA8D12C2B739456007C579B /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAA8D1262B739456007C579B /* RegisterView.xib */; };
 		AABF394A23077BF800DEAA63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394923077BF800DEAA63 /* HTTPRequest.swift */; };
 		AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394B23077ED900DEAA63 /* URLConst.swift */; };
 		AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABF394E23077F6E00DEAA63 /* TimelineService.swift */; };
@@ -285,6 +300,21 @@
 		AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerTableViewCell.swift; sourceTree = "<group>"; };
 		AA8868812336617E0086F538 /* Timeline+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timeline+TableView.swift"; sourceTree = "<group>"; };
 		AA886883233661BD0086F538 /* Timeline+Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timeline+Email.swift"; sourceTree = "<group>"; };
+		AAA8D10D2B724561007C579B /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		AAA8D10E2B724561007C579B /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		AAA8D10F2B724561007C579B /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
+		AAA8D1102B724561007C579B /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		AAA8D1112B724561007C579B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AAA8D1122B724561007C579B /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		AAA8D11A2B72B756007C579B /* UINCInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCInput.swift; sourceTree = "<group>"; };
+		AAA8D11C2B72BD4A007C579B /* UINCInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UINCInput.xib; sourceTree = "<group>"; };
+		AAA8D11E2B72C1EB007C579B /* UINCButtonSecondaryRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCButtonSecondaryRounded.swift; sourceTree = "<group>"; };
+		AAA8D1212B739456007C579B /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
+		AAA8D1222B739456007C579B /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		AAA8D1232B739456007C579B /* RegisterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocols.swift; sourceTree = "<group>"; };
+		AAA8D1242B739456007C579B /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
+		AAA8D1252B739456007C579B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		AAA8D1262B739456007C579B /* RegisterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterView.xib; sourceTree = "<group>"; };
 		AABF394923077BF800DEAA63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		AABF394B23077ED900DEAA63 /* URLConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConst.swift; sourceTree = "<group>"; };
 		AABF394E23077F6E00DEAA63 /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
@@ -770,6 +800,7 @@
 		AA46E2E4245C54D600735490 /* app-template */ = {
 			isa = PBXGroup;
 			children = (
+				AAA8D1192B72B718007C579B /* UINCInput */,
 				AA2BF04725EDB32600E037AE /* UINCColor */,
 				AA2BF04325EDB25400E037AE /* UIINCSwitch */,
 				AAE102A425EB79A40001F026 /* UINCLoader */,
@@ -785,6 +816,7 @@
 			isa = PBXGroup;
 			children = (
 				AA46E2E6245C551A00735490 /* UINCButtonPrimaryRounded.swift */,
+				AAA8D11E2B72C1EB007C579B /* UINCButtonSecondaryRounded.swift */,
 			);
 			path = UINCButton;
 			sourceTree = "<group>";
@@ -914,6 +946,8 @@
 		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
+				AAA8D1202B73943E007C579B /* feature-register */,
+				AAA8D10C2B724540007C579B /* feature-login */,
 				AA2BF02E25EDB0FE00E037AE /* feature-settings */,
 				AAE1029625EB6A2D0001F026 /* feature-splash */,
 				AACDFE6D2570E2D800485828 /* feature-feeds */,
@@ -1042,6 +1076,41 @@
 				AA46E2F2245D2EEA00735490 /* Timeline+Permission.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AAA8D10C2B724540007C579B /* feature-login */ = {
+			isa = PBXGroup;
+			children = (
+				AAA8D10D2B724561007C579B /* LoginPresenter.swift */,
+				AAA8D10E2B724561007C579B /* LoginRouter.swift */,
+				AAA8D10F2B724561007C579B /* LoginProtocols.swift */,
+				AAA8D1102B724561007C579B /* LoginInteractor.swift */,
+				AAA8D1112B724561007C579B /* LoginView.swift */,
+				AAA8D1122B724561007C579B /* LoginView.xib */,
+			);
+			path = "feature-login";
+			sourceTree = "<group>";
+		};
+		AAA8D1192B72B718007C579B /* UINCInput */ = {
+			isa = PBXGroup;
+			children = (
+				AAA8D11A2B72B756007C579B /* UINCInput.swift */,
+				AAA8D11C2B72BD4A007C579B /* UINCInput.xib */,
+			);
+			path = UINCInput;
+			sourceTree = "<group>";
+		};
+		AAA8D1202B73943E007C579B /* feature-register */ = {
+			isa = PBXGroup;
+			children = (
+				AAA8D1212B739456007C579B /* RegisterPresenter.swift */,
+				AAA8D1222B739456007C579B /* RegisterRouter.swift */,
+				AAA8D1232B739456007C579B /* RegisterProtocols.swift */,
+				AAA8D1242B739456007C579B /* RegisterInteractor.swift */,
+				AAA8D1252B739456007C579B /* RegisterView.swift */,
+				AAA8D1262B739456007C579B /* RegisterView.xib */,
+			);
+			path = "feature-register";
 			sourceTree = "<group>";
 		};
 		AABF394823077BE000DEAA63 /* HTTPRequest */ = {
@@ -1433,6 +1502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACDFE792570E42200485828 /* FeedsView.xib in Resources */,
+				AAA8D12C2B739456007C579B /* RegisterView.xib in Resources */,
 				AAE102A225EB6A4D0001F026 /* SplashView.xib in Resources */,
 				AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */,
 				AAD0E38D22F70FBD005CC55A /* Countries.bundle in Resources */,
@@ -1446,9 +1516,11 @@
 				AA46E2F1245C752F00735490 /* Corona.storyboard in Resources */,
 				AA75AD492347C8AC00C8F739 /* Premium.storyboard in Resources */,
 				AA478D8422F649A400BC23A7 /* Assets.xcassets in Resources */,
+				AAA8D1182B724561007C579B /* LoginView.xib in Resources */,
 				8B0643E1260635CA009B129C /* ChatView.xib in Resources */,
 				AA46E2E3245C52C000735490 /* UpdateApp.storyboard in Resources */,
 				AACDFE7D2570E51100485828 /* FeedDefaultCell.xib in Resources */,
+				AAA8D11D2B72BD4A007C579B /* UINCInput.xib in Resources */,
 				AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */,
 				1621AD2B23445749008F15D8 /* Payment.storyboard in Resources */,
 				AA2BF03E25EDB21000E037AE /* SettingsSwitchCell.xib in Resources */,
@@ -1520,6 +1592,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA8D11F2B72C1EB007C579B /* UINCButtonSecondaryRounded.swift in Sources */,
+				AAA8D12A2B739456007C579B /* RegisterInteractor.swift in Sources */,
 				AAE102A625EB79C00001F026 /* UINCLoaderCircular.swift in Sources */,
 				AA46E305245DC2A000735490 /* Corona+Map.swift in Sources */,
 				AA46E2F9245D46AD00735490 /* CoronaModel.swift in Sources */,
@@ -1552,6 +1626,7 @@
 				AAD0E3B922F71113005CC55A /* ContactsPickerViewController.swift in Sources */,
 				AAD0E38E22F70FBD005CC55A /* LocalePickerViewController.swift in Sources */,
 				AA46E301245D848400735490 /* Corona+TableView.swift in Sources */,
+				AAA8D1142B724561007C579B /* LoginRouter.swift in Sources */,
 				AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */,
 				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
@@ -1572,7 +1647,10 @@
 				8B0643DD260635CA009B129C /* ChatRouter.swift in Sources */,
 				AA46E2F6245D44B400735490 /* CoronaService.swift in Sources */,
 				AACDFE742570E42200485828 /* FeedsPresenter.swift in Sources */,
+				AAA8D1292B739456007C579B /* RegisterProtocols.swift in Sources */,
 				16737D5323154BE60071ED78 /* ChatsViewController.swift in Sources */,
+				AAA8D1272B739456007C579B /* RegisterPresenter.swift in Sources */,
+				AAA8D1172B724561007C579B /* LoginView.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
 				AAE102A125EB6A4D0001F026 /* SplashView.swift in Sources */,
 				AA67498C2576320700640A2D /* LeoStoreKitProduct.swift in Sources */,
@@ -1589,6 +1667,7 @@
 				AAF5487725760D0500176378 /* FeedAdmobCell.swift in Sources */,
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
+				AAA8D11B2B72B756007C579B /* UINCInput.swift in Sources */,
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
 				AACDFE772570E42200485828 /* FeedsInteractor.swift in Sources */,
 				AA505E14245FA910002FD204 /* UITapGestureRecognizer+Ext.swift in Sources */,
@@ -1604,6 +1683,7 @@
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
 				AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
+				AAA8D1282B739456007C579B /* RegisterRouter.swift in Sources */,
 				AACDFE802570E52C00485828 /* FeedDefaultCell.swift in Sources */,
 				AAE1029425EB5B230001F026 /* CoreDataAppDelegate.swift in Sources */,
 				AACDFE782570E42200485828 /* FeedsView.swift in Sources */,
@@ -1620,6 +1700,7 @@
 				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
 				1640892123168B7800CB11A6 /* ChatsModel.swift in Sources */,
 				AA2BF03925EDB11B00E037AE /* SettingsView.swift in Sources */,
+				AAA8D12B2B739456007C579B /* RegisterView.swift in Sources */,
 				16456DBD2350B8270058474C /* Premium+TableView.swift in Sources */,
 				AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
@@ -1628,7 +1709,9 @@
 				AABF39562307C05900DEAA63 /* MainService.swift in Sources */,
 				AA886884233661BD0086F538 /* Timeline+Email.swift in Sources */,
 				AA6749842576253B00640A2D /* LeoStoreKit.swift in Sources */,
+				AAA8D1132B724561007C579B /* LoginPresenter.swift in Sources */,
 				166F1AD623178CE300BB1151 /* ChatViewController.swift in Sources */,
+				AAA8D1152B724561007C579B /* LoginProtocols.swift in Sources */,
 				AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */,
 				AAD0E37E22F70F02005CC55A /* Array+Extensions.swift in Sources */,
 				16C3C7F82328EF2900D6B4EE /* ReportViewController.swift in Sources */,
@@ -1654,6 +1737,7 @@
 				AAF5484B257606C300176378 /* UINCRefreshControl.swift in Sources */,
 				AA7A0B55231CE95E00B8233E /* Chat+MessagesDataSource.swift in Sources */,
 				8B0643E0260635CA009B129C /* ChatView.swift in Sources */,
+				AAA8D1162B724561007C579B /* LoginInteractor.swift in Sources */,
 				AAE1029F25EB6A4D0001F026 /* SplashProtocols.swift in Sources */,
 				AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */,
 				AA7A0B51231CE1E900B8233E /* Chat+MessageDisplay.swift in Sources */,

@@ -30,3 +30,36 @@ struct MainResponse<T: Decodable>: Decodable {
 struct EndpointResponse: Codable {
     let endpoint: String
 }
+
+struct RefreshTokenData: Codable {
+    let access_token: String
+}
+
+struct Preferences: Codable {
+    let app_name:                   String
+    let version:                    String
+    let url_update_version:         String
+    let version_ios:                String
+    let version_android:            String
+    let url_update_version_ios:     String
+    let url_update_version_android: String
+    let contact_email:              String
+    let contact_whatsapp:           String
+    let contact_instagram:          String
+    let reply_emojis:               [String]
+    let report_reasons:             [String]
+    let images:                     PreferenceImages
+}
+
+struct PreferenceImages: Codable {
+    let image_url_login: String
+    let image_url_register: String
+}
+
+struct User: Codable {
+    let user_id:    String
+    let device_id:  String
+    let email:      String?
+    let name:       String
+    let avatar:     String
+}

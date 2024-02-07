@@ -67,7 +67,25 @@ class SplashPresenter: SplashViewToPresenter {
 
 extension SplashPresenter: SplashInteractorToPresenter {
     func didGetEndpoint(data: EndpointResponse) {
-        URLConst.server = data.endpoint
+//        URLConst.server = data.endpoint
+//        view?.stopLoader()
+//        router?.navigateToMain(from: view)
+        URLConst.server = "http://localhost:8888"
+        self.interactor?.getPreferences()
+    }
+    
+    func didGetPreferences(data: Preferences) {
+        UDHelpers.shared.setObject(data, forKey: .preferences_key)
+        self.interactor?.refreshToken()
+    }
+    
+    func didGetToken(data: RefreshTokenData) {
+        UDHelpers.shared.set(value: data.access_token, key: .access_token)
+        self.interactor?.getUser()
+    }
+    
+    func didGetUser(data: User) {
+        UDHelpers.shared.set(value: data, key: .user)
         view?.stopLoader()
         router?.navigateToMain(from: view)
     }
@@ -77,6 +95,31 @@ extension SplashPresenter: SplashInteractorToPresenter {
         view?.showAlertConfirm(title: title, message: message, okCompletion: { [weak self] in
             self?.view?.startLoader()
             self?.interactor?.getEndpoint()
+        }, cancelCompletion: nil)
+    }
+    
+    func failGetPreferences(title: String, message: String) {
+        view?.stopLoader()
+        view?.showAlertConfirm(title: title, message: message, okCompletion: { [weak self] in
+            self?.view?.startLoader()
+            self?.interactor?.getPreferences()
+        }, cancelCompletion: nil)
+    }
+    
+    func failGetToken(title: String, message: String) {
+        view?.stopLoader()
+        view?.showAlertConfirm(title: title, message: message, okCompletion: { [weak self] in
+            if let view = self?.view {
+                self?.router?.navigateToLogin(from: view)
+            }
+        }, cancelCompletion: nil)
+    }
+    
+    func failGetUser(title: String, message: String) {
+        view?.stopLoader()
+        view?.showAlertConfirm(title: title, message: message, okCompletion: { [weak self] in
+            self?.view?.startLoader()
+            self?.interactor?.getUser()
         }, cancelCompletion: nil)
     }
 }

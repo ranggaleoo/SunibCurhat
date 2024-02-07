@@ -11,6 +11,8 @@ import Foundation
 class UDHelpers {
     static var shared = UDHelpers()
     private var defaults = UserDefaults.standard
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
     
     init() {
         debugLog("initialize user default")
@@ -49,6 +51,26 @@ class UDHelpers {
         }
         return URL(string: "https://google.com/")!
     }
+    
+    func setObject<T: Codable>(_ object: T, forKey defaultKey: UDHelpersKey) {
+        do {
+            let data = try encoder.encode(object)
+            defaults.set(data, forKey: defaultKey.rawValue)
+        } catch {
+            debugLog("Failed to encode object: \(error)")
+        }
+    }
+    
+    func getObject<T: Codable>(type: T.Type, forKey defaultKey: UDHelpersKey) -> T? {
+        guard let data = defaults.data(forKey: defaultKey.rawValue) else { return nil }
+        do {
+            let object = try decoder.decode(type, from: data)
+            return object
+        } catch {
+            debugLog("Failed to decode object: \(error)")
+            return nil
+        }
+    }
 }
 
 enum UDHelpersKey: String {
@@ -58,4 +80,7 @@ enum UDHelpersKey: String {
     case counterRequestPermission
     case isFirstPermission
     case isFreeAds
+    case access_token
+    case preferences_key
+    case user
 }

@@ -23,7 +23,7 @@ class TimelineService {
             param["X_SIGNATURE_API"] = token
         }
         
-        let url = URLConst.api_url + "/getTimeline"
+        let url = URLConst.api_url + "/timeline/"
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
         HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<TimelineResponse>.self) { (result) in

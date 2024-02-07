@@ -1,14 +1,14 @@
 //
-//  UINCButtonPrimaryRounded.swift
+//  UINCButtonSecondaryRounded.swift
 //  SunibCurhat
 //
-//  Created by Rangga Leo on 01/05/20.
-//  Copyright © 2020 Rangga Leo. All rights reserved.
+//  Created by Rangga Leo on 07/02/24.
+//  Copyright © 2024 Rangga Leo. All rights reserved.
 //
 
 import UIKit
 
-class UINCButtonPrimaryRounded: UIButton {
+class UINCButtonSecondaryRounded: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -22,8 +22,8 @@ class UINCButtonPrimaryRounded: UIButton {
     override var isEnabled: Bool {
         didSet {
             if isEnabled {
-                self.backgroundColor = UINCColor.primary
-                self.setTitleColor(UINCColor.primary_foreground, for: .normal)
+                self.backgroundColor = UINCColor.secondary
+                self.setTitleColor(UINCColor.secondary_foreground, for: .normal)
                 
             } else {
                 self.backgroundColor = UINCColor.tertiary
@@ -35,8 +35,8 @@ class UINCButtonPrimaryRounded: UIButton {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                self.backgroundColor = UINCColor.primary400.get()
-                self.setTitleColor(UINCColor.primary_foreground, for: .normal)
+                self.backgroundColor = UINCColor.secondary400.get()
+                self.setTitleColor(UINCColor.secondary_foreground, for: .normal)
             }
         }
     }

@@ -28,7 +28,7 @@ class UINCLabelTitle: UILabel {
     private func setupViews() {
         let size_font: CGFloat  = self.font.pointSize
         self.font = UIFont.custom.bold.size(of: size_font)
-        self.textColor = UIColor.custom.black_absolute
+        self.textColor = UIColor.label
     }
     
     public func changeFontSize(size: CGFloat) {

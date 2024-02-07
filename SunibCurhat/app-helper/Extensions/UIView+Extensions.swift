@@ -251,3 +251,13 @@ extension UIView {
         return all
     }
 }
+
+// MARK: -BY ME
+
+extension UIView {
+    @discardableResult
+    func fromNib<T: UIView>() -> T? {
+        guard let nibView = Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)?.first as? T else { return nil }
+        return nibView
+    }
+}
