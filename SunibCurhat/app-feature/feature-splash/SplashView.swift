@@ -11,6 +11,7 @@ import Foundation
 
 class SplashView: UIViewController, SplashPresenterToView {
     var presenter: SplashViewToPresenter?
+    var splashBackgroundColor: UIColor? = UINCColor.primary
     
     @IBOutlet weak var image_icon: UIImageView!
     
@@ -28,7 +29,7 @@ class SplashView: UIViewController, SplashPresenterToView {
     }
     
     func setupViews() {
-        view.backgroundColor = UIColor.custom.blue
+        view.backgroundColor = splashBackgroundColor ?? UINCColor.primary
         image_icon.image = UIImage(identifierName: .image_logo)
     }
     

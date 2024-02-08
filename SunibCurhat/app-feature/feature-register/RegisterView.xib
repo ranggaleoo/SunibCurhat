@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="btn_register" destination="ciB-5D-XhN" id="yaI-Uo-tk2"/>
                 <outlet property="image_view" destination="91m-9B-f2S" id="8lF-8B-Sq0"/>
+                <outlet property="lbl_agreement" destination="DB3-8M-r48" id="bwb-ll-yYQ"/>
                 <outlet property="lbl_login" destination="8ZL-oY-Dcp" id="ayY-iC-xVT"/>
                 <outlet property="lbl_status" destination="Iaj-nG-YBQ" id="pVG-U8-UAQ"/>
                 <outlet property="stack_container" destination="XCP-1O-L2i" id="uS2-WY-8nf"/>
@@ -32,10 +33,10 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nx-Hd-3OF">
-                    <rect key="frame" x="0.0" y="200" width="393" height="652"/>
+                    <rect key="frame" x="0.0" y="200" width="393" height="618"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XCP-1O-L2i">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="652"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="618"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sv8-sg-HPD">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
@@ -45,10 +46,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Klt-Dy-xKZ">
-                                    <rect key="frame" x="0.0" y="44" width="393" height="50"/>
+                                    <rect key="frame" x="0.0" y="44" width="393" height="20.333333333333329"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iaj-nG-YBQ" customClass="UINCLabelNote" customModule="SunibCurhat" customModuleProvider="target">
-                                            <rect key="frame" x="64" y="0.0" width="265" height="50"/>
+                                            <rect key="frame" x="64" y="0.0" width="265" height="20.333333333333332"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -63,7 +64,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxp-Gv-8IS">
-                                    <rect key="frame" x="0.0" y="94" width="393" height="48"/>
+                                    <rect key="frame" x="0.0" y="64.333333333333314" width="393" height="48"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciB-5D-XhN" customClass="UINCButtonPrimaryRounded" customModule="SunibCurhat" customModuleProvider="target">
                                             <rect key="frame" x="64" y="0.0" width="265" height="48"/>
@@ -72,6 +73,9 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            <connections>
+                                                <action selector="didClickRegister:" destination="-1" eventType="touchUpInside" id="jXo-nc-ZVb"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -83,10 +87,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoU-1b-4LA">
-                                    <rect key="frame" x="0.0" y="142" width="393" height="38.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="112.33333333333331" width="393" height="20.333333333333343"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ZL-oY-Dcp" customClass="UINCLabelClickable" customModule="SunibCurhat" customModuleProvider="target">
-                                            <rect key="frame" x="64" y="0.0" width="265" height="38.666666666666664"/>
+                                            <rect key="frame" x="64" y="0.0" width="265" height="20.333333333333332"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -101,8 +105,26 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FhL-rg-IiO">
-                                    <rect key="frame" x="0.0" y="180.66666666666671" width="393" height="471.33333333333326"/>
+                                    <rect key="frame" x="0.0" y="132.66666666666669" width="393" height="441.00000000000006"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-8P-fgQ">
+                                    <rect key="frame" x="0.0" y="573.66666666666663" width="393" height="44.333333333333371"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-8M-r48" customClass="UINCLabelClickable" customModule="SunibCurhat" customModuleProvider="target">
+                                            <rect key="frame" x="64" y="0.0" width="265" height="20.333333333333332"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="DB3-8M-r48" firstAttribute="leading" secondItem="cGC-8P-fgQ" secondAttribute="leading" constant="64" id="OVa-s9-gSe"/>
+                                        <constraint firstItem="DB3-8M-r48" firstAttribute="top" secondItem="cGC-8P-fgQ" secondAttribute="top" id="crL-BO-pKB"/>
+                                        <constraint firstAttribute="bottom" secondItem="DB3-8M-r48" secondAttribute="bottom" constant="24" id="nDz-zp-nax"/>
+                                        <constraint firstAttribute="trailing" secondItem="DB3-8M-r48" secondAttribute="trailing" constant="64" id="rG4-WU-aYF"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                         </stackView>
@@ -124,12 +146,17 @@
                 <constraint firstAttribute="trailing" secondItem="91m-9B-f2S" secondAttribute="trailing" id="HdQ-3w-jA0"/>
                 <constraint firstItem="91m-9B-f2S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Mai-Ow-dvl"/>
                 <constraint firstItem="4nx-Hd-3OF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="Y6Q-ZK-Wrt"/>
-                <constraint firstAttribute="bottom" secondItem="4nx-Hd-3OF" secondAttribute="bottom" id="vO3-K7-ctX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4nx-Hd-3OF" secondAttribute="bottom" id="vO3-K7-ctX"/>
                 <constraint firstItem="4nx-Hd-3OF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="w09-os-TM0"/>
             </constraints>
             <point key="canvasLocation" x="35.877862595419849" y="19.718309859154932"/>
         </view>
     </objects>
+    <designables>
+        <designable name="ciB-5D-XhN">
+            <size key="intrinsicContentSize" width="75" height="34.333333333333336"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

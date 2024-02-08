@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import TransitionButton
 
-class UINCButtonSecondaryRounded: UIButton {
+class UINCButtonSecondaryRounded: TransitionButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -52,5 +53,13 @@ class UINCButtonSecondaryRounded: UIButton {
     
     func fullRounded() {
         self.layer.cornerRadius     = self.bounds.size.height / 2.0
+    }
+    
+    func startAnimate() {
+        self.startAnimation()
+    }
+    
+    func stopAnimate(style: StopAnimationStyle = .normal, refertAfterDelay: TimeInterval = 0.5, completion:(() -> Void)? = nil) -> Void {
+        self.stopAnimation(animationStyle: style, revertAfterDelay: refertAfterDelay, completion: completion)
     }
 }

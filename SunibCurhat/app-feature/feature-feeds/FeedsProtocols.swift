@@ -25,7 +25,7 @@ protocol FeedsPresenterToView: class {
 protocol FeedsPresenterToInteractor: class {
     var presenter: FeedsInteractorToPresenter?  { get set }
     
-    func getTimelines(page: Int)
+    func getTimelines(user_id: String, page: String, itemPerPage: String)
     func likeTimeline(timelineID: Int)
     func unlikeTimeline(timelineID: Int)
     func shareTimeline(timelineID: Int)

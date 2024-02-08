@@ -22,12 +22,20 @@ class UINCInput: UIView {
     
     private var validations: [ValidationType] = []
     
+    var isEnabled: Bool {
+        didSet {
+            txt_field.isEnabled = isEnabled
+        }
+    }
+    
     required init?(coder: NSCoder) {
+        isEnabled = true
         super.init(coder: coder)
         setupViews()
     }
     
     override init(frame: CGRect) {
+        isEnabled = true
         super.init(frame: frame)
         setupViews()
     }
@@ -38,6 +46,7 @@ class UINCInput: UIView {
         if let view = Bundle.main.loadNibNamed(String(describing: UINCInput.self), owner: self, options: nil)?.first as? UIView {
             view.frame = bounds
             view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.backgroundColor = .clear
             addSubview(view)
             
             stack_container.spacing = 8

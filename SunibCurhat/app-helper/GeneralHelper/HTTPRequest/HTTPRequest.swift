@@ -13,6 +13,7 @@ class HTTPRequest: NSObject {
         return HTTPRequest()
     }()
     
+    @available(*, deprecated, renamed: "sess", message: "unused session: URLSession!")
     var session: URLSession!
     let task = URLSession.shared
     var timeoutInterval: TimeInterval = 60
@@ -53,6 +54,9 @@ class HTTPRequest: NSObject {
             }
         }
         
+        task.configuration.httpShouldSetCookies = true
+        task.configuration.httpCookieAcceptPolicy = .always
+        
         self.task.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
@@ -61,6 +65,7 @@ class HTTPRequest: NSObject {
                 }
                 if let responses = response as? HTTPURLResponse {
                     debugLog("status code", responses.statusCode)
+//                    debugLog("headers: \(responses.allHeaderFields)")
                     
                     if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
                         debugLog(stringResponse)
@@ -75,6 +80,7 @@ class HTTPRequest: NSObject {
                             let responseModel = try JSONDecoder().decode(T.self, from: _data)
                             completion(.success(responseModel))
                         } catch let jsonError {
+                            debugLog(jsonError)
                             completion(.failure(jsonError))
                         }
                     }

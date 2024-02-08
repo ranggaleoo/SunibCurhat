@@ -18,14 +18,11 @@ class RegisterView: UIViewController, RegisterPresenterToView {
     @IBOutlet weak var image_view: UIImageView!
     @IBOutlet weak var lbl_status: UINCLabelNote!
     @IBOutlet weak var lbl_login: UINCLabelClickable!
+    @IBOutlet weak var lbl_agreement: UINCLabelClickable!
     @IBOutlet weak var btn_register: UINCButtonPrimaryRounded!
     private lazy var input_email: UINCInput = UINCInput()
     private lazy var input_password: UINCInput = UINCInput()
     private lazy var input_confirm_password: UINCInput = UINCInput()
-    
-    private var email: String?
-    private var password: String?
-    private var confirm_password: String?
     
     init() {
         super.init(nibName: String(describing: RegisterView.self), bundle: Bundle(for: RegisterView.self))
@@ -37,7 +34,7 @@ class RegisterView: UIViewController, RegisterPresenterToView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        presenter?.didLoad()
     }
     
     func setupViews() {
@@ -89,11 +86,27 @@ class RegisterView: UIViewController, RegisterPresenterToView {
         stack_container.insertArrangedSubview(view_confirm_passowrd, at: 3)
         stack_container.spacing = 16
         
+        lbl_status.numberOfLines = 0
+        lbl_status.changeFontSize(size: 14)
+        lbl_status.textColor = UINCColor.error
         lbl_status.isHidden = true
+        
+        lbl_login.numberOfLines = 0
         lbl_login.textAlignment = .center
         lbl_login.text = "Already have an account? Login"
         lbl_login.clickables["Login"] = { [weak self] in
-            self?.presenter?.navigateToLogin()
+            self?.presenter?.didClickLogin()
+        }
+        
+        lbl_agreement.numberOfLines = 0
+        lbl_agreement.textAlignment = .center
+        lbl_agreement.changeFontSize(size: 12)
+        lbl_agreement.text = "By clicking on the \"Register\" button, you agree to our User Agreement and our Privacy Policy"
+        lbl_agreement.clickables["User Agreement"] = { [weak self] in
+            self?.presenter?.didClickAgreement()
+        }
+        lbl_agreement.clickables["Privacy Policy"] = { [weak self] in
+            self?.presenter?.didClickPrivacyPolicy()
         }
         
         btn_register.setTitle("Register", for: .normal)
@@ -103,29 +116,73 @@ class RegisterView: UIViewController, RegisterPresenterToView {
         view_container.backgroundColor = UINCColor.bg_primary
         view_container.roundCorners([.topLeft, .topRight], radius: view_container.width/6)
     }
+    
+    func showFailRegisterMessage(text: String) {
+        input_email
+            .set(statusColor: UINCColor.error)
+            .isEnabled = true
+        input_password
+            .set(statusColor: UINCColor.error)
+            .isEnabled = true
+        input_confirm_password
+            .set(statusColor: UINCColor.error)
+            .isEnabled = true
+        
+        lbl_login.isUserInteractionEnabled = true
+        lbl_agreement.isUserInteractionEnabled = true
+        
+        lbl_status.isHidden = false
+        lbl_status.text = text
+    }
+    
+    func startLoader() {
+        input_email.isEnabled = false
+        input_password.isEnabled = false
+        input_confirm_password.isEnabled = false
+        lbl_login.isUserInteractionEnabled = false
+        lbl_agreement.isUserInteractionEnabled = false
+        btn_register.startAnimate()
+    }
+    
+    func stopLoader(isSuccess: Bool, completion: (() -> Void)?) {
+        if isSuccess {
+            btn_register.stopAnimate(style: .expand, refertAfterDelay: 1) {
+                completion?()
+            }
+        } else {
+            btn_register.stopAnimate(style: .shake)
+        }
+    }
+    
+    @IBAction func didClickRegister(_ sender: Any) {
+        presenter?.didClickRegister()
+    }
 }
 
 extension RegisterView: UINCInputDelegate {
     func didGetInput(inputView: UINCInput, text: String, valid: ValidationResult) {
         if(inputView == input_email) {
-            email = valid.isSuccess ? text : nil
+            presenter?.set(email: valid.isSuccess ? text : nil)
         }
         
         if(inputView == input_password) {
-            password = valid.isSuccess ? text : nil
+            presenter?.set(password: valid.isSuccess ? text : nil)
         }
         
         if(inputView == input_confirm_password) {
-            confirm_password = valid.isSuccess ? text : nil
+            presenter?.set(confirm_password: valid.isSuccess ? text : nil)
         }
         
-        if let mail = email, let pass = password, let confirm = confirm_password {
+        if let mail = presenter?.getEmail(),
+           let pass = presenter?.getPassword(),
+           let confirm = presenter?.getConfirmPassword() {
             if pass == confirm {
+                lbl_status.isHidden = true
                 btn_register.isEnabled = true
             } else {
                 if inputView == input_confirm_password {
                     _ = inputView
-                        .set(status: "Make suree you typing confirm password is exact same!")
+                        .set(status: "Make sure you're typing confirm password is exact same!")
                         .set(statusColor: UINCColor.error)
                 }
                 btn_register.isEnabled = false

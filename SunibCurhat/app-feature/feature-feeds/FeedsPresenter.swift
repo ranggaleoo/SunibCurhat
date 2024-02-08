@@ -39,7 +39,9 @@ class FeedsPresenter: FeedsViewToPresenter {
             return
         }
         
-        interactor?.getTimelines(page: next_page)
+        if let user = UDHelpers.shared.getObject(type: User.self, forKey: .user) {
+            interactor?.getTimelines(user_id: user.user_id, page: "\(next_page)", itemPerPage: "10")
+        }
     }
     
     func numberOfRowsInSection() -> Int {

@@ -28,6 +28,20 @@ class SplashPresenter: SplashViewToPresenter {
     }
     
     func initialSettings() {
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                debugLog("Cookie name: \(cookie.name)")
+                debugLog("Cookie value: \(cookie.value)")
+                // Check other properties of the cookie as needed
+            }
+        }
+        
+        // initial device_id
+        let device_id = UDHelpers.shared.getString(key: .device_id)
+        if device_id.isEmpty || device_id == "" {
+            UDHelpers.shared.set(value: RepoMemory.device_id, key: .device_id)
+        }
+        
         settingIsAvailable = false
         let disk = DiskStorage()
         let storage = CodableStorage(storage: disk)
@@ -70,13 +84,18 @@ extension SplashPresenter: SplashInteractorToPresenter {
 //        URLConst.server = data.endpoint
 //        view?.stopLoader()
 //        router?.navigateToMain(from: view)
-        URLConst.server = "http://localhost:8888"
+//        URLConst.server = "http://localhost:8888"
+        URLConst.server = "https://vast-lamb-smooth.ngrok-free.app"
         self.interactor?.getPreferences()
     }
     
     func didGetPreferences(data: Preferences) {
         UDHelpers.shared.setObject(data, forKey: .preferences_key)
-        self.interactor?.refreshToken()
+        if let _ = UDHelpers.shared.getObject(type: User.self, forKey: .user) {
+            self.interactor?.getUser()
+        } else {
+            self.interactor?.refreshToken()
+        }
     }
     
     func didGetToken(data: RefreshTokenData) {
@@ -85,7 +104,7 @@ extension SplashPresenter: SplashInteractorToPresenter {
     }
     
     func didGetUser(data: User) {
-        UDHelpers.shared.set(value: data, key: .user)
+        UDHelpers.shared.setObject(data, forKey: .user)
         view?.stopLoader()
         router?.navigateToMain(from: view)
     }
@@ -119,7 +138,7 @@ extension SplashPresenter: SplashInteractorToPresenter {
         view?.stopLoader()
         view?.showAlertConfirm(title: title, message: message, okCompletion: { [weak self] in
             self?.view?.startLoader()
-            self?.interactor?.getUser()
+            self?.interactor?.refreshToken()
         }, cancelCompletion: nil)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 struct HTTPRequestHeader {
     enum key {
-        case contentType, host, connection, contentLenght, cacheControl, accept, referer, acceptEncoding, acceptLanguage, authorization
+        case contentType, host, connection, contentLenght, cacheControl, accept, referer, acceptEncoding, acceptLanguage, authorization, xplatform
         
         var string: String {
             get {
@@ -25,6 +25,7 @@ struct HTTPRequestHeader {
                 case .host:             return "Host"
                 case .referer:          return "Referer"
                 case .authorization:    return "Authorization"
+                case .xplatform:        return "X-PLATFORM"
                 }
             }
         }

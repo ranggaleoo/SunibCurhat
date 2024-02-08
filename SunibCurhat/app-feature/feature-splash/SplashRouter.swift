@@ -10,11 +10,15 @@ import UIKit
 
 class SplashRouter: SplashPresenterToRouter {
     
-    static func createSplashModule() -> UIViewController {
+    static func createSplashModule(secondaryBackground: Bool?) -> UIViewController {
         let view: UIViewController & SplashPresenterToView = SplashView()
         let presenter: SplashViewToPresenter & SplashInteractorToPresenter = SplashPresenter()
         let interactor: SplashPresenterToInteractor = SplashInteractor()
         let router: SplashPresenterToRouter = SplashRouter()
+        
+        if let secondaryBG = secondaryBackground, secondaryBG {
+            view.splashBackgroundColor = UINCColor.secondary
+        }
         
         view.presenter = presenter
         presenter.view = view

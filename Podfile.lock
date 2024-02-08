@@ -24,6 +24,7 @@ PODS:
     - SPPermissions/Core
   - SPPermissions/PhotoLibrary (7.1.5):
     - SPPermissions/Core
+  - TransitionButton (0.5.3)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - SPPermissions/Contacts
   - SPPermissions/Notification
   - SPPermissions/PhotoLibrary
+  - TransitionButton
 
 SPEC REPOS:
   trunk:
@@ -49,6 +51,7 @@ SPEC REPOS:
     - RxSwift
     - Siren
     - SPPermissions
+    - TransitionButton
 
 SPEC CHECKSUMS:
   InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
@@ -60,7 +63,8 @@ SPEC CHECKSUMS:
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   Siren: c951ae243b57160629fb2e4d2f630cbfc5d5452b
   SPPermissions: c63ac1132badad39917de03a3c9dc2429ace94be
+  TransitionButton: 36283346e17c64775a1b3bc3a7a72940a367de1f
 
-PODFILE CHECKSUM: 177fa2be88c52c941fa0ef2935d68741492b73eb
+PODFILE CHECKSUM: a6a9c1f113aacff328605f80f12330c9fc291bb3
 
 COCOAPODS: 1.15.1

@@ -12,6 +12,7 @@ import UIKit
 // MARK: View -
 protocol SplashPresenterToView: AnyObject {
     var presenter: SplashViewToPresenter? { get set }
+    var splashBackgroundColor: UIColor? { get set }
     
     func setupViews()
     func startLoader()
@@ -32,7 +33,7 @@ protocol SplashPresenterToInteractor: AnyObject {
 
 // MARK: Router -
 protocol SplashPresenterToRouter: AnyObject {
-    static func createSplashModule() -> UIViewController
+    static func createSplashModule(secondaryBackground: Bool?) -> UIViewController
     func navigateToMain(from: SplashPresenterToView?)
     func navigateToLogin(from: SplashPresenterToView?)
 }

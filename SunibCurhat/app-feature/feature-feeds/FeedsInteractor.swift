@@ -11,8 +11,8 @@ import Foundation
 class FeedsInteractor: FeedsPresenterToInteractor {
     weak var presenter: FeedsInteractorToPresenter?
     
-    func getTimelines(page: Int) {
-        TimelineService.shared.getTimeline(page: page) { (result) in
+    func getTimelines(user_id: String, page: String, itemPerPage: String) {
+        FeedsService.shared.getTimelines(user_id: user_id, page: page, itemPerPage: itemPerPage) { (result) in
             switch result {
             case .failure(let err):
                 self.presenter?.failedGetTimelines(title: "Error", message: err.localizedDescription)

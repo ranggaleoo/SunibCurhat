@@ -15,6 +15,12 @@ class UINCLabelClickable: UILabel {
         }
     }
     
+    private var fontSize: CGFloat = 0 {
+        didSet {
+            self.font = UIFont.custom.regular.size(of: self.fontSize)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -63,5 +69,9 @@ class UINCLabelClickable: UILabel {
                 f()
             }
         }
+    }
+    
+    public func changeFontSize(size: CGFloat) {
+        self.fontSize = size
     }
 }

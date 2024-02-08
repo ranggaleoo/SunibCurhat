@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import TransitionButton
 
-class UINCButtonPrimaryRounded: UIButton {
+class UINCButtonPrimaryRounded: TransitionButton {
+    private var animating: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -52,5 +55,17 @@ class UINCButtonPrimaryRounded: UIButton {
     
     func fullRounded() {
         self.layer.cornerRadius     = self.bounds.size.height / 2.0
+    }
+    
+    func startAnimate() {
+        self.startAnimation()
+        animating = true
+    }
+    
+    func stopAnimate(style: StopAnimationStyle = .normal, refertAfterDelay: TimeInterval = 0.5, completion:(() -> Void)? = nil) -> Void {
+        if animating {
+            self.stopAnimation(animationStyle: style, revertAfterDelay: refertAfterDelay, completion: completion)
+            animating = false
+        }
     }
 }

@@ -14,6 +14,7 @@
                 <outlet property="btn_login" destination="EYi-ft-2py" id="SNY-c0-o6f"/>
                 <outlet property="btn_login_anon" destination="mhn-uL-40e" id="haw-g8-1r8"/>
                 <outlet property="image_view" destination="ByU-mn-yuH" id="kSu-OP-LPx"/>
+                <outlet property="lbl_agreement" destination="4ax-Fe-YhQ" id="iZ0-8o-6mQ"/>
                 <outlet property="lbl_register" destination="SS7-hI-QIM" id="4yG-GE-xal"/>
                 <outlet property="lbl_status" destination="LRO-4Z-xfC" id="tcg-qo-xsP"/>
                 <outlet property="stack_container" destination="3Jv-GU-3I3" id="qOA-DV-Gtd"/>
@@ -33,10 +34,10 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWQ-vq-OFi">
-                    <rect key="frame" x="0.0" y="200" width="414" height="696"/>
+                    <rect key="frame" x="0.0" y="200" width="414" height="662"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Jv-GU-3I3">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="696"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTB-Po-YDX">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -73,6 +74,9 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            <connections>
+                                                <action selector="didClickLogin:" destination="-1" eventType="touchUpInside" id="gMa-bw-ayX"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -93,6 +97,9 @@
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Anon"/>
+                                            <connections>
+                                                <action selector="didClickLoginAsAnonymous:" destination="-1" eventType="touchUpInside" id="cLh-Kd-FHZ"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -113,7 +120,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="SS7-hI-QIM" secondAttribute="bottom" id="2JI-kQ-hef"/>
                                         <constraint firstItem="SS7-hI-QIM" firstAttribute="top" secondItem="lTM-9y-Oj0" secondAttribute="top" id="Icf-VR-eq5"/>
@@ -122,8 +129,26 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5D-wz-gTc">
-                                    <rect key="frame" x="0.0" y="181" width="414" height="515"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <rect key="frame" x="0.0" y="181" width="414" height="436.5"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRK-DF-4JL">
+                                    <rect key="frame" x="0.0" y="617.5" width="414" height="44.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ax-Fe-YhQ" customClass="UINCLabelClickable" customModule="SunibCurhat" customModuleProvider="target">
+                                            <rect key="frame" x="64" y="0.0" width="286" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="4ax-Fe-YhQ" secondAttribute="bottom" constant="24" id="6BO-6Q-CvB"/>
+                                        <constraint firstAttribute="trailing" secondItem="4ax-Fe-YhQ" secondAttribute="trailing" constant="64" id="LiS-VB-Gc6"/>
+                                        <constraint firstItem="4ax-Fe-YhQ" firstAttribute="top" secondItem="CRK-DF-4JL" secondAttribute="top" id="pdu-sZ-ErE"/>
+                                        <constraint firstItem="4ax-Fe-YhQ" firstAttribute="leading" secondItem="CRK-DF-4JL" secondAttribute="leading" constant="64" id="wSP-uC-uvL"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                         </stackView>
@@ -146,11 +171,19 @@
                 <constraint firstItem="ByU-mn-yuH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fFT-JI-dHc"/>
                 <constraint firstItem="bWQ-vq-OFi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="h0h-gH-c3l"/>
                 <constraint firstItem="ByU-mn-yuH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kFO-Ob-lhp"/>
-                <constraint firstAttribute="bottom" secondItem="bWQ-vq-OFi" secondAttribute="bottom" id="qf9-zV-FuJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bWQ-vq-OFi" secondAttribute="bottom" id="qf9-zV-FuJ"/>
             </constraints>
             <point key="canvasLocation" x="57.971014492753625" y="20.758928571428569"/>
         </view>
     </objects>
+    <designables>
+        <designable name="EYi-ft-2py">
+            <size key="intrinsicContentSize" width="75" height="34.5"/>
+        </designable>
+        <designable name="mhn-uL-40e">
+            <size key="intrinsicContentSize" width="64" height="34.5"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

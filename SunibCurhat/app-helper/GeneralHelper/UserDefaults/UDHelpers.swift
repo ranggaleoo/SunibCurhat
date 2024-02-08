@@ -83,4 +83,5 @@ enum UDHelpersKey: String {
     case access_token
     case preferences_key
     case user
+    case device_id
 }

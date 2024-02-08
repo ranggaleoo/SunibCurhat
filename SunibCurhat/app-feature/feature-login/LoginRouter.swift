@@ -33,4 +33,13 @@ class LoginRouter: LoginPresenterToRouter {
             controller.present(register, animated: true)
         }
     }
+    
+    func navigateToSplash(secondaryBackground: Bool?, view: LoginPresenterToView?) {
+        if let controller = view as? UIViewController {
+            let splash = SplashRouter.createSplashModule(secondaryBackground: secondaryBackground)
+            splash.modalTransitionStyle = .crossDissolve
+            splash.modalPresentationStyle = .fullScreen
+            controller.present(splash, animated: true)
+        }
+    }
 }

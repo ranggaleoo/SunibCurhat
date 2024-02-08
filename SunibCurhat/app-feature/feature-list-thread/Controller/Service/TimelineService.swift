@@ -13,6 +13,7 @@ class TimelineService {
     
     static let shared: TimelineService = TimelineService()
     
+    @available(*, deprecated, renamed: "getTimelines", message: "Use FeedsService.shared.getTimelines instead for improved performance and compatibility.")
     func getTimeline(page: Int, completion: @escaping (Result<MainResponse<TimelineResponse>, Error>) -> Void) {
         var param: [String: Any] = [:]
         param["page"]       = page
@@ -24,7 +25,7 @@ class TimelineService {
         }
         
         let url = URLConst.api_url + "/timeline/"
-        HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
+        HTTPRequest.shared.headers[.contentType] = "application/json"
         HTTPRequest.shared.headers[.referer] = URLConst.server
         HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<TimelineResponse>.self) { (result) in
             debugLog(result)
