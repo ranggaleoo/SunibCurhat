@@ -16,10 +16,15 @@ class FeedsPresenter: FeedsViewToPresenter {
     private var timelines: [TimelineItems] = []
     private var next_page: Int = 1
     private var getTimelineMore: Bool = false
+    private var user: User? = UDHelpers.shared.getObject(type: User.self, forKey: .user)
     
     func didLoad() {
         view?.setupViews()
         requestGetTimeline(resetData: false)
+    }
+    
+    func didClickNewPost() {
+        router?.navigateToNewPost(from: view)
     }
     
     func requestGetTimeline(resetData: Bool) {
@@ -87,17 +92,17 @@ class FeedsPresenter: FeedsViewToPresenter {
     func requestLike(indexPath: IndexPath, isLiked: Bool) {
         let timelineId = timelines[indexPath.row].timeline_id
         if isLiked {
-            interactor?.unlikeTimeline(timelineID: timelineId)
+            interactor?.unlikeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
         } else {
-            interactor?.likeTimeline(timelineID: timelineId)
+            interactor?.likeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
         }
     }
     
     func requestShare(indexPath: IndexPath) {
         let timeline_id = timelines[indexPath.row].timeline_id
         let shareText = timelines[indexPath.row].text_content + " - " + timelines[indexPath.row].name
-        view?.showShareController(items: [shareText], completion: {
-            self.interactor?.shareTimeline(timelineID: timeline_id)
+        view?.showShareController(items: [shareText], completion: { [weak self] in
+            self?.interactor?.shareTimeline(user_id: self?.user?.user_id ?? "", timelineID: timeline_id)
         })
     }
 }

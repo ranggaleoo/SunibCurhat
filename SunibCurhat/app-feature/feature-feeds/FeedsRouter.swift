@@ -25,6 +25,14 @@ class FeedsRouter: FeedsPresenterToRouter {
         return view
     }
     
+    func navigateToNewPost(from: FeedsPresenterToView?) {
+        if let view = from as? UIViewController {
+            let newPost = NewPostRouter.createNewPostModule()
+            newPost.hidesBottomBarWhenPushed = true
+            view.navigationController?.pushViewController(newPost, animated: true)
+        }
+    }
+    
     func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?) {
         if let controller = view as? UIViewController {
             let storyboad = UIStoryboard(name: "CommentCurhat", bundle: nil)

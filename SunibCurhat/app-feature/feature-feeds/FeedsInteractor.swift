@@ -24,8 +24,8 @@ class FeedsInteractor: FeedsPresenterToInteractor {
         }
     }
     
-    func likeTimeline(timelineID: Int) {
-        TimelineService.shared.likeTimeline(timeline_id: timelineID) { (result) in
+    func likeTimeline(user_id: String, timelineID: Int) {
+        FeedsService.shared.likeTimeline(user_id: user_id, timeline_id: timelineID) { (result) in
             switch result {
             case .failure(let err):
                 debugLog(err.localizedDescription)
@@ -37,8 +37,8 @@ class FeedsInteractor: FeedsPresenterToInteractor {
         }
     }
     
-    func unlikeTimeline(timelineID: Int) {
-        TimelineService.shared.unlikeTimeline(timeline_id: timelineID) { (result) in
+    func unlikeTimeline(user_id: String, timelineID: Int) {
+        FeedsService.shared.unlikeTimeline(user_id: user_id, timeline_id: timelineID) { (result) in
             switch result {
             case .failure(let err):
                 debugLog(err.localizedDescription)
@@ -50,8 +50,8 @@ class FeedsInteractor: FeedsPresenterToInteractor {
         }
     }
     
-    func shareTimeline(timelineID: Int) {
-        TimelineService.shared.shareTimeline(timeline_id: timelineID) { (result) in
+    func shareTimeline(user_id: String, timelineID: Int) {
+        FeedsService.shared.shareTimeline(user_id: user_id, timeline_id: timelineID) { (result) in
             switch result {
             case .failure(_): break
             case .success(_): break
@@ -60,7 +60,7 @@ class FeedsInteractor: FeedsPresenterToInteractor {
     }
     
     func deleteTimelime(timelineID: Int) {
-        TimelineService.shared.deleteTimeline(timeline_id: timelineID) { (result) in
+        FeedsService.shared.deleteTimeline(timeline_id: timelineID) { (result) in
             switch result {
             case .failure(let err):
                 debugLog(err.localizedDescription)

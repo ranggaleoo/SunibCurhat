@@ -26,9 +26,9 @@ protocol FeedsPresenterToInteractor: class {
     var presenter: FeedsInteractorToPresenter?  { get set }
     
     func getTimelines(user_id: String, page: String, itemPerPage: String)
-    func likeTimeline(timelineID: Int)
-    func unlikeTimeline(timelineID: Int)
-    func shareTimeline(timelineID: Int)
+    func likeTimeline(user_id: String, timelineID: Int)
+    func unlikeTimeline(user_id: String, timelineID: Int)
+    func shareTimeline(user_id: String, timelineID: Int)
     func deleteTimelime(timelineID: Int)
 }
 
@@ -36,6 +36,7 @@ protocol FeedsPresenterToInteractor: class {
 // MARK: Router -
 protocol FeedsPresenterToRouter: class {
     static func createFeedsModule() -> UIViewController
+    func navigateToNewPost(from: FeedsPresenterToView?)
     func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?)
     func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?)
 }
@@ -47,6 +48,7 @@ protocol FeedsViewToPresenter: class {
     var router: FeedsPresenterToRouter? {get set}
     
     func didLoad()
+    func didClickNewPost()
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int
     func cellForRowAt(indexPath: IndexPath) -> TimelineItems

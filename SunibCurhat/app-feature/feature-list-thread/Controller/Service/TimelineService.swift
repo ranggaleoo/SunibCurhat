@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@available(*, deprecated, renamed: "FeedsService", message: "Use FeedsService instead")
 class TimelineService {
     
     static let shared: TimelineService = TimelineService()

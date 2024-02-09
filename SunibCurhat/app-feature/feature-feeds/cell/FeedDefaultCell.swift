@@ -84,7 +84,7 @@ class FeedDefaultCell: UITableViewCell {
         lbl_textcontent.text            = timeline?.text_content
         lbl_textcontent.numberOfLines   = 0
         lbl_textcontent.textAlignment   = .natural
-        lbl_time.text                   = timeline?.timed.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
+        lbl_time.text                   = timeline?.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
         isLiked                         = timeline?.is_liked ?? false
         
         lbl_username.changeFontSize(size: 14)

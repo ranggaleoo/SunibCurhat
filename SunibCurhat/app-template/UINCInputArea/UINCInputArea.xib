@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UINCInputArea" customModule="SunibCurhat" customModuleProvider="target">
+            <connections>
+                <outlet property="lbl_field" destination="H7E-pX-QLU" id="Xch-ST-GE9"/>
+                <outlet property="lbl_status_field" destination="Mip-RZ-8d2" id="APq-PX-dJo"/>
+                <outlet property="stack_container" destination="nBq-SA-zob" id="guJ-4Y-OUY"/>
+                <outlet property="txt_field" destination="1rN-0C-8Pp" id="sxT-YY-bUd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5h2-oh-sFD">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="235"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nBq-SA-zob">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="235"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7E-pX-QLU" customClass="UINCLabelTitle" customModule="SunibCurhat" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="UkH-Rq-S2D"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-0C-8Pp">
+                            <rect key="frame" x="0.0" y="34" width="393" height="100"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="Wbm-c1-eJx"/>
+                            </constraints>
+                            <color key="textColor" systemColor="labelColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mip-RZ-8d2" customClass="UINCLabelNote" customModule="SunibCurhat" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="150" width="393" height="85"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="nBq-SA-zob" secondAttribute="bottom" id="6ZQ-lg-UqN"/>
+                <constraint firstItem="nBq-SA-zob" firstAttribute="top" secondItem="5h2-oh-sFD" secondAttribute="top" id="BO9-EJ-lxx"/>
+                <constraint firstAttribute="trailing" secondItem="nBq-SA-zob" secondAttribute="trailing" id="SlX-gr-t6v"/>
+                <constraint firstItem="nBq-SA-zob" firstAttribute="leading" secondItem="5h2-oh-sFD" secondAttribute="leading" id="U04-AG-edE"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="23.664122137404579" y="25.704225352112676"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

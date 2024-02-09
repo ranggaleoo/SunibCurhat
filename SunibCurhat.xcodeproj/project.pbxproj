@@ -49,6 +49,15 @@
 		AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F0E232EF05C0047BC99 /* UDHelpers.swift */; };
 		AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */; };
 		AA25B8D62B765E33004F22E1 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8D52B765E33004F22E1 /* SFSymbols.swift */; };
+		AA25B8DE2B768648004F22E1 /* NewPostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8D82B768648004F22E1 /* NewPostPresenter.swift */; };
+		AA25B8DF2B768648004F22E1 /* NewPostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8D92B768648004F22E1 /* NewPostRouter.swift */; };
+		AA25B8E02B768648004F22E1 /* NewPostProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8DA2B768648004F22E1 /* NewPostProtocols.swift */; };
+		AA25B8E12B768648004F22E1 /* NewPostInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8DB2B768648004F22E1 /* NewPostInteractor.swift */; };
+		AA25B8E22B768648004F22E1 /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8DC2B768648004F22E1 /* NewPostView.swift */; };
+		AA25B8E32B768648004F22E1 /* NewPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA25B8DD2B768648004F22E1 /* NewPostView.xib */; };
+		AA25B8E62B768DA5004F22E1 /* UINCInputArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8E52B768DA5004F22E1 /* UINCInputArea.swift */; };
+		AA25B8E82B768DB5004F22E1 /* UINCInputArea.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA25B8E72B768DB4004F22E1 /* UINCInputArea.xib */; };
+		AA25B8EA2B76B4FC004F22E1 /* NewPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8E92B76B4FC004F22E1 /* NewPostService.swift */; };
 		AA29CC692B754887002B26B6 /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA29CC682B754887002B26B6 /* RegisterService.swift */; };
 		AA2BF02625EDB08E00E037AE /* CodableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02525EDB08E00E037AE /* CodableStorage.swift */; };
 		AA2BF02925EDB0B100E037AE /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02825EDB0B100E037AE /* DiskStorage.swift */; };
@@ -242,6 +251,15 @@
 		AA249F0E232EF05C0047BC99 /* UDHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDHelpers.swift; sourceTree = "<group>"; };
 		AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		AA25B8D52B765E33004F22E1 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
+		AA25B8D82B768648004F22E1 /* NewPostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostPresenter.swift; sourceTree = "<group>"; };
+		AA25B8D92B768648004F22E1 /* NewPostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostRouter.swift; sourceTree = "<group>"; };
+		AA25B8DA2B768648004F22E1 /* NewPostProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostProtocols.swift; sourceTree = "<group>"; };
+		AA25B8DB2B768648004F22E1 /* NewPostInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostInteractor.swift; sourceTree = "<group>"; };
+		AA25B8DC2B768648004F22E1 /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
+		AA25B8DD2B768648004F22E1 /* NewPostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostView.xib; sourceTree = "<group>"; };
+		AA25B8E52B768DA5004F22E1 /* UINCInputArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCInputArea.swift; sourceTree = "<group>"; };
+		AA25B8E72B768DB4004F22E1 /* UINCInputArea.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UINCInputArea.xib; sourceTree = "<group>"; };
+		AA25B8E92B76B4FC004F22E1 /* NewPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostService.swift; sourceTree = "<group>"; };
 		AA29CC682B754887002B26B6 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
 		AA2BF02525EDB08E00E037AE /* CodableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
 		AA2BF02825EDB0B100E037AE /* DiskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
@@ -668,6 +686,29 @@
 			path = "Constant+Alliasses";
 			sourceTree = "<group>";
 		};
+		AA25B8D72B768627004F22E1 /* feature-new-post */ = {
+			isa = PBXGroup;
+			children = (
+				AA25B8D82B768648004F22E1 /* NewPostPresenter.swift */,
+				AA25B8D92B768648004F22E1 /* NewPostRouter.swift */,
+				AA25B8DA2B768648004F22E1 /* NewPostProtocols.swift */,
+				AA25B8DB2B768648004F22E1 /* NewPostInteractor.swift */,
+				AA25B8DC2B768648004F22E1 /* NewPostView.swift */,
+				AA25B8DD2B768648004F22E1 /* NewPostView.xib */,
+				AA25B8E92B76B4FC004F22E1 /* NewPostService.swift */,
+			);
+			path = "feature-new-post";
+			sourceTree = "<group>";
+		};
+		AA25B8E42B768D8E004F22E1 /* UINCInputArea */ = {
+			isa = PBXGroup;
+			children = (
+				AA25B8E52B768DA5004F22E1 /* UINCInputArea.swift */,
+				AA25B8E72B768DB4004F22E1 /* UINCInputArea.xib */,
+			);
+			path = UINCInputArea;
+			sourceTree = "<group>";
+		};
 		AA2BF02425EDB07100E037AE /* Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,6 +859,7 @@
 		AA46E2E4245C54D600735490 /* app-template */ = {
 			isa = PBXGroup;
 			children = (
+				AA25B8E42B768D8E004F22E1 /* UINCInputArea */,
 				AAA8D1192B72B718007C579B /* UINCInput */,
 				AA2BF04725EDB32600E037AE /* UINCColor */,
 				AA2BF04325EDB25400E037AE /* UIINCSwitch */,
@@ -964,6 +1006,7 @@
 		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
+				AA25B8D72B768627004F22E1 /* feature-new-post */,
 				AAA8D1202B73943E007C579B /* feature-register */,
 				AAA8D10C2B724540007C579B /* feature-login */,
 				AA2BF02E25EDB0FE00E037AE /* feature-settings */,
@@ -1532,6 +1575,7 @@
 				168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */,
 				16737D5123154BC80071ED78 /* Chats.storyboard in Resources */,
 				16C3C7F52328EDF100D6B4EE /* Report.storyboard in Resources */,
+				AA25B8E82B768DB5004F22E1 /* UINCInputArea.xib in Resources */,
 				AA478D8722F649A400BC23A7 /* LaunchScreen.storyboard in Resources */,
 				1603603523018792006A0948 /* AddThread.storyboard in Resources */,
 				AAF5487425760CF000176378 /* FeedAdmobCell.xib in Resources */,
@@ -1547,6 +1591,7 @@
 				AA5BABE622F655BC004253AF /* ListCurhat.storyboard in Resources */,
 				1621AD2B23445749008F15D8 /* Payment.storyboard in Resources */,
 				AA2BF03E25EDB21000E037AE /* SettingsSwitchCell.xib in Resources */,
+				AA25B8E32B768648004F22E1 /* NewPostView.xib in Resources */,
 				AA2BF03A25EDB11B00E037AE /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1638,6 +1683,7 @@
 				AA29CC692B754887002B26B6 /* RegisterService.swift in Sources */,
 				16C3C7FD232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift in Sources */,
 				AA8868822336617E0086F538 /* Timeline+TableView.swift in Sources */,
+				AA25B8E22B768648004F22E1 /* NewPostView.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
 				8B0643DE260635CA009B129C /* ChatProtocols.swift in Sources */,
 				AA46E2E1245C52A800735490 /* UpdateAppController.swift in Sources */,
@@ -1654,6 +1700,7 @@
 				AAA8D1142B724561007C579B /* LoginRouter.swift in Sources */,
 				AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */,
 				AA589D312B748FF6007DEE54 /* LoginModel.swift in Sources */,
+				AA25B8DF2B768648004F22E1 /* NewPostRouter.swift in Sources */,
 				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
 				AA2BF03725EDB11B00E037AE /* SettingsProtocols.swift in Sources */,
@@ -1713,8 +1760,10 @@
 				AAA8D1282B739456007C579B /* RegisterRouter.swift in Sources */,
 				AACDFE802570E52C00485828 /* FeedDefaultCell.swift in Sources */,
 				AAE1029425EB5B230001F026 /* CoreDataAppDelegate.swift in Sources */,
+				AA25B8DE2B768648004F22E1 /* NewPostPresenter.swift in Sources */,
 				AACDFE782570E42200485828 /* FeedsView.swift in Sources */,
 				AAD0E37722F70F02005CC55A /* Locale+Extensions.swift in Sources */,
+				AA25B8EA2B76B4FC004F22E1 /* NewPostService.swift in Sources */,
 				AAD0E37422F70F02005CC55A /* UITextField+Extensions.swift in Sources */,
 				16456DC12350B8860058474C /* PremiumAdvantageCollectionViewCell.swift in Sources */,
 				AA46E2FE245D6C5A00735490 /* UINCLabelTitle.swift in Sources */,
@@ -1722,6 +1771,7 @@
 				AAD0E36F22F70F02005CC55A /* UIViewController+Extensions.swift in Sources */,
 				AAE1029E25EB6A4D0001F026 /* SplashRouter.swift in Sources */,
 				AAF1182F22F6BD0400FDA099 /* AdsTableViewCell.swift in Sources */,
+				AA25B8E12B768648004F22E1 /* NewPostInteractor.swift in Sources */,
 				16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */,
 				AAD0E3A022F7104A005CC55A /* PhotoLibraryPickerViewController.swift in Sources */,
 				AACF3F1B23075E350056EF28 /* UIFont+Extensions.swift in Sources */,
@@ -1741,6 +1791,7 @@
 				AAA8D1152B724561007C579B /* LoginProtocols.swift in Sources */,
 				AABF394C23077ED900DEAA63 /* URLConst.swift in Sources */,
 				AAD0E37E22F70F02005CC55A /* Array+Extensions.swift in Sources */,
+				AA25B8E62B768DA5004F22E1 /* UINCInputArea.swift in Sources */,
 				16C3C7F82328EF2900D6B4EE /* ReportViewController.swift in Sources */,
 				AAD0E39222F70FE6005CC55A /* CountryCell.swift in Sources */,
 				AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */,
@@ -1752,6 +1803,7 @@
 				AAD0E3A322F71059005CC55A /* Assets.swift in Sources */,
 				1639CB5023152802002DDDA4 /* LoadingTableViewCell.swift in Sources */,
 				16EDEB54230E7D8700F5AE69 /* CommentTableViewCell.swift in Sources */,
+				AA25B8E02B768648004F22E1 /* NewPostProtocols.swift in Sources */,
 				1621AD2F2344947C008F15D8 /* WKWebViewController.swift in Sources */,
 				16C3C7FB2328F52300D6B4EE /* ReportService.swift in Sources */,
 				AA7A0B4E231BF49000B8233E /* UITableView+Extensions.swift in Sources */,

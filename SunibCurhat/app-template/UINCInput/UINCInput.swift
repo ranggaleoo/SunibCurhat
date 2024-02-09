@@ -119,7 +119,6 @@ class UINCInput: UIView {
     func set(statusColor: UIColor) -> UINCInput {
         txt_field.layer.borderColor  = statusColor.cgColor
         txt_field.layer.borderWidth  = 2.0
-        txt_field.layer.cornerRadius = 5.0
         return self
     }
     
@@ -238,10 +237,12 @@ enum UINCInputType: String {
     case confirm_password
 }
 
-enum ValidationType: String {
+enum ValidationType {    
     case isBlank
     case isNotBlank
     case isEmail
+    case isGreaterThanOrEqual(number: Int)
+    case isGreaterThanOrEqual5
     case isGreaterThanOrEqual8
     case isContainLowercase
     case isContainUppercase
@@ -262,6 +263,10 @@ extension ValidationType {
             let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
             let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
             return emailPredicate.evaluate(with: text) ? ValidationResult() : ValidationResult(error: "Invalid Email")
+        case .isGreaterThanOrEqual(number: let num):
+            return text.count >= num ? ValidationResult() : ValidationResult(error: "minimum \(num) character")
+        case .isGreaterThanOrEqual5:
+            return text.count >= 5 ? ValidationResult() : ValidationResult(error: "minimum text 5 character")
         case .isGreaterThanOrEqual8:
             return text.count >= 8 ? ValidationResult() : ValidationResult(error: "minimum password 8 character")
         case .isContainLowercase:

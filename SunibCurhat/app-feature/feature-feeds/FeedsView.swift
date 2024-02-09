@@ -54,7 +54,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         navigationDefault()
         title = "Home"
         let buttonAddThread = UIBarButtonItem(
-            image: UIImage(symbol: .SquareAndPencil)?
+            image: UIImage(symbol: .SquareAndPencil, configuration: .init(weight: .bold))?
                 .withTintColor(UINCColor.primary, renderingMode: .alwaysOriginal),
             style: .plain,
             target: self,
@@ -116,9 +116,10 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     }
     
     @objc private func toAddThread() {
-        let storyboad = UIStoryboard(name: "AddThread", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "add_thread")
-        navigationController?.pushViewController(vc, animated: true)
+        presenter?.didClickNewPost()
+//        let storyboad = UIStoryboard(name: "AddThread", bundle: nil)
+//        let vc = storyboad.instantiateViewController(withIdentifier: "add_thread")
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func actionMenuBarButtonItem(_ sender: UIBarButtonItem) {
