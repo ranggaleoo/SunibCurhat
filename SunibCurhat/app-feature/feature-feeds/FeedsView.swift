@@ -269,12 +269,12 @@ extension FeedsView: FeedDefaultCellDelegate {
             if let timelineItem = presenter?.getTimelineItem(indexPath: index) {
                 
                 let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
-                if timelineItem.device_id == RepoMemory.device_id {
+                if let user_id = presenter?.getUserId(), user_id == timelineItem.user_id {
                     alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (act) in
                         self.presenter?.requestDeleteTimeline(indexPath: index)
                     }))
                 
-                } else if timelineItem.device_id != RepoMemory.device_id {
+                } else if let user_id = presenter?.getUserId(), user_id != timelineItem.user_id {
                     alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
                         if let vc = self.tabBarController?.viewControllers {
                             guard let navigationController = vc[1] as? UINavigationController else { return }

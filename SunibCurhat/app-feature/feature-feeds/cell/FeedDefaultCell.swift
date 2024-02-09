@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol FeedDefaultCellDelegate: AnyObject {
     func didTapLike(cell: FeedDefaultCell)
@@ -114,6 +115,13 @@ class FeedDefaultCell: UITableViewCell {
         
         if let username = timeline?.name {
             image_profile.setImageForName(string: username, circular: true)
+        }
+        
+        if let avatar = timeline?.avatar,
+           let url_avatar = URL(string: avatar)
+        {
+            image_profile.circleCorner = true
+            image_profile.kf.setImage(with: url_avatar)
         }
         
         let image_comment: UIImage? = UIImage(symbol: .BubbleRight)?

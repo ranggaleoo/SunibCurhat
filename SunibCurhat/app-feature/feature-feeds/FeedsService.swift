@@ -17,6 +17,7 @@ class FeedsService {
         let access_token = UDHelpers.shared.getString(key: .access_token)
         let auth = "Bearer \(access_token)"
         
+        HTTPRequest.shared.headers[.xplatform] = "IOS"
         HTTPRequest.shared.headers[.authorization] = auth
         HTTPRequest.shared.connect(url: url_request, params: nil, model: MainResponse<TimelineResponse>.self) { (result) in
             completion(result)
@@ -80,6 +81,7 @@ class FeedsService {
         let access_token = UDHelpers.shared.getString(key: .access_token)
         let auth = "Bearer \(access_token)"
         
+        HTTPRequest.shared.method = .DELETE
         HTTPRequest.shared.headers[.authorization] = auth
         HTTPRequest.shared.connect(url: url_request, params: nil, model: MainResponse<String>.self) { (result) in
             completion(result)

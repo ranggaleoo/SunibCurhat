@@ -49,6 +49,7 @@ protocol FeedsViewToPresenter: class {
     
     func didLoad()
     func didClickNewPost()
+    func getUserId() -> String?
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int
     func cellForRowAt(indexPath: IndexPath) -> TimelineItems

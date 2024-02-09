@@ -23,6 +23,10 @@ class FeedsPresenter: FeedsViewToPresenter {
         requestGetTimeline(resetData: false)
     }
     
+    func getUserId() -> String? {
+        return user?.user_id
+    }
+    
     func didClickNewPost() {
         router?.navigateToNewPost(from: view)
     }
