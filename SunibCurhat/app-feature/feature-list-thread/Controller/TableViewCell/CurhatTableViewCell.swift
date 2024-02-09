@@ -38,7 +38,7 @@ class CurhatTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     var image: UIImage?
                     if #available(iOS 13.0, *) {
-                        image = UIImage(symbol: .heart_fill, configuration: nil)?.withTintColor(UIColor.custom.red_absolute, renderingMode: .alwaysOriginal)
+                        image = UIImage(symbol: .HeartFill, configuration: nil)?.withTintColor(UIColor.custom.red_absolute, renderingMode: .alwaysOriginal)
                     } else {
                         image = UIImage(named: "btn_like_active")
                     }
@@ -49,7 +49,7 @@ class CurhatTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     var image: UIImage?
                     if #available(iOS 13.0, *) {
-                        image = UIImage(symbol: .heart, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
+                        image = UIImage(symbol: .Heart, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
                     } else {
                         image = UIImage(named: "btn_like")
                     }
@@ -89,8 +89,8 @@ class CurhatTableViewCell: UITableViewCell {
         var image_comment: UIImage?
         var image_share: UIImage?
         if #available(iOS 13.0, *) {
-            image_comment = UIImage(symbol: .bubble_right, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
-            image_share = UIImage(symbol: .share, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
+            image_comment = UIImage(symbol: .BubbleRight, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
+            image_share = UIImage(symbol: .SquareAndArrowUp, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
         } else {
             image_comment   = UIImage(named: "btn_comment")
             image_share     = UIImage(named: "btn_share")

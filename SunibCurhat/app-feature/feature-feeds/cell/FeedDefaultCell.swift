@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FeedDefaultCellDelegate: class {
+protocol FeedDefaultCellDelegate: AnyObject {
     func didTapLike(cell: FeedDefaultCell)
     func didTapComment(cell: FeedDefaultCell)
     func didTapShare(cell: FeedDefaultCell)
@@ -43,21 +43,13 @@ class FeedDefaultCell: UITableViewCell {
     var isLiked: Bool = false {
         didSet {
             if isLiked {
-                var image: UIImage?
-                if #available(iOS 13.0, *) {
-                    image = UIImage(symbol: .heart_fill, configuration: nil)?.withTintColor(UIColor.custom.red_absolute, renderingMode: .alwaysOriginal)
-                } else {
-                    image = UIImage(named: "btn_like_active")
-                }
+                let image: UIImage? = UIImage(symbol: .HeartFill)?
+                    .withTintColor(UIColor.custom.red_absolute, renderingMode: .alwaysOriginal)
                 btn_like.setImage(image, for: .normal)
             
             } else {
-                var image: UIImage?
-                if #available(iOS 13.0, *) {
-                    image = UIImage(symbol: .heart, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
-                } else {
-                    image = UIImage(named: "btn_like")
-                }
+                let image: UIImage? = UIImage(symbol: .Heart)?
+                    .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
                 btn_like.setImage(image, for: .normal)
             }
         }
@@ -79,6 +71,8 @@ class FeedDefaultCell: UITableViewCell {
     }
     
     private func updateUI() {
+        backgroundColor = UINCColor.bg_secondary
+        
         container_round.layer.cornerRadius     = 15
         container_round.layer.shadowColor      = UIColor.black.withAlphaComponent(0.25).cgColor
         container_round.layer.shadowOffset     = CGSize(width: 0, height: 0)
@@ -100,6 +94,12 @@ class FeedDefaultCell: UITableViewCell {
         lbl_comment_counter.changeFontSize(size: 12)
         lbl_textcontent.changeParagraphLineSpacing(size: 5)
         
+        lbl_username.textColor = UIColor.label
+        lbl_textcontent.textColor = UIColor.label
+        lbl_time.textColor = UIColor.secondaryLabel
+        lbl_like_counter.textColor = UIColor.secondaryLabel
+        lbl_comment_counter.textColor = UIColor.secondaryLabel
+        
         if let likes = timeline?.total_likes, likes > 0 {
             lbl_like_counter.text = "\(likes)"
         } else {
@@ -116,18 +116,15 @@ class FeedDefaultCell: UITableViewCell {
             image_profile.setImageForName(string: username, circular: true)
         }
         
-        var image_comment: UIImage?
-        var image_share: UIImage?
-        if #available(iOS 13.0, *) {
-            image_comment = UIImage(symbol: .bubble_right, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
-            image_share = UIImage(symbol: .share, configuration: nil)?.withTintColor(UIColor.custom.black_absolute, renderingMode: .alwaysOriginal)
-        } else {
-            image_comment   = UIImage(named: "btn_comment")
-            image_share     = UIImage(named: "btn_share")
-        }
-        
+        let image_comment: UIImage? = UIImage(symbol: .BubbleRight)?
+            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
+        let image_share: UIImage? = UIImage(symbol: .SquareAndArrowUp)?
+            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
+        let image_more: UIImage? = UIImage(symbol: .Ellipsis)?
+            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
         btn_comment.setImage(image_comment, for: .normal)
         btn_share.setImage(image_share, for: .normal)
+        btn_more.setImage(image_more, for: .normal)
     }
     
     @objc func actionShare(_ sender: UIButton) {

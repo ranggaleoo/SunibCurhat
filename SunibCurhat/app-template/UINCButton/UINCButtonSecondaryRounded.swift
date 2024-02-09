@@ -28,7 +28,7 @@ class UINCButtonSecondaryRounded: TransitionButton {
                 
             } else {
                 self.backgroundColor = UINCColor.tertiary
-                self.setTitleColor(UINCColor.tertiary_foreground, for: .normal)
+                self.setTitleColor(UINCColor.secondary_foreground, for: .disabled)
             }
         }
     }

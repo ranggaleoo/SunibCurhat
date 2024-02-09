@@ -38,6 +38,7 @@ class LoginView: UIViewController, LoginPresenterToView {
     }
     
     func setupViews() {
+        view.backgroundColor = UINCColor.bg_primary
         image_view.backgroundColor = UINCColor.bg_secondary
         image_view.contentMode = .scaleAspectFill
         image_view.clipsToBounds = true

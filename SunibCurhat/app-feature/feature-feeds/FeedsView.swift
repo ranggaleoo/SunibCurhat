@@ -52,16 +52,15 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         }
         
         navigationDefault()
-        title = "Timeline"
-        var image_add_thread: UIImage?
-        if #available(iOS 13.0, *) {
-            image_add_thread = UIImage(symbol: .plus_bubble_fill, configuration: nil)
-        } else {
-            image_add_thread = UIImage(named: "bar_btn_add_thread")
-        }
-        
-        let buttonAddThread = UIBarButtonItem(image: image_add_thread, style: .plain, target: self, action: #selector(toAddThread))
-        let buttonBarMenu = UIBarButtonItem(image: UIImage(named: "bar_btn_more_vert"), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
+        title = "Home"
+        let buttonAddThread = UIBarButtonItem(
+            image: UIImage(symbol: .SquareAndPencil)?
+                .withTintColor(UINCColor.primary, renderingMode: .alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(toAddThread)
+        )
+        let buttonBarMenu = UIBarButtonItem(image: UIImage(symbol: .EllipsisCircleFill), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
         navigationItem.rightBarButtonItems = [buttonBarMenu, buttonAddThread]
     }
     

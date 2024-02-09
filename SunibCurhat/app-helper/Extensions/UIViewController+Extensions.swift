@@ -5,8 +5,9 @@ extension UIViewController {
     static var alertActions: [String: (UIAlertAction) -> Void] = [:]
     
     public func navigationDefault() {
-        self.navigationItem.backBarButtonItem               = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.tintColor  = UIColor.custom.blue
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.backgroundColor = UINCColor.bg_secondary
+        self.navigationController?.navigationBar.tintColor  = UINCColor.secondary
     }
     
     var alertController: UIAlertController? {
@@ -29,8 +30,8 @@ extension UIViewController {
     
     func showAlert(title: String, message: String, OKcompletion: ((UIAlertAction) -> Void)?, CancelCompletion: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.setTitle(font: UIFont.custom.bold.size(of: 15), color: UIColor.custom.black_absolute)
-        alert.setMessage(font: UIFont.custom.regular.size(of: 12), color: UIColor.custom.gray_absolute)
+        alert.setTitle(font: UIFont.custom.bold.size(of: 15), color: UIColor.label)
+        alert.setMessage(font: UIFont.custom.regular.size(of: 12), color: UIColor.label)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: OKcompletion))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: CancelCompletion))

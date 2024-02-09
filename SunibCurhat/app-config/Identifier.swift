@@ -29,6 +29,7 @@ public enum Identifier {
         case btn_camera
     }
     
+    @available(*, deprecated, renamed: "SFSymbols", message: "use enum SFSymbols generated instead")
     public enum imageSymbolName: String {
         // MARK: - INFO
         case info               = "info"

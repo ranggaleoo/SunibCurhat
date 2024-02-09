@@ -64,7 +64,7 @@ class ListCurhatViewController: UIViewController {
     func setupMenuBarButtonItem() {
         var image_add_thread: UIImage?
         if #available(iOS 13.0, *) {
-            image_add_thread = UIImage(symbol: .plus_bubble_fill, configuration: nil)
+            image_add_thread = UIImage(symbol: .SquareAndPencil, configuration: nil)
         } else {
             image_add_thread = UIImage(named: "bar_btn_add_thread")
         }

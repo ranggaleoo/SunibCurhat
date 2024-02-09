@@ -51,6 +51,7 @@ class UINCInput: UIView {
             
             stack_container.spacing = 8
             txt_field.delegate = self
+            txt_field.backgroundColor = UINCColor.bg_secondary
             lbl_status_field.isHidden = true
             lbl_status_field.numberOfLines = 0
             lbl_status_field.textColor = UINCColor.error

@@ -48,6 +48,7 @@
 		8B2FED25261B0E5200608F27 /* Aliasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FED24261B0E5200608F27 /* Aliasses.swift */; };
 		AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F0E232EF05C0047BC99 /* UDHelpers.swift */; };
 		AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */; };
+		AA25B8D62B765E33004F22E1 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8D52B765E33004F22E1 /* SFSymbols.swift */; };
 		AA29CC692B754887002B26B6 /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA29CC682B754887002B26B6 /* RegisterService.swift */; };
 		AA2BF02625EDB08E00E037AE /* CodableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02525EDB08E00E037AE /* CodableStorage.swift */; };
 		AA2BF02925EDB0B100E037AE /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BF02825EDB0B100E037AE /* DiskStorage.swift */; };
@@ -240,6 +241,7 @@
 		8B2FED24261B0E5200608F27 /* Aliasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliasses.swift; sourceTree = "<group>"; };
 		AA249F0E232EF05C0047BC99 /* UDHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDHelpers.swift; sourceTree = "<group>"; };
 		AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		AA25B8D52B765E33004F22E1 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		AA29CC682B754887002B26B6 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
 		AA2BF02525EDB08E00E037AE /* CodableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
 		AA2BF02825EDB0B100E037AE /* DiskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
@@ -658,6 +660,14 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		AA25B8D42B765E11004F22E1 /* Constant+Alliasses */ = {
+			isa = PBXGroup;
+			children = (
+				AA25B8D52B765E33004F22E1 /* SFSymbols.swift */,
+			);
+			path = "Constant+Alliasses";
+			sourceTree = "<group>";
+		};
 		AA2BF02425EDB07100E037AE /* Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,6 +1016,7 @@
 		AA5BABE922F6584F004253AF /* app-helper */ = {
 			isa = PBXGroup;
 			children = (
+				AA25B8D42B765E11004F22E1 /* Constant+Alliasses */,
 				AA2BF02425EDB07100E037AE /* Cache */,
 				AA674982257624D400640A2D /* LeoStoreKit */,
 				AAD0E38622F70F7F005CC55A /* Pickers */,
@@ -1616,6 +1627,7 @@
 				AABF394F23077F6E00DEAA63 /* TimelineService.swift in Sources */,
 				AA43D96A25EAF928008B2364 /* AppDelegateFactory.swift in Sources */,
 				AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */,
+				AA25B8D62B765E33004F22E1 /* SFSymbols.swift in Sources */,
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
 				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
 				AA2BF02625EDB08E00E037AE /* CodableStorage.swift in Sources */,

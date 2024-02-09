@@ -47,6 +47,7 @@ class MainService {
         }
     }
     
+    @available(*, deprecated, renamed: "refreshToken", message: "use refreshToken instead")
     func getToken(completion: @escaping (Result<MainResponse<[String:String]>, Error>) -> Void) {
         let url = URLConst.api_url + "/getToken"
         HTTPRequest.shared.connect(url: url, params: nil, model: MainResponse<[String:String]>.self) { (result) in
