@@ -65,14 +65,6 @@ class FeedDefaultCell: UITableViewCell {
     
     private func setupViews() {
         selectionStyle = .none
-        btn_share.addTarget(self, action: #selector(actionShare(_:)), for: .touchUpInside)
-        btn_like.addTarget(self, action: #selector(actionLike(_:)), for: .touchUpInside)
-        btn_comment.addTarget(self, action: #selector(actionComment(_:)), for: .touchUpInside)
-        btn_more.addTarget(self, action: #selector(actionMore(_:)), for: .touchUpInside)
-    }
-    
-    private func updateUI() {
-        backgroundColor = UINCColor.bg_secondary
         
         container_round.layer.cornerRadius     = 15
         container_round.layer.shadowColor      = UIColor.black.withAlphaComponent(0.25).cgColor
@@ -81,12 +73,8 @@ class FeedDefaultCell: UITableViewCell {
         container_round.layer.shadowOpacity    = 30.0
         container_round.layer.masksToBounds    = false
         
-        lbl_username.text               = timeline?.name
-        lbl_textcontent.text            = timeline?.text_content
         lbl_textcontent.numberOfLines   = 0
-        lbl_textcontent.textAlignment   = .natural
-        lbl_time.text                   = timeline?.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
-        isLiked                         = timeline?.is_liked ?? false
+        lbl_textcontent.textAlignment   = .justified
         
         lbl_username.changeFontSize(size: 14)
         lbl_time.changeFontSize(size: 12)
@@ -100,6 +88,30 @@ class FeedDefaultCell: UITableViewCell {
         lbl_time.textColor = UIColor.secondaryLabel
         lbl_like_counter.textColor = UIColor.secondaryLabel
         lbl_comment_counter.textColor = UIColor.secondaryLabel
+        
+        let image_comment: UIImage? = UIImage(symbol: .BubbleRight)?
+            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
+        let image_share: UIImage? = UIImage(symbol: .SquareAndArrowUp)?
+            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
+        let image_more: UIImage? = UIImage(symbol: .Ellipsis)?
+            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
+        btn_comment.setImage(image_comment, for: .normal)
+        btn_share.setImage(image_share, for: .normal)
+        btn_more.setImage(image_more, for: .normal)
+        
+        btn_share.addTarget(self, action: #selector(actionShare(_:)), for: .touchUpInside)
+        btn_like.addTarget(self, action: #selector(actionLike(_:)), for: .touchUpInside)
+        btn_comment.addTarget(self, action: #selector(actionComment(_:)), for: .touchUpInside)
+        btn_more.addTarget(self, action: #selector(actionMore(_:)), for: .touchUpInside)
+    }
+    
+    private func updateUI() {
+        backgroundColor = UINCColor.bg_secondary
+                
+        lbl_username.text               = timeline?.name
+        lbl_textcontent.text            = timeline?.text_content
+        lbl_time.text                   = timeline?.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
+        isLiked                         = timeline?.is_liked ?? false
         
         if let likes = timeline?.total_likes, likes > 0 {
             lbl_like_counter.text = "\(likes)"
@@ -123,16 +135,6 @@ class FeedDefaultCell: UITableViewCell {
             image_profile.circleCorner = true
             image_profile.kf.setImage(with: url_avatar)
         }
-        
-        let image_comment: UIImage? = UIImage(symbol: .BubbleRight)?
-            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
-        let image_share: UIImage? = UIImage(symbol: .SquareAndArrowUp)?
-            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
-        let image_more: UIImage? = UIImage(symbol: .Ellipsis)?
-            .withTintColor(UIColor.label, renderingMode: .alwaysOriginal)
-        btn_comment.setImage(image_comment, for: .normal)
-        btn_share.setImage(image_share, for: .normal)
-        btn_more.setImage(image_more, for: .normal)
     }
     
     @objc func actionShare(_ sender: UIButton) {

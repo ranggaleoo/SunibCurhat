@@ -33,6 +33,20 @@ class CommentService {
         }
     }
     
+    func getCommentsByTimelineId(timeline_id: Int, page: Int, itemPerPage: Int, completion: @escaping (Result<MainResponse<CommentResponse>, Error>) -> Void) {
+        let base_url = URLConst.server + URLConst.path_v1
+        let url_request = "\(base_url)/comment/\(timeline_id)/\(page)/\(itemPerPage)"
+        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let auth = "Bearer \(access_token)"
+        
+        HTTPRequest.shared.headers[.xplatform] = "IOS"
+        HTTPRequest.shared.headers[.authorization] = auth
+        HTTPRequest.shared.connect(url: url_request, params: nil, model: MainResponse<CommentResponse>.self) { (result) in
+            completion(result)
+        }
+    }
+    
+    @available(*, deprecated, renamed: "getCommentsByTimelineId", message: "use getCommentsByTimelineId instead")
     func getComments(page: Int, timeline_id: Int, completion: @escaping (Result<MainResponse<CommentResponse>, Error>) -> Void) {
         var param: [String: Any] = [:]
         param["page"]           = page

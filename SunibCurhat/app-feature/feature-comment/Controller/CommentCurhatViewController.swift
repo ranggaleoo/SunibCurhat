@@ -307,7 +307,7 @@ extension CommentCurhatViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         let deleteButton = UITableViewRowAction(style: .normal, title: "Delete") { (action, indexPath) in
-            self.deleteComment(comment_id: self.comments[indexPath.row].comment_id, indexPath: indexPath)
+            self.deleteComment(comment_id: "\(self.comments[indexPath.row].comment_id)", indexPath: indexPath)
         }
         if comments[indexPath.row].device_id != RepoMemory.device_id {
             sendChatButton.backgroundColor = UIColor.custom.blue

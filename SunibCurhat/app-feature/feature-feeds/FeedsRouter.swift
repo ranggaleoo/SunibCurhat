@@ -34,13 +34,18 @@ class FeedsRouter: FeedsPresenterToRouter {
     }
     
     func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?) {
-        if let controller = view as? UIViewController {
-            let storyboad = UIStoryboard(name: "CommentCurhat", bundle: nil)
-            if let vc = storyboad.instantiateViewController(withIdentifier: "comment") as? CommentCurhatViewController {
-                vc.timeline = timeline
-                controller.navigationController?.pushViewController(vc, animated: true)
-            }
+        if let vc = view as? UIViewController {
+            let comment = CommentRouter.createCommentModule(timeline_id: timeline.timeline_id)
+            comment.hidesBottomBarWhenPushed = true
+            vc.navigationController?.pushViewController(comment, animated: true)
         }
+//        if let controller = view as? UIViewController {
+//            let storyboad = UIStoryboard(name: "CommentCurhat", bundle: nil)
+//            if let vc = storyboad.instantiateViewController(withIdentifier: "comment") as? CommentCurhatViewController {
+//                vc.timeline = timeline
+//                controller.navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
     }
     
     func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?) {

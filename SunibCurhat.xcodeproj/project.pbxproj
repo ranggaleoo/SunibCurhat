@@ -46,6 +46,14 @@
 		8B0643E0260635CA009B129C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0643DA260635CA009B129C /* ChatView.swift */; };
 		8B0643E1260635CA009B129C /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B0643DB260635CA009B129C /* ChatView.xib */; };
 		8B2FED25261B0E5200608F27 /* Aliasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FED24261B0E5200608F27 /* Aliasses.swift */; };
+		AA0601152B7727090056B695 /* CommentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA06010F2B7727090056B695 /* CommentPresenter.swift */; };
+		AA0601162B7727090056B695 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0601102B7727090056B695 /* CommentRouter.swift */; };
+		AA0601172B7727090056B695 /* CommentProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0601112B7727090056B695 /* CommentProtocols.swift */; };
+		AA0601182B7727090056B695 /* CommentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0601122B7727090056B695 /* CommentInteractor.swift */; };
+		AA0601192B7727090056B695 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0601132B7727090056B695 /* CommentView.swift */; };
+		AA06011A2B7727090056B695 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0601142B7727090056B695 /* CommentView.xib */; };
+		AA06011D2B7765AC0056B695 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA06011C2B7765AC0056B695 /* CommentCell.swift */; };
+		AA06011F2B7765BF0056B695 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA06011E2B7765BF0056B695 /* CommentCell.xib */; };
 		AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F0E232EF05C0047BC99 /* UDHelpers.swift */; };
 		AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */; };
 		AA25B8D62B765E33004F22E1 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25B8D52B765E33004F22E1 /* SFSymbols.swift */; };
@@ -248,6 +256,14 @@
 		8B0643DA260635CA009B129C /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		8B0643DB260635CA009B129C /* ChatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		8B2FED24261B0E5200608F27 /* Aliasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliasses.swift; sourceTree = "<group>"; };
+		AA06010F2B7727090056B695 /* CommentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPresenter.swift; sourceTree = "<group>"; };
+		AA0601102B7727090056B695 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
+		AA0601112B7727090056B695 /* CommentProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentProtocols.swift; sourceTree = "<group>"; };
+		AA0601122B7727090056B695 /* CommentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInteractor.swift; sourceTree = "<group>"; };
+		AA0601132B7727090056B695 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		AA0601142B7727090056B695 /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
+		AA06011C2B7765AC0056B695 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		AA06011E2B7765BF0056B695 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		AA249F0E232EF05C0047BC99 /* UDHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDHelpers.swift; sourceTree = "<group>"; };
 		AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		AA25B8D52B765E33004F22E1 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
@@ -668,6 +684,15 @@
 				EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA06011B2B7765950056B695 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				AA06011C2B7765AC0056B695 /* CommentCell.swift */,
+				AA06011E2B7765BF0056B695 /* CommentCell.xib */,
+			);
+			path = TableCell;
 			sourceTree = "<group>";
 		};
 		AA249F0D232EF0400047BC99 /* UserDefaults */ = {
@@ -1447,10 +1472,17 @@
 		AAF1182422F6BBC600FDA099 /* feature-comment */ = {
 			isa = PBXGroup;
 			children = (
+				AA06011B2B7765950056B695 /* TableCell */,
 				16EDEB4F230E7C4900F5AE69 /* Model */,
 				16FD4694230D5B7B00AD323F /* Service */,
 				AAF1182622F6BBDB00FDA099 /* Controller */,
 				AAF1182522F6BBD400FDA099 /* View */,
+				AA06010F2B7727090056B695 /* CommentPresenter.swift */,
+				AA0601102B7727090056B695 /* CommentRouter.swift */,
+				AA0601112B7727090056B695 /* CommentProtocols.swift */,
+				AA0601122B7727090056B695 /* CommentInteractor.swift */,
+				AA0601132B7727090056B695 /* CommentView.swift */,
+				AA0601142B7727090056B695 /* CommentView.xib */,
 			);
 			path = "feature-comment";
 			sourceTree = "<group>";
@@ -1583,6 +1615,7 @@
 				AA46E2F1245C752F00735490 /* Corona.storyboard in Resources */,
 				AA75AD492347C8AC00C8F739 /* Premium.storyboard in Resources */,
 				AA478D8422F649A400BC23A7 /* Assets.xcassets in Resources */,
+				AA06011A2B7727090056B695 /* CommentView.xib in Resources */,
 				AAA8D1182B724561007C579B /* LoginView.xib in Resources */,
 				8B0643E1260635CA009B129C /* ChatView.xib in Resources */,
 				AA46E2E3245C52C000735490 /* UpdateApp.storyboard in Resources */,
@@ -1593,6 +1626,7 @@
 				AA2BF03E25EDB21000E037AE /* SettingsSwitchCell.xib in Resources */,
 				AA25B8E32B768648004F22E1 /* NewPostView.xib in Resources */,
 				AA2BF03A25EDB11B00E037AE /* SettingsView.xib in Resources */,
+				AA06011F2B7765BF0056B695 /* CommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1676,6 +1710,7 @@
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
 				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
 				AA2BF02625EDB08E00E037AE /* CodableStorage.swift in Sources */,
+				AA0601152B7727090056B695 /* CommentPresenter.swift in Sources */,
 				8B0643DC260635CA009B129C /* ChatPresenter.swift in Sources */,
 				AAD0E37C22F70F02005CC55A /* Date+Extension.swift in Sources */,
 				AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */,
@@ -1688,6 +1723,7 @@
 				8B0643DE260635CA009B129C /* ChatProtocols.swift in Sources */,
 				AA46E2E1245C52A800735490 /* UpdateAppController.swift in Sources */,
 				AAD0E37922F70F02005CC55A /* UIAlertController+Extensions.swift in Sources */,
+				AA06011D2B7765AC0056B695 /* CommentCell.swift in Sources */,
 				AA2BF02925EDB0B100E037AE /* DiskStorage.swift in Sources */,
 				16456DBF2350B8400058474C /* Premium+CollectionView.swift in Sources */,
 				AA2BF02C25EDB0D500E037AE /* Storage.swift in Sources */,
@@ -1701,6 +1737,7 @@
 				AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */,
 				AA589D312B748FF6007DEE54 /* LoginModel.swift in Sources */,
 				AA25B8DF2B768648004F22E1 /* NewPostRouter.swift in Sources */,
+				AA0601192B7727090056B695 /* CommentView.swift in Sources */,
 				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
 				AA2BF03725EDB11B00E037AE /* SettingsProtocols.swift in Sources */,
@@ -1710,6 +1747,7 @@
 				166F1AD2231786B500BB1151 /* Chats+TableView.swift in Sources */,
 				AA43D96025EAC151008B2364 /* HTTPRequestMethod.swift in Sources */,
 				AA2BF04925EDB33700E037AE /* UINCColor.swift in Sources */,
+				AA0601162B7727090056B695 /* CommentRouter.swift in Sources */,
 				AA46E2FC245D6C0900735490 /* UINCCardCorona.swift in Sources */,
 				AAD0E37B22F70F02005CC55A /* UIColor+Extensions.swift in Sources */,
 				AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */,
@@ -1717,6 +1755,7 @@
 				AAD0E37222F70F02005CC55A /* UIImage+Extensions.swift in Sources */,
 				AA46E2E7245C551A00735490 /* UINCButtonPrimaryRounded.swift in Sources */,
 				16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */,
+				AA0601172B7727090056B695 /* CommentProtocols.swift in Sources */,
 				8B0643DD260635CA009B129C /* ChatRouter.swift in Sources */,
 				AA46E2F6245D44B400735490 /* CoronaService.swift in Sources */,
 				AACDFE742570E42200485828 /* FeedsPresenter.swift in Sources */,
@@ -1740,6 +1779,7 @@
 				AAF5487725760D0500176378 /* FeedAdmobCell.swift in Sources */,
 				16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */,
 				AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */,
+				AA0601182B7727090056B695 /* CommentInteractor.swift in Sources */,
 				AAA8D11B2B72B756007C579B /* UINCInput.swift in Sources */,
 				168D6F3A230C0FFA007872D9 /* AddThreadService.swift in Sources */,
 				AACDFE772570E42200485828 /* FeedsInteractor.swift in Sources */,
