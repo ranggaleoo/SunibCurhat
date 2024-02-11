@@ -32,7 +32,7 @@ enum UINCColor: String {
     case info_color = "00D1ED"
     case success_color = "52C41A"
     case warning_color = "FAAD14"
-    case error_coloer = "FF4D4F"
+    case error_color = "FF4D4F"
         
     func get() -> UIColor {
         return self.rawValue.hexToUIColor()
@@ -95,6 +95,6 @@ enum UINCColor: String {
     }()
     
     static var error: UIColor = {
-        return UINCColor.error_coloer.get()
+        return UINCColor.error_color.get()
     }()
 }

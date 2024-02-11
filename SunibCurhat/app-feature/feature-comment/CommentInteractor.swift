@@ -40,4 +40,19 @@ class CommentInteractor: CommentPresenterToInteractor {
             }
         }
     }
+    
+    func addNewComment(timeline_id: Int, user_id: String, name: String, text_content: String) {
+        CommentService.shared.addNewComment(timeline_id: timeline_id, user_id: user_id, name: name, text_content: text_content) { [weak self] (result) in
+            switch result {
+            case .success(let res):
+                if res.success {
+                    self?.presenter?.didSendComment()
+                } else {
+                    self?.presenter?.failSendComment(message: res.message)
+                }
+            case .failure(let err):
+                self?.presenter?.failSendComment(message: err.localizedDescription)
+            }
+        }
+    }
 }

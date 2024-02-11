@@ -11,6 +11,7 @@ import Foundation
 class CommentService {
     static let shared: CommentService = CommentService()
     
+    @available(*, deprecated, renamed: "addNewComment", message: "use addNewComment instead")
     func addComment(timeline_id: Int, text_content: String, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         var param: [String: Any] = [:]
         param["timeline_id"]    = timeline_id
@@ -29,6 +30,25 @@ class CommentService {
         HTTPRequest.shared.headers[.contentType] = "application/json; charset=utf-8"
         HTTPRequest.shared.headers[.referer] = URLConst.server
         HTTPRequest.shared.connect(url: url, params: param, model: MainResponse<String>.self) { (result) in
+            completion(result)
+        }
+    }
+    
+    func addNewComment(timeline_id: Int, user_id: String, name: String, text_content: String, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+        let base_url = URLConst.server + URLConst.path_v1
+        let url_request = "\(base_url)/comment/new/"
+        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let auth = "Bearer \(access_token)"
+        
+        var params: [String: Any] = [:]
+        params["timeline_id"]   = timeline_id
+        params["user_id"]       = user_id
+        params["name"]          = name
+        params["text_content"]  = text_content
+        
+        HTTPRequest.shared.headers[.xplatform] = "IOS"
+        HTTPRequest.shared.headers[.authorization] = auth
+        HTTPRequest.shared.connect(url: url_request, params: params, model: MainResponse<String>.self) { (result) in
             completion(result)
         }
     }

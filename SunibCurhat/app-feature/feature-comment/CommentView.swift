@@ -32,6 +32,7 @@ class CommentView: UIViewController, CommentPresenterToView {
         return r
     }()
     
+    @IBOutlet private weak var lbl_reply_message: UINCLabelNote!
     private lazy var input_reply = InputBarAccessoryView()
     
     init() {
@@ -54,23 +55,47 @@ class CommentView: UIViewController, CommentPresenterToView {
         lbl_textcontent.textAlignment = .justified
         lbl_textcontent.numberOfLines = 0
         
+        lbl_reply_message.numberOfLines = 0
+        lbl_reply_message.isHidden = true
+        
         lbl_username.changeFontSize(size: 14)
         lbl_textcontent.changeFontSize(size: 14)
         lbl_time.changeFontSize(size: 12)
         lbl_like_counter.changeFontSize(size: 12)
         lbl_comment_counter.changeFontSize(size: 12)
+        lbl_reply_message.changeFontSize(size: 12)
         
         lbl_username.textColor = UIColor.label
         lbl_textcontent.textColor = UIColor.label
         lbl_time.textColor = UIColor.secondaryLabel
         lbl_like_counter.textColor = UIColor.secondaryLabel
         lbl_comment_counter.textColor = UIColor.secondaryLabel
+        lbl_reply_message.textColor = UINCColor.error
         
         tbl_comment.delegate = self
         tbl_comment.dataSource = self
         tbl_comment.register(CommentCell.source.nib, forCellReuseIdentifier: CommentCell.source.identifier)
         tbl_comment.refreshControl = refreshControl
 //        refreshControl.addTarget(self, action: #selector(self.didRefresh()), for: .valueChanged)
+        
+        let validations: [ValidationType] = [.isNotBlank, .isGreaterThanOrEqual5]
+        input_reply.sendButton.onTextViewDidChange { [weak self] (input_item, txt_view) in
+            for validation in validations {
+                let valid = validation.isValid(txt_view.text)
+                if valid.isSuccess {
+                    self?.presenter?.set(text_content: txt_view.text)
+                    self?.lbl_reply_message.isHidden = true
+                } else {
+                    self?.lbl_reply_message.isHidden = false
+                    self?.lbl_reply_message.text = valid.error
+                }
+            }
+        }
+        
+        input_reply.sendButton.onTouchUpInside({ [weak self] (inputItem) in
+            self?.presenter?.didClickNewComment()
+            self?.input_reply.inputTextView.text = nil
+        })
         
         stack_container.addArrangedSubview(input_reply)
     }
@@ -97,16 +122,7 @@ class CommentView: UIViewController, CommentPresenterToView {
         tbl_comment.reloadData()
     }
     
-    func showFailMessaggeGetTimeline(title: String, message: String) {
-        showAlert(title: title, message: message) { actionOK in
-            //
-        } CancelCompletion: { actionCancel in
-            //
-        }
-
-    }
-    
-    func showFailMessageGetComment(title: String, message: String) {
+    func showFailMessage(title: String, message: String) {
         showAlert(title: title, message: message) { actionOK in
             //
         } CancelCompletion: { actionCancel in

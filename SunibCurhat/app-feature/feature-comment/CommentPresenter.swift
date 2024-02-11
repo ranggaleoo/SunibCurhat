@@ -13,9 +13,11 @@ class CommentPresenter: CommentViewToPresenter {
     var interactor: CommentPresenterToInteractor?
     var router: CommentPresenterToRouter?
     var timeline_id: Int? = nil
+    private var user: User? = UDHelpers.shared.getObject(type: User.self, forKey: .user)
     private var page: Int = 1
     private let itemPerPage: Int = 10
     private var comments: [CommentItems] = []
+    private var text_content: String? = nil
     
     func didLoad() {
         view?.setupViews()
@@ -26,12 +28,31 @@ class CommentPresenter: CommentViewToPresenter {
         interactor?.getTimelineById(timeline_id: timeline_id)
     }
     
+    func set(text_content: String) {
+        self.text_content = text_content
+    }
+    
     func didRequestTimeline() {
         //
     }
     
     func didRequestComments() {
         //
+    }
+    
+    func didClickNewComment() {
+        view?.startLoader()
+        if let t_id = timeline_id,
+           let user_id = user?.user_id,
+           let user_name = user?.name,
+           let text = text_content {
+            interactor?.addNewComment(
+                timeline_id: t_id,
+                user_id: user_id,
+                name: user_name,
+                text_content: text
+            )
+        }
     }
     
     func numberOfRowsInSection() -> Int {
@@ -59,13 +80,23 @@ extension CommentPresenter: CommentInteractorToPresenter {
         view?.reloadComments()
     }
     
+    func didSendComment() {
+        view?.stopLoader()
+        view?.reloadComments()
+    }
+    
     func failGetTimeline(message: String) {
         view?.stopLoader()
-        view?.showFailMessaggeGetTimeline(title: "Oops", message: message)
+        view?.showFailMessage(title: "Oops", message: message)
     }
     
     func failGetComments(message: String) {
         view?.stopLoader()
-        view?.showFailMessageGetComment(title: "Oops", message: message)
+        view?.showFailMessage(title: "Oops", message: message)
+    }
+    
+    func failSendComment(message: String) {
+        view?.stopLoader()
+        view?.showFailMessage(title: "Oops", message: message)
     }
 }

@@ -14,8 +14,7 @@ protocol CommentPresenterToView: AnyObject {
     
     func setupViews()
     func updateUI(data: TimelineItems)
-    func showFailMessaggeGetTimeline(title: String, message: String)
-    func showFailMessageGetComment(title: String, message: String)
+    func showFailMessage(title: String, message: String)
     func startLoader()
     func stopLoader()
     func reloadComments()
@@ -27,6 +26,7 @@ protocol CommentPresenterToInteractor: AnyObject {
     
     func getTimelineById(timeline_id: Int)
     func getCommentsByTimelineId(timeline_id: Int, page: Int, itemPerPage: Int)
+    func addNewComment(timeline_id: Int, user_id: String, name: String, text_content: String)
 }
 
 // MARK: Router -
@@ -44,8 +44,10 @@ protocol CommentViewToPresenter: AnyObject {
     var timeline_id: Int? {get set}
     
     func didLoad()
+    func set(text_content: String)
     func didRequestTimeline()
     func didRequestComments()
+    func didClickNewComment()
     func numberOfRowsInSection() -> Int
     func cellForRowAt(index: Int) -> CommentItems
 }
@@ -53,6 +55,8 @@ protocol CommentViewToPresenter: AnyObject {
 protocol CommentInteractorToPresenter: AnyObject {
     func didGetTimeline(data: TimelineItems)
     func didGetComment(data: CommentResponse)
+    func didSendComment()
     func failGetTimeline(message: String)
     func failGetComments(message: String)
+    func failSendComment(message: String)
 }

@@ -15,6 +15,7 @@
                 <outlet property="image_profile" destination="ihX-bk-zfH" id="oBS-4q-Yks"/>
                 <outlet property="lbl_comment_counter" destination="d6M-nC-dhZ" id="aTR-L5-SyL"/>
                 <outlet property="lbl_like_counter" destination="Azd-JP-Ith" id="dZc-0P-FdV"/>
+                <outlet property="lbl_reply_message" destination="VrA-Xo-qur" id="Q0A-zo-Ril"/>
                 <outlet property="lbl_textcontent" destination="jTu-vd-BMr" id="x3e-GG-CCA"/>
                 <outlet property="lbl_time" destination="FGV-9X-RZP" id="WjJ-8a-CPR"/>
                 <outlet property="lbl_username" destination="Ngz-mE-fQU" id="zo6-xC-Tub"/>
@@ -32,10 +33,10 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUj-6C-lRa">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="581"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="432.66666666666669"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5Fx-eO-fAq">
-                                    <rect key="frame" x="16" y="16" width="361" height="549"/>
+                                    <rect key="frame" x="16" y="16" width="361" height="400.66666666666669"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tDc-Ri-gKQ">
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -94,13 +95,13 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTu-vd-BMr" customClass="UINCLabelBody" customModule="SunibCurhat" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="54" width="361" height="455"/>
+                                            <rect key="frame" x="0.0" y="54" width="361" height="306.66666666666669"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="8fr-Dc-LQK">
-                                            <rect key="frame" x="0.0" y="525" width="361" height="24"/>
+                                            <rect key="frame" x="0.0" y="376.66666666666669" width="361" height="24"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azd-JP-Ith" customClass="UINCLabelNote" customModule="SunibCurhat" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="24"/>
@@ -140,10 +141,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uf7-YR-kL6">
-                            <rect key="frame" x="0.0" y="581" width="393" height="178"/>
+                            <rect key="frame" x="0.0" y="432.66666666666669" width="393" height="198.33333333333331"/>
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RkQ-mT-SJC">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="178"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="198.33333333333334"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </tableView>
                             </subviews>
@@ -153,6 +154,24 @@
                                 <constraint firstItem="RkQ-mT-SJC" firstAttribute="top" secondItem="uf7-YR-kL6" secondAttribute="top" id="CCe-G6-iZf"/>
                                 <constraint firstAttribute="bottom" secondItem="RkQ-mT-SJC" secondAttribute="bottom" id="bNY-A2-JDO"/>
                                 <constraint firstAttribute="trailing" secondItem="RkQ-mT-SJC" secondAttribute="trailing" id="y8E-V7-zPx"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H17-h6-AfC">
+                            <rect key="frame" x="0.0" y="631" width="393" height="128"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VrA-Xo-qur" customClass="UINCLabelNote" customModule="SunibCurhat" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="0.0" width="361" height="128"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="VrA-Xo-qur" secondAttribute="trailing" constant="16" id="41H-dY-XaM"/>
+                                <constraint firstItem="VrA-Xo-qur" firstAttribute="top" secondItem="H17-h6-AfC" secondAttribute="top" id="BPF-9G-mM9"/>
+                                <constraint firstAttribute="bottom" secondItem="VrA-Xo-qur" secondAttribute="bottom" id="T3d-ch-NQT"/>
+                                <constraint firstItem="VrA-Xo-qur" firstAttribute="leading" secondItem="H17-h6-AfC" secondAttribute="leading" constant="16" id="v6r-8q-CE0"/>
                             </constraints>
                         </view>
                     </subviews>
