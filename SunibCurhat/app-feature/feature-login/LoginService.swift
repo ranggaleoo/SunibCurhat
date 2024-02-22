@@ -28,17 +28,7 @@ class LoginService {
         var params: [String: Any] = [:]
         params["device_id"] = device_id
         HTTPRequest.shared.headers[.xplatform] = "IOS"
-        HTTPRequest.shared.connect(url: base_url + "/login/anonymous/", params: params, model: MainResponse<BaseLoginData>.self) { (result) in
-            completion(result)
-        }
-    }
-    
-    func registerAnonymous(device_id: String, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
-        let base_url = URLConst.server + URLConst.path_v1
-        var params: [String: Any] = [:]
-        params["device_id"] = device_id
-        HTTPRequest.shared.headers[.xplatform] = "IOS"
-        HTTPRequest.shared.connect(url: base_url + "/register/anonymous/", params: params, model: MainResponse<String>.self) { (result) in
+        HTTPRequest.shared.connect(url: base_url + "/login/anon/", params: params, model: MainResponse<BaseLoginData>.self) { (result) in
             completion(result)
         }
     }

@@ -49,11 +49,17 @@ struct Preferences: Codable {
     let reply_emojis:               [String]
     let report_reasons:             [String]
     let images:                     PreferenceImages
+    let urls:                       PreferenceUrls
 }
 
 struct PreferenceImages: Codable {
     let image_url_login: String
     let image_url_register: String
+}
+
+struct  PreferenceUrls: Codable {
+    let privacy_policy: String
+    let user_agreement: String
 }
 
 struct User: Codable {

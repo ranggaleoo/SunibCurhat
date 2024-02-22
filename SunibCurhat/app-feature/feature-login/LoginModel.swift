@@ -9,6 +9,7 @@
 import Foundation
 
 struct BaseLoginData: Codable {
+    let refresh_token: String
     let access_token: String
     let user:         User
 }

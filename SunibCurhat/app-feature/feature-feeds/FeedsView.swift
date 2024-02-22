@@ -162,41 +162,27 @@ class FeedsView: UIViewController, FeedsPresenterToView {
                 }
             }))
             
-            alert2.addAction(UIAlertAction(title: "Whatsapp", style: .default, handler: { (act) in
-                guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(ConstGlobal.contact_whatsapp ?? "")&text=Halo%20\(ConstGlobal.app_name ?? "")") else {return}
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                        if success {
-                            debugLog("----- open whatsapp")
-                        }
-                    })
-                }
-            }))
+//            alert2.addAction(UIAlertAction(title: "Whatsapp", style: .default, handler: { (act) in
+//                guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(ConstGlobal.contact_whatsapp ?? "")&text=Halo%20\(ConstGlobal.app_name ?? "")") else {return}
+//                if UIApplication.shared.canOpenURL(url) {
+//                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+//                        if success {
+//                            debugLog("----- open whatsapp")
+//                        }
+//                    })
+//                }
+//            }))
             
             alert2.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert2, animated: true, completion: nil)
         }))
         
-        alert.addAction(UIAlertAction(title: "Privacy Policy", style: .default, handler: { (act) in
-            guard let url_privacy = URL(string: "https://bit.ly/privacypolicesunib") else {return}
-            if UIApplication.shared.canOpenURL(url_privacy) {
-                UIApplication.shared.open(url_privacy, options: [:], completionHandler: { (success) in
-                    if success {
-                        debugLog("----- open privacy policy")
-                    }
-                })
-            }
+        alert.addAction(UIAlertAction(title: "Privacy Policy", style: .default, handler: { [weak self] (act) in
+            self?.presenter?.didClickPrivacy()
         }))
         
-        alert.addAction(UIAlertAction(title: "User Agreement", style: .default, handler: { (act) in
-            guard let url_eula = URL(string: "https://bit.ly/uelasunibcurhat") else {return}
-            if UIApplication.shared.canOpenURL(url_eula) {
-                UIApplication.shared.open(url_eula, options: [:], completionHandler: { (success) in
-                    if success {
-                        debugLog("----- user agreement")
-                    }
-                })
-            }
+        alert.addAction(UIAlertAction(title: "User Agreement", style: .default, handler: { [weak self] (act) in
+            self?.presenter?.didClickAgreement()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

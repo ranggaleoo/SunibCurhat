@@ -16,7 +16,7 @@ class LoginInteractor: LoginPresenterToInteractor {
             switch result {
             case .success(let res):
                 if res.success, let data = res.data {
-                    self?.presenter?.didLogin(user: data.user, token: data.access_token)
+                    self?.presenter?.didLogin(user: data.user, accessToken: data.access_token, refreshToken: data.refresh_token)
                 } else {
                     self?.presenter?.failLogin(message: res.message)
                 }
@@ -31,7 +31,7 @@ class LoginInteractor: LoginPresenterToInteractor {
             switch result {
             case .success(let res):
                 if res.success, let data = res.data {
-                    self?.presenter?.didLoginAsAnonymous(user: data.user, token: data.access_token)
+                    self?.presenter?.didLoginAsAnonymous(user: data.user, accessToken: data.access_token, refreshToken: data.refresh_token)
                 } else {
                     self?.presenter?.failLoginAsAnonymous(message: res.message)
                 }
@@ -39,21 +39,5 @@ class LoginInteractor: LoginPresenterToInteractor {
                 self?.presenter?.failLoginAsAnonymous(message: err.localizedDescription)
             }
         }
-    }
-    
-    func registerAnonymous(device_id: String) {
-        LoginService.shared.registerAnonymous(device_id: device_id) { [weak self] (result) in
-            switch result {
-            case .success(let res):
-                if res.success {
-                    self?.presenter?.didRegisterAnonymous()
-                } else {
-                    self?.presenter?.failRegisterAnonymous(message: res.message)
-                }
-            case .failure(let err):
-                self?.presenter?.failRegisterAnonymous(message: err.localizedDescription)
-            }
-        }
-    }
-        
+    }        
 }

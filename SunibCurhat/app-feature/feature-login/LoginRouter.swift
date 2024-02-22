@@ -42,4 +42,24 @@ class LoginRouter: LoginPresenterToRouter {
             controller.present(splash, animated: true)
         }
     }
+    
+    func navigateToPrivacyPolicy(from: LoginPresenterToView?, url: String?) {
+        if let view = from as? UIViewController,
+           let urlString = url {
+            let webView = WKWebViewController()
+            view.present(webView, animated: true) {
+                webView.loadWebView(url: urlString, params: nil)
+            }
+        }
+    }
+    
+    func navigateToUserAgreement(from: LoginPresenterToView?, url: String?) {
+        if let view = from as? UIViewController,
+           let urlString = url {
+            let webView = WKWebViewController()
+            view.present(webView, animated: true) {
+                webView.loadWebView(url: urlString, params: nil)
+            }
+        }
+    }
 }

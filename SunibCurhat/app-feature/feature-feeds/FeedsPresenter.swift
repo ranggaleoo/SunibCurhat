@@ -31,6 +31,16 @@ class FeedsPresenter: FeedsViewToPresenter {
         router?.navigateToNewPost(from: view)
     }
     
+    func didClickPrivacy() {
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
+        router?.navigateToPrivacy(from: view, url: preferences?.urls.privacy_policy)
+    }
+    
+    func didClickAgreement() {
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
+        router?.navigateToPrivacy(from: view, url: preferences?.urls.user_agreement)
+    }
+    
     func requestGetTimeline(resetData: Bool) {
         guard !getTimelineMore else {
             return

@@ -39,6 +39,8 @@ protocol FeedsPresenterToRouter: class {
     func navigateToNewPost(from: FeedsPresenterToView?)
     func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?)
     func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?)
+    func navigateToPrivacy(from: FeedsPresenterToView?, url: String?)
+    func naviggateToAgreement(from: FeedsPresenterToView?, url: String?)
 }
 
 // MARK: Presenter -
@@ -49,6 +51,8 @@ protocol FeedsViewToPresenter: class {
     
     func didLoad()
     func didClickNewPost()
+    func didClickPrivacy()
+    func didClickAgreement()
     func getUserId() -> String?
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int

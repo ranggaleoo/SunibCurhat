@@ -80,6 +80,7 @@ enum UDHelpersKey: String {
     case counterRequestPermission
     case isFirstPermission
     case isFreeAds
+    case refresh_token
     case access_token
     case preferences_key
     case user

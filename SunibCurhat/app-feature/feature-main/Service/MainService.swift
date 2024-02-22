@@ -32,6 +32,7 @@ class MainService {
     
     func refreshToken(completion: @escaping (Result<MainResponse<RefreshTokenData>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
+        HTTPRequest.shared.headers[.authorization] = UDHelpers.shared.getString(key: .refresh_token)
         HTTPRequest.shared.connect(url: base_url + "/auth/refresh/", params: nil, model: MainResponse<RefreshTokenData>.self) { (result) in
             completion(result)
         }

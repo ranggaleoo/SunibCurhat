@@ -59,11 +59,13 @@ class RegisterPresenter: RegisterViewToPresenter {
     }
     
     func didClickAgreement() {
-        //
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
+        router?.navigateToPrivacy(from: view, url: preferences?.urls.user_agreement)
     }
     
     func didClickPrivacyPolicy() {
-        //
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
+        router?.navigateToPrivacy(from: view, url: preferences?.urls.privacy_policy)
     }
 }
 

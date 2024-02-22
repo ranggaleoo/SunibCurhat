@@ -13,7 +13,6 @@ class LoginPresenter: LoginViewToPresenter {
     var interactor: LoginPresenterToInteractor?
     var router: LoginPresenterToRouter?
     
-    private var cycleLoginAsAnonymous: Int = 0
     private var email: String? = nil
     private var password: String? = nil
     
@@ -47,7 +46,6 @@ class LoginPresenter: LoginViewToPresenter {
     }
     
     func didClickLoginAsAnonymous() {
-        cycleLoginAsAnonymous += 1
         view?.startLoader(isFromAnon: true)
         interactor?.loginAsAnonymous(device_id: UDHelpers.shared.getString(key: .device_id))
     }
@@ -57,19 +55,22 @@ class LoginPresenter: LoginViewToPresenter {
     }
     
     func didClickAgreement() {
-        debugLog("click agreement")
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
+        router?.navigateToUserAgreement(from: view, url: preferences?.urls.user_agreement)
     }
     
     func didClickPrivacyPolicy() {
-        debugLog("click privacy policy")
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
+        router?.navigateToPrivacyPolicy(from: view, url: preferences?.urls.privacy_policy)
     }
   
 }
 
 extension LoginPresenter: LoginInteractorToPresenter {
     
-    func didLogin(user: User, token: String) {
-        UDHelpers.shared.set(value: token, key: .access_token)
+    func didLogin(user: User, accessToken: String, refreshToken: String) {
+        UDHelpers.shared.set(value: refreshToken, key: .refresh_token)
+        UDHelpers.shared.set(value: accessToken, key: .access_token)
         UDHelpers.shared.setObject(user, forKey: .user)
         
         view?.stopLoader(isSuccess: true, isFromAnon: false, completion: { [weak self] in
@@ -77,18 +78,14 @@ extension LoginPresenter: LoginInteractorToPresenter {
         })
     }
     
-    func didLoginAsAnonymous(user: User, token: String) {
-        UDHelpers.shared.set(value: token, key: .access_token)
+    func didLoginAsAnonymous(user: User, accessToken: String, refreshToken: String) {
+        UDHelpers.shared.set(value: refreshToken, key: .refresh_token)
+        UDHelpers.shared.set(value: accessToken, key: .access_token)
         UDHelpers.shared.setObject(user, forKey: .user)
         
         view?.stopLoader(isSuccess: true, isFromAnon: true, completion: { [weak self] in
             self?.router?.navigateToSplash(secondaryBackground: true, view: self?.view)
         })
-    }
-    
-    func didRegisterAnonymous() {
-        cycleLoginAsAnonymous += 1
-        interactor?.loginAsAnonymous(device_id: UDHelpers.shared.getString(key: .device_id))
     }
     
     func failLogin(message: String) {
@@ -99,18 +96,7 @@ extension LoginPresenter: LoginInteractorToPresenter {
     }
     
     func failLoginAsAnonymous(message: String) {
-        if cycleLoginAsAnonymous > 1 {
-            cycleLoginAsAnonymous = 0
-            view?.showFailLoginMessage(text: message)
-            view?.stopLoader(isSuccess: false, isFromAnon: true, completion: nil)
-        } else {
-            interactor?.registerAnonymous(device_id: UDHelpers.shared.getString(key: .device_id))
-        }
-    }
-    
-    func failRegisterAnonymous(message: String) {
         view?.showFailLoginMessage(text: message)
         view?.stopLoader(isSuccess: false, isFromAnon: true, completion: nil)
     }
-    
 }

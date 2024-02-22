@@ -32,6 +32,8 @@ protocol RegisterPresenterToRouter: AnyObject {
     
     func navigateToLogin(view: RegisterPresenterToView?)
     func navigateToSplash(view: RegisterPresenterToView?)
+    func navigateToPrivacy(from: RegisterPresenterToView?, url: String?)
+    func navigateToAgreement(from: RegisterPresenterToView?, url: String?)
 }
 
 // MARK: Presenter -

@@ -122,7 +122,7 @@ class HTTPRequest: NSObject {
         task.configuration.httpShouldSetCookies = true
         task.configuration.httpCookieAcceptPolicy = .always
         
-        self.task.dataTask(with: request) { (data, response, error) in
+        self.task.dataTask(with: request) { [weak self] (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
@@ -131,6 +131,85 @@ class HTTPRequest: NSObject {
                 if let responses = response as? HTTPURLResponse {
                     debugLog("status code", responses.statusCode)
 //                    debugLog("headers: \(responses.allHeaderFields)")
+                    
+                    if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
+                        debugLog(stringResponse)
+                        
+                        self?.statusCode = responses.statusCode
+                        if let urlRefresh = URL(string: URLConst.server + URLConst.path_v1 + "/auth/refresh/"),
+                           responses.statusCode == 401 {
+                            
+                            let refreshToken = UDHelpers.shared.getString(key: .refresh_token)
+                            var requestRefresh = URLRequest(url: urlRefresh)
+                            requestRefresh.httpMethod = "GET"
+                            requestRefresh.timeoutInterval = self?.timeoutInterval ?? 60
+                            requestRefresh.addValue(refreshToken, forHTTPHeaderField: "Authorization")
+                            
+                            self?.task.dataTask(with: requestRefresh, completionHandler: { data, response, error in
+                                DispatchQueue.main.async {
+                                    if let err = error {
+                                        completion(.failure(err))
+                                        return
+                                    }
+                                    
+                                    if let responses = response as? HTTPURLResponse {
+                                        debugLog("status code", responses.statusCode)
+                                        
+                                        if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
+                                            debugLog(stringResponse)
+                                            
+                                            self?.statusCode = responses.statusCode
+                                            
+                                            do {
+                                                let responseRefresh = try JSONDecoder().decode(MainResponse<RefreshTokenData>.self, from: _data)
+                                                if responseRefresh.success,
+                                                   let dToken = responseRefresh.data {
+                                                    UDHelpers.shared.set(value: dToken.access_token, key: .access_token)
+                                                    
+                                                    let access_token = UDHelpers.shared.getString(key: .access_token)
+                                                    let auth = "Bearer \(access_token)"
+                                                    request.setValue(auth, forHTTPHeaderField: "Authorization")
+                                                    self?.retryRequest(request: request, model: model, completion: completion)
+                                                } else {
+                                                    let errorRefresh = NSError(domain: responseRefresh.message, code: 1, userInfo: nil)
+                                                    completion(.failure(errorRefresh))
+                                                }
+                                                
+                                            } catch let jsonError {
+                                                debugLog(jsonError)
+                                                completion(.failure(jsonError))
+                                            }
+                                        }
+                                    }
+                                }
+                            }).resume()
+                            
+                        } else {
+                            do {
+                                let responseModel = try JSONDecoder().decode(T.self, from: _data)
+                                completion(.success(responseModel))
+                            } catch let jsonError {
+                                debugLog(jsonError)
+                                completion(.failure(jsonError))
+                            }
+                        }
+                    }
+                }
+            }
+        }.resume()
+        resetValueToDefault()
+    }
+    
+    func retryRequest<T:Decodable>(request: URLRequest, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+        self.task.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let err = error {
+                    completion(.failure(err))
+                    return
+                }
+                
+                if let responses = response as? HTTPURLResponse {
+                    debugLog("status code", responses.statusCode)
                     
                     if let _data = data, let stringResponse = String(data: _data, encoding: .utf8) {
                         debugLog(stringResponse)

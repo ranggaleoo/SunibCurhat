@@ -57,4 +57,24 @@ class FeedsRouter: FeedsPresenterToRouter {
             }
         }
     }
+    
+    func navigateToPrivacy(from: FeedsPresenterToView?, url: String?) {
+        if let view = from as? UIViewController,
+           let urlString = url {
+            let webView = WKWebViewController()
+            view.present(webView, animated: true) {
+                webView.loadWebView(url: urlString, params: nil)
+            }
+        }
+    }
+    
+    func naviggateToAgreement(from: FeedsPresenterToView?, url: String?) {
+        if let view = from as? UIViewController,
+           let urlString = url {
+            let webView = WKWebViewController()
+            view.present(webView, animated: true) {
+                webView.loadWebView(url: urlString, params: nil)
+            }
+        }
+    }
 }

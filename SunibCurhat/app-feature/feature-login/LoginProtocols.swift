@@ -25,7 +25,6 @@ protocol LoginPresenterToInteractor: AnyObject {
     
     func login(device_id: String, email: String, password: String)
     func loginAsAnonymous(device_id: String)
-    func registerAnonymous(device_id: String)
 }
 
 
@@ -35,6 +34,8 @@ protocol LoginPresenterToRouter: AnyObject {
     
     func navigateToRegister(view: LoginPresenterToView?)
     func navigateToSplash(secondaryBackground: Bool?, view: LoginPresenterToView?)
+    func navigateToUserAgreement(from: LoginPresenterToView?, url: String?)
+    func navigateToPrivacyPolicy(from: LoginPresenterToView?, url: String?)
 }
 
 // MARK: Presenter -
@@ -56,10 +57,8 @@ protocol LoginViewToPresenter: AnyObject {
 }
 
 protocol LoginInteractorToPresenter: AnyObject {
-    func didLogin(user: User, token: String)
-    func didLoginAsAnonymous(user: User, token: String)
-    func didRegisterAnonymous()
+    func didLogin(user: User, accessToken: String, refreshToken: String)
+    func didLoginAsAnonymous(user: User, accessToken: String, refreshToken: String)
     func failLogin(message: String)
     func failLoginAsAnonymous(message: String)
-    func failRegisterAnonymous(message: String)
 }
