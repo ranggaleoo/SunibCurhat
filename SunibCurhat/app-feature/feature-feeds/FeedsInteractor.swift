@@ -69,4 +69,17 @@ class FeedsInteractor: FeedsPresenterToInteractor {
             }
         }
     }
+    
+    func signOut() {
+        MainService.shared.logout { [weak self] (result) in
+            switch result {
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+            case .success(let res):
+                if res.success {
+                    self?.presenter?.didSignOut()
+                }
+            }
+        }
+    }
 }

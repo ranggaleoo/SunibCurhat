@@ -22,6 +22,10 @@ class UDHelpers {
         defaults.set(defaultValue, forKey: defaultKey.rawValue)
     }
     
+    public func remove(key defaultKey: UDHelpersKey) {
+        defaults.removeObject(forKey: defaultKey.rawValue) 
+    }
+    
     public func getString(key defaultKey: UDHelpersKey) -> String? {
         return defaults.string(forKey: defaultKey.rawValue)
     }

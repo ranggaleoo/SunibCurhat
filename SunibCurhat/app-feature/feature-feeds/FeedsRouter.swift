@@ -106,4 +106,13 @@ class FeedsRouter: FeedsPresenterToRouter {
             }
         }
     }
+    
+    func navigateToLogin(from: FeedsPresenterToView?) {
+        if let view = from as? UIViewController {
+            let login = LoginRouter.createLoginModule()
+            login.modalTransitionStyle = .crossDissolve
+            login.modalPresentationStyle = .fullScreen
+            view.present(login, animated: true)
+        }
+    }
 }

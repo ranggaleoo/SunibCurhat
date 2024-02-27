@@ -41,6 +41,10 @@ class FeedsPresenter: FeedsViewToPresenter {
         router?.navigateToAgreement(from: view, url: preferences?.urls?.user_agreement)
     }
     
+    func didClickSignOut() {
+        interactor?.signOut()
+    }
+    
     func didClickSendChat(to: String) {
         let chatReqJoin = ChatRequestJoin(from: user?.user_id ?? "", to: to)
         router?.navigateToChat(from: view, data: chatReqJoin)
@@ -160,5 +164,14 @@ extension FeedsPresenter: FeedsInteractorToPresenter {
                 view?.updateLikeCell(indexPath: indexPath)
             }
         }
+    }
+    
+    func didSignOut() {
+        UDHelpers.shared.remove(key: .user)
+        UDHelpers.shared.remove(key: .access_token)
+        UDHelpers.shared.remove(key: .refresh_token)
+        UDHelpers.shared.remove(key: .chat_session_id)
+        
+        router?.navigateToLogin(from: view)
     }
 }

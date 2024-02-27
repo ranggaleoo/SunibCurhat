@@ -188,6 +188,10 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             self?.presenter?.didClickAgreement()
         }))
         
+        alert.addAction(UIAlertAction(title: "Sign Out", style: .default, handler: { [weak self] (act) in
+            self?.presenter?.didClickSignOut()
+        }))
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

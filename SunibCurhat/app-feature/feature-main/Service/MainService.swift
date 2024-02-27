@@ -38,6 +38,16 @@ class MainService {
         }
     }
     
+    func logout(completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+        let base_url = URLConst.server + URLConst.path_v1
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
+        let auth = "Bearer \(access_token)"
+        HTTPRequest.shared.headers[.authorization] = auth
+        HTTPRequest.shared.connect(url: base_url + "/logout", params: nil, model: MainResponse<String>.self) { (result) in
+            completion(result)
+        }
+    }
+    
     func getEndpoint(completion: @escaping (Result<MainResponse<EndpointResponse>, Error>) -> Void) {
         let url = URLConst.server_core + "/project/router/"
         var params: [String: Any] = [:]
