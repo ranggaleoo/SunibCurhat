@@ -36,6 +36,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         requestPermission()
         storeKit.delegate = self
         
+        tableView.backgroundColor = UINCColor.bg_secondary
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -81,6 +82,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     func updateLikeCell(indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? FeedDefaultCell {
             cell.btn_like.isEnabled = true
+            tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
     
@@ -123,6 +125,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     }
     
     @objc func actionMenuBarButtonItem(_ sender: UIBarButtonItem) {
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
         let alert = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
         
 //        alert.addAction(UIAlertAction(title: "Premium", style: .default, handler: { (act) in
@@ -141,9 +144,9 @@ class FeedsView: UIViewController, FeedsPresenterToView {
                 if MFMailComposeViewController.canSendMail() {
                     let mail = MFMailComposeViewController()
                     mail.mailComposeDelegate = self
-                    mail.setToRecipients([ConstGlobal.contact_email ?? "noreplyhere@hi2.in"])
-                    mail.setSubject(ConstGlobal.app_name ?? "Subject")
-                    mail.setMessageBody("<p>Hi \(ConstGlobal.app_name ?? "")</p>", isHTML: true)
+                    mail.setToRecipients([preferences?.contacts?.email ?? "businesssakti@gmail.com"])
+                    mail.setSubject(preferences?.app_name ?? "Subject")
+                    mail.setMessageBody("<p>Hi \(preferences?.app_name ?? "")</p>", isHTML: true)
                     
                     self.present(mail, animated: true)
                 } else {
@@ -152,7 +155,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             }))
             
             alert2.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { (act) in
-                guard let url = URL(string: "https://www.instagram.com/\(ConstGlobal.contact_instagram ?? "instagram")/") else {return}
+                guard let url = URL(string: "https://www.instagram.com/\(preferences?.contacts?.instagram ?? "instagram")/") else {return}
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                         if success {
@@ -261,28 +264,29 @@ extension FeedsView: FeedDefaultCellDelegate {
                     }))
                 
                 } else if let user_id = presenter?.getUserId(), user_id != timelineItem.user_id {
-                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { (act) in
-                        if let vc = self.tabBarController?.viewControllers {
-                            guard let navigationController = vc[1] as? UINavigationController else { return }
-                            if let c = navigationController.topViewController as? ChatsViewController {
-                                let myDeviceId          = RepoMemory.device_id
-                                let strangerDeviceId    = timelineItem.device_id
-                                
-                                self.tabBarController?.selectedIndex = 1
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                                    let chat_id = myDeviceId + "+" + strangerDeviceId
-                                    let name = timelineItem.name
-                                    let users = [myDeviceId, strangerDeviceId]
-                                    c.createChatRoom(chat_id: chat_id, name: name, users: users)
-                                })
-                            }
-                        }
+//                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { [weak self] (act) in
+//                        self?.presenter?.didClickSendChat(to: timelineItem.user_id)
+//                        if let vc = self.tabBarController?.viewControllers {
+//                            guard let navigationController = vc[1] as? UINavigationController else { return }
+//                            if let c = navigationController.topViewController as? ChatsViewController {
+//                                let myDeviceId          = RepoMemory.device_id
+//                                let strangerDeviceId    = timelineItem.device_id
+//                                
+//                                self.tabBarController?.selectedIndex = 1
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+//                                    let chat_id = myDeviceId + "+" + strangerDeviceId
+//                                    let name = timelineItem.name
+//                                    let users = [myDeviceId, strangerDeviceId]
+//                                    c.createChatRoom(chat_id: chat_id, name: name, users: users)
+//                                })
+//                            }
+//                        }
+//                    }))
+                    
+                    alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
+                        self.presenter?.requestReport(indexPath: index)
                     }))
                 }
-                
-                alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
-                    self.presenter?.requestReport(indexPath: index)
-                }))
                 
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 

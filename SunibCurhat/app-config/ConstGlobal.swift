@@ -17,11 +17,6 @@ struct ConstGlobal {
     static let TIMES_REQUEST_REVIEW : Int       = 10
     static let TIMES_REQUEST_PERMISSION: Int    = 10
     
-    static var app_name: String?
-    static var contact_email: String?
-    static var contact_whatsapp: String?
-    static var contact_instagram: String?
-    
     static let settings_identifier : String = "app-netijen-curhat"
     static var setting_list: [SettingItem] = []
 }

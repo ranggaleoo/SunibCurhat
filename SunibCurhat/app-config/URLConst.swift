@@ -22,7 +22,7 @@ struct URLConst {
     static let api_corona           = "https://api.kawalcorona.com"
     
     // MARK: - PRODUCTION
-    static let server_core          = "https://ranggaleo.com"
+    static let server_core          = "https://leonurium.com"
     static var server               = ""
     
     @available(*, deprecated, renamed: "path_v1", message: "use path_v1 instead")

@@ -14,7 +14,7 @@ class FeedsService {
     func getTimelines(user_id: String, page: String, itemPerPage: String, completion: @escaping (Result<MainResponse<TimelineResponse>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/timeline/\(user_id)/\(page)/\(itemPerPage)"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         HTTPRequest.shared.headers[.xplatform] = "IOS"
@@ -27,7 +27,7 @@ class FeedsService {
     func getTimelineById(timeline_id: Int, completion: @escaping (Result<MainResponse<TimelineItems>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/timeline/\(timeline_id)"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         HTTPRequest.shared.headers[.xplatform] = "IOS"
@@ -40,7 +40,7 @@ class FeedsService {
     func likeTimeline(user_id: String, timeline_id: Int, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/timeline/like/"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         var params: [String: Any] = [:]
@@ -57,7 +57,7 @@ class FeedsService {
     func unlikeTimeline(user_id: String, timeline_id: Int, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/timeline/unlike/"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         var params: [String: Any] = [:]
@@ -74,7 +74,7 @@ class FeedsService {
     func shareTimeline(user_id: String, timeline_id: Int, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/timeline/share/"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         var params: [String: Any] = [:]
@@ -88,10 +88,10 @@ class FeedsService {
         }
     }
     
-    func deleteTimeline(timeline_id: Int, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+    func deleteTimeline(user_id: String, timeline_id: Int, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
-        let url_request = "\(base_url)/timeline/delete/\(timeline_id)"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let url_request = "\(base_url)/timeline/delete/\(timeline_id)/\(user_id)"
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         HTTPRequest.shared.method = .DELETE

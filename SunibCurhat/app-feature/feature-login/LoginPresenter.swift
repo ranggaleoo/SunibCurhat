@@ -37,17 +37,19 @@ class LoginPresenter: LoginViewToPresenter {
     }
     
     func didClickLogin() {
+        let device_id = UDHelpers.shared.getString(key: .device_id) ?? UUID().uuidString
         view?.startLoader(isFromAnon: false)
         interactor?.login(
-            device_id: UDHelpers.shared.getString(key: .device_id),
+            device_id: device_id,
             email: self.email ?? "",
             password: self.password ?? ""
         )
     }
     
     func didClickLoginAsAnonymous() {
+        let device_id = UDHelpers.shared.getString(key: .device_id) ?? UUID().uuidString
         view?.startLoader(isFromAnon: true)
-        interactor?.loginAsAnonymous(device_id: UDHelpers.shared.getString(key: .device_id))
+        interactor?.loginAsAnonymous(device_id: device_id)
     }
     
     func didClickRegister() {
@@ -56,12 +58,12 @@ class LoginPresenter: LoginViewToPresenter {
     
     func didClickAgreement() {
         let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
-        router?.navigateToUserAgreement(from: view, url: preferences?.urls.user_agreement)
+        router?.navigateToUserAgreement(from: view, url: preferences?.urls?.user_agreement)
     }
     
     func didClickPrivacyPolicy() {
         let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
-        router?.navigateToPrivacyPolicy(from: view, url: preferences?.urls.privacy_policy)
+        router?.navigateToPrivacyPolicy(from: view, url: preferences?.urls?.privacy_policy)
     }
   
 }

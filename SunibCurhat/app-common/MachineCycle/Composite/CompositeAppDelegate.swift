@@ -29,4 +29,12 @@ class CompositeAppDelegate: AppDelegateType {
     func applicationWillTerminate(_ application: UIApplication) {
         appDelegates.forEach({ $0.applicationWillTerminate?(application) })
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        appDelegates.forEach({ $0.applicationWillEnterForeground?(application) })
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        appDelegates.forEach({ $0.applicationDidEnterBackground?(application) })
+    }
 }

@@ -46,9 +46,10 @@ class RegisterPresenter: RegisterViewToPresenter {
     }
     
     func didClickRegister() {
+        let device_id = UDHelpers.shared.getString(key: .device_id) ?? UUID().uuidString
         view?.startLoader()
         interactor?.register(
-            device_id: UDHelpers.shared.getString(key: .device_id),
+            device_id: device_id,
             email: self.email ?? "",
             password: self.password ?? ""
         )
@@ -60,19 +61,20 @@ class RegisterPresenter: RegisterViewToPresenter {
     
     func didClickAgreement() {
         let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
-        router?.navigateToPrivacy(from: view, url: preferences?.urls.user_agreement)
+        router?.navigateToPrivacy(from: view, url: preferences?.urls?.user_agreement)
     }
     
     func didClickPrivacyPolicy() {
         let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
-        router?.navigateToPrivacy(from: view, url: preferences?.urls.privacy_policy)
+        router?.navigateToPrivacy(from: view, url: preferences?.urls?.privacy_policy)
     }
 }
 
 extension RegisterPresenter: RegisterInteractorToPresenter {
-    func didRegister() {        
+    func didRegister() {
+        let device_id = UDHelpers.shared.getString(key: .device_id) ?? UUID().uuidString
         self.interactor?.login(
-            device_id: UDHelpers.shared.getString(key: .device_id),
+            device_id: device_id,
             email: self.email ?? "",
             password: self.password ?? ""
         )

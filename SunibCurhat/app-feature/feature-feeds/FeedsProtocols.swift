@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: View -
-protocol FeedsPresenterToView: class {
+protocol FeedsPresenterToView: AnyObject {
     var presenter: FeedsViewToPresenter? { get set }
     
     func setupViews()
@@ -22,29 +22,30 @@ protocol FeedsPresenterToView: class {
 }
 
 // MARK: Interactor -
-protocol FeedsPresenterToInteractor: class {
+protocol FeedsPresenterToInteractor: AnyObject {
     var presenter: FeedsInteractorToPresenter?  { get set }
     
     func getTimelines(user_id: String, page: String, itemPerPage: String)
     func likeTimeline(user_id: String, timelineID: Int)
     func unlikeTimeline(user_id: String, timelineID: Int)
     func shareTimeline(user_id: String, timelineID: Int)
-    func deleteTimelime(timelineID: Int)
+    func deleteTimelime(user_id: String, timelineID: Int)
 }
 
 
 // MARK: Router -
-protocol FeedsPresenterToRouter: class {
+protocol FeedsPresenterToRouter: AnyObject {
     static func createFeedsModule() -> UIViewController
     func navigateToNewPost(from: FeedsPresenterToView?)
     func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?)
+    func navigateToChat(from: FeedsPresenterToView?, data: ChatRequestJoin)
     func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?)
     func navigateToPrivacy(from: FeedsPresenterToView?, url: String?)
-    func naviggateToAgreement(from: FeedsPresenterToView?, url: String?)
+    func navigateToAgreement(from: FeedsPresenterToView?, url: String?)
 }
 
 // MARK: Presenter -
-protocol FeedsViewToPresenter: class {
+protocol FeedsViewToPresenter: AnyObject {
     var view: FeedsPresenterToView? {get set}
     var interactor: FeedsPresenterToInteractor? {get set}
     var router: FeedsPresenterToRouter? {get set}
@@ -53,6 +54,7 @@ protocol FeedsViewToPresenter: class {
     func didClickNewPost()
     func didClickPrivacy()
     func didClickAgreement()
+    func didClickSendChat(to: String)
     func getUserId() -> String?
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int
@@ -67,7 +69,7 @@ protocol FeedsViewToPresenter: class {
     func requestShare(indexPath: IndexPath)
 }
 
-protocol FeedsInteractorToPresenter: class {
+protocol FeedsInteractorToPresenter: AnyObject {
     
     func didGetTimelines(timelines: [TimelineItems], next_page: Int)
     func failedGetTimelines(title: String, message: String)

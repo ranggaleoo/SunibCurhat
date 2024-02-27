@@ -143,7 +143,7 @@ class HTTPRequest: NSObject {
                             var requestRefresh = URLRequest(url: urlRefresh)
                             requestRefresh.httpMethod = "GET"
                             requestRefresh.timeoutInterval = self?.timeoutInterval ?? 60
-                            requestRefresh.addValue(refreshToken, forHTTPHeaderField: "Authorization")
+                            requestRefresh.addValue(refreshToken ?? "", forHTTPHeaderField: "Authorization")
                             
                             self?.task.dataTask(with: requestRefresh, completionHandler: { data, response, error in
                                 DispatchQueue.main.async {
@@ -166,7 +166,7 @@ class HTTPRequest: NSObject {
                                                    let dToken = responseRefresh.data {
                                                     UDHelpers.shared.set(value: dToken.access_token, key: .access_token)
                                                     
-                                                    let access_token = UDHelpers.shared.getString(key: .access_token)
+                                                    let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
                                                     let auth = "Bearer \(access_token)"
                                                     request.setValue(auth, forHTTPHeaderField: "Authorization")
                                                     self?.retryRequest(request: request, model: model, completion: completion)

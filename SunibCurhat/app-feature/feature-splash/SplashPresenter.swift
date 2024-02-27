@@ -38,7 +38,7 @@ class SplashPresenter: SplashViewToPresenter {
         
         // initial device_id
         let device_id = UDHelpers.shared.getString(key: .device_id)
-        if device_id.isEmpty || device_id == "" {
+        if device_id == nil {
             UDHelpers.shared.set(value: RepoMemory.device_id, key: .device_id)
         }
         
@@ -84,13 +84,16 @@ extension SplashPresenter: SplashInteractorToPresenter {
 //        URLConst.server = data.endpoint
 //        view?.stopLoader()
 //        router?.navigateToMain(from: view)
-//        URLConst.server = "http://localhost:8888"
-        URLConst.server = "https://vast-lamb-smooth.ngrok-free.app"
+        URLConst.server = "http://localhost:8888"
+//        URLConst.server = "https://nimue-api.leonurium.com"
         self.interactor?.getPreferences()
     }
     
     func didGetPreferences(data: Preferences) {
         UDHelpers.shared.setObject(data, forKey: .preferences_key)
+        if let socket_url = data.urls?.socket_server {
+            SocketService.shared.set(URL: socket_url)
+        }
         if let _ = UDHelpers.shared.getObject(type: User.self, forKey: .user) {
             self.interactor?.getUser()
         } else {
@@ -105,6 +108,7 @@ extension SplashPresenter: SplashInteractorToPresenter {
     
     func didGetUser(data: User) {
         UDHelpers.shared.setObject(data, forKey: .user)
+        SocketService.shared.establishConnection()
         view?.stopLoader()
         router?.navigateToMain(from: view)
     }

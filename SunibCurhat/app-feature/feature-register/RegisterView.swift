@@ -43,7 +43,7 @@ class RegisterView: UIViewController, RegisterPresenterToView {
         image_view.contentMode = .scaleAspectFill
         image_view.clipsToBounds = true
         let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
-        let image_url = preferences?.images.image_url_register ?? ""
+        let image_url = preferences?.images?.image_url_register ?? ""
         image_view.image = nil
         
         if let url = URL(string: image_url) {

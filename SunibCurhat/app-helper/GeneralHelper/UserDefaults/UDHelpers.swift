@@ -22,11 +22,8 @@ class UDHelpers {
         defaults.set(defaultValue, forKey: defaultKey.rawValue)
     }
     
-    public func getString(key defaultKey: UDHelpersKey) -> String {
-        if let result = defaults.string(forKey: defaultKey.rawValue) {
-            return result
-        }
-        return ""
+    public func getString(key defaultKey: UDHelpersKey) -> String? {
+        return defaults.string(forKey: defaultKey.rawValue)
     }
     
     public func getBool(key defaultKey: UDHelpersKey) -> Bool {
@@ -45,11 +42,8 @@ class UDHelpers {
         return defaults.float(forKey: defaultKey.rawValue)
     }
     
-    public func getUrl(key defaultKey: UDHelpersKey) -> URL {
-        if let result = defaults.url(forKey: defaultKey.rawValue) {
-            return result
-        }
-        return URL(string: "https://google.com/")!
+    public func getUrl(key defaultKey: UDHelpersKey) -> URL? {
+        return defaults.url(forKey: defaultKey.rawValue)
     }
     
     func setObject<T: Codable>(_ object: T, forKey defaultKey: UDHelpersKey) {
@@ -85,4 +79,5 @@ enum UDHelpersKey: String {
     case preferences_key
     case user
     case device_id
+    case chat_session_id
 }

@@ -13,6 +13,8 @@ PODS:
     - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
   - Siren (6.1.2)
+  - Socket.IO-Client-Swift (16.1.0):
+    - Starscream (~> 4.0.6)
   - SPPermissions (7.1.5):
     - SPPermissions/Core (= 7.1.5)
   - SPPermissions/Camera (7.1.5):
@@ -24,6 +26,7 @@ PODS:
     - SPPermissions/Core
   - SPPermissions/PhotoLibrary (7.1.5):
     - SPPermissions/Core
+  - Starscream (4.0.6)
   - TransitionButton (0.5.3)
 
 DEPENDENCIES:
@@ -33,6 +36,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - Siren
+  - Socket.IO-Client-Swift
   - SPPermissions
   - SPPermissions/Camera
   - SPPermissions/Contacts
@@ -50,7 +54,9 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - Siren
+    - Socket.IO-Client-Swift
     - SPPermissions
+    - Starscream
     - TransitionButton
 
 SPEC CHECKSUMS:
@@ -62,9 +68,11 @@ SPEC CHECKSUMS:
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   Siren: c951ae243b57160629fb2e4d2f630cbfc5d5452b
+  Socket.IO-Client-Swift: ee4b8f80a3db18dd7f32b266ddf273310609443c
   SPPermissions: c63ac1132badad39917de03a3c9dc2429ace94be
+  Starscream: fb2c4510bebf908c62bd383bcf05e673720e91fd
   TransitionButton: 36283346e17c64775a1b3bc3a7a72940a367de1f
 
-PODFILE CHECKSUM: a6a9c1f113aacff328605f80f12330c9fc291bb3
+PODFILE CHECKSUM: 2d50706ab12316b0af0d92bb15c5489354f3593c
 
 COCOAPODS: 1.15.1

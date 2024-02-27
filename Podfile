@@ -18,5 +18,6 @@ target 'SunibCurhat' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'TransitionButton'
+  pod 'Socket.IO-Client-Swift'
 
 end

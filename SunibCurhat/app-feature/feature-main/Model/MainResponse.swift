@@ -36,30 +36,34 @@ struct RefreshTokenData: Codable {
 }
 
 struct Preferences: Codable {
-    let app_name:                   String
-    let version:                    String
-    let url_update_version:         String
-    let version_ios:                String
-    let version_android:            String
-    let url_update_version_ios:     String
-    let url_update_version_android: String
-    let contact_email:              String
-    let contact_whatsapp:           String
-    let contact_instagram:          String
-    let reply_emojis:               [String]
-    let report_reasons:             [String]
-    let images:                     PreferenceImages
-    let urls:                       PreferenceUrls
+    let app_name:                   String?
+    let version:                    String?
+    let url_update_version:         String?
+    let version_ios:                String?
+    let version_android:            String?
+    let url_update_version_ios:     String?
+    let url_update_version_android: String?
+    let reply_emojis:               [String]?
+    let report_reasons:             [String]?
+    let images:                     PreferenceImages?
+    let urls:                       PreferenceUrls?
+    let contacts:                   PreferenceContacts?
 }
 
 struct PreferenceImages: Codable {
-    let image_url_login: String
-    let image_url_register: String
+    let image_url_login: String?
+    let image_url_register: String?
 }
 
-struct  PreferenceUrls: Codable {
-    let privacy_policy: String
-    let user_agreement: String
+struct PreferenceUrls: Codable {
+    let privacy_policy: String?
+    let user_agreement: String?
+    let socket_server: String?
+}
+
+struct PreferenceContacts: Codable {
+    let email       : String?
+    let instagram   : String?
 }
 
 struct User: Codable {

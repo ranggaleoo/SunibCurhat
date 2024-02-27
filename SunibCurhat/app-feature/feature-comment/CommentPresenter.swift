@@ -92,7 +92,7 @@ extension CommentPresenter: CommentInteractorToPresenter {
     
     func failGetComments(message: String) {
         view?.stopLoader()
-        view?.showFailMessage(title: "Oops", message: message)
+//        view?.showFailMessage(title: "Oops", message: message)
     }
     
     func failSendComment(message: String) {

@@ -29,6 +29,12 @@ class ReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegates()
+        let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
+        let reports = preferences?.report_reasons
+        if let report_reasons = reports {
+            reportOptions = report_reasons
+            reportTableView.reloadData()
+        }
     }
     
     private func delegates() {
@@ -57,7 +63,8 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let timelineUnwrap = timeline {
             self.showLoaderIndicator()
-            ReportService.shared.report(reportByDevice: RepoMemory.device_id, device_id: timelineUnwrap.device_id, reason: reportOptions[indexPath.row], proof_id: "\(timelineUnwrap.timeline_id)", proof: timelineUnwrap.text_content) { (result) in
+            let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
+            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: timelineUnwrap.user_id, reason: reportOptions[indexPath.row], proof_id: "\(timelineUnwrap.timeline_id)", proof: timelineUnwrap.text_content) { (result) in
                 switch result {
                 case .success(let success):
                     self.dismissLoaderIndicator()
@@ -76,7 +83,8 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         
         } else if let chatUnwrap = self.chat {
             self.showLoaderIndicator()
-            ReportService.shared.report(reportByDevice: RepoMemory.device_id, device_id: chatUnwrap.chat_id, reason: reportOptions[indexPath.row], proof_id: chatUnwrap.id, proof: chat?.name) { (result) in
+            let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
+            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: chatUnwrap.chat_id, reason: reportOptions[indexPath.row], proof_id: chatUnwrap.id, proof: chat?.name) { (result) in
                 switch result {
                 case .failure(let e):
                     self.dismissLoaderIndicator()

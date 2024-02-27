@@ -37,7 +37,7 @@ class CommentService {
     func addNewComment(timeline_id: Int, user_id: String, name: String, text_content: String, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/comment/new/"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         var params: [String: Any] = [:]
@@ -56,7 +56,7 @@ class CommentService {
     func getCommentsByTimelineId(timeline_id: Int, page: Int, itemPerPage: Int, completion: @escaping (Result<MainResponse<CommentResponse>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/comment/\(timeline_id)/\(page)/\(itemPerPage)"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         HTTPRequest.shared.headers[.xplatform] = "IOS"

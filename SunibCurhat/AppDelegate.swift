@@ -28,4 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         _ = appDelegate?.application?(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        _ = appDelegate?.applicationWillEnterForeground?(application)
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        _ = appDelegate?.applicationDidEnterBackground?(application)
+    }
 }

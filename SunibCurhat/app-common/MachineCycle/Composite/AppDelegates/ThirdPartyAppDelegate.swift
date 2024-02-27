@@ -21,6 +21,14 @@ class ThirdPartyAppDelegate: AppDelegateType {
         requestReviewAppStore()
         return true
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        SocketService.shared.connect()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        SocketService.shared.disconnect()
+    }
 }
 
 extension ThirdPartyAppDelegate {

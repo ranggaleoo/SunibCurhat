@@ -14,7 +14,7 @@ class NewPostService {
     func newPost(user_id: String, name: String, text_content: String, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/timeline/new/"
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         
         var params: [String: Any] = [:]

@@ -88,41 +88,41 @@ class ListCurhatViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Contact Us", style: .default, handler: { (act) in
             let alert2 = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
             
-            alert2.addAction(UIAlertAction(title: "Email", style: .default, handler: { (act) in
-                if MFMailComposeViewController.canSendMail() {
-                    let mail = MFMailComposeViewController()
-                    mail.mailComposeDelegate = self
-                    mail.setToRecipients([ConstGlobal.contact_email ?? "noreplyhere@hi2.in"])
-                    mail.setSubject(ConstGlobal.app_name ?? "Subject")
-                    mail.setMessageBody("<p>Hi \(ConstGlobal.app_name ?? "")</p>", isHTML: true)
-                    
-                    self.present(mail, animated: true)
-                } else {
-                    // show failure alert
-                }
-            }))
+//            alert2.addAction(UIAlertAction(title: "Email", style: .default, handler: { (act) in
+//                if MFMailComposeViewController.canSendMail() {
+//                    let mail = MFMailComposeViewController()
+//                    mail.mailComposeDelegate = self
+//                    mail.setToRecipients([ConstGlobal.contact_email ?? "noreplyhere@hi2.in"])
+//                    mail.setSubject(ConstGlobal.app_name ?? "Subject")
+//                    mail.setMessageBody("<p>Hi \(ConstGlobal.app_name ?? "")</p>", isHTML: true)
+//                    
+//                    self.present(mail, animated: true)
+//                } else {
+//                    // show failure alert
+//                }
+//            }))
             
-            alert2.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { (act) in
-                guard let url = URL(string: "https://www.instagram.com/\(ConstGlobal.contact_instagram ?? "instagram")/") else {return}
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                        if success {
-                            debugLog("----- open instagram")
-                        }
-                    })
-                }
-            }))
-            
-            alert2.addAction(UIAlertAction(title: "Whatsapp", style: .default, handler: { (act) in
-                guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(ConstGlobal.contact_whatsapp ?? "")&text=Halo%20\(ConstGlobal.app_name ?? "")") else {return}
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                        if success {
-                            debugLog("----- open whatsapp")
-                        }
-                    })
-                }
-            }))
+//            alert2.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { (act) in
+//                guard let url = URL(string: "https://www.instagram.com/\(ConstGlobal.contact_instagram ?? "instagram")/") else {return}
+//                if UIApplication.shared.canOpenURL(url) {
+//                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+//                        if success {
+//                            debugLog("----- open instagram")
+//                        }
+//                    })
+//                }
+//            }))
+//            
+//            alert2.addAction(UIAlertAction(title: "Whatsapp", style: .default, handler: { (act) in
+//                guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(ConstGlobal.contact_whatsapp ?? "")&text=Halo%20\(ConstGlobal.app_name ?? "")") else {return}
+//                if UIApplication.shared.canOpenURL(url) {
+//                    UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+//                        if success {
+//                            debugLog("----- open whatsapp")
+//                        }
+//                    })
+//                }
+//            }))
             
             alert2.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert2, animated: true, completion: nil)

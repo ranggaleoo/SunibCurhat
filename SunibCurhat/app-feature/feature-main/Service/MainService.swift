@@ -15,7 +15,7 @@ class MainService {
     
     func getUser(completion: @escaping (Result<MainResponse<User>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
-        let access_token = UDHelpers.shared.getString(key: .access_token)
+        let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         HTTPRequest.shared.headers[.authorization] = auth
         HTTPRequest.shared.connect(url: base_url + "/user/me/", params: nil, model: MainResponse<User>.self) { (result) in

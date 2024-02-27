@@ -34,8 +34,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }()
     
     private lazy var chats: UIViewController = {
-        let storyboad = UIStoryboard(name: "Chats", bundle: nil)
-        let vc = storyboad.instantiateViewController(withIdentifier: "nav_chats")
+//        let storyboad = UIStoryboard(name: "Chats", bundle: nil)
+//        let vc = storyboad.instantiateViewController(withIdentifier: "nav_chats")
+        let vc = UINavigationController(rootViewController: ChatsRouter.createChatsModule())
         var image: UIImage? = UIImage(symbol: .MessageFill)
         vc.tabBarItem = UITabBarItem(title: "Chats", image: image, selectedImage: image)
         return vc
@@ -76,7 +77,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UINCColor.secondary
         self.tabBar.barTintColor = UINCColor.bg_secondary
         self.tabBar.unselectedItemTintColor = UINCColor.tertiary600.get()
-        self.viewControllers = [timeline, chats]
+//        self.viewControllers = [timeline, chats]
+        self.viewControllers = [timeline]
         
         self.selectedIndex = 0
         self.addObservers()

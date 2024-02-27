@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: View -
-protocol ChatPresenterToView: class {
+protocol ChatPresenterToView: AnyObject {
     var presenter: ChatViewToPresenter? { get set }
     
     func setupViews(title: String)
@@ -21,7 +21,7 @@ protocol ChatPresenterToView: class {
 }
 
 // MARK: Interactor -
-protocol ChatPresenterToInteractor: class {
+protocol ChatPresenterToInteractor: AnyObject {
     var presenter: ChatInteractorToPresenter?  { get set }
     
     func listenMessage(chatID: String)
@@ -31,13 +31,13 @@ protocol ChatPresenterToInteractor: class {
 }
 
 // MARK: Router -
-protocol ChatPresenterToRouter: class {
+protocol ChatPresenterToRouter: AnyObject {
     static func createChatModule(chat: Chat) -> UIViewController
     func navigateToPreviousPage(from: ChatPresenterToView?)
 }
 
 // MARK: Presenter -
-protocol ChatViewToPresenter: class {
+protocol ChatViewToPresenter: AnyObject {
     var view: ChatPresenterToView? {get set}
     var interactor: ChatPresenterToInteractor? {get set}
     var router: ChatPresenterToRouter? {get set}
@@ -50,7 +50,7 @@ protocol ChatViewToPresenter: class {
     func didPressSendButtonWith(text: String)
 }
 
-protocol ChatInteractorToPresenter: class {
+protocol ChatInteractorToPresenter: AnyObject {
     func didSaveMessage(message: Message)
     func failSaveMessage(title: String, message: String)
     func didListenMessage(message: Message)

@@ -33,12 +33,17 @@ class FeedsPresenter: FeedsViewToPresenter {
     
     func didClickPrivacy() {
         let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
-        router?.navigateToPrivacy(from: view, url: preferences?.urls.privacy_policy)
+        router?.navigateToPrivacy(from: view, url: preferences?.urls?.privacy_policy)
     }
     
     func didClickAgreement() {
         let preferences = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)
-        router?.navigateToPrivacy(from: view, url: preferences?.urls.user_agreement)
+        router?.navigateToAgreement(from: view, url: preferences?.urls?.user_agreement)
+    }
+    
+    func didClickSendChat(to: String) {
+        let chatReqJoin = ChatRequestJoin(from: user?.user_id ?? "", to: to)
+        router?.navigateToChat(from: view, data: chatReqJoin)
     }
     
     func requestGetTimeline(resetData: Bool) {
@@ -90,7 +95,7 @@ class FeedsPresenter: FeedsViewToPresenter {
         let timelineId = timelines[indexPath.row].timeline_id
         timelines.remove(at: indexPath.row)
         view?.removeCell(index: [indexPath])
-        interactor?.deleteTimelime(timelineID: timelineId)
+        interactor?.deleteTimelime(user_id: user?.user_id ?? "", timelineID: timelineId)
     }
     
     func requestReport(indexPath: IndexPath) {
@@ -139,6 +144,8 @@ extension FeedsPresenter: FeedsInteractorToPresenter {
         if let timeline = timelines.filter({$0.timeline_id == id}).first {
             if let index = timelines.firstIndex(of: timeline) {
                 let indexPath = IndexPath(row: index, section: 0)
+                timelines[index].is_liked = true
+                timelines[index].total_likes += 1
                 view?.updateLikeCell(indexPath: indexPath)
             }
         }
@@ -148,6 +155,8 @@ extension FeedsPresenter: FeedsInteractorToPresenter {
         if let timeline = timelines.filter({$0.timeline_id == id}).first {
             if let index = timelines.firstIndex(of: timeline) {
                 let indexPath = IndexPath(row: index, section: 0)
+                timelines[index].is_liked = false
+                timelines[index].total_likes -= 1
                 view?.updateLikeCell(indexPath: indexPath)
             }
         }
