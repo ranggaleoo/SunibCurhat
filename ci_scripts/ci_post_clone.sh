@@ -1,18 +1,10 @@
 #!/bin/sh
 
-cd ..
+#  ci_post_clone.sh
+#  SunibCurhat
+#
+#  Created by Rangga Leo on 27/02/24.
+#  Copyright © 2024 Rangga Leo. All rights reserved.
 
-echo ">>> SETUP ENVIRONMENT"
-echo 'export GEM_HOME=$HOME/gems' >>~/.bash_profile
-echo 'export PATH=$HOME/gems/bin:$PATH' >>~/.bash_profile
-export GEM_HOME=$HOME/gems
-export PATH="$GEM_HOME/bin:$PATH"
-
-echo ">>> INSTALL BUNDLER"
-gem install bundler --install-dir $GEM_HOME
-
-echo ">>> INSTALL DEPENDENCIES"
-bundle install
-
-echo ">>> INSTALL PODS"
-bundle exec pod install
+brew install cocoapods
+pod install
