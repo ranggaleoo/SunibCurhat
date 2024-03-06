@@ -74,8 +74,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         self.tabBar.isOpaque = false
         self.tabBar.isTranslucent = false
-        self.tabBar.tintColor = UINCColor.secondary
-        self.tabBar.barTintColor = UINCColor.bg_secondary
+        self.tabBar.tintColor = UINCColor.primary
+        self.tabBar.barTintColor = UINCColor.bg_primary
         self.tabBar.unselectedItemTintColor = UINCColor.tertiary600.get()
 //        self.viewControllers = [timeline, chats]
         self.viewControllers = [timeline]

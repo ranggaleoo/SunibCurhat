@@ -38,6 +38,7 @@ class ReportViewController: UIViewController {
     }
     
     private func delegates() {
+        view.backgroundColor = UINCColor.bg_primary
         title = "Report"
         reportTableView.delegate    = self
         reportTableView.dataSource  = self

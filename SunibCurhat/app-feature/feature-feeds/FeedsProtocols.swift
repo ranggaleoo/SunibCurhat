@@ -44,6 +44,7 @@ protocol FeedsPresenterToRouter: AnyObject {
     func navigateToPrivacy(from: FeedsPresenterToView?, url: String?)
     func navigateToAgreement(from: FeedsPresenterToView?, url: String?)
     func navigateToLogin(from: FeedsPresenterToView?)
+    func navigateToProfile(from: FeedsPresenterToView?)
 }
 
 // MARK: Presenter -
@@ -58,7 +59,8 @@ protocol FeedsViewToPresenter: AnyObject {
     func didClickAgreement()
     func didClickSignOut()
     func didClickSendChat(to: String)
-    func getUserId() -> String?
+    func didClickProfile()
+    func getUser() -> User?
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int
     func cellForRowAt(indexPath: IndexPath) -> TimelineItems

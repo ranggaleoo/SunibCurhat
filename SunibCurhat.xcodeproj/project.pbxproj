@@ -136,6 +136,22 @@
 		AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */; };
 		AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */; };
 		AA7A0B5B231D014800B8233E /* GADBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */; };
+		AA7B1B0B2B9712BF008925F4 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B052B9712BF008925F4 /* ProfilePresenter.swift */; };
+		AA7B1B0C2B9712BF008925F4 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B062B9712BF008925F4 /* ProfileRouter.swift */; };
+		AA7B1B0D2B9712BF008925F4 /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B072B9712BF008925F4 /* ProfileProtocols.swift */; };
+		AA7B1B0E2B9712BF008925F4 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B082B9712BF008925F4 /* ProfileInteractor.swift */; };
+		AA7B1B0F2B9712BF008925F4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B092B9712BF008925F4 /* ProfileView.swift */; };
+		AA7B1B102B9712BF008925F4 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7B1B0A2B9712BF008925F4 /* ProfileView.xib */; };
+		AA7B1B132B974A2F008925F4 /* ProfileAvatarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7B1B122B974A2F008925F4 /* ProfileAvatarCell.xib */; };
+		AA7B1B152B974A39008925F4 /* ProfileAvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B142B974A39008925F4 /* ProfileAvatarCell.swift */; };
+		AA7B1B1D2B974F4B008925F4 /* MobileNavPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B172B974F4B008925F4 /* MobileNavPresenter.swift */; };
+		AA7B1B1E2B974F4B008925F4 /* MobileNavRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B182B974F4B008925F4 /* MobileNavRouter.swift */; };
+		AA7B1B1F2B974F4B008925F4 /* MobileNavProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B192B974F4B008925F4 /* MobileNavProtocols.swift */; };
+		AA7B1B202B974F4B008925F4 /* MobileNavInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B1A2B974F4B008925F4 /* MobileNavInteractor.swift */; };
+		AA7B1B212B974F4B008925F4 /* MobileNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B1B2B974F4B008925F4 /* MobileNavView.swift */; };
+		AA7B1B222B974F4B008925F4 /* MobileNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7B1B1C2B974F4B008925F4 /* MobileNavView.xib */; };
+		AA7B1B242B976443008925F4 /* MobileNavModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B232B976443008925F4 /* MobileNavModel.swift */; };
+		AA7B1B262B976459008925F4 /* MobileNavService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B252B976459008925F4 /* MobileNavService.swift */; };
 		AA8388552B8B29FE009969FD /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8388542B8B29FE009969FD /* SocketService.swift */; };
 		AA8868822336617E0086F538 /* Timeline+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8868812336617E0086F538 /* Timeline+TableView.swift */; };
 		AA886884233661BD0086F538 /* Timeline+Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA886883233661BD0086F538 /* Timeline+Email.swift */; };
@@ -361,6 +377,22 @@
 		AA7A0B56231CEC2C00B8233E /* Chat+InputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+InputBar.swift"; sourceTree = "<group>"; };
 		AA7A0B58231CECF800B8233E /* Chat+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+ImagePicker.swift"; sourceTree = "<group>"; };
 		AA7A0B5A231D014800B8233E /* GADBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerTableViewCell.swift; sourceTree = "<group>"; };
+		AA7B1B052B9712BF008925F4 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		AA7B1B062B9712BF008925F4 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		AA7B1B072B9712BF008925F4 /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
+		AA7B1B082B9712BF008925F4 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		AA7B1B092B9712BF008925F4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AA7B1B0A2B9712BF008925F4 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		AA7B1B122B974A2F008925F4 /* ProfileAvatarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileAvatarCell.xib; sourceTree = "<group>"; };
+		AA7B1B142B974A39008925F4 /* ProfileAvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarCell.swift; sourceTree = "<group>"; };
+		AA7B1B172B974F4B008925F4 /* MobileNavPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavPresenter.swift; sourceTree = "<group>"; };
+		AA7B1B182B974F4B008925F4 /* MobileNavRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavRouter.swift; sourceTree = "<group>"; };
+		AA7B1B192B974F4B008925F4 /* MobileNavProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavProtocols.swift; sourceTree = "<group>"; };
+		AA7B1B1A2B974F4B008925F4 /* MobileNavInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavInteractor.swift; sourceTree = "<group>"; };
+		AA7B1B1B2B974F4B008925F4 /* MobileNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavView.swift; sourceTree = "<group>"; };
+		AA7B1B1C2B974F4B008925F4 /* MobileNavView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MobileNavView.xib; sourceTree = "<group>"; };
+		AA7B1B232B976443008925F4 /* MobileNavModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavModel.swift; sourceTree = "<group>"; };
+		AA7B1B252B976459008925F4 /* MobileNavService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavService.swift; sourceTree = "<group>"; };
 		AA8388542B8B29FE009969FD /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		AA8868812336617E0086F538 /* Timeline+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timeline+TableView.swift"; sourceTree = "<group>"; };
 		AA886883233661BD0086F538 /* Timeline+Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timeline+Email.swift"; sourceTree = "<group>"; };
@@ -1068,6 +1100,8 @@
 		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
+				AA7B1B162B974F1A008925F4 /* feature-mobile-nav */,
+				AA7B1B042B9712A6008925F4 /* feature-profile */,
 				AA25B8D72B768627004F22E1 /* feature-new-post */,
 				AAA8D1202B73943E007C579B /* feature-register */,
 				AAA8D10C2B724540007C579B /* feature-login */,
@@ -1200,6 +1234,44 @@
 				16C3C7FC232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AA7B1B042B9712A6008925F4 /* feature-profile */ = {
+			isa = PBXGroup;
+			children = (
+				AA7B1B112B9749FE008925F4 /* cells */,
+				AA7B1B052B9712BF008925F4 /* ProfilePresenter.swift */,
+				AA7B1B062B9712BF008925F4 /* ProfileRouter.swift */,
+				AA7B1B072B9712BF008925F4 /* ProfileProtocols.swift */,
+				AA7B1B082B9712BF008925F4 /* ProfileInteractor.swift */,
+				AA7B1B092B9712BF008925F4 /* ProfileView.swift */,
+				AA7B1B0A2B9712BF008925F4 /* ProfileView.xib */,
+			);
+			path = "feature-profile";
+			sourceTree = "<group>";
+		};
+		AA7B1B112B9749FE008925F4 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				AA7B1B122B974A2F008925F4 /* ProfileAvatarCell.xib */,
+				AA7B1B142B974A39008925F4 /* ProfileAvatarCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		AA7B1B162B974F1A008925F4 /* feature-mobile-nav */ = {
+			isa = PBXGroup;
+			children = (
+				AA7B1B172B974F4B008925F4 /* MobileNavPresenter.swift */,
+				AA7B1B182B974F4B008925F4 /* MobileNavRouter.swift */,
+				AA7B1B192B974F4B008925F4 /* MobileNavProtocols.swift */,
+				AA7B1B1A2B974F4B008925F4 /* MobileNavInteractor.swift */,
+				AA7B1B1B2B974F4B008925F4 /* MobileNavView.swift */,
+				AA7B1B1C2B974F4B008925F4 /* MobileNavView.xib */,
+				AA7B1B232B976443008925F4 /* MobileNavModel.swift */,
+				AA7B1B252B976459008925F4 /* MobileNavService.swift */,
+			);
+			path = "feature-mobile-nav";
 			sourceTree = "<group>";
 		};
 		AA8868802336615D0086F538 /* Extensions */ = {
@@ -1649,6 +1721,7 @@
 				AACDFE792570E42200485828 /* FeedsView.xib in Resources */,
 				AAA8D12C2B739456007C579B /* RegisterView.xib in Resources */,
 				AAE102A225EB6A4D0001F026 /* SplashView.xib in Resources */,
+				AA7B1B102B9712BF008925F4 /* ProfileView.xib in Resources */,
 				AAF1182822F6BBF100FDA099 /* CommentCurhat.storyboard in Resources */,
 				AAD0E38D22F70FBD005CC55A /* Countries.bundle in Resources */,
 				168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */,
@@ -1667,6 +1740,7 @@
 				AA06011A2B7727090056B695 /* CommentView.xib in Resources */,
 				AAA8D1182B724561007C579B /* LoginView.xib in Resources */,
 				8B0643E1260635CA009B129C /* ChatView.xib in Resources */,
+				AA7B1B132B974A2F008925F4 /* ProfileAvatarCell.xib in Resources */,
 				AA46E2E3245C52C000735490 /* UpdateApp.storyboard in Resources */,
 				AACDFE7D2570E51100485828 /* FeedDefaultCell.xib in Resources */,
 				AAA8D11D2B72BD4A007C579B /* UINCInput.xib in Resources */,
@@ -1676,6 +1750,7 @@
 				AA25B8E32B768648004F22E1 /* NewPostView.xib in Resources */,
 				AA2BF03A25EDB11B00E037AE /* SettingsView.xib in Resources */,
 				AA06011F2B7765BF0056B695 /* CommentCell.xib in Resources */,
+				AA7B1B222B974F4B008925F4 /* MobileNavView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1757,7 +1832,9 @@
 				AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */,
 				AA25B8D62B765E33004F22E1 /* SFSymbols.swift in Sources */,
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
+				AA7B1B202B974F4B008925F4 /* MobileNavInteractor.swift in Sources */,
 				AABF39532307B57200DEAA63 /* HTTPRequestHeader.swift in Sources */,
+				AA7B1B1D2B974F4B008925F4 /* MobileNavPresenter.swift in Sources */,
 				AA2BF02625EDB08E00E037AE /* CodableStorage.swift in Sources */,
 				AA0601152B7727090056B695 /* CommentPresenter.swift in Sources */,
 				8B0643DC260635CA009B129C /* ChatPresenter.swift in Sources */,
@@ -1769,6 +1846,7 @@
 				16C3C7FD232905F000D6B4EE /* Chat+MessageLayoutDelegate.swift in Sources */,
 				AA8868822336617E0086F538 /* Timeline+TableView.swift in Sources */,
 				AA25B8E22B768648004F22E1 /* NewPostView.swift in Sources */,
+				AA7B1B0D2B9712BF008925F4 /* ProfileProtocols.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
 				8B0643DE260635CA009B129C /* ChatProtocols.swift in Sources */,
 				AA6A281F2B89919600B66156 /* ChatsView.swift in Sources */,
@@ -1776,6 +1854,8 @@
 				AAD0E37922F70F02005CC55A /* UIAlertController+Extensions.swift in Sources */,
 				AA06011D2B7765AC0056B695 /* CommentCell.swift in Sources */,
 				AA2BF02925EDB0B100E037AE /* DiskStorage.swift in Sources */,
+				AA7B1B0B2B9712BF008925F4 /* ProfilePresenter.swift in Sources */,
+				AA7B1B242B976443008925F4 /* MobileNavModel.swift in Sources */,
 				16456DBF2350B8400058474C /* Premium+CollectionView.swift in Sources */,
 				AA2BF02C25EDB0D500E037AE /* Storage.swift in Sources */,
 				AA46E2EA245C55EC00735490 /* UINCLabelBody.swift in Sources */,
@@ -1790,6 +1870,7 @@
 				AA6A281D2B89919600B66156 /* ChatsProtocols.swift in Sources */,
 				AA25B8DF2B768648004F22E1 /* NewPostRouter.swift in Sources */,
 				AA0601192B7727090056B695 /* CommentView.swift in Sources */,
+				AA7B1B1F2B974F4B008925F4 /* MobileNavProtocols.swift in Sources */,
 				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AAF1182A22F6BC3800FDA099 /* CommentCurhatViewController.swift in Sources */,
 				AA2BF03725EDB11B00E037AE /* SettingsProtocols.swift in Sources */,
@@ -1823,9 +1904,11 @@
 				1621AD2D23445787008F15D8 /* PaymentWebViewController.swift in Sources */,
 				AAD0E38322F70F4B005CC55A /* AttributedTextBlock.swift in Sources */,
 				AA478D9022F6503000BC23A7 /* ConstGlobal.swift in Sources */,
+				AA7B1B0F2B9712BF008925F4 /* ProfileView.swift in Sources */,
 				AA46E307245E704800735490 /* Corona+Ads.swift in Sources */,
 				AAD0E37F22F70F02005CC55A /* UITextView+Extensions.swift in Sources */,
 				AA7A0B57231CEC2C00B8233E /* Chat+InputBar.swift in Sources */,
+				AA7B1B262B976459008925F4 /* MobileNavService.swift in Sources */,
 				AA43D97425EAFAA2008B2364 /* StartupAppDelegate.swift in Sources */,
 				16456DC62350BA420058474C /* PremiumModel.swift in Sources */,
 				AA75AD4C2347CA7700C8F739 /* PremiumViewController.swift in Sources */,
@@ -1838,6 +1921,7 @@
 				AACDFE772570E42200485828 /* FeedsInteractor.swift in Sources */,
 				AA505E14245FA910002FD204 /* UITapGestureRecognizer+Ext.swift in Sources */,
 				AAE1029D25EB6A4D0001F026 /* SplashPresenter.swift in Sources */,
+				AA7B1B0C2B9712BF008925F4 /* ProfileRouter.swift in Sources */,
 				1619D62E2317CACE00E5F496 /* UIScrollView+Extensions.swift in Sources */,
 				164089242316913B00CB11A6 /* ChatsTableViewCell.swift in Sources */,
 				1640892A2316945B00CB11A6 /* Chats+ManagerDocument.swift in Sources */,
@@ -1848,8 +1932,10 @@
 				AA589D2F2B748F0E007DEE54 /* LoginService.swift in Sources */,
 				166F1AD92317931F00BB1151 /* ChatModel.swift in Sources */,
 				AA5BABE822F655F4004253AF /* ListCurhatViewController.swift in Sources */,
+				AA7B1B1E2B974F4B008925F4 /* MobileNavRouter.swift in Sources */,
 				AA249F11232F003A0047BC99 /* UILabel+Extensions.swift in Sources */,
 				AAD0E37A22F70F02005CC55A /* UIApplication+Extensions.swift in Sources */,
+				AA7B1B0E2B9712BF008925F4 /* ProfileInteractor.swift in Sources */,
 				AAA8D1282B739456007C579B /* RegisterRouter.swift in Sources */,
 				AACDFE802570E52C00485828 /* FeedDefaultCell.swift in Sources */,
 				AAE1029425EB5B230001F026 /* CoreDataAppDelegate.swift in Sources */,
@@ -1873,6 +1959,7 @@
 				AAA8D12B2B739456007C579B /* RegisterView.swift in Sources */,
 				16456DBD2350B8270058474C /* Premium+TableView.swift in Sources */,
 				AA7A0B59231CECF800B8233E /* Chat+ImagePicker.swift in Sources */,
+				AA7B1B212B974F4B008925F4 /* MobileNavView.swift in Sources */,
 				AA478D7A22F649A300BC23A7 /* AppDelegate.swift in Sources */,
 				AA43D97825EAFAE5008B2364 /* ThirdPartyAppDelegate.swift in Sources */,
 				AAD0E37822F70F02005CC55A /* UISegmentedControl+Extensions.swift in Sources */,
@@ -1920,6 +2007,7 @@
 				AA46E2F3245D2EEA00735490 /* Timeline+Permission.swift in Sources */,
 				AACDFE752570E42200485828 /* FeedsRouter.swift in Sources */,
 				AAF1182D22F6BCF100FDA099 /* CurhatTableViewCell.swift in Sources */,
+				AA7B1B152B974A39008925F4 /* ProfileAvatarCell.swift in Sources */,
 				AA589D332B74D621007DEE54 /* FeedsService.swift in Sources */,
 				AA43D96E25EAF9BB008B2364 /* AppLifecycleMediator.swift in Sources */,
 				AA478D8222F649A300BC23A7 /* SunibCurhat.xcdatamodeld in Sources */,

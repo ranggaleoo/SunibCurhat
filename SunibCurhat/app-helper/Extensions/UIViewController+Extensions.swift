@@ -6,8 +6,8 @@ extension UIViewController {
     
     public func navigationDefault() {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.backgroundColor = UINCColor.bg_secondary
-        self.navigationController?.navigationBar.tintColor  = UINCColor.secondary
+        self.navigationController?.navigationBar.backgroundColor = UINCColor.bg_primary
+        self.navigationController?.navigationBar.tintColor  = UINCColor.primary
     }
     
     var alertController: UIAlertController? {

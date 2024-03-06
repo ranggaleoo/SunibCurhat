@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import SPPermissions
 import MessageUI
+import Kingfisher
 
 class FeedsView: UIViewController, FeedsPresenterToView {
     var presenter: FeedsViewToPresenter?
@@ -33,10 +34,11 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     }
     
     func setupViews() {
+        view.backgroundColor = UINCColor.bg_primary
         requestPermission()
         storeKit.delegate = self
         
-        tableView.backgroundColor = UINCColor.bg_secondary
+        tableView.backgroundColor = UINCColor.bg_primary
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -61,8 +63,27 @@ class FeedsView: UIViewController, FeedsPresenterToView {
             target: self,
             action: #selector(toAddThread)
         )
-        let buttonBarMenu = UIBarButtonItem(image: UIImage(symbol: .EllipsisCircleFill), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
-        navigationItem.rightBarButtonItems = [buttonBarMenu, buttonAddThread]
+        let buttonBarMenu = UIBarButtonItem(
+            image: UIImage(symbol: .EllipsisCircleFill),
+            style: .plain,
+            target: self,
+            action: #selector(actionMenuBarButtonItem)
+        )
+
+        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        avatarImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = 20 // Half of the desired avatar image view's width
+        avatarImageView.kf.setImage(with: URL(string: presenter?.getUser()?.avatar ?? ""))
+        
+        let buttonProfile = UIBarButtonItem(customView: avatarImageView)
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonProfileHandler))
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        navigationItem.rightBarButtonItems = [buttonProfile, buttonAddThread]
     }
     
     func showAlert(title: String, message: String) {
@@ -115,6 +136,10 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         } else {
             UDHelpers.shared.set(value: timesPermission + 1, key: .counterRequestPermission)
         }
+    }
+    
+    @objc private func buttonProfileHandler() {
+        presenter?.didClickProfile()
     }
     
     @objc private func toAddThread() {
@@ -262,12 +287,12 @@ extension FeedsView: FeedDefaultCellDelegate {
             if let timelineItem = presenter?.getTimelineItem(indexPath: index) {
                 
                 let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
-                if let user_id = presenter?.getUserId(), user_id == timelineItem.user_id {
+                if let user_id = presenter?.getUser()?.user_id, user_id == timelineItem.user_id {
                     alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (act) in
                         self.presenter?.requestDeleteTimeline(indexPath: index)
                     }))
                 
-                } else if let user_id = presenter?.getUserId(), user_id != timelineItem.user_id {
+                } else if let user_id = presenter?.getUser()?.user_id, user_id != timelineItem.user_id {
 //                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { [weak self] (act) in
 //                        self?.presenter?.didClickSendChat(to: timelineItem.user_id)
 //                        if let vc = self.tabBarController?.viewControllers {

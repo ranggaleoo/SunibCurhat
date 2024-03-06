@@ -65,12 +65,15 @@ class FeedDefaultCell: UITableViewCell {
     
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = UINCColor.bg_primary
         
         container_round.layer.cornerRadius     = 15
         container_round.layer.shadowColor      = UIColor.black.withAlphaComponent(0.25).cgColor
         container_round.layer.shadowOffset     = CGSize(width: 0, height: 0)
         container_round.layer.shadowRadius     = 10.0
         container_round.layer.shadowOpacity    = 30.0
+        container_round.layer.borderColor      = UINCColor.bg_tertiary.cgColor
+        container_round.layer.borderWidth      = 1
         container_round.layer.masksToBounds    = false
         
         lbl_textcontent.numberOfLines   = 0
@@ -106,8 +109,6 @@ class FeedDefaultCell: UITableViewCell {
     }
     
     private func updateUI() {
-        backgroundColor = UINCColor.bg_secondary
-                
         lbl_username.text               = timeline?.name
         lbl_textcontent.text            = timeline?.text_content
         lbl_time.text                   = timeline?.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)

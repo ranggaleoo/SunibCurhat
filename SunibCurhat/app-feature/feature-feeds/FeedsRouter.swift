@@ -89,7 +89,7 @@ class FeedsRouter: FeedsPresenterToRouter {
     
     func navigateToPrivacy(from: FeedsPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)
@@ -99,7 +99,7 @@ class FeedsRouter: FeedsPresenterToRouter {
     
     func navigateToAgreement(from: FeedsPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)
@@ -113,6 +113,14 @@ class FeedsRouter: FeedsPresenterToRouter {
             login.modalTransitionStyle = .crossDissolve
             login.modalPresentationStyle = .fullScreen
             view.present(login, animated: true)
+        }
+    }
+    
+    func navigateToProfile(from: FeedsPresenterToView?) {
+        if let view = from as? UIViewController {
+            let profile = ProfileRouter.createProfileModule()
+            profile.hidesBottomBarWhenPushed = true
+            view.navigationController?.pushViewController(profile, animated: true)
         }
     }
 }

@@ -23,8 +23,8 @@ class FeedsPresenter: FeedsViewToPresenter {
         requestGetTimeline(resetData: false)
     }
     
-    func getUserId() -> String? {
-        return user?.user_id
+    func getUser() -> User? {
+        return user
     }
     
     func didClickNewPost() {
@@ -48,6 +48,10 @@ class FeedsPresenter: FeedsViewToPresenter {
     func didClickSendChat(to: String) {
         let chatReqJoin = ChatRequestJoin(from: user?.user_id ?? "", to: to)
         router?.navigateToChat(from: view, data: chatReqJoin)
+    }
+    
+    func didClickProfile() {
+        router?.navigateToProfile(from: view)
     }
     
     func requestGetTimeline(resetData: Bool) {

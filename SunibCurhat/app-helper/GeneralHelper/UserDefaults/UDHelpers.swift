@@ -18,6 +18,10 @@ class UDHelpers {
         debugLog("initialize user default")
     }
     
+    public func set(value defaultValue: Any, keyString defaultKeyString: String) {
+        defaults.set(defaultValue, forKey: defaultKeyString)
+    }
+    
     public func set(value defaultValue: Any, key defaultKey: UDHelpersKey) {
         defaults.set(defaultValue, forKey: defaultKey.rawValue)
     }
@@ -28,6 +32,10 @@ class UDHelpers {
     
     public func getString(key defaultKey: UDHelpersKey) -> String? {
         return defaults.string(forKey: defaultKey.rawValue)
+    }
+    
+    public func getBool(keyString defaultKeyString: String) -> Bool {
+        return defaults.bool(forKey: defaultKeyString)
     }
     
     public func getBool(key defaultKey: UDHelpersKey) -> Bool {
@@ -84,4 +92,5 @@ enum UDHelpersKey: String {
     case user
     case device_id
     case chat_session_id
+    case mobile_navigation
 }
