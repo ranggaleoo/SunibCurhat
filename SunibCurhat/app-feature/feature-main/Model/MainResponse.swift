@@ -72,4 +72,5 @@ struct User: Codable {
     let email:      String?
     let name:       String
     let avatar:     String
+    let is_online:  Bool?
 }

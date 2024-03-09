@@ -122,13 +122,11 @@ enum MobileNavigationAfterAction: String, Codable {
             UDHelpers.shared.remove(key: .user)
             UDHelpers.shared.remove(key: .access_token)
             UDHelpers.shared.remove(key: .refresh_token)
-            UDHelpers.shared.remove(key: .chat_session_id)
             completion?(true)
         case .delete_account:
             UDHelpers.shared.remove(key: .user)
             UDHelpers.shared.remove(key: .access_token)
             UDHelpers.shared.remove(key: .refresh_token)
-            UDHelpers.shared.remove(key: .chat_session_id)
             UDHelpers.shared.remove(key: .device_id)
             completion?(true)
         case .push_notif, .auto_clear_chat:

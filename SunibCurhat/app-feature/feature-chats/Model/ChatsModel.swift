@@ -8,11 +8,19 @@
 
 import Foundation
 
+struct Conversation: Codable {
+    let conversation_id     : String
+    let users               : [User]
+    let chats               : [Chat]
+    let last_chat           : String?
+    let last_chat_timestamp : Date?
+}
+
 protocol DatabaseRepresentation {
     var representation: [String: Any] { get }
 }
 
-struct Chat {
+struct Chat: Codable {
     let id          : String?
     let chat_id     : String
     let users       : [String]

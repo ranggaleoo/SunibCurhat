@@ -46,6 +46,14 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         navigationDefault()
         title = "Chats"
     }
+    
+    func createConversationFromTimeline(conversation: Conversation) {
+        presenter?.createConversation(conversation: conversation)
+    }
+    
+    func insertRow(at: [IndexPath]) {
+        tableChats.insertRows(at: at, with: .automatic)
+    }
 }
 
 extension ChatsView: UITableViewDelegate, UITableViewDataSource {

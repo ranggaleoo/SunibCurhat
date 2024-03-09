@@ -31,6 +31,7 @@ protocol FeedsPresenterToInteractor: AnyObject {
     func shareTimeline(user_id: String, timelineID: Int)
     func deleteTimelime(user_id: String, timelineID: Int)
     func signOut()
+    func createConversationRoom(conversation: Conversation)
 }
 
 
@@ -39,7 +40,7 @@ protocol FeedsPresenterToRouter: AnyObject {
     static func createFeedsModule() -> UIViewController
     func navigateToNewPost(from: FeedsPresenterToView?)
     func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?)
-    func navigateToChat(from: FeedsPresenterToView?, data: ChatRequestJoin)
+    func navigateToChat(from: FeedsPresenterToView?, conversation: Conversation)
     func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?)
     func navigateToPrivacy(from: FeedsPresenterToView?, url: String?)
     func navigateToAgreement(from: FeedsPresenterToView?, url: String?)
@@ -81,4 +82,6 @@ protocol FeedsInteractorToPresenter: AnyObject {
     func didLikeTimeline(id: Int)
     func didUnlikeTimeline(id: Int)
     func didSignOut()
+    func didCreateConversationRoom(conversation: Conversation)
+    func failCreateConversationRoom(title: String, message: String)
 }

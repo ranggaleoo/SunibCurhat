@@ -13,6 +13,8 @@ protocol ChatsPresenterToView: AnyObject {
     var presenter: ChatsViewToPresenter? { get set }
     
     func setupViews()
+    func createConversationFromTimeline(conversation: Conversation)
+    func insertRow(at: [IndexPath])
 }
 
 // MARK: Interactor -
@@ -32,8 +34,9 @@ protocol ChatsViewToPresenter: AnyObject {
     var router: ChatsPresenterToRouter? {get set}
     
     func didLoad()
+    func createConversation(conversation: Conversation)
     func numberOfRowsInSection() -> Int
-    func cellForRowAt() -> String
+    func cellForRowAt(indexPath: IndexPath) -> Conversation
 }
 
 protocol ChatsInteractorToPresenter: AnyObject {

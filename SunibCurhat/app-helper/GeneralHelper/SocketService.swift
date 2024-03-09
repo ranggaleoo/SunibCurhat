@@ -10,34 +10,50 @@ import Foundation
 import SocketIO
 
 protocol SocketDelegate: AnyObject {
-    func didGetUsers(users: [Any]?)
+    func didGetConversations(conversations: [Conversation])
+    func failGetConversation(message: String)
 }
 
-enum SocketEvent: String {
-    case req_join
+// default implementation
+extension SocketDelegate {
+    func didGetConversations(conversations: [Conversation]) { }
+    func failGetConversation(message: String) { }
+}
+
+enum SocketIOError: Error {
+    case encodingFailed
+    case decodingFailed
 }
 
 extension SocketIOClient {
-//    func on<Event: SocketEvent>(_ event: Event.Type, handler: @escaping (Event.DataType, SocketAckEmitter) -> Void) {
-//        on(Event.eventName) { data, ack in
-//            do {
-//                let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-//                let decodedData = try JSONDecoder().decode(Event.DataType.self, from: jsonData)
-//                handler(decodedData, ack)
-//            } catch let err {
-//                debugLog("Error decoding data for event \(Event.eventName):", err.localizedDescription)
-//            }
-//        }
-//    }
-    
-    func emit(_ event: SocketEvent, data: Codable, _ completion: (() -> Void)? = nil) {
+    func emit<T: Encodable>(_ event: String, withData data: T, completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             let jsonData = try JSONEncoder().encode(data)
-            self.emit(event.rawValue, jsonData) {
-                completion?()
+            guard let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+                completion(.failure(SocketIOError.encodingFailed))
+                return
             }
-        } catch let err {
-            debugLog("Error encoding data for event \(event.rawValue):", err.localizedDescription)
+            self.emit(event, jsonDict)
+            completion(.success(()))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
+    func on<T: Decodable>(_ event: String, completion: @escaping (Result<T, Error>) -> Void) {
+        self.on(event) { data, _ in
+            guard let jsonDataString = data[0] as? String,
+                  let jsonData = jsonDataString.data(using: .utf8) else {
+                completion(.failure(SocketIOError.decodingFailed))
+                return
+            }
+            
+            do {
+                let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
 }
@@ -58,14 +74,16 @@ class SocketService {
         else { return }
         
         let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
-        let session_id = UDHelpers.shared.getString(key: .chat_session_id)
-        debugLog(user)
-        debugLog(session_id)
         
         if let _user = user,
-           let _session_id = session_id,
            !(socketManager?.engine?.connected ?? false) {
-            debugLog("auth socket using: ", _user.user_id, _session_id)
+            let encoder = JSONEncoder()
+            guard let jsonData = try? encoder.encode(_user) else {
+                debugLog("failed encode object user")
+                return
+            }
+            let userString = jsonData.base64EncodedString()
+            
             socketManager = SocketManager(
                 socketURL: url,
                 config: [
@@ -73,48 +91,12 @@ class SocketService {
                     .compress,
                     .connectParams([
                         "user_id": _user.user_id,
-                        "session_id": _session_id
+                        "user": userString
                     ])
                 ])
             socket = socketManager?.defaultSocket
             socket?.connect()
             self.addEventHandlers()
-            
-        } else if let _user = user,
-                  !(socketManager?.engine?.connected ?? false) {
-            debugLog("auth socket using: ", _user.user_id)
-            socketManager = SocketManager(
-                socketURL: url,
-                config: [
-                    .log(true),
-                    .compress,
-                    .connectParams([
-                        "user_id": _user.user_id,
-                    ])
-                ]
-            )
-            socket = socketManager?.defaultSocket
-            socket?.connect()
-            
-            socket?.on("session", callback: { [weak self] (data, ack) in
-                let session_id = data[0] as? String
-                if let _session_id = session_id {
-                    self?.socketManager = SocketManager(
-                        socketURL: url,
-                        config: [
-                            .log(true),
-                            .compress,
-                            .connectParams([
-                                "user_id": _user.user_id,
-                                "session_id": _session_id
-                            ])
-                        ])
-                    self?.socket = self?.socketManager?.defaultSocket
-                    UDHelpers.shared.set(value: _session_id, key: .chat_session_id)
-                    self?.addEventHandlers()
-                }
-            })
-            
         } else {
             debugLog("disconnect socket")
             socket?.disconnect()
@@ -122,22 +104,29 @@ class SocketService {
     }
     private func addEventHandlers() {
         socket?.onAny({ eHandler in
-            debugLog(eHandler.description)
             debugLog(eHandler.event)
-            debugLog(eHandler.items)
         })
         
-        socket?.on("get-users", callback: { [weak self] (users: [Any], ack) in
-            self?.delegate?.didGetUsers(users: users)
-        })
-    }
-    
-    func reqJoin(data: ChatRequestJoin) {
-        socket?.emit(.req_join, data: data)
+        self.on(.res_conversations) { [weak self] (result: Result<[Conversation], Error>) in
+            switch result {
+            case .success(let result):
+                self?.delegate?.didGetConversations(conversations: result)
+            case .failure(let err):
+                self?.delegate?.failGetConversation(message: err.localizedDescription)
+            }
+        }
     }
     
     func set(URL: String) {
         socketURL = URL
+    }
+    
+    func emit<T: Encodable>(_ event: SocketEventRequest, _ data: T, completion: @escaping (Result<Void, Error>) -> Void) {
+        socket?.emit(event.rawValue, withData: data, completion: completion)
+    }
+    
+    func on<T: Decodable>(_ event: SocketEventResponse, completion: @escaping (Result<T, Error>) -> Void) {
+        socket?.on(event.rawValue, completion: completion)
     }
     
     func connect() {
@@ -149,21 +138,12 @@ class SocketService {
     }
 }
 
-struct ChatSession: Codable {
-    let session_id: String
-    let user_id: String
-    let connected: Bool
+enum SocketEventRequest: String {
+    case req_create_conversation
+    case req_conversations
 }
 
-struct ChatConversation: Codable {
-    let from: String
-    let last_message: String
-    let last_message_time: String
-    let total_unread_message: String
+enum SocketEventResponse: String {
+    case res_chats
+    case res_conversations
 }
-
-struct ChatRequestJoin: Codable {
-    let from: String
-    let to: String
-}
-

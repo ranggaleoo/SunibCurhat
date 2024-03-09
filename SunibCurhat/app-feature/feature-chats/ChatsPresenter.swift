@@ -13,25 +13,31 @@ class ChatsPresenter: ChatsViewToPresenter {
     var interactor: ChatsPresenterToInteractor?
     var router: ChatsPresenterToRouter?
     
+    private var conversations: [Conversation] = []
+    
     func didLoad() {
         view?.setupViews()
         SocketService.shared.delegate = self
     }
     
     func numberOfRowsInSection() -> Int {
-        return 5
+        return conversations.count
     }
     
-    func cellForRowAt() -> String {
-        return "OK"
+    func cellForRowAt(indexPath: IndexPath) -> Conversation {
+        return conversations[indexPath.row]
+    }
+    
+    func createConversation(conversation: Conversation) {
+        conversations.append(conversation)
+        let indexPaths = [IndexPath(row: conversations.count - 1, section: 0)]
+        view?.insertRow(at: indexPaths)
     }
 }
 
 extension ChatsPresenter: ChatsInteractorToPresenter {
 }
 
-extension ChatsPresenter: SocketDelegate {
-    func didGetUsers(users: [Any]?) {
-        debugLog(users)
-    }
+extension ChatsPresenter: SocketDelegate {    
+
 }

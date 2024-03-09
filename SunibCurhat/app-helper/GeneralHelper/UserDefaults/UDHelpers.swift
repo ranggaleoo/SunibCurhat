@@ -91,6 +91,5 @@ enum UDHelpersKey: String {
     case preferences_key
     case user
     case device_id
-    case chat_session_id
     case mobile_navigation
 }

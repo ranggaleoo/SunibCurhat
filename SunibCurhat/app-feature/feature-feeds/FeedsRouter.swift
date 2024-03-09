@@ -48,15 +48,15 @@ class FeedsRouter: FeedsPresenterToRouter {
 //        }
     }
     
-    func navigateToChat(from: FeedsPresenterToView?, data: ChatRequestJoin) {
-        SocketService.shared.reqJoin(data: data)
+    func navigateToChat(from: FeedsPresenterToView?, conversation: Conversation) {
         if let view = from as? UIViewController {
             view.tabBarController?.selectedIndex = 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                let chat = Chat(name: "Surti", chat_id: "abcd", users: [])
-                let chats = ChatRouter.createChatModule(chat: chat)
-                view.hidesBottomBarWhenPushed = true
-                view.tabBarController?.navigationController?.pushViewController(chats, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+                if let tab = view.tabBarController,
+                   let navigation = tab.selectedViewController as? UINavigationController,
+                   let chats = navigation.topViewController as? ChatsView {
+                    chats.createConversationFromTimeline(conversation: conversation)
+                }
             })
             
 //            if let vc = self.tabBarController?.viewControllers {

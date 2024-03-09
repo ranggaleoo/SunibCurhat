@@ -46,8 +46,15 @@ class FeedsPresenter: FeedsViewToPresenter {
     }
     
     func didClickSendChat(to: String) {
-        let chatReqJoin = ChatRequestJoin(from: user?.user_id ?? "", to: to)
-        router?.navigateToChat(from: view, data: chatReqJoin)
+        guard let user = user else { return }
+        let conversation = Conversation(
+            conversation_id: "\(user.user_id).\(to)",
+            users: [user],
+            chats: [],
+            last_chat: nil,
+            last_chat_timestamp: nil
+        )
+        interactor?.createConversationRoom(conversation: conversation)
     }
     
     func didClickProfile() {
@@ -173,9 +180,15 @@ extension FeedsPresenter: FeedsInteractorToPresenter {
     func didSignOut() {
         UDHelpers.shared.remove(key: .user)
         UDHelpers.shared.remove(key: .access_token)
-        UDHelpers.shared.remove(key: .refresh_token)
-        UDHelpers.shared.remove(key: .chat_session_id)
-        
+        UDHelpers.shared.remove(key: .refresh_token)        
         router?.navigateToLogin(from: view)
+    }
+    
+    func didCreateConversationRoom(conversation: Conversation) {
+        router?.navigateToChat(from: view, conversation: conversation)
+    }
+    
+    func failCreateConversationRoom(title: String, message: String) {
+        view?.showAlert(title: title, message: message)
     }
 }
