@@ -29,6 +29,7 @@ class ChatsView: UIViewController, ChatsPresenterToView {
     }
     
     func setupViews() {
+        view.backgroundColor = UINCColor.bg_primary
         tableChats.delegate = self
         tableChats.dataSource = self
         tableChats.register(ChatCell.source.nib, forCellReuseIdentifier: ChatCell.source.identifier)

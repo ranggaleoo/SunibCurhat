@@ -293,8 +293,8 @@ extension FeedsView: FeedDefaultCellDelegate {
                     }))
                 
                 } else if let user_id = presenter?.getUser()?.user_id, user_id != timelineItem.user_id {
-//                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { [weak self] (act) in
-//                        self?.presenter?.didClickSendChat(to: timelineItem.user_id)
+                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { [weak self] (act) in
+                        self?.presenter?.didClickSendChat(to: timelineItem.user_id)
 //                        if let vc = self.tabBarController?.viewControllers {
 //                            guard let navigationController = vc[1] as? UINavigationController else { return }
 //                            if let c = navigationController.topViewController as? ChatsViewController {
@@ -310,7 +310,7 @@ extension FeedsView: FeedDefaultCellDelegate {
 //                                })
 //                            }
 //                        }
-//                    }))
+                    }))
                     
                     alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
                         self.presenter?.requestReport(indexPath: index)

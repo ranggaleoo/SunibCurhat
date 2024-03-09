@@ -74,7 +74,6 @@ extension MobileNavView: UITableViewDelegate, UITableViewDataSource {
         switch section?.type {
         case .list:
             let listCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            listCell.selectionStyle = .none
             if let item = section?.items?.item(at: indexPath.row) {
                 if #available(iOS 14.0, *) {
                     var content = UIListContentConfiguration.cell()
