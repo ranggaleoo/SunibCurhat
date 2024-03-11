@@ -24,4 +24,14 @@ class ChatsRouter: ChatsPresenterToRouter {
         
         return view
     }
+    
+    func navigateToChat(from: ChatsPresenterToView?, conversation: Conversation?) {
+        if let view = from as? UIViewController {
+            let chat = ChatMessageView()
+//            chat.set(conversation: conversation)
+            chat.view.backgroundColor = UIColor.red
+            chat.hidesBottomBarWhenPushed = true
+            view.navigationController?.pushViewController(chat, animated: true)
+        }
+    }
 }

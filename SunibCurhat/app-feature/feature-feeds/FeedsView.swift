@@ -287,14 +287,15 @@ extension FeedsView: FeedDefaultCellDelegate {
             if let timelineItem = presenter?.getTimelineItem(indexPath: index) {
                 
                 let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
-                if let user_id = presenter?.getUser()?.user_id, user_id == timelineItem.user_id {
+                if let user_id = presenter?.getUser()?.user_id, user_id == timelineItem.user?.user_id {
                     alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (act) in
                         self.presenter?.requestDeleteTimeline(indexPath: index)
                     }))
                 
-                } else if let user_id = presenter?.getUser()?.user_id, user_id != timelineItem.user_id {
+                } else if let user_id = presenter?.getUser()?.user_id, user_id != timelineItem.user?.user_id {
                     alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { [weak self] (act) in
-                        self?.presenter?.didClickSendChat(to: timelineItem.user_id)
+                        guard let toUser = timelineItem.user else { return }
+                        self?.presenter?.didClickSendChat(to: toUser)
 //                        if let vc = self.tabBarController?.viewControllers {
 //                            guard let navigationController = vc[1] as? UINavigationController else { return }
 //                            if let c = navigationController.topViewController as? ChatsViewController {

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class ChatCell: UITableViewCell {
     
@@ -19,6 +20,12 @@ class ChatCell: UITableViewCell {
     struct source {
         static var nib: UINib = UINib(nibName: String(describing: ChatCell.self), bundle: Bundle(for: ChatCell.self))
         static var identifier: String = String(describing: ChatCell.self)
+    }
+    
+    private var conversation: Conversation? {
+        didSet {
+            updateUI()
+        }
     }
     
     override func awakeFromNib() {
@@ -36,5 +43,28 @@ class ChatCell: UITableViewCell {
         lbl_name.textColor = UIColor.label
         lbl_last_chat.textColor = UIColor.label
         lbl_time.textColor = UIColor.secondaryLabel
+        
+        image_avatar.circleCorner = true
+    }
+    
+    func set(conversation: Conversation?) {
+        self.conversation = conversation
+    }
+    
+    private func updateUI() {
+        let user = conversation?.them().first
+        
+        if let username = user?.name {
+            lbl_name.text = username
+            image_avatar.setImage(string: username, circular: true)
+        }
+        
+        if let urlAvatar = URL(string: user?.avatar ?? "") {
+            image_avatar.circleCorner = true
+            image_avatar.kf.setImage(with: urlAvatar)
+        }
+        
+        lbl_last_chat.text = conversation?.last_chat ?? "Chat aku dong!"
+        lbl_time.text = conversation?.last_chat_timestamp?.timeAgo(numericDates: true)        
     }
 }

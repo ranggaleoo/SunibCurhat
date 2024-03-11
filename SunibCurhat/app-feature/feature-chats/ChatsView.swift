@@ -62,7 +62,9 @@ extension ChatsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let conversation = presenter?.cellForRowAt(indexPath: indexPath)
         if let cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.source.identifier) as? ChatCell {
+            cell.set(conversation: conversation)
             return cell
         }
         return UITableViewCell()

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MessageKit
 
 struct MainResponse<T: Decodable>: Decodable {
     var success : Bool
@@ -73,4 +74,8 @@ struct User: Codable {
     let name:       String
     let avatar:     String
     let is_online:  Bool?
+    
+    func sender() -> SenderType {
+        return ChatSender(senderId: user_id, displayName: name, avatar: avatar)
+    }
 }

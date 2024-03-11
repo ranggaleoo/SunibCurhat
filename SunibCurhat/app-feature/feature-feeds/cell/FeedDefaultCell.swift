@@ -109,7 +109,7 @@ class FeedDefaultCell: UITableViewCell {
     }
     
     private func updateUI() {
-        lbl_username.text               = timeline?.name
+        lbl_username.text               = timeline?.user?.name
         lbl_textcontent.text            = timeline?.text_content
         lbl_time.text                   = timeline?.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
         isLiked                         = timeline?.is_liked ?? false
@@ -126,11 +126,11 @@ class FeedDefaultCell: UITableViewCell {
             lbl_comment_counter.text = ""
         }
         
-        if let username = timeline?.name {
+        if let username = timeline?.user?.name {
             image_profile.setImageForName(string: username, circular: true)
         }
         
-        if let avatar = timeline?.avatar,
+        if let avatar = timeline?.user?.avatar,
            let url_avatar = URL(string: avatar)
         {
             image_profile.circleCorner = true

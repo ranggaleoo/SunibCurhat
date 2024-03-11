@@ -45,14 +45,36 @@ class FeedsPresenter: FeedsViewToPresenter {
         interactor?.signOut()
     }
     
-    func didClickSendChat(to: String) {
+    func didClickSendChat(to: User) {
         guard let user = user else { return }
+        let chats = [
+            Chat(
+                chat_id: "abcd",
+                conversation_id: "abcde",
+                from: user,
+                to: to,
+                content: ContentChat.text(value: "Hello World"),
+                is_typing: false,
+                is_read: false,
+                created_at: Date()
+            ),
+            Chat(
+                chat_id: "abcd",
+                conversation_id: "abcde",
+                from: user,
+                to: to,
+                content: ContentChat.text(value: "Hello World"),
+                is_typing: false,
+                is_read: false,
+                created_at: Date()
+            )
+        ]
         let conversation = Conversation(
-            conversation_id: "\(user.user_id).\(to)",
-            users: [user],
-            chats: [],
+            conversation_id: "\(user.user_id).\(to.user_id)",
+            users: [user, to],
+            chats: chats,
             last_chat: nil,
-            last_chat_timestamp: nil
+            last_chat_timestamp: Date()
         )
         interactor?.createConversationRoom(conversation: conversation)
     }
@@ -134,7 +156,7 @@ class FeedsPresenter: FeedsViewToPresenter {
     
     func requestShare(indexPath: IndexPath) {
         let timeline_id = timelines[indexPath.row].timeline_id
-        let shareText = timelines[indexPath.row].text_content + " - " + timelines[indexPath.row].name
+        let shareText = timelines[indexPath.row].text_content + " - " + (timelines[indexPath.row].user?.name ?? "")
         view?.showShareController(items: [shareText], completion: { [weak self] in
             self?.interactor?.shareTimeline(user_id: self?.user?.user_id ?? "", timelineID: timeline_id)
         })

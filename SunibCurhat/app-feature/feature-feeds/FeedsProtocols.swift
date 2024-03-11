@@ -59,7 +59,7 @@ protocol FeedsViewToPresenter: AnyObject {
     func didClickPrivacy()
     func didClickAgreement()
     func didClickSignOut()
-    func didClickSendChat(to: String)
+    func didClickSendChat(to: User)
     func didClickProfile()
     func getUser() -> User?
     func requestGetTimeline(resetData: Bool)

@@ -105,13 +105,16 @@ class CommentView: UIViewController, CommentPresenterToView {
     }
     
     func updateUI(data: TimelineItems) {
-        image_profile.setImageForName(string: data.name, circular: true)
+        if let username = data.user?.name {
+            image_profile.setImageForName(string: username, circular: true)
+            lbl_username.text = username
+        }
         
-        if let url_avatar = URL(string: data.avatar) {
+        if let url_avatar = URL(string: data.user?.avatar ?? "") {
             image_profile.circleCorner = true
             image_profile.kf.setImage(with: url_avatar)
         }
-        lbl_username.text = data.name
+        
         lbl_time.text = data.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
         lbl_textcontent.text = data.text_content
         lbl_like_counter.text = data.total_likes > 1 ? "\(data.total_likes) likes" : "\(data.total_likes) like"

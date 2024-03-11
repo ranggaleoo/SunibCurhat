@@ -16,52 +16,24 @@ struct Conversation: Codable {
     let last_chat_timestamp : Date?
 }
 
-protocol DatabaseRepresentation {
-    var representation: [String: Any] { get }
-}
 
-struct Chat: Codable {
-    let id          : String?
-    let chat_id     : String
-    let users       : [String]
-    let name        : String
-    let date_create : Date
-    
-    init(name: String, chat_id: String, users: [String]) {
-        self.id             = nil
-        self.chat_id        = chat_id
-        self.users          = users
-        self.name           = name
-        self.date_create    = Date()
-    }
-}
-
-extension Chat: DatabaseRepresentation {
-    var representation: [String : Any] {
-        var rep: [String : Any] = [
-            "chat_id"       : chat_id,
-            "users"         : users,
-            "name"          : name,
-            "date_create"   : date_create
-        ]
-        
-        if let id = id {
-            rep["id"] = id
+extension Conversation {
+    func me() -> User? {
+        if let me = UDHelpers.shared.getObject(type: User.self, forKey: .user),
+           users.count > 0 {
+            
+            return users.first { (user) in
+                user.user_id == me.user_id
+            }
         }
-        
-        return rep
+        return nil
     }
     
-}
-
-extension Chat: Comparable {
-    
-    static func == (lhs: Chat, rhs: Chat) -> Bool {
-        return lhs.chat_id == rhs.chat_id
+    func them() -> [User] {
+        if let me = UDHelpers.shared.getObject(type: User.self, forKey: .user),
+           users.count > 0 {
+            return users.filter({ return me.user_id != $0.user_id })
+        }
+        return []
     }
-    
-    static func < (lhs: Chat, rhs: Chat) -> Bool {
-        return rhs.date_create < lhs.date_create
-    }
-    
 }

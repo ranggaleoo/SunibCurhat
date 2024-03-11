@@ -25,6 +25,7 @@ protocol ChatsPresenterToInteractor: AnyObject {
 // MARK: Router -
 protocol ChatsPresenterToRouter: AnyObject {
     static func createChatsModule() -> UIViewController
+    func navigateToChat(from: ChatsPresenterToView?, conversation: Conversation?)
 }
 
 // MARK: Presenter -

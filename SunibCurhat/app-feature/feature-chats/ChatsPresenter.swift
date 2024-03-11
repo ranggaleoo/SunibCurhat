@@ -32,6 +32,7 @@ class ChatsPresenter: ChatsViewToPresenter {
         conversations.append(conversation)
         let indexPaths = [IndexPath(row: conversations.count - 1, section: 0)]
         view?.insertRow(at: indexPaths)
+        router?.navigateToChat(from: view, conversation: conversation)
     }
 }
 
