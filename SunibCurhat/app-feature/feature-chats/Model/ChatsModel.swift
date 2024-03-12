@@ -16,6 +16,11 @@ struct Conversation: Codable {
     let last_chat_timestamp : Date?
 }
 
+extension Conversation: Equatable {
+    static func == (lhs: Conversation, rhs: Conversation) -> Bool {
+        return lhs.conversation_id == rhs.conversation_id
+    }
+}
 
 extension Conversation {
     func me() -> User? {

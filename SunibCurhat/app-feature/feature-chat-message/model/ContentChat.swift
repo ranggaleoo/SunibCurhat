@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import MessageKit
 
 enum ContentChat: Codable {
@@ -61,6 +62,19 @@ struct ChatSender: SenderType {
     var senderId: String
     var displayName: String
     var avatar: String
+    
+    init(senderId: String, displayName: String, avatar: String) {
+        self.senderId = senderId
+        self.displayName = displayName
+        self.avatar = avatar
+    }
+    
+    init() {
+        let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
+        self.senderId = user?.user_id ?? "dummy"
+        self.displayName = user?.name ?? "dummy"
+        self.avatar = user?.avatar ?? "dummy"
+    }
 }
 
 struct ChatMessage: MessageType {
@@ -68,6 +82,20 @@ struct ChatMessage: MessageType {
     var messageId: String
     var sentDate: Date
     var kind: MessageKind
+    
+    init(sender: SenderType, messageId: String, sentDate: Date, kind: MessageKind) {
+        self.sender = sender
+        self.messageId = messageId
+        self.sentDate = sentDate
+        self.kind = kind
+    }
+    
+    init(kind: MessageKind) {
+        self.sender = ChatSender()
+        self.messageId = UUID().uuidString
+        self.sentDate = Date()
+        self.kind = kind
+    }
 }
 
 struct MediaMessage: MediaItem {

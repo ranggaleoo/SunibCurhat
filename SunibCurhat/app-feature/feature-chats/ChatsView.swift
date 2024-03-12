@@ -28,6 +28,11 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         presenter?.didLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.didLoad()
+    }
+    
     func setupViews() {
         view.backgroundColor = UINCColor.bg_primary
         tableChats.delegate = self
@@ -53,6 +58,10 @@ class ChatsView: UIViewController, ChatsPresenterToView {
     
     func insertRow(at: [IndexPath]) {
         tableChats.insertRows(at: at, with: .automatic)
+    }
+    
+    func showAlertMessage(title: String, message: String) {
+        showAlert(title: title, message: message, OKcompletion: nil, CancelCompletion: nil)
     }
 }
 

@@ -15,11 +15,14 @@ protocol ChatsPresenterToView: AnyObject {
     func setupViews()
     func createConversationFromTimeline(conversation: Conversation)
     func insertRow(at: [IndexPath])
+    func showAlertMessage(title: String, message: String)
 }
 
 // MARK: Interactor -
 protocol ChatsPresenterToInteractor: AnyObject {
     var presenter: ChatsInteractorToPresenter?  { get set }
+    
+    func getConversations(request: RequestConversations)
 }
 
 // MARK: Router -
@@ -41,4 +44,5 @@ protocol ChatsViewToPresenter: AnyObject {
 }
 
 protocol ChatsInteractorToPresenter: AnyObject {
+    func failRequestConversations(message: String)
 }

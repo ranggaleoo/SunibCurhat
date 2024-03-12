@@ -1,5 +1,5 @@
-//
-//  ChatMessageView + DisplayDelegate.swift
+// 
+//  ChatInteractor.swift
 //  SunibCurhat
 //
 //  Created by Rangga Leo on 11/03/24.
@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import MessageKit
 
-extension ChatMessageView: MessagesDisplayDelegate {
-    
+class ChatInteractor: ChatPresenterToInteractor {
+    weak var presenter: ChatInteractorToPresenter?
 }

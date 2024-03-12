@@ -85,7 +85,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         } else if let chatUnwrap = self.chat {
             self.showLoaderIndicator()
             let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
-            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: chatUnwrap.senderThem()?.senderId ?? "", reason: reportOptions[indexPath.row], proof_id: chatUnwrap.chat_id, proof: chat?.senderThem()?.displayName) { (result) in
+            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: chatUnwrap.sender()?.senderId ?? "", reason: reportOptions[indexPath.row], proof_id: chatUnwrap.chat_id, proof: chat?.sender()?.displayName) { (result) in
                 switch result {
                 case .failure(let e):
                     self.dismissLoaderIndicator()

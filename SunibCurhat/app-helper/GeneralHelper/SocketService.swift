@@ -10,14 +10,14 @@ import Foundation
 import SocketIO
 
 protocol SocketDelegate: AnyObject {
-    func didGetConversations(conversations: [Conversation])
-    func failGetConversation(message: String)
+    func didGetConversations(response: ResponseConversations)
+    func failGetConversations(message: String)
 }
 
 // default implementation
 extension SocketDelegate {
-    func didGetConversations(conversations: [Conversation]) { }
-    func failGetConversation(message: String) { }
+    func didGetConversations(response: ResponseConversations) { }
+    func failGetConversations(message: String) { }
 }
 
 enum SocketIOError: Error {
@@ -107,12 +107,12 @@ class SocketService {
             debugLog(eHandler.event)
         })
         
-        self.on(.res_conversations) { [weak self] (result: Result<[Conversation], Error>) in
+        self.on(.res_conversations) { [weak self] (result: Result<ResponseConversations, Error>) in
             switch result {
-            case .success(let result):
-                self?.delegate?.didGetConversations(conversations: result)
-            case .failure(let err):
-                self?.delegate?.failGetConversation(message: err.localizedDescription)
+            case .success(let response):
+                self?.delegate?.didGetConversations(response: response)
+            case .failure(let error):
+                self?.delegate?.failGetConversations(message: error.localizedDescription)
             }
         }
     }

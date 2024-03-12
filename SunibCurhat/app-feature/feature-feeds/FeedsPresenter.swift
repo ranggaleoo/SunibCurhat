@@ -47,32 +47,10 @@ class FeedsPresenter: FeedsViewToPresenter {
     
     func didClickSendChat(to: User) {
         guard let user = user else { return }
-        let chats = [
-            Chat(
-                chat_id: "abcd",
-                conversation_id: "abcde",
-                from: user,
-                to: to,
-                content: ContentChat.text(value: "Hello World"),
-                is_typing: false,
-                is_read: false,
-                created_at: Date()
-            ),
-            Chat(
-                chat_id: "abcd",
-                conversation_id: "abcde",
-                from: user,
-                to: to,
-                content: ContentChat.text(value: "Hello World"),
-                is_typing: false,
-                is_read: false,
-                created_at: Date()
-            )
-        ]
         let conversation = Conversation(
             conversation_id: "\(user.user_id).\(to.user_id)",
             users: [user, to],
-            chats: chats,
+            chats: [],
             last_chat: nil,
             last_chat_timestamp: Date()
         )

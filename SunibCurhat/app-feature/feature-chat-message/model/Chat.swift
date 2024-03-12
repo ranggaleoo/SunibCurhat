@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import MessageKit
 
 struct Chat: Codable {
@@ -22,19 +23,7 @@ struct Chat: Codable {
 
 extension Chat {
     func sender() -> SenderType? {
-        guard let user = UDHelpers.shared.getObject(type: User.self, forKey: .user) else { return nil }
-        guard let sender = from?.user_id == user.user_id ? from : to else { return nil }
-        
-        return ChatSender(
-            senderId: sender.user_id,
-            displayName: sender.name,
-            avatar: sender.avatar
-        )
-    }
-    
-    func senderThem() -> SenderType? {
-        guard let user = UDHelpers.shared.getObject(type: User.self, forKey: .user) else { return nil }
-        guard let sender = from?.user_id != user.user_id ? from : to else { return nil }
+        guard let sender = from else { return nil }
         
         return ChatSender(
             senderId: sender.user_id,
