@@ -10,6 +10,6 @@ import Foundation
 
 struct ResponseConversations: Codable {
     let page: Int
-    let next_page: Int
+    let next_page: Int?
     let conversations: [Conversation]
 }

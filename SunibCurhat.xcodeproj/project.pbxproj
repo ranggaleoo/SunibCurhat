@@ -132,6 +132,7 @@
 		AA7B1B242B976443008925F4 /* MobileNavModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B232B976443008925F4 /* MobileNavModel.swift */; };
 		AA7B1B262B976459008925F4 /* MobileNavService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B1B252B976459008925F4 /* MobileNavService.swift */; };
 		AA8388552B8B29FE009969FD /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8388542B8B29FE009969FD /* SocketService.swift */; };
+		AA85E0B42BAB11C5000D81DB /* UINCRefreshControlSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85E0B32BAB11C5000D81DB /* UINCRefreshControlSimple.swift */; };
 		AA8A88CC2B9F05940081DD21 /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8A88C62B9F05940081DD21 /* ChatPresenter.swift */; };
 		AA8A88CD2B9F05940081DD21 /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8A88C72B9F05940081DD21 /* ChatRouter.swift */; };
 		AA8A88CE2B9F05940081DD21 /* ChatProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8A88C82B9F05940081DD21 /* ChatProtocols.swift */; };
@@ -352,6 +353,7 @@
 		AA7B1B232B976443008925F4 /* MobileNavModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavModel.swift; sourceTree = "<group>"; };
 		AA7B1B252B976459008925F4 /* MobileNavService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNavService.swift; sourceTree = "<group>"; };
 		AA8388542B8B29FE009969FD /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		AA85E0B32BAB11C5000D81DB /* UINCRefreshControlSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCRefreshControlSimple.swift; sourceTree = "<group>"; };
 		AA8A88C62B9F05940081DD21 /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
 		AA8A88C72B9F05940081DD21 /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
 		AA8A88C82B9F05940081DD21 /* ChatProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProtocols.swift; sourceTree = "<group>"; };
@@ -1473,6 +1475,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF5484A257606C300176378 /* UINCRefreshControl.swift */,
+				AA85E0B32BAB11C5000D81DB /* UINCRefreshControlSimple.swift */,
 			);
 			path = UINCRefreshControl;
 			sourceTree = "<group>";
@@ -1714,6 +1717,7 @@
 				AA0601162B7727090056B695 /* CommentRouter.swift in Sources */,
 				AA46E2FC245D6C0900735490 /* UINCCardCorona.swift in Sources */,
 				AAD0E37B22F70F02005CC55A /* UIColor+Extensions.swift in Sources */,
+				AA85E0B42BAB11C5000D81DB /* UINCRefreshControlSimple.swift in Sources */,
 				AAD0E37022F70F02005CC55A /* UIView+Extensions.swift in Sources */,
 				AAD0E37622F70F02005CC55A /* String+Extensions.swift in Sources */,
 				AAD0E37222F70F02005CC55A /* UIImage+Extensions.swift in Sources */,

@@ -13,7 +13,7 @@ class ChatsView: UIViewController, ChatsPresenterToView {
     var presenter: ChatsViewToPresenter?
     
     @IBOutlet private weak var tableChats: UITableView!
-    private var refreshControl: UINCRefreshControl = UINCRefreshControl()
+    private lazy var refreshControlSimple: UINCRefreshControlSimple = UINCRefreshControlSimple()
     
     init() {
         super.init(nibName: String(describing: ChatsView.self), bundle: Bundle(for: ChatsView.self))
@@ -27,29 +27,17 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         super.viewDidLoad()
         presenter?.didLoad()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter?.didLoad()
-    }
-    
+        
     func setupViews() {
+        navigationDefault()
+        title = "Chats"
         view.backgroundColor = UINCColor.bg_primary
         tableChats.delegate = self
         tableChats.dataSource = self
         tableChats.register(ChatCell.source.nib, forCellReuseIdentifier: ChatCell.source.identifier)
         
-        refreshControl.setMaxHeightOfRefreshControl = 200
-        refreshControl.setRefreshCircleSize = .medium
-        refreshControl.setFillColor = UINCColor.primary
-        tableChats.backgroundView = refreshControl
-        
-        refreshControl.setOnRefreshing = { [weak self] in
-            // get list chats
-        }
-        
-        navigationDefault()
-        title = "Chats"
+        refreshControlSimple.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+        tableChats.backgroundView = refreshControlSimple
     }
     
     func createConversationFromTimeline(conversation: Conversation) {
@@ -60,8 +48,20 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         tableChats.insertRows(at: at, with: .automatic)
     }
     
+    func reloadData() {
+        tableChats.reloadData()
+    }
+    
+    func dismissRefreshControl() {
+        refreshControlSimple.endRefreshing()
+    }
+    
     func showAlertMessage(title: String, message: String) {
         showAlert(title: title, message: message, OKcompletion: nil, CancelCompletion: nil)
+    }
+    
+    @objc func didRefresh() {
+        presenter?.didRefresh()
     }
 }
 
@@ -77,5 +77,18 @@ extension ChatsView: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectRowAt(indexPath: indexPath)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            presenter?.didScroll()
+        }
     }
 }

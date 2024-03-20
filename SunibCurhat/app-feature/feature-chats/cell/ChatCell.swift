@@ -16,6 +16,7 @@ class ChatCell: UITableViewCell {
     @IBOutlet private weak var lbl_name: UINCLabelTitle!
     @IBOutlet private weak var lbl_last_chat: UINCLabelBody!
     @IBOutlet private weak var lbl_time: UINCLabelNote!
+    @IBOutlet private weak var status_view: UIView!
     
     struct source {
         static var nib: UINib = UINib(nibName: String(describing: ChatCell.self), bundle: Bundle(for: ChatCell.self))
@@ -45,6 +46,8 @@ class ChatCell: UITableViewCell {
         lbl_time.textColor = UIColor.secondaryLabel
         
         image_avatar.circleCorner = true
+        status_view.circleCorner = true
+        status_view.backgroundColor = .clear
     }
     
     func set(conversation: Conversation?) {
@@ -63,6 +66,8 @@ class ChatCell: UITableViewCell {
             image_avatar.circleCorner = true
             image_avatar.kf.setImage(with: urlAvatar)
         }
+        
+        status_view.backgroundColor = (conversation?.them().first?.is_online ?? false) ? UINCColor.success : .clear
         
         lbl_last_chat.text = conversation?.last_chat ?? "Chat aku dong!"
         lbl_time.text = conversation?.last_chat_timestamp?.timeAgo(numericDates: true)        

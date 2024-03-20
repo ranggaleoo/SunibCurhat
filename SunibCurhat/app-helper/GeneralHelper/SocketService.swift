@@ -42,16 +42,13 @@ extension SocketIOClient {
     
     func on<T: Decodable>(_ event: String, completion: @escaping (Result<T, Error>) -> Void) {
         self.on(event) { data, _ in
-            guard let jsonDataString = data[0] as? String,
-                  let jsonData = jsonDataString.data(using: .utf8) else {
-                completion(.failure(SocketIOError.decodingFailed))
-                return
-            }
-            
             do {
+                let jsonData = try JSONSerialization.data(withJSONObject: data[0])
                 let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
+                debugLog(decodedData)
                 completion(.success(decodedData))
             } catch {
+                debugLog(error)
                 completion(.failure(error))
             }
         }
@@ -92,7 +89,8 @@ class SocketService {
                     .connectParams([
                         "user_id": _user.user_id,
                         "user": userString
-                    ])
+                    ]),
+                    .log(false)
                 ])
             socket = socketManager?.defaultSocket
             socket?.connect()

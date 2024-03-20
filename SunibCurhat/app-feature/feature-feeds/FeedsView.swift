@@ -47,7 +47,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         
         refreshControl.setMaxHeightOfRefreshControl = 200
         refreshControl.setRefreshCircleSize = .medium
-        refreshControl.setFillColor = UIColor.custom.blue
+        refreshControl.setFillColor = UINCColor.bg_primary
         tableView.backgroundView = refreshControl
         
         refreshControl.setOnRefreshing = { [weak self] in
