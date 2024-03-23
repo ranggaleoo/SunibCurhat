@@ -28,6 +28,11 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         presenter?.didLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        messageInputBar.inputTextView.becomeFirstResponder()
+    }
+    
     func setupViews(name: String?) {
         title = name
         navigationDefault()
@@ -64,11 +69,34 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     
     func reloadCollectionView() {
         messagesCollectionView.reloadData()
+        messageInputBar.inputTextView.text = ""
+    }
+    
+    func showAlert(title: String, message: String) {
+        showAlert(title: title, message: message, OKcompletion: nil, CancelCompletion: nil)
+    }
+    
+    func showTyping(chat: Chat) {
+        if let message = chat.message(),
+           !isFromCurrentSender(message: message) {
+            setTypingIndicatorViewHidden(false, animated: true)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.setTypingIndicatorViewHidden(true, animated: true)
+            self?.presenter?.typingIsStopped()
+        }
     }
 }
 
 extension ChatView: InputBarAccessoryViewDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        presenter?.didPressSendButtonWith(text: text)
+    }
     
+    func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
+        presenter?.textViewTextDidChangeTo(text: text)
+    }
 }
 
 extension ChatView: MessagesDataSource {

@@ -15,11 +15,16 @@ protocol ChatPresenterToView: AnyObject {
     
     func setupViews(name: String?)
     func reloadCollectionView()
+    func showAlert(title: String, message: String)
+    func showTyping(chat: Chat)
 }
 
 // MARK: Interactor -
 protocol ChatPresenterToInteractor: AnyObject {
     var presenter: ChatInteractorToPresenter?  { get set }
+    
+    func sendChat(chat: Chat)
+    func typing(chat: Chat)
 }
 
 // MARK: Router -
@@ -35,6 +40,11 @@ protocol ChatViewToPresenter: AnyObject {
     
     func didLoad()
     func set(conversation: Conversation?)
+    func typingIsStopped()
+    
+    // input bar
+    func didPressSendButtonWith(text: String)
+    func textViewTextDidChangeTo(text: String)
     
     // data source
     func getSender() -> SenderType?
@@ -45,4 +55,6 @@ protocol ChatViewToPresenter: AnyObject {
 }
 
 protocol ChatInteractorToPresenter: AnyObject {
+    func didSendChat()
+    func failSendChat(message: String)
 }

@@ -12,12 +12,22 @@ import SocketIO
 protocol SocketDelegate: AnyObject {
     func didGetConversations(response: ResponseConversations)
     func failGetConversations(message: String)
+    
+    func didReceiveChat(chat: Chat)
+    func failGetChats(message: String)
+    
+    func didUserTyping(chat: Chat)
 }
 
 // default implementation
 extension SocketDelegate {
     func didGetConversations(response: ResponseConversations) { }
     func failGetConversations(message: String) { }
+    
+    func didReceiveChat(chat: Chat) { }
+    func failGetChats(message: String) { }
+    
+    func didUserTyping(chat: Chat) { }
 }
 
 enum SocketIOError: Error {
@@ -113,6 +123,25 @@ class SocketService {
                 self?.delegate?.failGetConversations(message: error.localizedDescription)
             }
         }
+        
+        self.on(.res_send_chat) { [weak self] (result: Result<Chat, Error>) in
+            switch result {
+            case .success(let chat):
+                self?.delegate?.didReceiveChat(chat: chat)
+            case .failure(let error):
+                self?.delegate?.failGetChats(message: error.localizedDescription)
+            }
+        }
+        
+        self.on(.res_typing) { [weak self] (result: Result<Chat, Error>) in
+            switch result {
+            case .success(let chat):
+                self?.delegate?.didUserTyping(chat: chat)
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+                break
+            }
+        }
     }
     
     func set(URL: String) {
@@ -139,9 +168,12 @@ class SocketService {
 enum SocketEventRequest: String {
     case req_create_conversation
     case req_conversations
+    case req_send_chat
+    case req_typing
 }
 
 enum SocketEventResponse: String {
-    case res_chats
     case res_conversations
+    case res_send_chat
+    case res_typing
 }

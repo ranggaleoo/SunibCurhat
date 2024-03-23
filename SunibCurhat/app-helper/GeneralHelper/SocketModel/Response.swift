@@ -13,3 +13,9 @@ struct ResponseConversations: Codable {
     let next_page: Int?
     let conversations: [Conversation]
 }
+
+struct ResponseChats: Codable {
+    let page: Int
+    let next_page: Int?
+    let chats: [Chat]
+}

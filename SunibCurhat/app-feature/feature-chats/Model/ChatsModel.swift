@@ -11,7 +11,7 @@ import Foundation
 struct Conversation: Codable {
     let conversation_id     : String
     let users               : [User]
-    let chats               : [Chat]
+    var chats               : [Chat]
     let last_chat           : String?
     let last_chat_timestamp : Date?
 }
