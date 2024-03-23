@@ -89,7 +89,7 @@ class ChatPresenter: ChatViewToPresenter {
     }
     
     func messageForItem(at indexPath: IndexPath) -> MessageType? {
-        return conversation?.chats[indexPath.row].message()
+        return conversation?.chats.item(at: indexPath.row)?.message()
     }
     
     func numberOfSections() -> Int? {

@@ -60,8 +60,16 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         showAlert(title: title, message: message, OKcompletion: nil, CancelCompletion: nil)
     }
     
-    @objc func didRefresh() {
+    @objc private func didRefresh() {
         presenter?.didRefresh()
+    }
+    
+    private func makeContextualBlockAction(forRowAtIndexPath: IndexPath) -> UIContextualAction {
+        let action  = UIContextualAction(style: .destructive, title: "Block") { [weak self] (action, view, completion) in
+            
+        }
+        action.backgroundColor = UINCColor.error
+        return action
     }
 }
 
@@ -71,8 +79,8 @@ extension ChatsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let conversation = presenter?.cellForRowAt(indexPath: indexPath)
-        if let cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.source.identifier) as? ChatCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.source.identifier) as? ChatCell,
+           let conversation = presenter?.cellForRowAt(indexPath: indexPath) {
             cell.set(conversation: conversation)
             return cell
         }
@@ -81,6 +89,17 @@ extension ChatsView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didSelectRowAt(indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let blockSwipeAction = makeContextualBlockAction(forRowAtIndexPath: indexPath)
+        let configuration = UISwipeActionsConfiguration(actions: [blockSwipeAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

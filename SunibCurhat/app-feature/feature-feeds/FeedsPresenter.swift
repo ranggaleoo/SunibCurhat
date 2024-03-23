@@ -87,12 +87,12 @@ class FeedsPresenter: FeedsViewToPresenter {
         return timelines.count
     }
     
-    func cellForRowAt(indexPath: IndexPath) -> TimelineItems {
-        return timelines[indexPath.row]
+    func cellForRowAt(indexPath: IndexPath) -> TimelineItems? {
+        return timelines.item(at: indexPath.row)
     }
     
     func didSelectRowAt(indexPath: IndexPath) {
-        let timeline = timelines[indexPath.row]
+        let timeline = timelines.item(at: indexPath.row)
         router?.navigateToComment(timeline: timeline, view: view)
     }
     
@@ -102,42 +102,49 @@ class FeedsPresenter: FeedsViewToPresenter {
         }
     }
     
-    func getTimelineItem(indexPath: IndexPath) -> TimelineItems {
-        return timelines[indexPath.row]
+    func getTimelineItem(indexPath: IndexPath) -> TimelineItems? {
+        return timelines.item(at: indexPath.row)
     }
     
     func requestDeleteTimeline(indexPath: IndexPath) {
-        let timelineId = timelines[indexPath.row].timeline_id
-        timelines.remove(at: indexPath.row)
-        view?.removeCell(index: [indexPath])
-        interactor?.deleteTimelime(user_id: user?.user_id ?? "", timelineID: timelineId)
+        if let timelineId = timelines.item(at: indexPath.row)?.timeline_id {
+            timelines.remove(at: indexPath.row)
+            view?.removeCell(index: [indexPath])
+            interactor?.deleteTimelime(user_id: user?.user_id ?? "", timelineID: timelineId)
+        }
     }
     
     func requestReport(indexPath: IndexPath) {
-        let timeline = timelines[indexPath.row]
+        let timeline = timelines.item(at: indexPath.row)
         router?.navigateToReport(timeline: timeline, view: view)
     }
 
     func requestComment(indexPath: IndexPath) {
-        let timeline = timelines[indexPath.row]
+        let timeline = timelines.item(at: indexPath.row)
         router?.navigateToComment(timeline: timeline, view: view)
     }
     
     func requestLike(indexPath: IndexPath, isLiked: Bool) {
-        let timelineId = timelines[indexPath.row].timeline_id
-        if isLiked {
-            interactor?.unlikeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
-        } else {
-            interactor?.likeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
+        if let timelineId = timelines.item(at: indexPath.row)?.timeline_id {
+            if isLiked {
+                interactor?.unlikeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
+            } else {
+                interactor?.likeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
+            }
         }
     }
     
     func requestShare(indexPath: IndexPath) {
-        let timeline_id = timelines[indexPath.row].timeline_id
-        let shareText = timelines[indexPath.row].text_content + " - " + (timelines[indexPath.row].user?.name ?? "")
-        view?.showShareController(items: [shareText], completion: { [weak self] in
-            self?.interactor?.shareTimeline(user_id: self?.user?.user_id ?? "", timelineID: timeline_id)
-        })
+        if let timeline_id = timelines.item(at: indexPath.row)?.timeline_id {
+            
+            var shareText = timelines.item(at: indexPath.row)?.text_content ?? ""
+            shareText += " - "
+            shareText += timelines.item(at: indexPath.row)?.user?.name ?? ""
+            
+            view?.showShareController(items: [shareText], completion: { [weak self] in
+                self?.interactor?.shareTimeline(user_id: self?.user?.user_id ?? "", timelineID: timeline_id)
+            })
+        }
     }
 }
 

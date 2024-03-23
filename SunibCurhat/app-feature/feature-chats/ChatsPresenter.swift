@@ -38,7 +38,6 @@ class ChatsPresenter: ChatsViewToPresenter {
     
     
     func didRefresh() {
-        debugLog("DIDREFRESH")
         if !isLoadConversation {
             isRefresh = true
             isLoadConversation = true
@@ -56,8 +55,8 @@ class ChatsPresenter: ChatsViewToPresenter {
         return conversations.count
     }
     
-    func cellForRowAt(indexPath: IndexPath) -> Conversation {
-        return conversations[indexPath.row]
+    func cellForRowAt(indexPath: IndexPath) -> Conversation? {
+        return conversations.item(at: indexPath.row)
     }
     
     func didSelectRowAt(indexPath: IndexPath) {

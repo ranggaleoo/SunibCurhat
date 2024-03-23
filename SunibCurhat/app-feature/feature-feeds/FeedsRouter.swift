@@ -33,9 +33,11 @@ class FeedsRouter: FeedsPresenterToRouter {
         }
     }
     
-    func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?) {
-        if let vc = view as? UIViewController {
-            let comment = CommentRouter.createCommentModule(timeline_id: timeline.timeline_id)
+    func navigateToComment(timeline: TimelineItems?, view: FeedsPresenterToView?) {
+        if let vc = view as? UIViewController,
+           let timelineData = timeline
+        {
+            let comment = CommentRouter.createCommentModule(timeline_id: timelineData.timeline_id)
             comment.hidesBottomBarWhenPushed = true
             vc.navigationController?.pushViewController(comment, animated: true)
         }
@@ -77,11 +79,13 @@ class FeedsRouter: FeedsPresenterToRouter {
         }
     }
     
-    func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?) {
-        if let controller = view as? UIViewController {
+    func navigateToReport(timeline: TimelineItems?, view: FeedsPresenterToView?) {
+        if let controller = view as? UIViewController,
+           let timelineItem = timeline
+        {
             let storyboad = UIStoryboard(name: "Report", bundle: nil)
             if let vc = storyboad.instantiateViewController(withIdentifier: "view_report") as? ReportViewController {
-                vc.timeline = timeline
+                vc.timeline = timelineItem
                 controller.navigationController?.pushViewController(vc, animated: true)
             }
         }

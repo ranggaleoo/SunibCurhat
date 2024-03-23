@@ -44,7 +44,7 @@ protocol ChatsViewToPresenter: AnyObject {
     func didRefresh()
     func createConversation(conversation: Conversation)
     func numberOfRowsInSection() -> Int
-    func cellForRowAt(indexPath: IndexPath) -> Conversation
+    func cellForRowAt(indexPath: IndexPath) -> Conversation?
     func didSelectRowAt(indexPath: IndexPath)
 }
 

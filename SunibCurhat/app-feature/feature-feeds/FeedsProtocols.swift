@@ -39,9 +39,9 @@ protocol FeedsPresenterToInteractor: AnyObject {
 protocol FeedsPresenterToRouter: AnyObject {
     static func createFeedsModule() -> UIViewController
     func navigateToNewPost(from: FeedsPresenterToView?)
-    func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?)
+    func navigateToComment(timeline: TimelineItems?, view: FeedsPresenterToView?)
     func navigateToChat(from: FeedsPresenterToView?, conversation: Conversation)
-    func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?)
+    func navigateToReport(timeline: TimelineItems?, view: FeedsPresenterToView?)
     func navigateToPrivacy(from: FeedsPresenterToView?, url: String?)
     func navigateToAgreement(from: FeedsPresenterToView?, url: String?)
     func navigateToLogin(from: FeedsPresenterToView?)
@@ -64,10 +64,10 @@ protocol FeedsViewToPresenter: AnyObject {
     func getUser() -> User?
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int
-    func cellForRowAt(indexPath: IndexPath) -> TimelineItems
+    func cellForRowAt(indexPath: IndexPath) -> TimelineItems?
     func didSelectRowAt(indexPath: IndexPath)
     func scrollViewDidScroll()
-    func getTimelineItem(indexPath: IndexPath) -> TimelineItems
+    func getTimelineItem(indexPath: IndexPath) -> TimelineItems?
     func requestDeleteTimeline(indexPath: IndexPath)
     func requestReport(indexPath: IndexPath)
     func requestComment(indexPath: IndexPath)
