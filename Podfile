@@ -9,15 +9,14 @@ target 'SunibCurhat' do
   pod 'Kingfisher'
   pod 'Siren'
   pod 'IQKeyboardManagerSwift'
-  pod 'SPPermissions'
-  pod 'SPPermissions/Notification'
-  pod 'SPPermissions/Camera'
-  pod 'SPPermissions/PhotoLibrary'
-  pod 'SPPermissions/Contacts'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'TransitionButton'
   pod 'Socket.IO-Client-Swift'
+  pod 'Cloudinary'
+  pod 'PermissionsKit/CameraPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
+  pod 'PermissionsKit/PhotoLibraryPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
+  pod 'PermissionsKit/NotificationPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
 
 end
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageKit
+import Cloudinary
 
 // MARK: View -
 protocol ChatPresenterToView: AnyObject {
@@ -18,6 +19,8 @@ protocol ChatPresenterToView: AnyObject {
     func reloadAndKeepOffset()
     func showAlert(title: String, message: String)
     func showTyping(chat: Chat)
+    func startLoader()
+    func stopLoader()
 }
 
 // MARK: Interactor -
@@ -27,6 +30,7 @@ protocol ChatPresenterToInteractor: AnyObject {
     func getChats(request: RequestChats)
     func sendChat(chat: Chat)
     func typing(chat: Chat)
+    func uploadImage(image: UIImage)
 }
 
 // MARK: Router -
@@ -44,6 +48,7 @@ protocol ChatViewToPresenter: AnyObject {
     func didLoad()
     func didScroll()
     func didPop(to: ChatsPresenterToView)
+    func didPickImage(image: UIImage)
     func set(conversation: Conversation?)
     func typingIsStopped()
     
@@ -60,6 +65,7 @@ protocol ChatViewToPresenter: AnyObject {
 }
 
 protocol ChatInteractorToPresenter: AnyObject {
-    func didSendChat()
     func failSendChat(message: String)
+    func didUploadImage(response: CLDUploadResult?)
+    func failUploadImage(message: String)
 }

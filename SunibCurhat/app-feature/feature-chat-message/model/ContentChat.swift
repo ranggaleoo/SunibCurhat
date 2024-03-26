@@ -12,14 +12,22 @@ import MessageKit
 
 enum ContentChat: Codable {
     case text(value: String)
-    case image(url: String)
+    case image(url: String, meta: ImageMeta)
     case audio(url: String)
+
+    struct ImageMeta: Codable {
+        let width: Int
+        let height: Int
+    }
 
     enum CodingKeys: String, CodingKey {
         case type
         case text
         case url_image
         case url_audio
+        case meta
+        case width
+        case height
     }
 
     init(from decoder: Decoder) throws {
@@ -32,7 +40,11 @@ enum ContentChat: Codable {
             self = .text(value: text)
         case "image":
             let url = try container.decode(String.self, forKey: .url_image)
-            self = .image(url: url)
+            let metaContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .meta)
+            let width = try metaContainer.decode(Int.self, forKey: .width)
+            let height = try metaContainer.decode(Int.self, forKey: .height)
+            let meta = ImageMeta(width: width, height: height)
+            self = .image(url: url, meta: meta)
         case "audio":
             let url = try container.decode(String.self, forKey: .url_audio)
             self = .audio(url: url)
@@ -48,9 +60,12 @@ enum ContentChat: Codable {
         case .text(let text):
             try container.encode("text", forKey: .type)
             try container.encode(text, forKey: .text)
-        case .image(let url):
+        case .image(let url, let meta):
             try container.encode("image", forKey: .type)
             try container.encode(url, forKey: .url_image)
+            var metaContainer = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .meta)
+            try metaContainer.encode(meta.width, forKey: .width)
+            try metaContainer.encode(meta.height, forKey: .height)
         case .audio(let url):
             try container.encode("audio", forKey: .type)
             try container.encode(url, forKey: .url_audio)

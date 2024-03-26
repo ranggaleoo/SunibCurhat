@@ -213,6 +213,7 @@
 		AAE102A125EB6A4D0001F026 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029B25EB6A4D0001F026 /* SplashView.swift */; };
 		AAE102A225EB6A4D0001F026 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE1029C25EB6A4D0001F026 /* SplashView.xib */; };
 		AAE102A625EB79C00001F026 /* UINCLoaderCircular.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE102A525EB79C00001F026 /* UINCLoaderCircular.swift */; };
+		AAECE1292BB2FBDD0072C55B /* CloudinaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECE1282BB2FBDD0072C55B /* CloudinaryService.swift */; };
 		AAEED4AA2B9EE391001A8DEA /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEED4A92B9EE391001A8DEA /* Chat.swift */; };
 		AAEED4AE2B9EE3F0001A8DEA /* ContentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEED4AD2B9EE3F0001A8DEA /* ContentChat.swift */; };
 		AAF548472575F7B000176378 /* UINCLabelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF548462575F7B000176378 /* UINCLabelNote.swift */; };
@@ -434,6 +435,7 @@
 		AAE1029B25EB6A4D0001F026 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		AAE1029C25EB6A4D0001F026 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
 		AAE102A525EB79C00001F026 /* UINCLoaderCircular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCLoaderCircular.swift; sourceTree = "<group>"; };
+		AAECE1282BB2FBDD0072C55B /* CloudinaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudinaryService.swift; sourceTree = "<group>"; };
 		AAEED4A92B9EE391001A8DEA /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		AAEED4AD2B9EE3F0001A8DEA /* ContentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentChat.swift; sourceTree = "<group>"; };
 		AAF548462575F7B000176378 /* UINCLabelNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCLabelNote.swift; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 				AA5BABEB22F65876004253AF /* Logger.swift */,
 				8B2FED24261B0E5200608F27 /* Aliasses.swift */,
 				AA8388542B8B29FE009969FD /* SocketService.swift */,
+				AAECE1282BB2FBDD0072C55B /* CloudinaryService.swift */,
 			);
 			path = GeneralHelper;
 			sourceTree = "<group>";
@@ -1685,6 +1688,7 @@
 				AA29CC692B754887002B26B6 /* RegisterService.swift in Sources */,
 				AA25B8E22B768648004F22E1 /* NewPostView.swift in Sources */,
 				AA7B1B0D2B9712BF008925F4 /* ProfileProtocols.swift in Sources */,
+				AAECE1292BB2FBDD0072C55B /* CloudinaryService.swift in Sources */,
 				AA5BABEC22F65876004253AF /* Logger.swift in Sources */,
 				AA6A281F2B89919600B66156 /* ChatsView.swift in Sources */,
 				AA46E2E1245C52A800735490 /* UpdateAppController.swift in Sources */,

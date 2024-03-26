@@ -11,6 +11,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import Siren
 import StoreKit
+import Cloudinary
 
 class ThirdPartyAppDelegate: AppDelegateType {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {

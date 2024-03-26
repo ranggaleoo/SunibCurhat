@@ -29,11 +29,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Used to send photos from the Camera.</string>
+	<string>We need access to your camera to allow you to capture and send photos in real-time during your conversations. You&apos;ll be able to take photos directly within the app and share them instantly. Rest assured, we will only use your camera when you actively choose to take a photo within the app.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Used to share thread word to your contact</string>
+	<string>We request permission to access your contacts to facilitate sharing feeds and connecting with friends within the app. With access to your contacts, you can easily share updates, or other contents with your friends and contacts directly from within the app. Rest assured, we respect your privacy and will only access your contacts when you choose to share content with specific individuals or groups.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Used to send a photo from your Camera Roll.</string>
+	<string>To send photos from your device&apos;s photo library, we require access to it. This allows you to select existing photos stored on your device and share them seamlessly during chats. We respect your privacy and assure you that we will only access your photo library when you opt to choose a photo to send.</string>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>We request permission to send you notifications to keep you updated on new messages, important alerts, and other relevant information. With notifications enabled, you&apos;ll never miss a message, ensuring you stay connected and informed even when the app is not actively in use.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -55,9 +57,9 @@
 	<string>true</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>mailto</string>
-    </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+	</array>
 </dict>
 </plist>

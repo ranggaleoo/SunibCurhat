@@ -11,6 +11,7 @@ import Foundation
 import MessageKit
 import InputBarAccessoryView
 import Kingfisher
+import PermissionsKit
 
 class ChatView: MessagesViewController, ChatPresenterToView {
     var presenter: ChatViewToPresenter?
@@ -103,6 +104,14 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         }
     }
     
+    func startLoader() {
+        showLoaderIndicator()
+    }
+    
+    func stopLoader() {
+        dismissLoaderIndicator()
+    }
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -129,6 +138,23 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     }
     
     @objc private func cameraDidPressed() {
+        let authorizedCamera = Permission.camera.authorized
+        let authorizedPhotoLibrary = Permission.photoLibrary.authorized
+        
+        if !authorizedCamera {
+            Permission.camera.request { [weak self] in
+                debugLog("auth camera")
+            }
+            return
+        }
+        
+        if !authorizedPhotoLibrary {
+            Permission.photoLibrary.request { [weak self] in
+                debugLog("auth photo lib")
+            }
+            return
+        }
+        
         let picker = UIImagePickerController()
         picker.delegate = self
         
@@ -215,6 +241,22 @@ extension ChatView: MessagesDisplayDelegate {
         }
     }
     
+    func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        switch message.kind {
+        case .photo(let media):
+            /// if we don't have a url, that means it's simply a pending message
+            guard let url = media.url else {
+                imageView.kf.indicator?.startAnimatingView()
+                return
+            }
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(with: url)
+            imageView.contentMode = .scaleAspectFit
+        default:
+            break
+        }
+    }
+    
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return UINCColor.primary_foreground
     }
@@ -228,6 +270,7 @@ extension ChatView: MessagesLayoutDelegate {
 extension ChatView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage { // 2
+            presenter?.didPickImage(image: image)
             picker.dismiss(animated: true, completion: nil)
         }
     }

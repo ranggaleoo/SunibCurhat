@@ -49,6 +49,7 @@ struct Preferences: Codable {
     let images:                     PreferenceImages?
     let urls:                       PreferenceUrls?
     let contacts:                   PreferenceContacts?
+    let cloudinary:                 PreferenceCloudinary?
 }
 
 struct PreferenceImages: Codable {
@@ -65,6 +66,12 @@ struct PreferenceUrls: Codable {
 struct PreferenceContacts: Codable {
     let email       : String?
     let instagram   : String?
+}
+
+struct PreferenceCloudinary: Codable {
+    let cloud_name : String?
+    let preset : String?
+    let tkn : String?
 }
 
 struct User: Codable {

@@ -28,6 +28,22 @@ extension Chat: Equatable {
 }
 
 extension Chat {
+    private func calculateImageSize(originalWidth: CGFloat, originalHeight: CGFloat, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
+        let widthRatio = maxWidth / originalWidth
+        let heightRatio = maxHeight / originalHeight
+        
+        var newSize: CGSize
+        
+        // Choose the smaller ratio to ensure that the entire image fits within the maximum dimensions
+        if widthRatio < heightRatio {
+            newSize = CGSize(width: originalWidth * widthRatio, height: originalHeight * widthRatio)
+        } else {
+            newSize = CGSize(width: originalWidth * heightRatio, height: originalHeight * heightRatio)
+        }
+        
+        return newSize
+    }
+    
     func sender() -> SenderType? {
         guard let sender = from else { return nil }
         
@@ -46,15 +62,27 @@ extension Chat {
         switch content {
         case .text(value: let text):
             message = .text(text)
-        case .image(url: let url_string):
+        case .image(url: let url_string, let meta):
             guard let url = URL(string: url_string),
-                  let placeholderImage: UIImage = UIImage(identifierName: .image_super_thankyou)
+                  let placeholderImage: UIImage = UIImage(symbol: .QuestionmarkSquare)
             else { return nil }
+            
+            let originalWidth = CGFloat(meta.width)
+            let originalHeight = CGFloat(meta.height)
+            let maxWidth = UIScreen.main.bounds.width - 50
+            let maxHeight = UIScreen.main.bounds.height - 100
+            
+            let imageSize = calculateImageSize(
+                originalWidth: originalWidth,
+                originalHeight: originalHeight,
+                maxWidth: maxWidth,
+                maxHeight: maxHeight
+            )
             
             let media: MediaMessage = MediaMessage(
                 url: url,
                 placeholderImage: placeholderImage,
-                size: CGSize(width: 50, height: 50)
+                size: imageSize
             )
             message = .photo(media)
         default:
@@ -62,6 +90,7 @@ extension Chat {
         }
         
         guard let msg = message else { return nil }
+        debugLog(msg)
         
         return ChatMessage(
             sender: sender,

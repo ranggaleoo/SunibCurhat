@@ -8,9 +8,9 @@
 
 import UIKit
 import Foundation
-import SPPermissions
 import MessageUI
 import Kingfisher
+import PermissionsKit
 
 class FeedsView: UIViewController, FeedsPresenterToView {
     var presenter: FeedsViewToPresenter?
@@ -130,8 +130,12 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         debugLog("time permission", timesPermission)
         
         if timesPermission == ConstGlobal.TIMES_REQUEST_PERMISSION || timesPermission == 0 {
-            SPPermissions.dialog([.notification, .camera, .photoLibrary]).show(self, sender: self)
-            UDHelpers.shared.set(value: 1, key: .counterRequestPermission)
+            let authorizedNotification = Permission.notification.authorized
+            if !authorizedNotification {
+                Permission.notification.request { [weak self] in
+                    UDHelpers.shared.set(value: 1, key: .counterRequestPermission)
+                }
+            }
         
         } else {
             UDHelpers.shared.set(value: timesPermission + 1, key: .counterRequestPermission)

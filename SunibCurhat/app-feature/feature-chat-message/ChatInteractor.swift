@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ChatInteractor: ChatPresenterToInteractor {
     weak var presenter: ChatInteractorToPresenter?
@@ -26,7 +27,7 @@ class ChatInteractor: ChatPresenterToInteractor {
         SocketService.shared.emit(.req_send_chat, chat) { [weak self] (result) in
             switch result {
             case .success():
-                self?.presenter?.didSendChat()
+                debugLog("success send chat")
             case .failure(let err):
                 self?.presenter?.failSendChat(message: err.localizedDescription)
             }
@@ -42,6 +43,24 @@ class ChatInteractor: ChatPresenterToInteractor {
                 debugLog(err.localizedDescription)
                 break
             }
+        }
+    }
+    
+    func uploadImage(image: UIImage) {
+        if let imageData = image.jpegData(compressionQuality: 0.5) {
+            CloudinaryService.shared.upload(data: imageData) { [weak self] (prog) in
+                debugLog(prog.localizedDescription ?? "")
+            } completion: { [weak self] (result, error) in
+                if let res = result {
+                    self?.presenter?.didUploadImage(response: res)
+                }
+                
+                if let err = error {
+                    debugLog(err)
+                    self?.presenter?.failUploadImage(message: err.localizedDescription)
+                }
+            }
+
         }
     }
 }

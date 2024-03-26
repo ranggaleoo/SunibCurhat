@@ -8,6 +8,8 @@
 
 import Foundation
 import MessageKit
+import UIKit
+import Cloudinary
 
 class ChatPresenter: ChatViewToPresenter {
     weak var view: ChatPresenterToView?
@@ -46,6 +48,11 @@ class ChatPresenter: ChatViewToPresenter {
         router?.navigateToChats(to: to, conversation: conversation)
     }
     
+    func didPickImage(image: UIImage) {
+        view?.startLoader()
+        interactor?.uploadImage(image: image)
+    }
+    
     func set(conversation: Conversation?) {
         if var convo = conversation {
             convo.chats.sort { $0.created_at < $1.created_at }
@@ -79,7 +86,6 @@ class ChatPresenter: ChatViewToPresenter {
     }
     
     func textViewTextDidChangeTo(text: String) {
-        debugLog(text)
         //is typing
         guard !text.replacingOccurrences(of: " ", with: "").isEmpty,
               !is_typing,
@@ -89,7 +95,6 @@ class ChatPresenter: ChatViewToPresenter {
         else { return }
         
         is_typing = true
-        debugLog(is_typing)
         
         let chat = Chat(
             chat_id: UUID().uuidString,
@@ -126,12 +131,38 @@ class ChatPresenter: ChatViewToPresenter {
     }
 }
 
-extension ChatPresenter: ChatInteractorToPresenter {
-    func didSendChat() {
-        //
+extension ChatPresenter: ChatInteractorToPresenter {    
+    func failSendChat(message: String) {
+        view?.showAlert(title: "Oops", message: message)
     }
     
-    func failSendChat(message: String) {
+    func didUploadImage(response: CLDUploadResult?) {
+        view?.stopLoader()
+        guard let conversation_id = conversation?.conversation_id,
+              let from = conversation?.me(),
+              let to = conversation?.them().first,
+              let res = response,
+              let urlImage = res.secureUrl,
+              let width = res.width,
+              let height = res.height
+        else { return }
+        
+        let chat = Chat(
+            chat_id: UUID().uuidString,
+            conversation_id: conversation_id,
+            from: from,
+            to: to,
+            content: .image(url: urlImage, meta: .init(width: width, height: height)),
+            is_typing: false,
+            is_read: false,
+            created_at: Date()
+        )
+        
+        interactor?.sendChat(chat: chat)
+    }
+    
+    func failUploadImage(message: String) {
+        view?.stopLoader()
         view?.showAlert(title: "Oops", message: message)
     }
 }
