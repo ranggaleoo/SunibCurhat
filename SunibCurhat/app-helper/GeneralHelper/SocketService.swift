@@ -17,6 +17,8 @@ protocol SocketDelegate: AnyObject {
     func failGetChats(message: String)
     
     func didUserTyping(chat: Chat)
+    
+    func didGetChats(response: ResponseChats)
 }
 
 // default implementation
@@ -28,6 +30,8 @@ extension SocketDelegate {
     func failGetChats(message: String) { }
     
     func didUserTyping(chat: Chat) { }
+    
+    func didGetChats(response: ResponseChats) { }
 }
 
 enum SocketIOError: Error {
@@ -142,6 +146,16 @@ class SocketService {
                 break
             }
         }
+        
+        self.on(.res_chats) { [weak self] (result: Result<ResponseChats, Error>) in
+            switch result {
+            case .success(let res):
+                self?.delegate?.didGetChats(response: res)
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+                break
+            }
+        }
     }
     
     func set(URL: String) {
@@ -168,12 +182,14 @@ class SocketService {
 enum SocketEventRequest: String {
     case req_create_conversation
     case req_conversations
+    case req_chats
     case req_send_chat
     case req_typing
 }
 
 enum SocketEventResponse: String {
     case res_conversations
+    case res_chats
     case res_send_chat
     case res_typing
 }

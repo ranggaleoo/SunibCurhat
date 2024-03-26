@@ -15,6 +15,7 @@ protocol ChatPresenterToView: AnyObject {
     
     func setupViews(name: String?)
     func reloadCollectionView()
+    func reloadAndKeepOffset()
     func showAlert(title: String, message: String)
     func showTyping(chat: Chat)
 }
@@ -23,6 +24,7 @@ protocol ChatPresenterToView: AnyObject {
 protocol ChatPresenterToInteractor: AnyObject {
     var presenter: ChatInteractorToPresenter?  { get set }
     
+    func getChats(request: RequestChats)
     func sendChat(chat: Chat)
     func typing(chat: Chat)
 }
@@ -30,6 +32,7 @@ protocol ChatPresenterToInteractor: AnyObject {
 // MARK: Router -
 protocol ChatPresenterToRouter: AnyObject {
     static func createChatModule(conversation: Conversation?) -> MessagesViewController
+    func navigateToChats(to: ChatsPresenterToView?, conversation: Conversation?)
 }
 
 // MARK: Presenter -
@@ -39,6 +42,8 @@ protocol ChatViewToPresenter: AnyObject {
     var router: ChatPresenterToRouter? {get set}
     
     func didLoad()
+    func didScroll()
+    func didPop(to: ChatsPresenterToView)
     func set(conversation: Conversation?)
     func typingIsStopped()
     

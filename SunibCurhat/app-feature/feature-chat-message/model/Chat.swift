@@ -21,6 +21,12 @@ struct Chat: Codable {
     let created_at: Date
 }
 
+extension Chat: Equatable {
+    static func == (lhs: Chat, rhs: Chat) -> Bool {
+        return lhs.chat_id == rhs.chat_id
+    }
+}
+
 extension Chat {
     func sender() -> SenderType? {
         guard let sender = from else { return nil }

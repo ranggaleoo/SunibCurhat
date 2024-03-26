@@ -34,6 +34,7 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         view.backgroundColor = UINCColor.bg_primary
         tableChats.delegate = self
         tableChats.dataSource = self
+        tableChats.tableFooterView = UIView()
         tableChats.register(ChatCell.source.nib, forCellReuseIdentifier: ChatCell.source.identifier)
         
         refreshControlSimple.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
@@ -48,6 +49,10 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         tableChats.insertRows(at: at, with: .automatic)
     }
     
+    func reloadRow(at: [IndexPath]) {
+        tableChats.reloadRows(at: at, with: .automatic)
+    }
+    
     func reloadData() {
         tableChats.reloadData()
     }
@@ -60,14 +65,19 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         showAlert(title: title, message: message, OKcompletion: nil, CancelCompletion: nil)
     }
     
+    func didPopFromChatView(conversation: Conversation?) {
+        presenter?.syncConversation(conversation: conversation)
+    }
+    
     @objc private func didRefresh() {
         presenter?.didRefresh()
     }
     
-    private func makeContextualBlockAction(forRowAtIndexPath: IndexPath) -> UIContextualAction {
-        let action  = UIContextualAction(style: .destructive, title: "Block") { [weak self] (action, view, completion) in
+    private func makeContextualDeleteAction(forRowAtIndexPath: IndexPath) -> UIContextualAction {
+        let action  = UIContextualAction(style: .destructive, title: nil) { [weak self] (action, view, completion) in
             
         }
+        action.image = UIImage(symbol: .Trash)
         action.backgroundColor = UINCColor.error
         return action
     }
@@ -75,7 +85,14 @@ class ChatsView: UIViewController, ChatsPresenterToView {
 
 extension ChatsView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfRowsInSection() ?? 0
+        let numberOfRow = presenter?.numberOfRowsInSection() ?? 0
+        if numberOfRow > 0 {
+            tableView.backgroundView = refreshControlSimple
+            return numberOfRow
+        } else {
+            tableView.setViewForEmptyData(image: UIImage(symbol: .BubbleLeft), message: "No Chat Today, Let's Chat!")
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,8 +113,8 @@ extension ChatsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let blockSwipeAction = makeContextualBlockAction(forRowAtIndexPath: indexPath)
-        let configuration = UISwipeActionsConfiguration(actions: [blockSwipeAction])
+        let deleteAction = makeContextualDeleteAction(forRowAtIndexPath: indexPath)
+        let configuration = UISwipeActionsConfiguration(actions: [])
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }

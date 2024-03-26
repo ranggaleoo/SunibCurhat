@@ -17,7 +17,9 @@ protocol ChatsPresenterToView: AnyObject {
     func reloadData()
     func dismissRefreshControl()
     func insertRow(at: [IndexPath])
+    func reloadRow(at: [IndexPath])
     func showAlertMessage(title: String, message: String)
+    func didPopFromChatView(conversation: Conversation?)
 }
 
 // MARK: Interactor -
@@ -43,6 +45,7 @@ protocol ChatsViewToPresenter: AnyObject {
     func didScroll()
     func didRefresh()
     func createConversation(conversation: Conversation)
+    func syncConversation(conversation: Conversation?)
     func numberOfRowsInSection() -> Int
     func cellForRowAt(indexPath: IndexPath) -> Conversation?
     func didSelectRowAt(indexPath: IndexPath)

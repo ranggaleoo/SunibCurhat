@@ -11,6 +11,17 @@ import Foundation
 class ChatInteractor: ChatPresenterToInteractor {
     weak var presenter: ChatInteractorToPresenter?
     
+    func getChats(request: RequestChats) {
+        SocketService.shared.emit(.req_chats, request) { [weak self] (result) in
+            switch result {
+            case .success():
+                debugLog("success send request chats")
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+            }
+        }
+    }
+    
     func sendChat(chat: Chat) {
         SocketService.shared.emit(.req_send_chat, chat) { [weak self] (result) in
             switch result {

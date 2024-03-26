@@ -31,45 +31,60 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         messageInputBar.inputTextView.becomeFirstResponder()
+        messagesCollectionView.scrollToLastItem()
     }
     
     func setupViews(name: String?) {
+        /// setup navigation bar
         title = name
         navigationDefault()
+        let moreButtonItem = UIBarButtonItem(image: UIImage(symbol: .EllipsisCircleFill), style: .plain, target: self, action: #selector(moreDidPressed))
+        navigationItem.rightBarButtonItems = [moreButtonItem]
         
-        // delegate
+        /// delegate
         messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
+        navigationController?.delegate = self
         
         maintainPositionOnInputBarHeightChanged = true
         messageInputBar.inputTextView.tintColor = UINCColor.primary
         messageInputBar.sendButton.setTitleColor(UINCColor.primary, for: .normal)
         
+        /// create camera button item
         let cameraItem = InputBarButtonItem(type: .system)
         cameraItem.tintColor = UINCColor.tertiary
         cameraItem.image = UIImage(symbol: .CameraFill)
         cameraItem.setSize(CGSize(width: 60, height: 30), animated: true)
+        cameraItem.addTarget(self, action: #selector(cameraDidPressed), for: .touchUpInside)
         
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: true)
         messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false)
         
-        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-            layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
-            layout.textMessageSizeCalculator.incomingAvatarSize = .zero
-        }
-        
-        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-            layout.setMessageIncomingAvatarSize(.zero)
-            layout.setMessageOutgoingAvatarSize(.zero)
-        }
+        /// hidden avatar function
+//        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+//            layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
+//            layout.textMessageSizeCalculator.incomingAvatarSize = .zero
+//        }
+//        
+//        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+//            layout.setMessageIncomingAvatarSize(.zero)
+//            layout.setMessageOutgoingAvatarSize(.zero)
+//        }
     }
     
     func reloadCollectionView() {
         messagesCollectionView.reloadData()
         messageInputBar.inputTextView.text = ""
+        DispatchQueue.main.async { [weak self] in
+            self?.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
+        }
+    }
+    
+    func reloadAndKeepOffset() {
+        messagesCollectionView.reloadDataAndKeepOffset()
     }
     
     func showAlert(title: String, message: String) {
@@ -86,6 +101,55 @@ class ChatView: MessagesViewController, ChatPresenterToView {
             self?.setTypingIndicatorViewHidden(true, animated: true)
             self?.presenter?.typingIsStopped()
         }
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+
+        if offsetY < 0 {
+            // User scrolled to the top, load more messages
+            presenter?.didScroll()
+        }
+    }
+    
+    @objc private func moreDidPressed() {
+        let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { [weak self] (act) in
+            //report
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Block", style: .destructive, handler: { [weak self] (act) in
+            //block
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true)
+    }
+    
+    @objc private func cameraDidPressed() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        
+        let alert = UIAlertController(title: "Take a photo", message: nil, preferredStyle: .actionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (act) in
+                picker.sourceType = .camera
+                self.present(picker, animated: true, completion: nil)
+            }))
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (act) in
+                picker.sourceType = .photoLibrary
+                self.present(picker, animated: true, completion: nil)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -145,6 +209,10 @@ extension ChatView: MessagesDisplayDelegate {
         avatarView.set(avatar: avatar)
         avatarView.circleCorner = true
         avatarView.kf.setImage(with: url_avatar)
+        
+        if(isFromCurrentSender(message: message)) {
+            avatarView.transform = CGAffineTransform(scaleX: -1, y: 1)
+        }
     }
     
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
@@ -155,4 +223,25 @@ extension ChatView: MessagesDisplayDelegate {
 
 extension ChatView: MessagesLayoutDelegate {
     
+}
+
+extension ChatView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage { // 2
+            picker.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .pop,
+           let _ = fromVC as? ChatView,
+           let chats = toVC as? ChatsView {
+            presenter?.didPop(to: chats)
+        }
+        return nil
+    }
 }

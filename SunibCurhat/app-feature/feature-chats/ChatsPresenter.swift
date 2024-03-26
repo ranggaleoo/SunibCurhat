@@ -72,6 +72,28 @@ class ChatsPresenter: ChatsViewToPresenter {
         }
         router?.navigateToChat(from: view, conversation: conversation)
     }
+    
+    func syncConversation(conversation: Conversation?) {
+        if let convo = conversation,
+           let index = conversations.firstIndex(of: convo),
+           let lastChatItem = convo.chats.last {
+            conversations[index].chats = convo.chats
+            conversations[index].last_chat_timestamp = lastChatItem.created_at
+            
+            switch lastChatItem.content {
+            case .text(let value):
+                conversations[index].last_chat = value
+            case .image( _):
+                conversations[index].last_chat = "[image]"
+            case .audio( _):
+                conversations[index].last_chat = "[audio]"
+            case .none:
+                conversations[index].last_chat = "Chat Aku Dong!"
+            }
+            
+            view?.reloadRow(at: [IndexPath(row: index, section: 0)])
+        }
+    }
 }
 
 extension ChatsPresenter: ChatsInteractorToPresenter {

@@ -12,8 +12,8 @@ struct Conversation: Codable {
     let conversation_id     : String
     let users               : [User]
     var chats               : [Chat]
-    let last_chat           : String?
-    let last_chat_timestamp : Date?
+    var last_chat           : String?
+    var last_chat_timestamp : Date?
 }
 
 extension Conversation: Equatable {

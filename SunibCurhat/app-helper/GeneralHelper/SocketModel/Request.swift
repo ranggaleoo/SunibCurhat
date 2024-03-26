@@ -13,3 +13,9 @@ struct RequestConversations: Codable {
     let page: Int
     let item_per_page: Int
 }
+
+struct RequestChats: Codable {
+    let conversation_id: String
+    let page: Int
+    let item_per_page: Int
+}

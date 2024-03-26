@@ -26,4 +26,10 @@ class ChatRouter: ChatPresenterToRouter {
         
         return view
     }
+    
+    func navigateToChats(to: ChatsPresenterToView?, conversation: Conversation?) {
+        if let chats = to as? ChatsView {
+            chats.didPopFromChatView(conversation: conversation)
+        }
+    }
 }

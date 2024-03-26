@@ -16,6 +16,9 @@ class ChatPresenter: ChatViewToPresenter {
     
     private var conversation: Conversation?
     private var is_typing: Bool = false
+    private var isLoadChats: Bool = false
+    private var page: Int? = 1
+    private var item_per_page: Int = 15
     
     func didLoad() {
         SocketService.shared.delegate = self
@@ -24,8 +27,30 @@ class ChatPresenter: ChatViewToPresenter {
         view?.reloadCollectionView()
     }
     
+    func didScroll() {
+        if let num_page = self.page,
+           let convo = conversation,
+           !isLoadChats {
+            let shouldNumPage = num_page == 1 && convo.chats.count > 0 ? 2 : num_page
+            
+            isLoadChats = true
+            interactor?.getChats(request: RequestChats(
+                conversation_id: convo.conversation_id,
+                page: shouldNumPage,
+                item_per_page: item_per_page)
+            )
+        }
+    }
+    
+    func didPop(to: ChatsPresenterToView) {
+        router?.navigateToChats(to: to, conversation: conversation)
+    }
+    
     func set(conversation: Conversation?) {
-        self.conversation = conversation
+        if var convo = conversation {
+            convo.chats.sort { $0.created_at < $1.created_at }
+            self.conversation = convo
+        }
     }
     
     func typingIsStopped() {
@@ -112,6 +137,18 @@ extension ChatPresenter: ChatInteractorToPresenter {
 }
 
 extension ChatPresenter: SocketDelegate {
+    func didGetChats(response: ResponseChats) {
+        for chat in response.chats {
+            if let chats = conversation?.chats,
+               !chats.contains(chat) {
+                conversation?.chats.insert(chat, at: 0)
+            }
+        }
+        isLoadChats = false
+        page = response.next_page
+        view?.reloadAndKeepOffset()
+    }
+    
     func didUserTyping(chat: Chat) {
         if let typing = chat.is_typing, typing && is_typing {
             view?.showTyping(chat: chat)
