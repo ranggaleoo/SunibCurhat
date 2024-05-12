@@ -19,6 +19,9 @@ protocol SocketDelegate: AnyObject {
     func didUserTyping(chat: Chat)
     
     func didGetChats(response: ResponseChats)
+    
+    func didUpdateBlockUser(conversation: Conversation)
+    func failUpdateBlock(message: String)
 }
 
 // default implementation
@@ -32,6 +35,9 @@ extension SocketDelegate {
     func didUserTyping(chat: Chat) { }
     
     func didGetChats(response: ResponseChats) { }
+    
+    func didUpdateBlockUser(conversation: Conversation) { }
+    func failUpdateBlock(message: String) { }
 }
 
 enum SocketIOError: Error {
@@ -156,6 +162,16 @@ class SocketService {
                 break
             }
         }
+        
+        self.on(.res_update_block) { [weak self] (result: Result<Conversation, Error>) in
+            switch result {
+            case .success(let res):
+                self?.delegate?.didUpdateBlockUser(conversation: res)
+            case .failure(let err):
+                self?.delegate?.failUpdateBlock(message: err.localizedDescription)
+            }
+            
+        }
     }
     
     func set(URL: String) {
@@ -185,6 +201,7 @@ enum SocketEventRequest: String {
     case req_chats
     case req_send_chat
     case req_typing
+    case req_update_block
 }
 
 enum SocketEventResponse: String {
@@ -192,4 +209,5 @@ enum SocketEventResponse: String {
     case res_chats
     case res_send_chat
     case res_typing
+    case res_update_block
 }

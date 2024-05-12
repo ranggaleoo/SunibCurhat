@@ -78,6 +78,7 @@ class ChatsPresenter: ChatsViewToPresenter {
            let index = conversations.firstIndex(of: convo),
            let lastChatItem = convo.chats.last {
             conversations[index].chats = convo.chats
+            conversations[index].blocked_by = convo.blocked_by
             conversations[index].last_chat_timestamp = lastChatItem.created_at
             
             switch lastChatItem.content {
@@ -89,6 +90,14 @@ class ChatsPresenter: ChatsViewToPresenter {
                 conversations[index].last_chat = "[audio]"
             case .none:
                 conversations[index].last_chat = "Chat Aku Dong!"
+            }
+            
+            if convo.isBlocked {
+                if convo.isBlockedByMe {
+                    conversations[index].last_chat = "You have blocked this account."
+                } else {
+                    conversations[index].last_chat = "You have been blocked by \(convo.them().first?.name ?? "")"
+                }
             }
             
             view?.reloadRow(at: [IndexPath(row: index, section: 0)])

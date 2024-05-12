@@ -26,6 +26,7 @@ class ChatPresenter: ChatViewToPresenter {
         SocketService.shared.delegate = self
         let name = conversation?.them().first?.name
         view?.setupViews(name: name)
+        view?.updateInputBarToBlocked(name: conversation?.them().first?.name)
         view?.reloadCollectionView()
     }
     
@@ -51,6 +52,18 @@ class ChatPresenter: ChatViewToPresenter {
     func didPickImage(image: UIImage) {
         view?.startLoader()
         interactor?.uploadImage(image: image)
+    }
+    
+    func didTapBlock(block: Bool) {
+        if block {
+            guard let blocked_by = conversation?.me()?.user_id else { return }
+            conversation?.blocked_by = blocked_by
+        } else {
+            conversation?.blocked_by = nil
+        }
+        if let convo = conversation {
+            interactor?.updateBlock(conversation: convo)
+        }
     }
     
     func set(conversation: Conversation?) {
@@ -110,6 +123,14 @@ class ChatPresenter: ChatViewToPresenter {
         interactor?.typing(chat: chat)
     }
     
+    func getStateBlocked() -> Bool {
+        return conversation?.isBlocked ?? false
+    }
+    
+    func getStateBlockedByMe() -> Bool {
+        return conversation?.isBlockedByMe ?? false
+    }
+    
     func getSender() -> SenderType? {
         return conversation?.me()?.sender()
     }
@@ -165,6 +186,10 @@ extension ChatPresenter: ChatInteractorToPresenter {
         view?.stopLoader()
         view?.showAlert(title: "Oops", message: message)
     }
+    
+    func failUpdateBlockUser(message: String) {
+        view?.showAlert(title: "Oops", message: message)
+    }
 }
 
 extension ChatPresenter: SocketDelegate {
@@ -192,6 +217,15 @@ extension ChatPresenter: SocketDelegate {
     }
     
     func failGetChats(message: String) {
+        view?.showAlert(title: "Oops", message: message)
+    }
+    
+    func didUpdateBlockUser(conversation: Conversation) {
+        self.conversation = conversation
+        view?.updateInputBarToBlocked(name: conversation.them().first?.name)
+    }
+    
+    func failUpdateBlock(message: String) {
         view?.showAlert(title: "Oops", message: message)
     }
 }

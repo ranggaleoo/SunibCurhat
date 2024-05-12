@@ -70,6 +70,14 @@ class ChatCell: UITableViewCell {
         status_view.backgroundColor = (conversation?.them().first?.is_online ?? false) ? UINCColor.success : .clear
         
         lbl_last_chat.text = conversation?.last_chat ?? "Chat aku dong!"
-        lbl_time.text = conversation?.last_chat_timestamp?.timeAgo(numericDates: true)        
+        lbl_time.text = conversation?.last_chat_timestamp?.timeAgo(numericDates: true)
+        
+        if conversation?.isBlocked ?? false {
+            if conversation?.isBlockedByMe ?? false {
+                lbl_last_chat.text = "You have blocked this account."
+            } else {
+                lbl_last_chat.text = "You have been blocked by \(user?.name ?? "")"
+            }
+        }
     }
 }

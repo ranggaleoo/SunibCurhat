@@ -50,19 +50,6 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         navigationController?.delegate = self
         
         maintainPositionOnInputBarHeightChanged = true
-        messageInputBar.inputTextView.tintColor = UINCColor.primary
-        messageInputBar.sendButton.setTitleColor(UINCColor.primary, for: .normal)
-        
-        /// create camera button item
-        let cameraItem = InputBarButtonItem(type: .system)
-        cameraItem.tintColor = UINCColor.tertiary
-        cameraItem.image = UIImage(symbol: .CameraFill)
-        cameraItem.setSize(CGSize(width: 60, height: 30), animated: true)
-        cameraItem.addTarget(self, action: #selector(cameraDidPressed), for: .touchUpInside)
-        
-        messageInputBar.leftStackView.alignment = .center
-        messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: true)
-        messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false)
         
         /// hidden avatar function
 //        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
@@ -74,6 +61,60 @@ class ChatView: MessagesViewController, ChatPresenterToView {
 //            layout.setMessageIncomingAvatarSize(.zero)
 //            layout.setMessageOutgoingAvatarSize(.zero)
 //        }
+    }
+    
+    func updateInputBarToBlocked(name: String?) {
+        if presenter?.getStateBlocked() ?? false {
+            let blockInputView = UIView()
+            blockInputView.backgroundColor = UINCColor.bg_secondary
+            var blockLabel: UILabel = UILabel()
+            if presenter?.getStateBlockedByMe() ?? false {
+                let blockClickableLabel = UINCLabelClickable()
+                blockClickableLabel.numberOfLines = 0
+                blockClickableLabel.textAlignment = .center
+                blockClickableLabel.text = "You have blocked this account. Unblock"
+                blockClickableLabel.clickables["Unblock"] = { [weak self] in
+                    self?.presenter?.didTapBlock(block: false)
+                }
+                blockLabel = blockClickableLabel
+                blockInputView.addSubview(blockLabel)
+            } else {
+                let blocked_by_name = name ?? "this Account"
+                let blockBodyLabel = UINCLabelBody()
+                blockBodyLabel.numberOfLines = 0
+                blockBodyLabel.textAlignment = .center
+                blockBodyLabel.text = "You have been blocked by \(blocked_by_name)"
+                blockLabel = blockBodyLabel
+                blockInputView.addSubview(blockLabel)
+            }
+            
+            blockLabel.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+              blockLabel.topAnchor.constraint(equalTo: blockInputView.topAnchor, constant: 16),
+              blockLabel.bottomAnchor.constraint(equalTo: blockInputView.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+              blockLabel.leadingAnchor.constraint(equalTo: blockInputView.leadingAnchor),
+              blockLabel.trailingAnchor.constraint(equalTo: blockInputView.trailingAnchor),
+            ])
+            
+            inputBarType = .custom(blockInputView)
+            
+        } else {
+            messageInputBar.inputTextView.tintColor = UINCColor.primary
+            messageInputBar.sendButton.setTitleColor(UINCColor.primary, for: .normal)
+            
+            /// create camera button item
+            let cameraItem = InputBarButtonItem(type: .system)
+            cameraItem.tintColor = UINCColor.tertiary
+            cameraItem.image = UIImage(symbol: .CameraFill)
+            cameraItem.setSize(CGSize(width: 60, height: 30), animated: true)
+            cameraItem.addTarget(self, action: #selector(cameraDidPressed), for: .touchUpInside)
+            
+            messageInputBar.leftStackView.alignment = .center
+            messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: true)
+            messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false)
+            
+            inputBarType = .messageInputBar
+        }
     }
     
     func reloadCollectionView() {
@@ -129,9 +170,19 @@ class ChatView: MessagesViewController, ChatPresenterToView {
             //report
         }))
         
-        alert.addAction(UIAlertAction(title: "Block", style: .destructive, handler: { [weak self] (act) in
-            //block
-        }))
+        if presenter?.getStateBlocked() ?? false {
+            if presenter?.getStateBlockedByMe() ?? false {
+                alert.addAction(UIAlertAction(title: "Unblock", style: .destructive, handler: { [weak self] (act) in
+                    self?.presenter?.didTapBlock(block: false)
+                }))
+            } else {
+                /// nothing
+            }
+        } else {
+            alert.addAction(UIAlertAction(title: "Block", style: .destructive, handler: { [weak self] (act) in
+                self?.presenter?.didTapBlock(block: true)
+            }))
+        }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(alert, animated: true)

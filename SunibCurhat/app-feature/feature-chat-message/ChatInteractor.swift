@@ -63,4 +63,15 @@ class ChatInteractor: ChatPresenterToInteractor {
 
         }
     }
+    
+    func updateBlock(conversation: Conversation) {
+        SocketService.shared.emit(.req_update_block, conversation) { [weak self] (result) in
+            switch result {
+            case .success():
+                debugLog("success send update block \(String(describing: conversation.conversation_id))")
+            case .failure(let err):
+                self?.presenter?.failUpdateBlockUser(message: err.localizedDescription)
+            }
+        }
+    }
 }

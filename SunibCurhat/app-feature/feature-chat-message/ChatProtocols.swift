@@ -15,6 +15,7 @@ protocol ChatPresenterToView: AnyObject {
     var presenter: ChatViewToPresenter? { get set }
     
     func setupViews(name: String?)
+    func updateInputBarToBlocked(name: String?)
     func reloadCollectionView()
     func reloadAndKeepOffset()
     func showAlert(title: String, message: String)
@@ -31,6 +32,7 @@ protocol ChatPresenterToInteractor: AnyObject {
     func sendChat(chat: Chat)
     func typing(chat: Chat)
     func uploadImage(image: UIImage)
+    func updateBlock(conversation: Conversation)
 }
 
 // MARK: Router -
@@ -49,6 +51,7 @@ protocol ChatViewToPresenter: AnyObject {
     func didScroll()
     func didPop(to: ChatsPresenterToView)
     func didPickImage(image: UIImage)
+    func didTapBlock(block: Bool)
     func set(conversation: Conversation?)
     func typingIsStopped()
     
@@ -57,6 +60,8 @@ protocol ChatViewToPresenter: AnyObject {
     func textViewTextDidChangeTo(text: String)
     
     // data source
+    func getStateBlocked() -> Bool
+    func getStateBlockedByMe() -> Bool
     func getSender() -> SenderType?
     func isFromCurrentSender(message: MessageType) -> Bool
     func messageForItem(at indexPath: IndexPath) -> MessageType?
@@ -68,4 +73,5 @@ protocol ChatInteractorToPresenter: AnyObject {
     func failSendChat(message: String)
     func didUploadImage(response: CLDUploadResult?)
     func failUploadImage(message: String)
+    func failUpdateBlockUser(message: String)
 }

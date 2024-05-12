@@ -14,6 +14,7 @@ struct Conversation: Codable {
     var chats               : [Chat]
     var last_chat           : String?
     var last_chat_timestamp : Date?
+    var blocked_by          : String?
 }
 
 extension Conversation: Equatable {
@@ -23,6 +24,22 @@ extension Conversation: Equatable {
 }
 
 extension Conversation {
+    var isBlocked: Bool {
+        return blocked_by != nil
+    }
+    
+    var isBlockedByMe: Bool {
+        if !isBlocked {
+            return false
+        }
+        
+        guard let me = me()?.user_id,
+              let blocked_by_me = blocked_by
+        else { return false }
+        
+        return me == blocked_by_me
+    }
+    
     func me() -> User? {
         if let me = UDHelpers.shared.getObject(type: User.self, forKey: .user),
            users.count > 0 {
