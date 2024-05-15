@@ -92,7 +92,7 @@ class ChatPresenter: ChatViewToPresenter {
             content: .text(value: text),
             is_typing: false,
             is_read: false,
-            created_at: Date()
+            created_at: Date().unixTimestampMilliseconds()
         )
         
         interactor?.sendChat(chat: chat)
@@ -117,7 +117,7 @@ class ChatPresenter: ChatViewToPresenter {
             content: .text(value: text),
             is_typing: true,
             is_read: false,
-            created_at: Date()
+            created_at: Date().unixTimestampMilliseconds()
         )
         
         interactor?.typing(chat: chat)
@@ -176,7 +176,7 @@ extension ChatPresenter: ChatInteractorToPresenter {
             content: .image(url: urlImage, meta: .init(width: width, height: height)),
             is_typing: false,
             is_read: false,
-            created_at: Date()
+            created_at: Date().unixTimestampMilliseconds()
         )
         
         interactor?.sendChat(chat: chat)

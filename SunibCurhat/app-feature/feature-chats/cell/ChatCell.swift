@@ -70,7 +70,10 @@ class ChatCell: UITableViewCell {
         status_view.backgroundColor = (conversation?.them().first?.is_online ?? false) ? UINCColor.success : .clear
         
         lbl_last_chat.text = conversation?.last_chat ?? "Chat aku dong!"
-        lbl_time.text = conversation?.last_chat_timestamp?.timeAgo(numericDates: true)
+        lbl_time.text = conversation?
+            .last_chat_timestamp?
+            .unixTimestampMillisecondsToDate()
+            .timeAgo(numericDates: true)
         
         if conversation?.isBlocked ?? false {
             if conversation?.isBlockedByMe ?? false {

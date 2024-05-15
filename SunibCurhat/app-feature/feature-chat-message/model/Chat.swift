@@ -18,7 +18,7 @@ struct Chat: Codable {
     let content: ContentChat?
     let is_typing: Bool?
     let is_read: Bool?
-    let created_at: Date
+    let created_at: Int
 }
 
 extension Chat: Equatable {
@@ -95,7 +95,7 @@ extension Chat {
         return ChatMessage(
             sender: sender,
             messageId: self.chat_id,
-            sentDate: self.created_at,
+            sentDate: self.created_at.unixTimestampMillisecondsToDate(),
             kind: msg
         )
     }

@@ -13,7 +13,7 @@ struct Conversation: Codable {
     let users               : [User]
     var chats               : [Chat]
     var last_chat           : String?
-    var last_chat_timestamp : Date?
+    var last_chat_timestamp : Int?
     var blocked_by          : String?
 }
 

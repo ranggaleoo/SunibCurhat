@@ -52,7 +52,7 @@ class FeedsPresenter: FeedsViewToPresenter {
             users: [user, to],
             chats: [],
             last_chat: nil,
-            last_chat_timestamp: Date()
+            last_chat_timestamp: Date().unixTimestampMilliseconds()
         )
         interactor?.createConversationRoom(conversation: conversation)
     }

@@ -220,6 +220,7 @@
 		AAECE1292BB2FBDD0072C55B /* CloudinaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAECE1282BB2FBDD0072C55B /* CloudinaryService.swift */; };
 		AAEED4AA2B9EE391001A8DEA /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEED4A92B9EE391001A8DEA /* Chat.swift */; };
 		AAEED4AE2B9EE3F0001A8DEA /* ContentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEED4AD2B9EE3F0001A8DEA /* ContentChat.swift */; };
+		AAEF7E6D2BF4BDB800BC820E /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF7E6C2BF4BDB800BC820E /* Int+Extension.swift */; };
 		AAF548472575F7B000176378 /* UINCLabelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF548462575F7B000176378 /* UINCLabelNote.swift */; };
 		AAF5484B257606C300176378 /* UINCRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5484A257606C300176378 /* UINCRefreshControl.swift */; };
 		AAF5487425760CF000176378 /* FeedAdmobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF5487325760CF000176378 /* FeedAdmobCell.xib */; };
@@ -446,6 +447,7 @@
 		AAECE1282BB2FBDD0072C55B /* CloudinaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudinaryService.swift; sourceTree = "<group>"; };
 		AAEED4A92B9EE391001A8DEA /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		AAEED4AD2B9EE3F0001A8DEA /* ContentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentChat.swift; sourceTree = "<group>"; };
+		AAEF7E6C2BF4BDB800BC820E /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		AAF548462575F7B000176378 /* UINCLabelNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCLabelNote.swift; sourceTree = "<group>"; };
 		AAF5484A257606C300176378 /* UINCRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCRefreshControl.swift; sourceTree = "<group>"; };
 		AAF5487325760CF000176378 /* FeedAdmobCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedAdmobCell.xib; sourceTree = "<group>"; };
@@ -1291,6 +1293,7 @@
 				AA249F10232F003A0047BC99 /* UILabel+Extensions.swift */,
 				16E670502357098B008B3108 /* UICollectionView+Extensions.swift */,
 				AA505E13245FA910002FD204 /* UITapGestureRecognizer+Ext.swift */,
+				AAEF7E6C2BF4BDB800BC820E /* Int+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1751,6 +1754,7 @@
 				16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */,
 				AA0601172B7727090056B695 /* CommentProtocols.swift in Sources */,
 				AA46E2F6245D44B400735490 /* CoronaService.swift in Sources */,
+				AAEF7E6D2BF4BDB800BC820E /* Int+Extension.swift in Sources */,
 				AACDFE742570E42200485828 /* FeedsPresenter.swift in Sources */,
 				AAA8D1292B739456007C579B /* RegisterProtocols.swift in Sources */,
 				AAA8D1272B739456007C579B /* RegisterPresenter.swift in Sources */,
