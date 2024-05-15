@@ -9,72 +9,6 @@
 import Foundation
 import SocketIO
 
-protocol SocketDelegate: AnyObject {
-    func didGetConversations(response: ResponseConversations)
-    func failGetConversations(message: String)
-    
-    func didReceiveChat(chat: Chat)
-    func failGetChats(message: String)
-    
-    func didUserTyping(chat: Chat)
-    
-    func didGetChats(response: ResponseChats)
-    
-    func didUpdateBlockUser(conversation: Conversation)
-    func failUpdateBlock(message: String)
-}
-
-// default implementation
-extension SocketDelegate {
-    func didGetConversations(response: ResponseConversations) { }
-    func failGetConversations(message: String) { }
-    
-    func didReceiveChat(chat: Chat) { }
-    func failGetChats(message: String) { }
-    
-    func didUserTyping(chat: Chat) { }
-    
-    func didGetChats(response: ResponseChats) { }
-    
-    func didUpdateBlockUser(conversation: Conversation) { }
-    func failUpdateBlock(message: String) { }
-}
-
-enum SocketIOError: Error {
-    case encodingFailed
-    case decodingFailed
-}
-
-extension SocketIOClient {
-    func emit<T: Encodable>(_ event: String, withData data: T, completion: @escaping (Result<Void, Error>) -> Void) {
-        do {
-            let jsonData = try JSONEncoder().encode(data)
-            guard let jsonDict = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
-                completion(.failure(SocketIOError.encodingFailed))
-                return
-            }
-            self.emit(event, jsonDict)
-            completion(.success(()))
-        } catch {
-            completion(.failure(error))
-        }
-    }
-    
-    func on<T: Decodable>(_ event: String, completion: @escaping (Result<T, Error>) -> Void) {
-        self.on(event) { data, _ in
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: data[0])
-                let decodedData = try JSONDecoder().decode(T.self, from: jsonData)
-                debugLog(decodedData)
-                completion(.success(decodedData))
-            } catch {
-                debugLog(error)
-                completion(.failure(error))
-            }
-        }
-    }
-}
-
 class SocketService {
     static let shared = SocketService()
     private var socketManager: SocketManager?
@@ -193,21 +127,4 @@ class SocketService {
     func disconnect() {
         socket?.disconnect()
     }
-}
-
-enum SocketEventRequest: String {
-    case req_create_conversation
-    case req_conversations
-    case req_chats
-    case req_send_chat
-    case req_typing
-    case req_update_block
-}
-
-enum SocketEventResponse: String {
-    case res_conversations
-    case res_chats
-    case res_send_chat
-    case res_typing
-    case res_update_block
 }
