@@ -80,7 +80,7 @@ struct User: Codable {
     let email:      String?
     let name:       String
     let avatar:     String
-    let is_online:  Bool?
+    var is_online:  Bool?
     
     func sender() -> SenderType {
         return ChatSender(senderId: user_id, displayName: name, avatar: avatar)

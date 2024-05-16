@@ -115,6 +115,32 @@ extension ChatsPresenter: ChatsInteractorToPresenter {
 }
 
 extension ChatsPresenter: SocketDelegate {
+    func didUserOnline(user: User) {
+        for i in 0...(conversations.count - 1) {
+            for j in 0...(conversations[i].users.count - 1) {
+                if conversations[i].users[j].user_id == user.user_id {
+                    conversations[i].users[j].is_online = user.is_online
+                    let indexpath = IndexPath(row: i, section: 0)
+                    view?.reloadRow(at: [indexpath])
+                    break
+                }
+            }
+        }
+    }
+    
+    func didUserOffline(user: User) {
+        for i in 0...(conversations.count - 1) {
+            for j in 0...(conversations[i].users.count - 1) {
+                if conversations[i].users[j].user_id == user.user_id {
+                    conversations[i].users[j].is_online = user.is_online
+                    let indexpath = IndexPath(row: i, section: 0)
+                    view?.reloadRow(at: [indexpath])
+                    break
+                }
+            }
+        }
+    }
+    
     func didGetConversations(response: ResponseConversations) {
         var countConversation = conversations.count
         var indexPaths: [IndexPath] = []

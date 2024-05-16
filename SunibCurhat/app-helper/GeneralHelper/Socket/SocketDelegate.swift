@@ -10,6 +10,9 @@ import Foundation
 
 
 protocol SocketDelegate: AnyObject {
+    func didUserOnline(user: User)
+    func didUserOffline(user: User)
+    
     func didGetConversations(response: ResponseConversations)
     func failGetConversations(message: String)
     
@@ -26,6 +29,9 @@ protocol SocketDelegate: AnyObject {
 
 // default implementation
 extension SocketDelegate {
+    func didUserOnline(user: User) { }
+    func didUserOffline(user: User) { }
+    
     func didGetConversations(response: ResponseConversations) { }
     func failGetConversations(message: String) { }
     

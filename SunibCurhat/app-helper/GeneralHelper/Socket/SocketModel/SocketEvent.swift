@@ -18,6 +18,8 @@ enum SocketEventRequest: String {
 }
 
 enum SocketEventResponse: String {
+    case res_user_online
+    case res_user_offline
     case res_conversations
     case res_chats
     case res_send_chat

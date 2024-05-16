@@ -52,15 +52,15 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         maintainPositionOnInputBarHeightChanged = true
         
         /// hidden avatar function
-//        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-//            layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
-//            layout.textMessageSizeCalculator.incomingAvatarSize = .zero
-//        }
-//        
-//        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-//            layout.setMessageIncomingAvatarSize(.zero)
-//            layout.setMessageOutgoingAvatarSize(.zero)
-//        }
+        //        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+        //            layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
+        //            layout.textMessageSizeCalculator.incomingAvatarSize = .zero
+        //        }
+        //
+        //        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+        //            layout.setMessageIncomingAvatarSize(.zero)
+        //            layout.setMessageOutgoingAvatarSize(.zero)
+        //        }
     }
     
     func updateInputBarToBlocked(name: String?) {
@@ -117,6 +117,42 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         }
     }
     
+    func updateUserStatusConnection(name: String?, status: String?) {
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: -2, width: 0, height: 0))
+        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.text = name
+        titleLabel.textAlignment = .center
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.sizeToFit()
+        
+        let subtitleLabel = UILabel(frame: CGRect(x: 0, y: 18, width: 0, height: 0))
+        subtitleLabel.font = UIFont.systemFont(ofSize: 12)
+        subtitleLabel.text = status
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.adjustsFontSizeToFitWidth = true
+        subtitleLabel.sizeToFit()
+        
+        let titleView =
+        UIView(frame: CGRect(x: 0, y: 0, width: max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), height: 30))
+        titleView.addSubview(titleLabel)
+        if status != nil {
+            titleView.addSubview(subtitleLabel)
+        } else {
+            titleLabel.frame = titleView.frame
+        }
+        let widthDiff = subtitleLabel.frame.size.width - titleLabel.frame.size.width
+        if widthDiff < 0 {
+            let newX = widthDiff / 2
+            subtitleLabel.frame.origin.x = abs(newX)
+        } else {
+            let newX = widthDiff / 2
+            titleLabel.frame.origin.x = newX
+        }
+        
+        navigationItem.titleView = titleView
+    }
+    
     func reloadCollectionView() {
         messagesCollectionView.reloadData()
         messageInputBar.inputTextView.text = ""
@@ -137,6 +173,7 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         if let message = chat.message(),
            !isFromCurrentSender(message: message) {
             setTypingIndicatorViewHidden(false, animated: true)
+            messagesCollectionView.scrollToLastItem()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
@@ -156,7 +193,7 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-
+        
         if offsetY < 0 {
             // User scrolled to the top, load more messages
             presenter?.didScroll()

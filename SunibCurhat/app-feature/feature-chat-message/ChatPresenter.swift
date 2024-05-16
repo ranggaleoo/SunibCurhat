@@ -27,6 +27,10 @@ class ChatPresenter: ChatViewToPresenter {
         let name = conversation?.them().first?.name
         view?.setupViews(name: name)
         view?.updateInputBarToBlocked(name: conversation?.them().first?.name)
+        view?.updateUserStatusConnection(
+            name: conversation?.them().first?.name,
+            status: (conversation?.them().first?.is_online ?? true) ? "Online" : "Offline"
+        )
         view?.reloadCollectionView()
     }
     
@@ -193,6 +197,32 @@ extension ChatPresenter: ChatInteractorToPresenter {
 }
 
 extension ChatPresenter: SocketDelegate {
+    func didUserOnline(user: User) {
+        if conversation?.them().first?.user_id == user.user_id {
+            for i in 0...((conversation?.users.count ?? 0) - 1) {
+                if let foundUser = conversation?.users.item(at: i),
+                   foundUser.user_id == user.user_id {
+                    conversation?.users[i].is_online = user.is_online
+                    view?.updateUserStatusConnection(name: user.name, status: "Hi I'am Online!")
+                    break
+                }
+            }
+        }
+    }
+    
+    func didUserOffline(user: User) {
+        if conversation?.them().first?.user_id == user.user_id {
+            for i in 0...((conversation?.users.count ?? 0) - 1) {
+                if let foundUser = conversation?.users.item(at: i),
+                   foundUser.user_id == user.user_id {
+                    conversation?.users[i].is_online = user.is_online
+                    view?.updateUserStatusConnection(name: user.name, status: "I'am Offline Right Now, BRB!")
+                    break
+                }
+            }
+        }
+    }
+    
     func didGetChats(response: ResponseChats) {
         for chat in response.chats {
             if let chats = conversation?.chats,
@@ -206,6 +236,10 @@ extension ChatPresenter: SocketDelegate {
     }
     
     func didUserTyping(chat: Chat) {
+        if conversation?.them().first?.user_id == chat.from?.user_id {
+            is_typing = true
+        }
+        
         if let typing = chat.is_typing, typing && is_typing {
             view?.showTyping(chat: chat)
         }

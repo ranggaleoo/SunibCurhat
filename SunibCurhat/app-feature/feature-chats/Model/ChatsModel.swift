@@ -10,7 +10,7 @@ import Foundation
 
 struct Conversation: Codable {
     let conversation_id     : String
-    let users               : [User]
+    var users               : [User]
     var chats               : [Chat]
     var last_chat           : String?
     var last_chat_timestamp : Int?

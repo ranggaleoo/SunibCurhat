@@ -59,6 +59,24 @@ class SocketService {
             debugLog(eHandler.event)
         })
         
+        self.on(.res_user_online) { [weak self] (result: Result<User, Error>) in
+            switch result {
+            case .success(let user):
+                self?.delegate?.didUserOnline(user: user)
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+            }
+        }
+        
+        self.on(.res_user_offline) { [weak self] (result: Result<User, Error>) in
+            switch result {
+            case .success(let user):
+                self?.delegate?.didUserOffline(user: user)
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+            }
+        }
+        
         self.on(.res_conversations) { [weak self] (result: Result<ResponseConversations, Error>) in
             switch result {
             case .success(let response):

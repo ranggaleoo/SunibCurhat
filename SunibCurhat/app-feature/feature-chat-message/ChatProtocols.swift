@@ -16,6 +16,7 @@ protocol ChatPresenterToView: AnyObject {
     
     func setupViews(name: String?)
     func updateInputBarToBlocked(name: String?)
+    func updateUserStatusConnection(name: String?, status: String?)
     func reloadCollectionView()
     func reloadAndKeepOffset()
     func showAlert(title: String, message: String)
