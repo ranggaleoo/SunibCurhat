@@ -17,7 +17,7 @@ struct Chat: Codable {
     let to: User?
     let content: ContentChat?
     let is_typing: Bool?
-    let is_read: Bool?
+    var is_read: Bool?
     let created_at: Int
 }
 

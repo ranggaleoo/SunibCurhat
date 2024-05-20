@@ -105,6 +105,16 @@ class SocketService {
             }
         }
         
+        self.on(.res_mark_chat_read) { [weak self] (result: Result<[Chat], Error>) in
+            switch result {
+            case .success(let chats):
+                self?.delegate?.didMarkChatsRead(chats: chats)
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+                break
+            }
+        }
+        
         self.on(.res_chats) { [weak self] (result: Result<ResponseChats, Error>) in
             switch result {
             case .success(let res):

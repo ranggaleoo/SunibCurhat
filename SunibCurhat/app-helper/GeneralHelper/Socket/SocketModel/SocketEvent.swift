@@ -14,6 +14,7 @@ enum SocketEventRequest: String {
     case req_chats
     case req_send_chat
     case req_typing
+    case req_mark_chat_read
     case req_update_block
 }
 
@@ -24,5 +25,6 @@ enum SocketEventResponse: String {
     case res_chats
     case res_send_chat
     case res_typing
+    case res_mark_chat_read
     case res_update_block
 }

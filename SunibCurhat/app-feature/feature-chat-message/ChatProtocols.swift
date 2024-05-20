@@ -34,6 +34,7 @@ protocol ChatPresenterToInteractor: AnyObject {
     func typing(chat: Chat)
     func uploadImage(image: UIImage)
     func updateBlock(conversation: Conversation)
+    func markAsRead(chats: [Chat])
 }
 
 // MARK: Router -
@@ -53,6 +54,7 @@ protocol ChatViewToPresenter: AnyObject {
     func didPop(to: ChatsPresenterToView)
     func didPickImage(image: UIImage)
     func didTapBlock(block: Bool)
+    func didVisibleChatsAsRead(indexPaths: [IndexPath])
     func set(conversation: Conversation?)
     func typingIsStopped()
     

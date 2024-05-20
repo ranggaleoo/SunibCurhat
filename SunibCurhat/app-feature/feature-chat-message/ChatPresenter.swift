@@ -70,6 +70,22 @@ class ChatPresenter: ChatViewToPresenter {
         }
     }
     
+    func didVisibleChatsAsRead(indexPaths: [IndexPath]) {
+        var chats: [Chat] = []
+        for indexpath in indexPaths {
+            if var chat = conversation?.chats.item(at: indexpath.row) {
+                if chat.is_read == nil || chat.is_read == false {
+                    chat.is_read = true
+                    chats.append(chat)
+                }
+            }
+        }
+        
+        if chats.count > 0 {
+            interactor?.markAsRead(chats: chats)
+        }
+    }
+    
     func set(conversation: Conversation?) {
         if var convo = conversation {
             convo.chats.sort { $0.created_at < $1.created_at }
@@ -243,6 +259,17 @@ extension ChatPresenter: SocketDelegate {
         if let typing = chat.is_typing, typing && is_typing {
             view?.showTyping(chat: chat)
         }
+    }
+    
+    func didMarkChatsRead(chats: [Chat]) {
+        for newChat in chats {
+            for i in 0...((conversation?.chats.count ?? 0) - 1) {
+                if newChat.chat_id == conversation?.chats.item(at: i)?.chat_id {
+                    conversation?.chats[i].is_read = newChat.is_read
+                }
+            }
+        }
+        view?.reloadAndKeepOffset()
     }
     
     func didReceiveChat(chat: Chat) {

@@ -170,10 +170,15 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     }
     
     func showTyping(chat: Chat) {
+        /// to-do
+        /// add validation if latest cell is visible on cell, do scroll except not.
         if let message = chat.message(),
            !isFromCurrentSender(message: message) {
-            setTypingIndicatorViewHidden(false, animated: true)
-            messagesCollectionView.scrollToLastItem()
+            setTypingIndicatorViewHidden(false, animated: true) { [weak self] success in
+                if success {
+                    self?.messagesCollectionView.scrollToLastItem()
+                }
+            }
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
@@ -197,6 +202,16 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         if offsetY < 0 {
             // User scrolled to the top, load more messages
             presenter?.didScroll()
+        }
+    }
+    
+    override func scrollViewDidEndDecelerating(_: UIScrollView) {
+        presenter?.didVisibleChatsAsRead(indexPaths: messagesCollectionView.indexPathsForVisibleItems)
+    }
+    
+    override func scrollViewDidEndDragging(_: UIScrollView, willDecelerate declarate: Bool) {
+        if !declarate {
+            presenter?.didVisibleChatsAsRead(indexPaths: messagesCollectionView.indexPathsForVisibleItems)
         }
     }
     

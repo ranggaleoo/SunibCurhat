@@ -64,6 +64,17 @@ class ChatInteractor: ChatPresenterToInteractor {
         }
     }
     
+    func markAsRead(chats: [Chat]) {
+        SocketService.shared.emit(.req_mark_chat_read, chats) { [weak self] (result) in
+            switch result {
+            case .success():
+                debugLog("success request mark chat")
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+            }
+        }
+    }
+    
     func updateBlock(conversation: Conversation) {
         SocketService.shared.emit(.req_update_block, conversation) { [weak self] (result) in
             switch result {

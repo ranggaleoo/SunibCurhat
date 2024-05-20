@@ -21,6 +21,8 @@ protocol SocketDelegate: AnyObject {
     
     func didUserTyping(chat: Chat)
     
+    func didMarkChatsRead(chats: [Chat])
+    
     func didGetChats(response: ResponseChats)
     
     func didUpdateBlockUser(conversation: Conversation)
@@ -39,6 +41,8 @@ extension SocketDelegate {
     func failGetChats(message: String) { }
     
     func didUserTyping(chat: Chat) { }
+    
+    func didMarkChatsRead(chats: [Chat]) { }
     
     func didGetChats(response: ResponseChats) { }
     
