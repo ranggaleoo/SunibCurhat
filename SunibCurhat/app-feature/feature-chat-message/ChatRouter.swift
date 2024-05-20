@@ -32,4 +32,14 @@ class ChatRouter: ChatPresenterToRouter {
             chats.didPopFromChatView(conversation: conversation)
         }
     }
+    
+    func navigateToReport(chat: Chat, from: ChatPresenterToView?) {
+        if let view = from as? UIViewController {
+            let storyboad = UIStoryboard(name: "Report", bundle: nil)
+            if let vc = storyboad.instantiateViewController(withIdentifier: "view_report") as? ReportViewController {
+                vc.chat = chat
+                view.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
 }

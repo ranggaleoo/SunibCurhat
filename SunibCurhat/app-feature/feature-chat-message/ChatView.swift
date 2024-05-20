@@ -221,7 +221,7 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { [weak self] (act) in
-            //report
+            self?.presenter?.didTapReport()
         }))
         
         if presenter?.getStateBlocked() ?? false {

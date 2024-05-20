@@ -70,6 +70,12 @@ class ChatPresenter: ChatViewToPresenter {
         }
     }
     
+    func didTapReport() {
+        if let chat = conversation?.chats.last {
+            router?.navigateToReport(chat: chat, from: view)
+        }
+    }
+    
     func didVisibleChatsAsRead(indexPaths: [IndexPath]) {
         var chats: [Chat] = []
         for indexpath in indexPaths {

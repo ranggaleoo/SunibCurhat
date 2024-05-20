@@ -41,6 +41,7 @@ protocol ChatPresenterToInteractor: AnyObject {
 protocol ChatPresenterToRouter: AnyObject {
     static func createChatModule(conversation: Conversation?) -> MessagesViewController
     func navigateToChats(to: ChatsPresenterToView?, conversation: Conversation?)
+    func navigateToReport(chat: Chat, from: ChatPresenterToView?)
 }
 
 // MARK: Presenter -
@@ -54,6 +55,7 @@ protocol ChatViewToPresenter: AnyObject {
     func didPop(to: ChatsPresenterToView)
     func didPickImage(image: UIImage)
     func didTapBlock(block: Bool)
+    func didTapReport()
     func didVisibleChatsAsRead(indexPaths: [IndexPath])
     func set(conversation: Conversation?)
     func typingIsStopped()
