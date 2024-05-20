@@ -16,6 +16,8 @@ import PermissionsKit
 class ChatView: MessagesViewController, ChatPresenterToView {
     var presenter: ChatViewToPresenter?
     
+    private let outgoingAvatarOverlap: CGFloat = 17.5
+    
     init() {
         super.init(nibName: String(describing: ChatView.self), bundle: Bundle(for: ChatView.self))
     }
@@ -312,12 +314,44 @@ extension ChatView: MessagesDataSource {
     func numberOfItems(inSection section: Int, in messagesCollectionView: MessagesCollectionView) -> Int {
         return presenter?.numberOfItems(inSection: section) ?? 1
     }
+    
+    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        var dateString = ""
+        
+        if isFromCurrentSender(message: message), presenter?.isReadMessage(at: indexPath) ?? false {
+            dateString += "read • "
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateString += dateFormatter.string(from: message.sentDate)
+        
+        if let isNext = presenter?.isNextMessageSameSender(at: indexPath),
+           isNext {
+            return nil
+        }
+        
+        return NSAttributedString(string: dateString, attributes: [.font: UIFont.systemFont(ofSize: 10), .foregroundColor: UINCColor.content_secondary])
+    }
 }
 
 extension ChatView: MessagesDisplayDelegate {
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-        return .bubbleTail(corner, .curved)
+        var messageBubble: MessageStyle = .bubble
+        if isFromCurrentSender(message: message) {
+            messageBubble = .bubbleTail(.bottomRight, .curved)
+            if let isNext = presenter?.isNextMessageSameSender(at: indexPath),
+               isNext {
+                messageBubble = .bubble
+            }
+        } else {
+            messageBubble = .bubbleTail(.bottomLeft, .curved)
+            if let isNext = presenter?.isNextMessageSameSender(at: indexPath),
+               isNext {
+                messageBubble = .bubble
+            }
+        }
+        return messageBubble
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
@@ -334,7 +368,7 @@ extension ChatView: MessagesDisplayDelegate {
         guard let sender = message.sender as? ChatSender,
               let url_avatar = URL(string: sender.avatar) else { return }
         let avatar = Avatar(image: UIImage(symbol: .Person), initials: sender.displayName.initials)
-        avatarView.isHidden = false
+        avatarView.isHidden = presenter?.isNextMessageSameSender(at: indexPath) ?? false
         avatarView.set(avatar: avatar)
         avatarView.circleCorner = true
         avatarView.kf.setImage(with: url_avatar)
@@ -364,10 +398,27 @@ extension ChatView: MessagesDisplayDelegate {
         return UINCColor.primary_foreground
     }
     
+    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+        return [.address, .phoneNumber, .date, .transitInformation, .url, .hashtag, .mention]
+    }
+    
+    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key : Any] {
+        return [
+            .foregroundColor: UINCColor.primary_foreground,
+            .underlineColor: UINCColor.primary_foreground,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+    }    
 }
 
 extension ChatView: MessagesLayoutDelegate {
-    
+    func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if let isNext = presenter?.isNextMessageSameSender(at: indexPath),
+           isNext {
+            return 0
+        }
+        return 20
+    }
 }
 
 extension ChatView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

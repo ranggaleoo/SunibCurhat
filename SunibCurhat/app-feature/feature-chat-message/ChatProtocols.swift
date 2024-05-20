@@ -67,6 +67,9 @@ protocol ChatViewToPresenter: AnyObject {
     func getStateBlockedByMe() -> Bool
     func getSender() -> SenderType?
     func isFromCurrentSender(message: MessageType) -> Bool
+    func isPreviousMessageSameSender(at indexPath: IndexPath) -> Bool
+    func isNextMessageSameSender(at indexPath: IndexPath) -> Bool
+    func isReadMessage(at indexPath: IndexPath) -> Bool
     func messageForItem(at indexPath: IndexPath) -> MessageType?
     func numberOfSections() -> Int?
     func numberOfItems(inSection section: Int) -> Int?

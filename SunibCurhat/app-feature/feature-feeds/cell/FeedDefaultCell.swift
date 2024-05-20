@@ -136,6 +136,14 @@ class FeedDefaultCell: UITableViewCell {
             image_profile.circleCorner = true
             image_profile.kf.setImage(with: url_avatar)
         }
+        
+        if let isMe = timeline?.user?.isMe(), isMe {
+            image_profile.borderColor = UINCColor.primary
+            image_profile.borderWidth = 2
+        } else {
+            image_profile.borderColor = nil
+            image_profile.borderWidth = 0
+        }
     }
     
     @objc func actionShare(_ sender: UIButton) {

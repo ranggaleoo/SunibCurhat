@@ -82,6 +82,18 @@ enum UINCColor: String {
         return UIColor.tertiarySystemBackground
     }()
     
+    static var content_primary: UIColor = {
+        return UIColor.label
+    }()
+    
+    static var content_secondary: UIColor = {
+        return UIColor.secondaryLabel
+    }()
+    
+    static var content_tertiary: UIColor = {
+        return UIColor.tertiaryLabel
+    }()
+    
     static var info: UIColor = {
         return UINCColor.info_color.get()
     }()

@@ -159,6 +159,28 @@ class ChatPresenter: ChatViewToPresenter {
         return message.sender.senderId == (conversation?.me()?.sender().senderId ?? "")
     }
     
+    func isPreviousMessageSameSender(at indexPath: IndexPath) -> Bool {
+        guard indexPath.row - 1 >= 0 else { return false }
+        guard let currentUser = conversation?.chats.item(at: indexPath.row)?.from,
+              let prevUser = conversation?.chats.item(at: indexPath.row - 1)?.from
+        else { return false }
+        return currentUser.user_id == prevUser.user_id
+    }
+    
+    func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
+        guard let totalChat = conversation?.chats.count else { return false }
+        guard indexPath.row + 1 < totalChat else { return false }
+        guard let currentUser = conversation?.chats.item(at: indexPath.row)?.from,
+              let nextUser = conversation?.chats.item(at: indexPath.row + 1)?.from
+        else { return false }
+        return currentUser.user_id == nextUser.user_id
+    }
+    
+    func isReadMessage(at indexPath: IndexPath) -> Bool {
+        return conversation?.chats.item(at: indexPath.row)?.is_read ?? false
+        
+    }
+    
     func messageForItem(at indexPath: IndexPath) -> MessageType? {
         return conversation?.chats.item(at: indexPath.row)?.message()
     }

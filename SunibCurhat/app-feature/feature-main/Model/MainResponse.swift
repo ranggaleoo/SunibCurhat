@@ -85,4 +85,9 @@ struct User: Codable {
     func sender() -> SenderType {
         return ChatSender(senderId: user_id, displayName: name, avatar: avatar)
     }
+    
+    func isMe() -> Bool {
+        let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
+        return (user?.user_id ?? "") == user_id
+    }
 }
