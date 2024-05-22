@@ -81,9 +81,9 @@ class SplashPresenter: SplashViewToPresenter {
 
 extension SplashPresenter: SplashInteractorToPresenter {
     func didGetEndpoint(data: EndpointResponse) {
-        URLConst.server = "http://localhost:8888"
+//        URLConst.server = "http://localhost:8888"
 //        URLConst.server = "https://nimue-api.leonurium.com"
-//        URLConst.server = data.endpoint
+        URLConst.server = data.endpoint
         self.interactor?.getPreferences()
     }
     
