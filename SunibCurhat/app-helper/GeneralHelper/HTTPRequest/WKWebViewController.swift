@@ -74,9 +74,9 @@ class WKWebViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    func loadWebView(url: String, params: [String: Any]?) {
-        guard let _url = URL(string: url) else {
-            fatalError("invalid url: " + url)
+    func loadWebView(url: URL?, params: [String: Any]?) {
+        guard let _url = url else {
+            fatalError("invalid url: \(url)")
         }
         
         var request = URLRequest(url: _url)
@@ -99,9 +99,12 @@ class WKWebViewController: UIViewController, WKNavigationDelegate {
         self.webview.load(request)
     }
     
-    func loadWebViewWithJson<T:Decodable>(url: String, params: [String: Any]?, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+    func loadWebViewWithJson<T:Decodable>(url: String?, params: [String: Any]?, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         isRequestJson = true
-        loadWebView(url: url, params: params)
+        guard let _url = URL(string: url ?? "") else {
+            fatalError("invalid url: \(url)")
+        }
+        loadWebView(url: _url, params: params)
         
         NotificationCenter.default.addObserver(forName: .webViewDidFinish, object: nil, queue: .some(.main)) { (n) in
             self.isRequestJson = false

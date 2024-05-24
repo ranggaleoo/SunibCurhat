@@ -33,9 +33,11 @@ class FeedsRouter: FeedsPresenterToRouter {
         }
     }
     
-    func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?) {
-        if let vc = view as? UIViewController {
-            let comment = CommentRouter.createCommentModule(timeline_id: timeline.timeline_id)
+    func navigateToComment(timeline: TimelineItems?, view: FeedsPresenterToView?) {
+        if let vc = view as? UIViewController,
+           let timelineData = timeline
+        {
+            let comment = CommentRouter.createCommentModule(timeline_id: timelineData.timeline_id)
             comment.hidesBottomBarWhenPushed = true
             vc.navigationController?.pushViewController(comment, animated: true)
         }
@@ -48,15 +50,15 @@ class FeedsRouter: FeedsPresenterToRouter {
 //        }
     }
     
-    func navigateToChat(from: FeedsPresenterToView?, data: ChatRequestJoin) {
-        SocketService.shared.reqJoin(data: data)
+    func navigateToChat(from: FeedsPresenterToView?, conversation: Conversation) {
         if let view = from as? UIViewController {
             view.tabBarController?.selectedIndex = 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                let chat = Chat(name: "Surti", chat_id: "abcd", users: [])
-                let chats = ChatRouter.createChatModule(chat: chat)
-                view.hidesBottomBarWhenPushed = true
-                view.tabBarController?.navigationController?.pushViewController(chats, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+                if let tab = view.tabBarController,
+                   let navigation = tab.selectedViewController as? UINavigationController,
+                   let chats = navigation.topViewController as? ChatsView {
+                    chats.createConversationFromTimeline(conversation: conversation)
+                }
             })
             
 //            if let vc = self.tabBarController?.viewControllers {
@@ -77,11 +79,13 @@ class FeedsRouter: FeedsPresenterToRouter {
         }
     }
     
-    func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?) {
-        if let controller = view as? UIViewController {
+    func navigateToReport(timeline: TimelineItems?, view: FeedsPresenterToView?) {
+        if let controller = view as? UIViewController,
+           let timelineItem = timeline
+        {
             let storyboad = UIStoryboard(name: "Report", bundle: nil)
             if let vc = storyboad.instantiateViewController(withIdentifier: "view_report") as? ReportViewController {
-                vc.timeline = timeline
+                vc.timeline = timelineItem
                 controller.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -89,7 +93,7 @@ class FeedsRouter: FeedsPresenterToRouter {
     
     func navigateToPrivacy(from: FeedsPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)
@@ -99,7 +103,7 @@ class FeedsRouter: FeedsPresenterToRouter {
     
     func navigateToAgreement(from: FeedsPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)
@@ -113,6 +117,14 @@ class FeedsRouter: FeedsPresenterToRouter {
             login.modalTransitionStyle = .crossDissolve
             login.modalPresentationStyle = .fullScreen
             view.present(login, animated: true)
+        }
+    }
+    
+    func navigateToProfile(from: FeedsPresenterToView?) {
+        if let view = from as? UIViewController {
+            let profile = ProfileRouter.createProfileModule()
+            profile.hidesBottomBarWhenPushed = true
+            view.navigationController?.pushViewController(profile, animated: true)
         }
     }
 }

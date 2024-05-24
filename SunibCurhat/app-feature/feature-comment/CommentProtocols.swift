@@ -55,7 +55,7 @@ protocol CommentViewToPresenter: AnyObject {
 protocol CommentInteractorToPresenter: AnyObject {
     func didGetTimeline(data: TimelineItems)
     func didGetComment(data: CommentResponse)
-    func didSendComment()
+    func didSendComment(comment: CommentItems)
     func failGetTimeline(message: String)
     func failGetComments(message: String)
     func failSendComment(message: String)

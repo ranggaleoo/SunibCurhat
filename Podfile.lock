@@ -1,11 +1,17 @@
 PODS:
-  - InputBarAccessoryView (5.5.0):
-    - InputBarAccessoryView/Core (= 5.5.0)
-  - InputBarAccessoryView/Core (5.5.0)
+  - Cloudinary (4.7.0):
+    - Cloudinary/ios (= 4.7.0)
+  - Cloudinary/ios (4.7.0)
+  - Instructions (2.3.0)
   - IQKeyboardManagerSwift (7.0.1)
-  - Kingfisher (7.10.2)
-  - MessageKit (3.8.0):
-    - InputBarAccessoryView (~> 5.5.0)
+  - Kingfisher (7.11.0)
+  - PermissionsKit/CameraPermission (10.0.1):
+    - PermissionsKit/Core
+  - PermissionsKit/Core (10.0.1)
+  - PermissionsKit/NotificationPermission (10.0.1):
+    - PermissionsKit/Core
+  - PermissionsKit/PhotoLibraryPermission (10.0.1):
+    - PermissionsKit/Core
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
     - RxSwift (= 6.6.0)
@@ -15,64 +21,60 @@ PODS:
   - Siren (6.1.2)
   - Socket.IO-Client-Swift (16.1.0):
     - Starscream (~> 4.0.6)
-  - SPPermissions (7.1.5):
-    - SPPermissions/Core (= 7.1.5)
-  - SPPermissions/Camera (7.1.5):
-    - SPPermissions/Core
-  - SPPermissions/Contacts (7.1.5):
-    - SPPermissions/Core
-  - SPPermissions/Core (7.1.5)
-  - SPPermissions/Notification (7.1.5):
-    - SPPermissions/Core
-  - SPPermissions/PhotoLibrary (7.1.5):
-    - SPPermissions/Core
-  - Starscream (4.0.6)
+  - Starscream (4.0.8)
   - TransitionButton (0.5.3)
 
 DEPENDENCIES:
+  - Cloudinary
+  - Instructions
   - IQKeyboardManagerSwift
   - Kingfisher
-  - MessageKit
+  - PermissionsKit/CameraPermission (from `https://github.com/sparrowcode/PermissionsKit`)
+  - PermissionsKit/NotificationPermission (from `https://github.com/sparrowcode/PermissionsKit`)
+  - PermissionsKit/PhotoLibraryPermission (from `https://github.com/sparrowcode/PermissionsKit`)
   - RxCocoa
   - RxSwift
   - Siren
   - Socket.IO-Client-Swift
-  - SPPermissions
-  - SPPermissions/Camera
-  - SPPermissions/Contacts
-  - SPPermissions/Notification
-  - SPPermissions/PhotoLibrary
   - TransitionButton
 
 SPEC REPOS:
   trunk:
-    - InputBarAccessoryView
+    - Cloudinary
+    - Instructions
     - IQKeyboardManagerSwift
     - Kingfisher
-    - MessageKit
     - RxCocoa
     - RxRelay
     - RxSwift
     - Siren
     - Socket.IO-Client-Swift
-    - SPPermissions
     - Starscream
     - TransitionButton
 
+EXTERNAL SOURCES:
+  PermissionsKit:
+    :git: https://github.com/sparrowcode/PermissionsKit
+
+CHECKOUT OPTIONS:
+  PermissionsKit:
+    :commit: 982462971e1901833929977330d4b341acaa94d8
+    :git: https://github.com/sparrowcode/PermissionsKit
+
 SPEC CHECKSUMS:
-  InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
+  Cloudinary: 6eed964153d83d4746ee83dfc783417b368190fc
+  Instructions: 3aac22d036495ba4c40e00747e0a275da40ce53d
   IQKeyboardManagerSwift: 7f6b1b1d1497855d2beea7f2f10ffcc6978525b1
-  Kingfisher: 99edc495d3b7607e6425f0d6f6847b2abd6d716d
-  MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
+  Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  PermissionsKit: 4120f832cb9dca68471e7b41700b09358ed8311b
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   Siren: c951ae243b57160629fb2e4d2f630cbfc5d5452b
   Socket.IO-Client-Swift: ee4b8f80a3db18dd7f32b266ddf273310609443c
-  SPPermissions: c63ac1132badad39917de03a3c9dc2429ace94be
-  Starscream: fb2c4510bebf908c62bd383bcf05e673720e91fd
+  Starscream: 19b5533ddb925208db698f0ac508a100b884a1b9
   TransitionButton: 36283346e17c64775a1b3bc3a7a72940a367de1f
 
-PODFILE CHECKSUM: 2d50706ab12316b0af0d92bb15c5489354f3593c
+PODFILE CHECKSUM: 643d7ec9aeca5e47d1ef65716b1d05263b120de5
 
 COCOAPODS: 1.15.1

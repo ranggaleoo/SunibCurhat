@@ -28,6 +28,7 @@ protocol SplashPresenterToInteractor: AnyObject {
     func getPreferences()
     func refreshToken()
     func getUser()
+    func getMobileNavigation()
 }
 
 
@@ -57,4 +58,6 @@ protocol SplashInteractorToPresenter: AnyObject {
     func failGetToken(title: String, message: String)
     func didGetUser(data: User)
     func failGetUser(title: String, message: String)
+    func didGetMobileNavigation(data: [MobileNavigationPage])
+    func failGetMobileNavigation(title: String, message: String)
 }

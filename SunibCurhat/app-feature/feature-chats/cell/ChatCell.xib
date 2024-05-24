@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -41,18 +42,29 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFh-Nc-qKf">
+                        <rect key="frame" x="44" y="16" width="10" height="10"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="DMp-hi-ktG"/>
+                            <constraint firstAttribute="width" secondItem="xFh-Nc-qKf" secondAttribute="height" multiplier="1:1" id="Yas-HT-IcA"/>
+                            <constraint firstAttribute="width" constant="10" id="gQR-hB-FfO"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Fa9-2u-auy" firstAttribute="top" secondItem="CTH-us-eV5" secondAttribute="top" constant="16" id="4BU-x6-VPz"/>
                     <constraint firstItem="Y1r-TD-k6g" firstAttribute="leading" secondItem="Fa9-2u-auy" secondAttribute="trailing" constant="8" id="6Sv-3f-79R"/>
                     <constraint firstItem="Y1r-TD-k6g" firstAttribute="top" secondItem="CTH-us-eV5" secondAttribute="top" constant="16" id="BK5-gM-RaX"/>
                     <constraint firstItem="Fa9-2u-auy" firstAttribute="leading" secondItem="CTH-us-eV5" secondAttribute="leading" constant="16" id="FBk-2f-yvY"/>
+                    <constraint firstItem="xFh-Nc-qKf" firstAttribute="trailing" secondItem="Fa9-2u-auy" secondAttribute="trailing" id="H9H-Mg-HRB"/>
                     <constraint firstItem="936-vG-WFx" firstAttribute="top" secondItem="Y1r-TD-k6g" secondAttribute="bottom" constant="8" id="Sf8-eb-UPR"/>
                     <constraint firstItem="UvO-S1-dzL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y1r-TD-k6g" secondAttribute="trailing" constant="16" id="b88-6u-2aA"/>
                     <constraint firstItem="UvO-S1-dzL" firstAttribute="top" secondItem="CTH-us-eV5" secondAttribute="top" constant="16" id="c3p-RY-Ird"/>
                     <constraint firstItem="936-vG-WFx" firstAttribute="leading" secondItem="Fa9-2u-auy" secondAttribute="trailing" constant="8" id="cop-eD-OvQ"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="936-vG-WFx" secondAttribute="bottom" constant="16" id="fr1-qZ-v4M"/>
                     <constraint firstAttribute="trailing" secondItem="936-vG-WFx" secondAttribute="trailing" constant="16" id="j78-8K-k5T"/>
+                    <constraint firstItem="xFh-Nc-qKf" firstAttribute="top" secondItem="Fa9-2u-auy" secondAttribute="top" id="lBJ-AP-dUJ"/>
                     <constraint firstAttribute="trailing" secondItem="UvO-S1-dzL" secondAttribute="trailing" constant="16" id="yyd-UD-7CC"/>
                 </constraints>
             </tableViewCellContentView>
@@ -61,8 +73,14 @@
                 <outlet property="lbl_last_chat" destination="936-vG-WFx" id="Cjx-b2-neN"/>
                 <outlet property="lbl_name" destination="Y1r-TD-k6g" id="Vhz-mQ-Q8s"/>
                 <outlet property="lbl_time" destination="UvO-S1-dzL" id="TU7-Kt-Mk1"/>
+                <outlet property="status_view" destination="xFh-Nc-qKf" id="pK8-iF-KAe"/>
             </connections>
-            <point key="canvasLocation" x="229.7709923664122" y="67.25352112676056"/>
+            <point key="canvasLocation" x="229.7709923664122" y="66.549295774647888"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

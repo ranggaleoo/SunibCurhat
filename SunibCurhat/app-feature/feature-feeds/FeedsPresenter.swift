@@ -23,8 +23,24 @@ class FeedsPresenter: FeedsViewToPresenter {
         requestGetTimeline(resetData: false)
     }
     
-    func getUserId() -> String? {
-        return user?.user_id
+    func didAppear() {
+//        view?.startInstructions()
+    }
+    
+    func didPrepareDisappear() {
+        view?.stopInstructions()
+    }
+    
+    func shouldHandleOverlayCoachMarksTap() {
+        view?.stopInstructions()
+    }
+    
+    func didEndInstructions() {
+        UDHelpers.shared.set(value: true, key: .is_show_instructions)
+    }
+    
+    func getUser() -> User? {
+        return user
     }
     
     func didClickNewPost() {
@@ -45,9 +61,20 @@ class FeedsPresenter: FeedsViewToPresenter {
         interactor?.signOut()
     }
     
-    func didClickSendChat(to: String) {
-        let chatReqJoin = ChatRequestJoin(from: user?.user_id ?? "", to: to)
-        router?.navigateToChat(from: view, data: chatReqJoin)
+    func didClickSendChat(to: User) {
+        guard let user = user else { return }
+        let conversation = Conversation(
+            conversation_id: "\(user.user_id).\(to.user_id)",
+            users: [user, to],
+            chats: [],
+            last_chat: nil,
+            last_chat_timestamp: Date().unixTimestampMilliseconds()
+        )
+        interactor?.createConversationRoom(conversation: conversation)
+    }
+    
+    func didClickProfile() {
+        router?.navigateToProfile(from: view)
     }
     
     func requestGetTimeline(resetData: Bool) {
@@ -76,12 +103,12 @@ class FeedsPresenter: FeedsViewToPresenter {
         return timelines.count
     }
     
-    func cellForRowAt(indexPath: IndexPath) -> TimelineItems {
-        return timelines[indexPath.row]
+    func cellForRowAt(indexPath: IndexPath) -> TimelineItems? {
+        return timelines.item(at: indexPath.row)
     }
     
     func didSelectRowAt(indexPath: IndexPath) {
-        let timeline = timelines[indexPath.row]
+        let timeline = timelines.item(at: indexPath.row)
         router?.navigateToComment(timeline: timeline, view: view)
     }
     
@@ -91,42 +118,49 @@ class FeedsPresenter: FeedsViewToPresenter {
         }
     }
     
-    func getTimelineItem(indexPath: IndexPath) -> TimelineItems {
-        return timelines[indexPath.row]
+    func getTimelineItem(indexPath: IndexPath) -> TimelineItems? {
+        return timelines.item(at: indexPath.row)
     }
     
     func requestDeleteTimeline(indexPath: IndexPath) {
-        let timelineId = timelines[indexPath.row].timeline_id
-        timelines.remove(at: indexPath.row)
-        view?.removeCell(index: [indexPath])
-        interactor?.deleteTimelime(user_id: user?.user_id ?? "", timelineID: timelineId)
+        if let timelineId = timelines.item(at: indexPath.row)?.timeline_id {
+            timelines.remove(at: indexPath.row)
+            view?.removeCell(index: [indexPath])
+            interactor?.deleteTimelime(user_id: user?.user_id ?? "", timelineID: timelineId)
+        }
     }
     
     func requestReport(indexPath: IndexPath) {
-        let timeline = timelines[indexPath.row]
+        let timeline = timelines.item(at: indexPath.row)
         router?.navigateToReport(timeline: timeline, view: view)
     }
 
     func requestComment(indexPath: IndexPath) {
-        let timeline = timelines[indexPath.row]
+        let timeline = timelines.item(at: indexPath.row)
         router?.navigateToComment(timeline: timeline, view: view)
     }
     
     func requestLike(indexPath: IndexPath, isLiked: Bool) {
-        let timelineId = timelines[indexPath.row].timeline_id
-        if isLiked {
-            interactor?.unlikeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
-        } else {
-            interactor?.likeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
+        if let timelineId = timelines.item(at: indexPath.row)?.timeline_id {
+            if isLiked {
+                interactor?.unlikeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
+            } else {
+                interactor?.likeTimeline(user_id: user?.user_id ?? "", timelineID: timelineId)
+            }
         }
     }
     
     func requestShare(indexPath: IndexPath) {
-        let timeline_id = timelines[indexPath.row].timeline_id
-        let shareText = timelines[indexPath.row].text_content + " - " + timelines[indexPath.row].name
-        view?.showShareController(items: [shareText], completion: { [weak self] in
-            self?.interactor?.shareTimeline(user_id: self?.user?.user_id ?? "", timelineID: timeline_id)
-        })
+        if let timeline_id = timelines.item(at: indexPath.row)?.timeline_id {
+            
+            var shareText = timelines.item(at: indexPath.row)?.text_content ?? ""
+            shareText += " - "
+            shareText += timelines.item(at: indexPath.row)?.user?.name ?? ""
+            
+            view?.showShareController(items: [shareText], completion: { [weak self] in
+                self?.interactor?.shareTimeline(user_id: self?.user?.user_id ?? "", timelineID: timeline_id)
+            })
+        }
     }
 }
 
@@ -137,6 +171,10 @@ extension FeedsPresenter: FeedsInteractorToPresenter {
         self.timelines.append(timelines)
         view?.reloadTableView()
         view?.finishRefershControl()
+        let isShowInstructions = UDHelpers.shared.getBool(key: .is_show_instructions)
+        if !isShowInstructions {
+            view?.startInstructions()
+        }
     }
     
     func failedGetTimelines(title: String, message: String) {
@@ -169,9 +207,15 @@ extension FeedsPresenter: FeedsInteractorToPresenter {
     func didSignOut() {
         UDHelpers.shared.remove(key: .user)
         UDHelpers.shared.remove(key: .access_token)
-        UDHelpers.shared.remove(key: .refresh_token)
-        UDHelpers.shared.remove(key: .chat_session_id)
-        
+        UDHelpers.shared.remove(key: .refresh_token)        
         router?.navigateToLogin(from: view)
+    }
+    
+    func didCreateConversationRoom(conversation: Conversation) {
+        router?.navigateToChat(from: view, conversation: conversation)
+    }
+    
+    func failCreateConversationRoom(title: String, message: String) {
+        view?.showAlert(title: title, message: message)
     }
 }

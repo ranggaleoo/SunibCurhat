@@ -24,4 +24,12 @@ class ChatsRouter: ChatsPresenterToRouter {
         
         return view
     }
+    
+    func navigateToChat(from: ChatsPresenterToView?, conversation: Conversation?) {
+        if let view = from as? UIViewController {
+            let chat = ChatRouter.createChatModule(conversation: conversation)
+            chat.hidesBottomBarWhenPushed = true
+            view.navigationController?.pushViewController(chat, animated: true)
+        }
+    }
 }

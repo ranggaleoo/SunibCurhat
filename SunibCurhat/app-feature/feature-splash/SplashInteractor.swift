@@ -70,4 +70,19 @@ class SplashInteractor: SplashPresenterToInteractor {
             }
         }
     }
+    
+    func getMobileNavigation() {
+        MobileNavService.shared.getMobileNavigation { [weak self] (result) in
+            switch result {
+            case .failure(let err):
+                self?.presenter?.failGetMobileNavigation(title: "Oops", message: err.localizedDescription + ", Try Again?")
+            case .success(let res):
+                if let data = res.data, res.success {
+                    self?.presenter?.didGetMobileNavigation(data: data)
+                } else {
+                    self?.presenter?.failGetMobileNavigation(title: "Oops", message: res.message + ", Try Again?")
+                }
+            }
+        }
+    }
 }

@@ -16,14 +16,8 @@ struct TimelineResponse: Decodable {
 
 struct TimelineItems: Decodable {
     var timeline_id : Int
-    var user_id     : String
-    var device_id   : String
-    var name        : String
+    var user        : User?
     var text_content: String
-    var avatar      : String
-    
-    @available(*, deprecated, renamed: "created_at", message: "use created_at instead")
-    var timed       : String
     var created_at  : String
     var updated_at  : String
     
@@ -40,14 +34,8 @@ struct TimelineItems: Decodable {
     
     enum Keys: String, CodingKey {
         case timeline_id
-        case user_id
-        case device_id
-        case name
+        case user
         case text_content
-        case avatar
-        
-        @available(*, deprecated, renamed: "created_at", message: "use created_at instead")
-        case timed
         case created_at
         case updated_at
         
@@ -66,12 +54,8 @@ struct TimelineItems: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         self.timeline_id    = try container.decodeIfPresent(Int.self, forKey: .timeline_id) ?? 0
-        self.user_id        = try container.decodeIfPresent(String.self, forKey: .user_id) ?? ""
-        self.device_id      = try container.decodeIfPresent(String.self, forKey: .device_id) ?? ""
-        self.name           = try container.decodeIfPresent(String.self, forKey: .name) ?? "user_name"
+        self.user           = try container.decodeIfPresent(User.self, forKey: .user)
         self.text_content   = try container.decodeIfPresent(String.self, forKey: .text_content) ?? "Content"
-        self.avatar         = try container.decodeIfPresent(String.self, forKey: .avatar) ?? ""
-        self.timed          = try container.decodeIfPresent(String.self, forKey: .timed) ?? ""
         self.created_at     = try container.decodeIfPresent(String.self, forKey: .created_at) ?? ""
         self.updated_at     = try container.decodeIfPresent(String.self, forKey: .updated_at) ?? ""
         

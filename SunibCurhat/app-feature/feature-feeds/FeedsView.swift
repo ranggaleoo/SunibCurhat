@@ -8,13 +8,44 @@
 
 import UIKit
 import Foundation
-import SPPermissions
 import MessageUI
+import Kingfisher
+import PermissionsKit
+import Instructions
 
 class FeedsView: UIViewController, FeedsPresenterToView {
     var presenter: FeedsViewToPresenter?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    public lazy var buttonAddThread: UIBarButtonItem = {
+        let buttonAddThread = UIBarButtonItem(
+            image: UIImage(symbol: .SquareAndPencil, configuration: .init(weight: .bold))?
+                .withTintColor(UINCColor.primary, renderingMode: .alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(toAddThread)
+        )
+        return buttonAddThread
+    }()
+    
+    public lazy var buttonProfile: UIBarButtonItem = {
+        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        avatarImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = 20 // Half of the desired avatar image view's width
+        avatarImageView.kf.setImage(with: URL(string: presenter?.getUser()?.avatar ?? ""))
+        
+        let buttonProfile = UIBarButtonItem(customView: avatarImageView)
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonProfileHandler))
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        return buttonProfile
+    }()
+    
+    private var coachMarksController = CoachMarksController()
     private var refreshControl: UINCRefreshControl = UINCRefreshControl()
     private var storeKit = LeoStoreKit()
     private var product: LeoStoreKitProduct?
@@ -32,11 +63,22 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         presenter?.didLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.didAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter?.didPrepareDisappear()
+    }
+    
     func setupViews() {
+        view.backgroundColor = UINCColor.bg_primary
         requestPermission()
         storeKit.delegate = self
         
-        tableView.backgroundColor = UINCColor.bg_secondary
+        tableView.backgroundColor = UINCColor.bg_primary
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -45,7 +87,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         
         refreshControl.setMaxHeightOfRefreshControl = 200
         refreshControl.setRefreshCircleSize = .medium
-        refreshControl.setFillColor = UIColor.custom.blue
+        refreshControl.setFillColor = UINCColor.bg_primary
         tableView.backgroundView = refreshControl
         
         refreshControl.setOnRefreshing = { [weak self] in
@@ -54,15 +96,27 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         
         navigationDefault()
         title = "Home"
-        let buttonAddThread = UIBarButtonItem(
-            image: UIImage(symbol: .SquareAndPencil, configuration: .init(weight: .bold))?
-                .withTintColor(UINCColor.primary, renderingMode: .alwaysOriginal),
+        let buttonBarMenu = UIBarButtonItem(
+            image: UIImage(symbol: .EllipsisCircleFill),
             style: .plain,
             target: self,
-            action: #selector(toAddThread)
+            action: #selector(actionMenuBarButtonItem)
         )
-        let buttonBarMenu = UIBarButtonItem(image: UIImage(symbol: .EllipsisCircleFill), style: .plain, target: self, action: #selector(actionMenuBarButtonItem))
-        navigationItem.rightBarButtonItems = [buttonBarMenu, buttonAddThread]
+        
+        navigationItem.rightBarButtonItems = [buttonProfile, buttonAddThread]
+
+        coachMarksController.overlay.isUserInteractionEnabled = true
+        coachMarksController.overlay.backgroundColor = UINCColor.black_absolute.get().withAlphaComponent(0.5)
+        coachMarksController.dataSource = self
+        coachMarksController.delegate = self
+    }
+    
+    func startInstructions() {
+        coachMarksController.start(in: .window(over: self))
+    }
+    
+    func stopInstructions() {
+        coachMarksController.stop(immediately: true, emulatingSkip: true)
     }
     
     func showAlert(title: String, message: String) {
@@ -109,12 +163,20 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         debugLog("time permission", timesPermission)
         
         if timesPermission == ConstGlobal.TIMES_REQUEST_PERMISSION || timesPermission == 0 {
-            SPPermissions.dialog([.notification, .camera, .photoLibrary]).show(self, sender: self)
-            UDHelpers.shared.set(value: 1, key: .counterRequestPermission)
+            let authorizedNotification = Permission.notification.authorized
+            if !authorizedNotification {
+                Permission.notification.request { [weak self] in
+                    UDHelpers.shared.set(value: 1, key: .counterRequestPermission)
+                }
+            }
         
         } else {
             UDHelpers.shared.set(value: timesPermission + 1, key: .counterRequestPermission)
         }
+    }
+    
+    @objc private func buttonProfileHandler() {
+        presenter?.didClickProfile()
     }
     
     @objc private func toAddThread() {
@@ -262,14 +324,15 @@ extension FeedsView: FeedDefaultCellDelegate {
             if let timelineItem = presenter?.getTimelineItem(indexPath: index) {
                 
                 let alert = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
-                if let user_id = presenter?.getUserId(), user_id == timelineItem.user_id {
+                if let user_id = presenter?.getUser()?.user_id, user_id == timelineItem.user?.user_id {
                     alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (act) in
                         self.presenter?.requestDeleteTimeline(indexPath: index)
                     }))
                 
-                } else if let user_id = presenter?.getUserId(), user_id != timelineItem.user_id {
-//                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { [weak self] (act) in
-//                        self?.presenter?.didClickSendChat(to: timelineItem.user_id)
+                } else if let user_id = presenter?.getUser()?.user_id, user_id != timelineItem.user?.user_id {
+                    alert.addAction(UIAlertAction(title: "Send Chat", style: .default, handler: { [weak self] (act) in
+                        guard let toUser = timelineItem.user else { return }
+                        self?.presenter?.didClickSendChat(to: toUser)
 //                        if let vc = self.tabBarController?.viewControllers {
 //                            guard let navigationController = vc[1] as? UINavigationController else { return }
 //                            if let c = navigationController.topViewController as? ChatsViewController {
@@ -285,7 +348,7 @@ extension FeedsView: FeedDefaultCellDelegate {
 //                                })
 //                            }
 //                        }
-//                    }))
+                    }))
                     
                     alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (act) in
                         self.presenter?.requestReport(indexPath: index)

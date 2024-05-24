@@ -45,8 +45,8 @@ class CommentInteractor: CommentPresenterToInteractor {
         CommentService.shared.addNewComment(timeline_id: timeline_id, user_id: user_id, name: name, text_content: text_content) { [weak self] (result) in
             switch result {
             case .success(let res):
-                if res.success {
-                    self?.presenter?.didSendComment()
+                if res.success, let data = res.data {
+                    self?.presenter?.didSendComment(comment: data)
                 } else {
                     self?.presenter?.failSendComment(message: res.message)
                 }

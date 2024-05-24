@@ -45,7 +45,7 @@ class RegisterRouter: RegisterPresenterToRouter {
     
     func navigateToPrivacy(from: RegisterPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)
@@ -55,7 +55,7 @@ class RegisterRouter: RegisterPresenterToRouter {
     
     func navigateToAgreement(from: RegisterPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)

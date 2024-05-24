@@ -45,7 +45,7 @@ class LoginRouter: LoginPresenterToRouter {
     
     func navigateToPrivacyPolicy(from: LoginPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)
@@ -55,7 +55,7 @@ class LoginRouter: LoginPresenterToRouter {
     
     func navigateToUserAgreement(from: LoginPresenterToView?, url: String?) {
         if let view = from as? UIViewController,
-           let urlString = url {
+           let urlString = URL(string: url ?? "") {
             let webView = WKWebViewController()
             view.present(webView, animated: true) {
                 webView.loadWebView(url: urlString, params: nil)

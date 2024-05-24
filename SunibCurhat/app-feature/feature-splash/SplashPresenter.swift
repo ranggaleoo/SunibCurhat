@@ -106,6 +106,13 @@ extension SplashPresenter: SplashInteractorToPresenter {
     
     func didGetUser(data: User) {
         UDHelpers.shared.setObject(data, forKey: .user)
+        self.interactor?.getMobileNavigation()
+    }
+    
+    func didGetMobileNavigation(data: [MobileNavigationPage]) {
+        UDHelpers.shared.setObject(data, forKey: .mobile_navigation)
+        let data = UDHelpers.shared.getObject(type: [MobileNavigationPage].self, forKey: .mobile_navigation)
+        debugLog(data)
         SocketService.shared.establishConnection()
         view?.stopLoader()
         router?.navigateToMain(from: view)
@@ -141,6 +148,14 @@ extension SplashPresenter: SplashInteractorToPresenter {
         view?.showAlertConfirm(title: title, message: message, okCompletion: { [weak self] in
             self?.view?.startLoader()
             self?.interactor?.refreshToken()
+        }, cancelCompletion: nil)
+    }
+    
+    func failGetMobileNavigation(title: String, message: String) {
+        view?.stopLoader()
+        view?.showAlertConfirm(title: title, message: message, okCompletion: { [weak self] in
+            self?.view?.startLoader()
+            self?.interactor?.getMobileNavigation()
         }, cancelCompletion: nil)
     }
 }

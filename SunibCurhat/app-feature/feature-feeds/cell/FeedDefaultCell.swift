@@ -65,12 +65,15 @@ class FeedDefaultCell: UITableViewCell {
     
     private func setupViews() {
         selectionStyle = .none
+        backgroundColor = UINCColor.bg_primary
         
         container_round.layer.cornerRadius     = 15
         container_round.layer.shadowColor      = UIColor.black.withAlphaComponent(0.25).cgColor
         container_round.layer.shadowOffset     = CGSize(width: 0, height: 0)
         container_round.layer.shadowRadius     = 10.0
         container_round.layer.shadowOpacity    = 30.0
+        container_round.layer.borderColor      = UINCColor.bg_tertiary.cgColor
+        container_round.layer.borderWidth      = 1
         container_round.layer.masksToBounds    = false
         
         lbl_textcontent.numberOfLines   = 0
@@ -106,9 +109,7 @@ class FeedDefaultCell: UITableViewCell {
     }
     
     private func updateUI() {
-        backgroundColor = UINCColor.bg_secondary
-                
-        lbl_username.text               = timeline?.name
+        lbl_username.text               = timeline?.user?.name
         lbl_textcontent.text            = timeline?.text_content
         lbl_time.text                   = timeline?.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
         isLiked                         = timeline?.is_liked ?? false
@@ -125,15 +126,23 @@ class FeedDefaultCell: UITableViewCell {
             lbl_comment_counter.text = ""
         }
         
-        if let username = timeline?.name {
+        if let username = timeline?.user?.name {
             image_profile.setImageForName(string: username, circular: true)
         }
         
-        if let avatar = timeline?.avatar,
+        if let avatar = timeline?.user?.avatar,
            let url_avatar = URL(string: avatar)
         {
             image_profile.circleCorner = true
             image_profile.kf.setImage(with: url_avatar)
+        }
+        
+        if let isMe = timeline?.user?.isMe(), isMe {
+            image_profile.borderColor = UINCColor.primary
+            image_profile.borderWidth = 2
+        } else {
+            image_profile.borderColor = nil
+            image_profile.borderWidth = 0
         }
     }
     
