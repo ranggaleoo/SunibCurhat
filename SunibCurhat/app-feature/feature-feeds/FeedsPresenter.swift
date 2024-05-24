@@ -23,6 +23,22 @@ class FeedsPresenter: FeedsViewToPresenter {
         requestGetTimeline(resetData: false)
     }
     
+    func didAppear() {
+//        view?.startInstructions()
+    }
+    
+    func didPrepareDisappear() {
+        view?.stopInstructions()
+    }
+    
+    func shouldHandleOverlayCoachMarksTap() {
+        view?.stopInstructions()
+    }
+    
+    func didEndInstructions() {
+        UDHelpers.shared.set(value: true, key: .is_show_instructions)
+    }
+    
     func getUser() -> User? {
         return user
     }
@@ -155,6 +171,10 @@ extension FeedsPresenter: FeedsInteractorToPresenter {
         self.timelines.append(timelines)
         view?.reloadTableView()
         view?.finishRefershControl()
+        let isShowInstructions = UDHelpers.shared.getBool(key: .is_show_instructions)
+        if !isShowInstructions {
+            view?.startInstructions()
+        }
     }
     
     func failedGetTimelines(title: String, message: String) {

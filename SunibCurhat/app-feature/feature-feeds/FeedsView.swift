@@ -11,11 +11,41 @@ import Foundation
 import MessageUI
 import Kingfisher
 import PermissionsKit
+import Instructions
 
 class FeedsView: UIViewController, FeedsPresenterToView {
     var presenter: FeedsViewToPresenter?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    public lazy var buttonAddThread: UIBarButtonItem = {
+        let buttonAddThread = UIBarButtonItem(
+            image: UIImage(symbol: .SquareAndPencil, configuration: .init(weight: .bold))?
+                .withTintColor(UINCColor.primary, renderingMode: .alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(toAddThread)
+        )
+        return buttonAddThread
+    }()
+    
+    public lazy var buttonProfile: UIBarButtonItem = {
+        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        avatarImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = 20 // Half of the desired avatar image view's width
+        avatarImageView.kf.setImage(with: URL(string: presenter?.getUser()?.avatar ?? ""))
+        
+        let buttonProfile = UIBarButtonItem(customView: avatarImageView)
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonProfileHandler))
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        return buttonProfile
+    }()
+    
+    private var coachMarksController = CoachMarksController()
     private var refreshControl: UINCRefreshControl = UINCRefreshControl()
     private var storeKit = LeoStoreKit()
     private var product: LeoStoreKitProduct?
@@ -31,6 +61,16 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.didLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.didAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter?.didPrepareDisappear()
     }
     
     func setupViews() {
@@ -56,34 +96,27 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         
         navigationDefault()
         title = "Home"
-        let buttonAddThread = UIBarButtonItem(
-            image: UIImage(symbol: .SquareAndPencil, configuration: .init(weight: .bold))?
-                .withTintColor(UINCColor.primary, renderingMode: .alwaysOriginal),
-            style: .plain,
-            target: self,
-            action: #selector(toAddThread)
-        )
         let buttonBarMenu = UIBarButtonItem(
             image: UIImage(symbol: .EllipsisCircleFill),
             style: .plain,
             target: self,
             action: #selector(actionMenuBarButtonItem)
         )
-
-        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        avatarImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
-        avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.clipsToBounds = true
-        avatarImageView.layer.cornerRadius = 20 // Half of the desired avatar image view's width
-        avatarImageView.kf.setImage(with: URL(string: presenter?.getUser()?.avatar ?? ""))
-        
-        let buttonProfile = UIBarButtonItem(customView: avatarImageView)
-
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonProfileHandler))
-        avatarImageView.isUserInteractionEnabled = true
-        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
         
         navigationItem.rightBarButtonItems = [buttonProfile, buttonAddThread]
+
+        coachMarksController.overlay.isUserInteractionEnabled = true
+        coachMarksController.overlay.backgroundColor = UINCColor.black_absolute.get().withAlphaComponent(0.5)
+        coachMarksController.dataSource = self
+        coachMarksController.delegate = self
+    }
+    
+    func startInstructions() {
+        coachMarksController.start(in: .window(over: self))
+    }
+    
+    func stopInstructions() {
+        coachMarksController.stop(immediately: true, emulatingSkip: true)
     }
     
     func showAlert(title: String, message: String) {

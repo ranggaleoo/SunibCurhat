@@ -6,6 +6,7 @@ target 'SunibCurhat' do
   use_frameworks!
 
   # Pods for SunibCurhat
+  pod 'Instructions'
   pod 'Kingfisher'
   pod 'Siren'
   pod 'IQKeyboardManagerSwift'

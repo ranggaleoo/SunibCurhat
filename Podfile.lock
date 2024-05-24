@@ -2,6 +2,7 @@ PODS:
   - Cloudinary (4.7.0):
     - Cloudinary/ios (= 4.7.0)
   - Cloudinary/ios (4.7.0)
+  - Instructions (2.3.0)
   - IQKeyboardManagerSwift (7.0.1)
   - Kingfisher (7.11.0)
   - PermissionsKit/CameraPermission (10.0.1):
@@ -25,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - Cloudinary
+  - Instructions
   - IQKeyboardManagerSwift
   - Kingfisher
   - PermissionsKit/CameraPermission (from `https://github.com/sparrowcode/PermissionsKit`)
@@ -39,6 +41,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Cloudinary
+    - Instructions
     - IQKeyboardManagerSwift
     - Kingfisher
     - RxCocoa
@@ -60,6 +63,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Cloudinary: 6eed964153d83d4746ee83dfc783417b368190fc
+  Instructions: 3aac22d036495ba4c40e00747e0a275da40ce53d
   IQKeyboardManagerSwift: 7f6b1b1d1497855d2beea7f2f10ffcc6978525b1
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   PermissionsKit: 4120f832cb9dca68471e7b41700b09358ed8311b
@@ -71,6 +75,6 @@ SPEC CHECKSUMS:
   Starscream: 19b5533ddb925208db698f0ac508a100b884a1b9
   TransitionButton: 36283346e17c64775a1b3bc3a7a72940a367de1f
 
-PODFILE CHECKSUM: 5bdb4b8c6d713cecb7684c69365ee05c0828a892
+PODFILE CHECKSUM: 643d7ec9aeca5e47d1ef65716b1d05263b120de5
 
 COCOAPODS: 1.15.1

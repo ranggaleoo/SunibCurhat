@@ -13,6 +13,8 @@ protocol FeedsPresenterToView: AnyObject {
     var presenter: FeedsViewToPresenter? { get set }
     
     func setupViews()
+    func startInstructions()
+    func stopInstructions()
     func showAlert(title: String, message: String)
     func reloadTableView()
     func finishRefershControl()
@@ -55,6 +57,10 @@ protocol FeedsViewToPresenter: AnyObject {
     var router: FeedsPresenterToRouter? {get set}
     
     func didLoad()
+    func didAppear()
+    func didPrepareDisappear()
+    func shouldHandleOverlayCoachMarksTap()
+    func didEndInstructions()
     func didClickNewPost()
     func didClickPrivacy()
     func didClickAgreement()
