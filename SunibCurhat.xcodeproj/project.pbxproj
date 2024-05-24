@@ -144,6 +144,8 @@
 		AA8A88CF2B9F05940081DD21 /* ChatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8A88C92B9F05940081DD21 /* ChatInteractor.swift */; };
 		AA8A88D02B9F05940081DD21 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8A88CA2B9F05940081DD21 /* ChatView.swift */; };
 		AA8A88D12B9F05940081DD21 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA8A88CB2B9F05940081DD21 /* ChatView.xib */; };
+		AA9740AC2C00C2520047E65E /* CommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9740AB2C00C2520047E65E /* CommentViewCell.xib */; };
+		AA9740AE2C00C2980047E65E /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9740AD2C00C2980047E65E /* CommentViewCell.swift */; };
 		AAA8D1132B724561007C579B /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D10D2B724561007C579B /* LoginPresenter.swift */; };
 		AAA8D1142B724561007C579B /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D10E2B724561007C579B /* LoginRouter.swift */; };
 		AAA8D1152B724561007C579B /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8D10F2B724561007C579B /* LoginProtocols.swift */; };
@@ -372,6 +374,8 @@
 		AA8A88C92B9F05940081DD21 /* ChatInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInteractor.swift; sourceTree = "<group>"; };
 		AA8A88CA2B9F05940081DD21 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		AA8A88CB2B9F05940081DD21 /* ChatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
+		AA9740AB2C00C2520047E65E /* CommentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentViewCell.xib; sourceTree = "<group>"; };
+		AA9740AD2C00C2980047E65E /* CommentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		AAA8D10D2B724561007C579B /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		AAA8D10E2B724561007C579B /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		AAA8D10F2B724561007C579B /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
@@ -649,6 +653,8 @@
 			children = (
 				AA06011C2B7765AC0056B695 /* CommentCell.swift */,
 				AA06011E2B7765BF0056B695 /* CommentCell.xib */,
+				AA9740AB2C00C2520047E65E /* CommentViewCell.xib */,
+				AA9740AD2C00C2980047E65E /* CommentViewCell.swift */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -1608,6 +1614,7 @@
 				168A6BC123167AB400C3018D /* GoogleService-Info.plist in Resources */,
 				AA6A28232B89934D00B66156 /* ChatCell.xib in Resources */,
 				16C3C7F52328EDF100D6B4EE /* Report.storyboard in Resources */,
+				AA9740AC2C00C2520047E65E /* CommentViewCell.xib in Resources */,
 				AA25B8E82B768DB5004F22E1 /* UINCInputArea.xib in Resources */,
 				AA478D8722F649A400BC23A7 /* LaunchScreen.storyboard in Resources */,
 				1603603523018792006A0948 /* AddThread.storyboard in Resources */,
@@ -1854,6 +1861,7 @@
 				AA8A88D02B9F05940081DD21 /* ChatView.swift in Sources */,
 				16C3C7FB2328F52300D6B4EE /* ReportService.swift in Sources */,
 				AA8388552B8B29FE009969FD /* SocketService.swift in Sources */,
+				AA9740AE2C00C2980047E65E /* CommentViewCell.swift in Sources */,
 				AA7A0B4E231BF49000B8233E /* UITableView+Extensions.swift in Sources */,
 				AA36A0892BF0CB8900797B6D /* SocketIOError.swift in Sources */,
 				AA8A88CC2B9F05940081DD21 /* ChatPresenter.swift in Sources */,

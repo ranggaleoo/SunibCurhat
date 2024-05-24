@@ -74,7 +74,7 @@ class CommentView: UIViewController, CommentPresenterToView {
         
         tbl_comment.delegate = self
         tbl_comment.dataSource = self
-        tbl_comment.register(CommentCell.source.nib, forCellReuseIdentifier: CommentCell.source.identifier)
+        tbl_comment.register(CommentViewCell.source.nib, forCellReuseIdentifier: CommentViewCell.source.identifier)
         tbl_comment.refreshControl = refreshControl
 //        refreshControl.addTarget(self, action: #selector(self.didRefresh()), for: .valueChanged)
         
@@ -157,7 +157,7 @@ extension CommentView: UITableViewDelegate, UITableViewDataSource {
 //            return cell
 //        }
 
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.source.identifier) as? CommentCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CommentViewCell.source.identifier) as? CommentViewCell {
             cell.comment = presenter?.cellForRowAt(index: indexPath.row)
             return cell
         }
