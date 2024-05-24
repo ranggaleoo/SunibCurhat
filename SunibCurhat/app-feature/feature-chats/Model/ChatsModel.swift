@@ -8,52 +8,54 @@
 
 import Foundation
 
-protocol DatabaseRepresentation {
-    var representation: [String: Any] { get }
+struct Conversation: Codable {
+    let conversation_id     : String
+    var users               : [User]
+    var chats               : [Chat]
+    var last_chat           : String?
+    var last_chat_timestamp : Int?
+    var blocked_by          : String?
 }
 
-struct Chat {
-    let id          : String?
-    let chat_id     : String
-    let users       : [String]
-    let name        : String
-    let date_create : Date
-    
-    init(name: String, chat_id: String, users: [String]) {
-        self.id             = nil
-        self.chat_id        = chat_id
-        self.users          = users
-        self.name           = name
-        self.date_create    = Date()
+extension Conversation: Equatable {
+    static func == (lhs: Conversation, rhs: Conversation) -> Bool {
+        return lhs.conversation_id == rhs.conversation_id
     }
 }
 
-extension Chat: DatabaseRepresentation {
-    var representation: [String : Any] {
-        var rep: [String : Any] = [
-            "chat_id"       : chat_id,
-            "users"         : users,
-            "name"          : name,
-            "date_create"   : date_create
-        ]
-        
-        if let id = id {
-            rep["id"] = id
+extension Conversation {
+    var isBlocked: Bool {
+        return blocked_by != nil
+    }
+    
+    var isBlockedByMe: Bool {
+        if !isBlocked {
+            return false
         }
         
-        return rep
+        guard let me = me()?.user_id,
+              let blocked_by_me = blocked_by
+        else { return false }
+        
+        return me == blocked_by_me
     }
     
-}
-
-extension Chat: Comparable {
-    
-    static func == (lhs: Chat, rhs: Chat) -> Bool {
-        return lhs.chat_id == rhs.chat_id
+    func me() -> User? {
+        if let me = UDHelpers.shared.getObject(type: User.self, forKey: .user),
+           users.count > 0 {
+            
+            return users.first { (user) in
+                user.user_id == me.user_id
+            }
+        }
+        return nil
     }
     
-    static func < (lhs: Chat, rhs: Chat) -> Bool {
-        return rhs.date_create < lhs.date_create
+    func them() -> [User] {
+        if let me = UDHelpers.shared.getObject(type: User.self, forKey: .user),
+           users.count > 0 {
+            return users.filter({ return me.user_id != $0.user_id })
+        }
+        return []
     }
-    
 }

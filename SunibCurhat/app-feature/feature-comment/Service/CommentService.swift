@@ -34,7 +34,7 @@ class CommentService {
         }
     }
     
-    func addNewComment(timeline_id: Int, user_id: String, name: String, text_content: String, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+    func addNewComment(timeline_id: Int, user_id: String, name: String, text_content: String, completion: @escaping (Result<MainResponse<CommentItems>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let url_request = "\(base_url)/comment/new/"
         let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
@@ -48,7 +48,7 @@ class CommentService {
         
         HTTPRequest.shared.headers[.xplatform] = "IOS"
         HTTPRequest.shared.headers[.authorization] = auth
-        HTTPRequest.shared.connect(url: url_request, params: params, model: MainResponse<String>.self) { (result) in
+        HTTPRequest.shared.connect(url: url_request, params: params, model: MainResponse<CommentItems>.self) { (result) in
             completion(result)
         }
     }

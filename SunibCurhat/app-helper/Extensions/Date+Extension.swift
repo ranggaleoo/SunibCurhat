@@ -2,6 +2,10 @@ import Foundation
 
 public extension Date {
     
+    func unixTimestampMilliseconds() -> Int {
+        return Int(timeIntervalSince1970 * 1000)
+    }
+    
     func timeAgo(numericDates: Bool) -> String {
         let calendar = Calendar.current
         let now = Date()

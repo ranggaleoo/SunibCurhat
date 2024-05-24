@@ -38,6 +38,7 @@ class ReportViewController: UIViewController {
     }
     
     private func delegates() {
+        view.backgroundColor = UINCColor.bg_primary
         title = "Report"
         reportTableView.delegate    = self
         reportTableView.dataSource  = self
@@ -64,7 +65,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         if let timelineUnwrap = timeline {
             self.showLoaderIndicator()
             let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
-            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: timelineUnwrap.user_id, reason: reportOptions[indexPath.row], proof_id: "\(timelineUnwrap.timeline_id)", proof: timelineUnwrap.text_content) { (result) in
+            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: timelineUnwrap.user?.user_id ?? "", reason: reportOptions[indexPath.row], proof_id: "\(timelineUnwrap.timeline_id)", proof: timelineUnwrap.text_content) { (result) in
                 switch result {
                 case .success(let success):
                     self.dismissLoaderIndicator()
@@ -84,7 +85,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         } else if let chatUnwrap = self.chat {
             self.showLoaderIndicator()
             let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
-            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: chatUnwrap.chat_id, reason: reportOptions[indexPath.row], proof_id: chatUnwrap.id, proof: chat?.name) { (result) in
+            ReportService.shared.report(reportBy: user?.user_id ?? "", user_id: chatUnwrap.sender()?.senderId ?? "", reason: reportOptions.item(at: indexPath.row) ?? "", proof_id: chatUnwrap.chat_id, proof: chatUnwrap.sender()?.displayName ?? "") { (result) in
                 switch result {
                 case .failure(let e):
                     self.dismissLoaderIndicator()

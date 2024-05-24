@@ -13,6 +13,8 @@ protocol FeedsPresenterToView: AnyObject {
     var presenter: FeedsViewToPresenter? { get set }
     
     func setupViews()
+    func startInstructions()
+    func stopInstructions()
     func showAlert(title: String, message: String)
     func reloadTableView()
     func finishRefershControl()
@@ -31,6 +33,7 @@ protocol FeedsPresenterToInteractor: AnyObject {
     func shareTimeline(user_id: String, timelineID: Int)
     func deleteTimelime(user_id: String, timelineID: Int)
     func signOut()
+    func createConversationRoom(conversation: Conversation)
 }
 
 
@@ -38,12 +41,13 @@ protocol FeedsPresenterToInteractor: AnyObject {
 protocol FeedsPresenterToRouter: AnyObject {
     static func createFeedsModule() -> UIViewController
     func navigateToNewPost(from: FeedsPresenterToView?)
-    func navigateToComment(timeline: TimelineItems, view: FeedsPresenterToView?)
-    func navigateToChat(from: FeedsPresenterToView?, data: ChatRequestJoin)
-    func navigateToReport(timeline: TimelineItems, view: FeedsPresenterToView?)
+    func navigateToComment(timeline: TimelineItems?, view: FeedsPresenterToView?)
+    func navigateToChat(from: FeedsPresenterToView?, conversation: Conversation)
+    func navigateToReport(timeline: TimelineItems?, view: FeedsPresenterToView?)
     func navigateToPrivacy(from: FeedsPresenterToView?, url: String?)
     func navigateToAgreement(from: FeedsPresenterToView?, url: String?)
     func navigateToLogin(from: FeedsPresenterToView?)
+    func navigateToProfile(from: FeedsPresenterToView?)
 }
 
 // MARK: Presenter -
@@ -53,18 +57,23 @@ protocol FeedsViewToPresenter: AnyObject {
     var router: FeedsPresenterToRouter? {get set}
     
     func didLoad()
+    func didAppear()
+    func didPrepareDisappear()
+    func shouldHandleOverlayCoachMarksTap()
+    func didEndInstructions()
     func didClickNewPost()
     func didClickPrivacy()
     func didClickAgreement()
     func didClickSignOut()
-    func didClickSendChat(to: String)
-    func getUserId() -> String?
+    func didClickSendChat(to: User)
+    func didClickProfile()
+    func getUser() -> User?
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int
-    func cellForRowAt(indexPath: IndexPath) -> TimelineItems
+    func cellForRowAt(indexPath: IndexPath) -> TimelineItems?
     func didSelectRowAt(indexPath: IndexPath)
     func scrollViewDidScroll()
-    func getTimelineItem(indexPath: IndexPath) -> TimelineItems
+    func getTimelineItem(indexPath: IndexPath) -> TimelineItems?
     func requestDeleteTimeline(indexPath: IndexPath)
     func requestReport(indexPath: IndexPath)
     func requestComment(indexPath: IndexPath)
@@ -79,4 +88,6 @@ protocol FeedsInteractorToPresenter: AnyObject {
     func didLikeTimeline(id: Int)
     func didUnlikeTimeline(id: Int)
     func didSignOut()
+    func didCreateConversationRoom(conversation: Conversation)
+    func failCreateConversationRoom(title: String, message: String)
 }

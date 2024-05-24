@@ -82,4 +82,15 @@ class FeedsInteractor: FeedsPresenterToInteractor {
             }
         }
     }
+    
+    func createConversationRoom(conversation: Conversation) {
+        SocketService.shared.emit(.req_create_conversation, conversation, completion: { [weak self] result in
+            switch result {
+            case .success():
+                self?.presenter?.didCreateConversationRoom(conversation: conversation)
+            case .failure(let err):
+                self?.presenter?.failCreateConversationRoom(title: "Oops", message: err.localizedDescription)
+            }
+        })
+    }
 }

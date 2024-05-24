@@ -80,7 +80,8 @@ extension CommentPresenter: CommentInteractorToPresenter {
         view?.reloadComments()
     }
     
-    func didSendComment() {
+    func didSendComment(comment: CommentItems) {
+        comments.insert(comment, at: 0)
         view?.stopLoader()
         view?.reloadComments()
     }

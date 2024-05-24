@@ -6,8 +6,8 @@ extension UIViewController {
     
     public func navigationDefault() {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.backgroundColor = UINCColor.bg_secondary
-        self.navigationController?.navigationBar.tintColor  = UINCColor.secondary
+        self.navigationController?.navigationBar.backgroundColor = UINCColor.bg_primary
+        self.navigationController?.navigationBar.tintColor  = UINCColor.primary
     }
     
     var alertController: UIAlertController? {
@@ -42,7 +42,7 @@ extension UIViewController {
     func showLoaderIndicator() {
         DispatchQueue.main.async {
             if let window = UIApplication.shared.keyWindow {
-                let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+                let activityIndicator = UIActivityIndicatorView(style: .large)
                 activityIndicator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
                 activityIndicator.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
                 activityIndicator.startAnimating()

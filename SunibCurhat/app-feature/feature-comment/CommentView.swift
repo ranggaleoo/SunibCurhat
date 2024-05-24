@@ -74,7 +74,7 @@ class CommentView: UIViewController, CommentPresenterToView {
         
         tbl_comment.delegate = self
         tbl_comment.dataSource = self
-        tbl_comment.register(CommentCell.source.nib, forCellReuseIdentifier: CommentCell.source.identifier)
+        tbl_comment.register(CommentViewCell.source.nib, forCellReuseIdentifier: CommentViewCell.source.identifier)
         tbl_comment.refreshControl = refreshControl
 //        refreshControl.addTarget(self, action: #selector(self.didRefresh()), for: .valueChanged)
         
@@ -105,13 +105,16 @@ class CommentView: UIViewController, CommentPresenterToView {
     }
     
     func updateUI(data: TimelineItems) {
-        image_profile.setImageForName(string: data.name, circular: true)
+        if let username = data.user?.name {
+            image_profile.setImageForName(string: username, circular: true)
+            lbl_username.text = username
+        }
         
-        if let url_avatar = URL(string: data.avatar) {
+        if let url_avatar = URL(string: data.user?.avatar ?? "") {
             image_profile.circleCorner = true
             image_profile.kf.setImage(with: url_avatar)
         }
-        lbl_username.text = data.name
+        
         lbl_time.text = data.created_at.toDate(format: "yyyy-MM-dd HH:mm:ss")?.timeAgo(numericDates: true)
         lbl_textcontent.text = data.text_content
         lbl_like_counter.text = data.total_likes > 1 ? "\(data.total_likes) likes" : "\(data.total_likes) like"
@@ -154,7 +157,7 @@ extension CommentView: UITableViewDelegate, UITableViewDataSource {
 //            return cell
 //        }
 
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.source.identifier) as? CommentCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CommentViewCell.source.identifier) as? CommentViewCell {
             cell.comment = presenter?.cellForRowAt(index: indexPath.row)
             return cell
         }

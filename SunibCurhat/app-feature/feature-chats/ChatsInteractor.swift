@@ -10,4 +10,15 @@ import Foundation
 
 class ChatsInteractor: ChatsPresenterToInteractor {
     weak var presenter: ChatsInteractorToPresenter?
+    
+    func getConversations(request: RequestConversations) {
+        SocketService.shared.emit(.req_conversations, request) { [weak self] result in
+            switch result {
+            case .success(let _):
+                debugLog("success send request conversations")
+            case .failure(let error):
+                self?.presenter?.failRequestConversations(message: error.localizedDescription)
+            }
+        }
+    }
 }

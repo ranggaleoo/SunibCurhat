@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MessageKit
 
 struct MainResponse<T: Decodable>: Decodable {
     var success : Bool
@@ -48,6 +49,7 @@ struct Preferences: Codable {
     let images:                     PreferenceImages?
     let urls:                       PreferenceUrls?
     let contacts:                   PreferenceContacts?
+    let cloudinary:                 PreferenceCloudinary?
 }
 
 struct PreferenceImages: Codable {
@@ -66,10 +68,26 @@ struct PreferenceContacts: Codable {
     let instagram   : String?
 }
 
+struct PreferenceCloudinary: Codable {
+    let cloud_name : String?
+    let preset : String?
+    let tkn : String?
+}
+
 struct User: Codable {
     let user_id:    String
     let device_id:  String
     let email:      String?
     let name:       String
     let avatar:     String
+    var is_online:  Bool?
+    
+    func sender() -> SenderType {
+        return ChatSender(senderId: user_id, displayName: name, avatar: avatar)
+    }
+    
+    func isMe() -> Bool {
+        let user = UDHelpers.shared.getObject(type: User.self, forKey: .user)
+        return (user?.user_id ?? "") == user_id
+    }
 }

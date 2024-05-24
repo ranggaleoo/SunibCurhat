@@ -18,6 +18,7 @@ class MainService {
         let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""
         let auth = "Bearer \(access_token)"
         HTTPRequest.shared.headers[.authorization] = auth
+        HTTPRequest.shared.headers[.xplatform] = "IOS"
         HTTPRequest.shared.connect(url: base_url + "/user/me/", params: nil, model: MainResponse<User>.self) { (result) in
             completion(result)
         }
