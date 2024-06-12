@@ -67,6 +67,7 @@ protocol FeedsViewToPresenter: AnyObject {
     func didClickSignOut()
     func didClickSendChat(to: User)
     func didClickProfile()
+    func didClickQuestionMark()
     func getUser() -> User?
     func requestGetTimeline(resetData: Bool)
     func numberOfRowsInSection() -> Int

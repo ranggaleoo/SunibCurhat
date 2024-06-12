@@ -77,6 +77,12 @@ class FeedsPresenter: FeedsViewToPresenter {
         router?.navigateToProfile(from: view)
     }
     
+    func didClickQuestionMark() {
+        if timelines.count > 0 {
+            view?.startInstructions()
+        }
+    }
+    
     func requestGetTimeline(resetData: Bool) {
         guard !getTimelineMore else {
             return

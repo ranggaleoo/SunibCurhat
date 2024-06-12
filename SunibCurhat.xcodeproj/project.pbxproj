@@ -73,6 +73,7 @@
 		AA36A08F2BF0CC1900797B6D /* SocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36A08E2BF0CC1900797B6D /* SocketEvent.swift */; };
 		AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA3AB36522F7213D0016ADFF /* Main.storyboard */; };
 		AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AB36822F721A30016ADFF /* MainTabBarController.swift */; };
+		AA3DE84A2C1942B90021C886 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3DE8492C1942B90021C886 /* Encodable+Extensions.swift */; };
 		AA43D96025EAC151008B2364 /* HTTPRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D95F25EAC151008B2364 /* HTTPRequestMethod.swift */; };
 		AA43D96725EAF900008B2364 /* CompositeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D96625EAF900008B2364 /* CompositeAppDelegate.swift */; };
 		AA43D96A25EAF928008B2364 /* AppDelegateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA43D96925EAF928008B2364 /* AppDelegateFactory.swift */; };
@@ -300,6 +301,7 @@
 		AA36A08E2BF0CC1900797B6D /* SocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvent.swift; sourceTree = "<group>"; };
 		AA3AB36522F7213D0016ADFF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA3AB36822F721A30016ADFF /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		AA3DE8492C1942B90021C886 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		AA43D95F25EAC151008B2364 /* HTTPRequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestMethod.swift; sourceTree = "<group>"; };
 		AA43D96625EAF900008B2364 /* CompositeAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeAppDelegate.swift; sourceTree = "<group>"; };
 		AA43D96925EAF928008B2364 /* AppDelegateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateFactory.swift; sourceTree = "<group>"; };
@@ -1311,6 +1313,7 @@
 				16E670502357098B008B3108 /* UICollectionView+Extensions.swift */,
 				AA505E13245FA910002FD204 /* UITapGestureRecognizer+Ext.swift */,
 				AAEF7E6C2BF4BDB800BC820E /* Int+Extension.swift */,
+				AA3DE8492C1942B90021C886 /* Encodable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1752,6 +1755,7 @@
 				AA6A281D2B89919600B66156 /* ChatsProtocols.swift in Sources */,
 				AA25B8DF2B768648004F22E1 /* NewPostRouter.swift in Sources */,
 				AA0601192B7727090056B695 /* CommentView.swift in Sources */,
+				AA3DE84A2C1942B90021C886 /* Encodable+Extensions.swift in Sources */,
 				AA7B1B1F2B974F4B008925F4 /* MobileNavProtocols.swift in Sources */,
 				AABF39592307C43B00DEAA63 /* MainResponse.swift in Sources */,
 				AA2BF03725EDB11B00E037AE /* SettingsProtocols.swift in Sources */,

@@ -6,6 +6,11 @@ target 'SunibCurhat' do
   use_frameworks!
 
   # Pods for SunibCurhat
+  pod 'FirebaseCore'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseCrashlytics'
+  pod 'FirebaseMessaging'
+  
   pod 'Instructions'
   pod 'Kingfisher'
   pod 'Siren'
@@ -15,6 +20,7 @@ target 'SunibCurhat' do
   pod 'TransitionButton'
   pod 'Socket.IO-Client-Swift'
   pod 'Cloudinary'
+  
   pod 'PermissionsKit/CameraPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
   pod 'PermissionsKit/PhotoLibraryPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
   pod 'PermissionsKit/NotificationPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'

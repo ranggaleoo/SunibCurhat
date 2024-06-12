@@ -12,10 +12,12 @@ import IQKeyboardManagerSwift
 import Siren
 import StoreKit
 import Cloudinary
+import FirebaseCore
 
 class ThirdPartyAppDelegate: AppDelegateType {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
+        FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
         checkVersionSiren()
 //        GADMobileAds.sharedInstance().start(completionHandler: nil)

@@ -81,6 +81,7 @@ struct User: Codable {
     let name:       String
     let avatar:     String
     var is_online:  Bool?
+    var fcm_token:  String?
     
     func sender() -> SenderType {
         return ChatSender(senderId: user_id, displayName: name, avatar: avatar)

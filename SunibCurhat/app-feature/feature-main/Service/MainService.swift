@@ -13,6 +13,26 @@ class MainService {
     
     static let shared: MainService = MainService()
     
+    func saveFcmToken(user: User, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+        if let socket_url = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)?.urls?.socket_server {
+            
+            let base_url = socket_url + URLConst.path_v1
+            var params: [String: Any] = [:]
+            
+            if let userDict = user.toDictionary() {
+                params["user"] = userDict
+            } else {
+                // Handle error
+                completion(.failure(NSError(domain: "Error converting user to dictionary", code: 1, userInfo: nil)))
+                return
+            }
+            HTTPRequest.shared.headers[.contentType] = "application/json"
+            HTTPRequest.shared.connect(url: base_url + "/savetoken", params: params, model: MainResponse<String>.self) { (result) in
+                completion(result)
+            }
+        }
+    }
+    
     func getUser(completion: @escaping (Result<MainResponse<User>, Error>) -> Void) {
         let base_url = URLConst.server + URLConst.path_v1
         let access_token = UDHelpers.shared.getString(key: .access_token) ?? ""

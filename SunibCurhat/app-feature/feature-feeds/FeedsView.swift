@@ -18,6 +18,17 @@ class FeedsView: UIViewController, FeedsPresenterToView {
     
     @IBOutlet weak var tableView: UITableView!
     
+    public lazy var buttonQuestionMark: UIBarButtonItem = {
+        let buttonQuestionMark = UIBarButtonItem(
+            image: UIImage(symbol: .QuestionmarkCircle)?
+                .withTintColor(UINCColor.primary, renderingMode: .alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(buttonQuestionMarkHandler)
+        )
+        return buttonQuestionMark
+    }()
+    
     public lazy var buttonAddThread: UIBarButtonItem = {
         let buttonAddThread = UIBarButtonItem(
             image: UIImage(symbol: .SquareAndPencil, configuration: .init(weight: .bold))?
@@ -104,6 +115,7 @@ class FeedsView: UIViewController, FeedsPresenterToView {
         )
         
         navigationItem.rightBarButtonItems = [buttonProfile, buttonAddThread]
+        navigationItem.leftBarButtonItems = [buttonQuestionMark]
 
         coachMarksController.overlay.isUserInteractionEnabled = true
         coachMarksController.overlay.backgroundColor = UINCColor.black_absolute.get().withAlphaComponent(0.5)
@@ -184,6 +196,10 @@ class FeedsView: UIViewController, FeedsPresenterToView {
 //        let storyboad = UIStoryboard(name: "AddThread", bundle: nil)
 //        let vc = storyboad.instantiateViewController(withIdentifier: "add_thread")
 //        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func buttonQuestionMarkHandler() {
+        presenter?.didClickQuestionMark()
     }
     
     @objc func actionMenuBarButtonItem(_ sender: UIBarButtonItem) {

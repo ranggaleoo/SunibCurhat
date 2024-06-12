@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import FirebaseMessaging
 
 class NotificationAppDelegate: AppDelegateType {
     var gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        Messaging.messaging().delegate = self
-        requestPermissionNotification(application: application)
+        
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+        
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { _, _ in }
+        )
         application.registerForRemoteNotifications()
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -24,40 +36,26 @@ class NotificationAppDelegate: AppDelegateType {
         }
         debugLog(userInfo)
         let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
-        if pushIsOn {
-            completionHandler(UIBackgroundFetchResult.newData)
-        }
+        completionHandler(UIBackgroundFetchResult.newData)
     }
 }
 
-extension NotificationAppDelegate {
-    private func requestPermissionNotification(application: UIApplication) {
-        if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
+extension NotificationAppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let token = fcmToken,
+           var user = UDHelpers.shared.getObject(type: User.self, forKey: .user) {
+            user.fcm_token = token
+            MainService.shared.saveFcmToken(user: user) { [weak self] result in
+                switch result {
+                case .success(let res):
+                    debugLog("save token: \(res.data)")
+                case .failure(let err):
+                    debugLog("save token: \(err.localizedDescription)")
+                }
+            }
         }
     }
 }
-//
-//extension NotificationAppDelegate: MessagingDelegate {
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        RepoMemory.token_notif = fcmToken
-//        
-//        debugLog("Firebase registration token: \(fcmToken ?? "")")
-//        
-//        let dataDict:[String: String] = ["token": fcmToken ?? ""]
-//        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-//    }
-//}
 
 extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
     
@@ -70,9 +68,7 @@ extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
         debugLog(userInfo)
         debugLog("Received notification with ID = \(id)")
         let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
-        if pushIsOn {
-            completionHandler([])
-        }
+        completionHandler([.sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -84,8 +80,6 @@ extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
         debugLog(userInfo)
         debugLog("Received notification with ID = \(id)")
         let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
-        if pushIsOn {
-            completionHandler()
-        }
+        completionHandler()
     }
 }
