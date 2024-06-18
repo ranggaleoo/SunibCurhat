@@ -16,18 +16,31 @@ class ChatsPresenter: ChatsViewToPresenter {
     private var conversations: [Conversation] = []
     private var user: User? = UDHelpers.shared.getObject(type: User.self, forKey: .user)
     private var isLoadConversation: Bool = false
-    private var isRefresh: Bool = false
+    private var isFirstLoadConversation: Bool = true
+    private var isLoadConversationByRefresh: Bool = false
+    private var isLoadConversationByScroll: Bool = false
     private var page: Int? = 1
     private var item_per_page: Int = 10
     
     func didLoad() {
         SocketService.shared.delegate = self
         view?.setupViews()
+        if !isLoadConversation && isFirstLoadConversation {
+            isLoadConversation = true
+            view?.showSkeletonLoading()
+            interactor?.getConversations(request: RequestConversations(
+                user_id: user?.user_id ?? "",
+                page: self.page ?? 1,
+                item_per_page: self.item_per_page
+            ))
+        }
     }
     
     func didScroll() {
-        if let num_page = self.page, !isLoadConversation {
+        if let num_page = self.page, !isLoadConversation && !isLoadConversationByScroll && !isFirstLoadConversation {
             isLoadConversation = true
+            isLoadConversationByScroll = true
+            view?.showBottomLoader()
             interactor?.getConversations(request: RequestConversations(
                 user_id: user?.user_id ?? "",
                 page: num_page,
@@ -38,11 +51,13 @@ class ChatsPresenter: ChatsViewToPresenter {
     
     
     func didRefresh() {
-        if !isLoadConversation {
-            isRefresh = true
+        if !isLoadConversation && !isLoadConversationByRefresh && !isFirstLoadConversation {
             isLoadConversation = true
+            isLoadConversationByRefresh = true
             page = 1
             conversations.removeAll()
+            view?.showRefreshControl()
+            view?.showSkeletonLoading()
             interactor?.getConversations(request: RequestConversations(
                 user_id: user?.user_id ?? "",
                 page: self.page ?? 1,
@@ -103,12 +118,19 @@ class ChatsPresenter: ChatsViewToPresenter {
             view?.reloadRow(at: [IndexPath(row: index, section: 0)])
         }
     }
+    
+    func isLoading() -> Bool {
+        return isLoadConversation
+    }
 }
 
 extension ChatsPresenter: ChatsInteractorToPresenter {
     func failRequestConversations(message: String) {
-        isRefresh = false
         isLoadConversation = false
+        isLoadConversationByRefresh = false
+        isLoadConversationByScroll = false
+        
+        view?.dismissSkeletonLoading()
         view?.dismissRefreshControl()
         view?.showAlertMessage(title: "Oops", message: message)
     }
@@ -155,18 +177,28 @@ extension ChatsPresenter: SocketDelegate {
         isLoadConversation = false
         page = response.next_page
         
-        if isRefresh {
+        if isFirstLoadConversation {
+            view?.dismissSkeletonLoading()
+            view?.reloadData()
+            isFirstLoadConversation = false
+        } else if isLoadConversationByRefresh {
+            view?.dismissSkeletonLoading()
             view?.dismissRefreshControl()
             view?.reloadData()
-            isRefresh = false
-        } else {
+            isLoadConversationByRefresh = false
+        } else if isLoadConversationByScroll {
+            view?.dismissBottomLoader()
             view?.insertRow(at: indexPaths)
+            isLoadConversationByScroll = false
         }
     }
     
     func failGetConversations(message: String) {
-        isRefresh = false
         isLoadConversation = false
+        isLoadConversationByRefresh = false
+        isLoadConversationByScroll = false
+        
+        view?.dismissSkeletonLoading()
         view?.dismissRefreshControl()
         view?.showAlertMessage(title: "Oops", message: message)
     }

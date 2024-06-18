@@ -41,8 +41,10 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         /// setup navigation bar
         title = name
         navigationDefault()
-        let moreButtonItem = UIBarButtonItem(image: UIImage(symbol: .EllipsisCircleFill), style: .plain, target: self, action: #selector(moreDidPressed))
-        navigationItem.rightBarButtonItems = [moreButtonItem]
+        let moreButtonItem = UIBarButtonItem(image: UIImage(symbol: .Ellipsis, configuration: .init(pointSize: 12, weight: .regular)), style: .plain, target: self, action: #selector(moreDidPressed))
+        let voiceCallButtonItem = UIBarButtonItem(image: UIImage(symbol: .PhoneFill, configuration: .init(pointSize: 12, weight: .regular)), style: .plain, target: self, action: #selector(voiceCallDidPressed))
+        let videoCallButtonItem = UIBarButtonItem(image: UIImage(symbol: .VideoFill, configuration: .init(pointSize: 12, weight: .regular)), style: .plain, target: self, action: #selector(videoCallDidPressed))
+        navigationItem.rightBarButtonItems = [moreButtonItem, voiceCallButtonItem, videoCallButtonItem]
         
         /// delegate
         messageInputBar.delegate = self
@@ -215,6 +217,38 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         if !declarate {
             presenter?.didVisibleChatsAsRead(indexPaths: messagesCollectionView.indexPathsForVisibleItems)
         }
+    }
+    
+    @objc private func videoCallDidPressed() {
+        let authorizedCamera = Permission.camera.authorized
+        let authorizedMicrophone = Permission.microphone.authorized
+        
+        if !authorizedCamera {
+            Permission.camera.request { [weak self] in
+                debugLog("auth camera")
+            }
+            return
+        }
+        
+        if !authorizedMicrophone {
+            Permission.microphone.request { [weak self] in
+                debugLog("auth microphone")
+            }
+            return
+        }
+    }
+    
+    @objc private func voiceCallDidPressed() {
+        let authorizedMicrophone = Permission.microphone.authorized
+                
+        if !authorizedMicrophone {
+            Permission.microphone.request { [weak self] in
+                debugLog("auth microphone")
+            }
+            return
+        }
+        
+        presenter?.didTapVoiceCall()
     }
     
     @objc private func moreDidPressed() {

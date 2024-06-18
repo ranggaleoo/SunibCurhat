@@ -15,9 +15,14 @@ protocol ChatsPresenterToView: AnyObject {
     func setupViews()
     func createConversationFromTimeline(conversation: Conversation)
     func reloadData()
+    func showRefreshControl()
     func dismissRefreshControl()
     func insertRow(at: [IndexPath])
     func reloadRow(at: [IndexPath])
+    func showSkeletonLoading()
+    func dismissSkeletonLoading()
+    func showBottomLoader()
+    func dismissBottomLoader()
     func showAlertMessage(title: String, message: String)
     func didPopFromChatView(conversation: Conversation?)
 }
@@ -49,6 +54,7 @@ protocol ChatsViewToPresenter: AnyObject {
     func numberOfRowsInSection() -> Int
     func cellForRowAt(indexPath: IndexPath) -> Conversation?
     func didSelectRowAt(indexPath: IndexPath)
+    func isLoading() -> Bool
 }
 
 protocol ChatsInteractorToPresenter: AnyObject {

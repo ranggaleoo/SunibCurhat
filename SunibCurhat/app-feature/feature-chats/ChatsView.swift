@@ -8,11 +8,14 @@
 
 import UIKit
 import Foundation
+import SkeletonView
 
 class ChatsView: UIViewController, ChatsPresenterToView {
     var presenter: ChatsViewToPresenter?
     
     @IBOutlet private weak var tableChats: UITableView!
+    @IBOutlet private weak var containerLoaderBottomView: UIView!
+    @IBOutlet private weak var loaderBottomView: UINCLoaderCircular!
     private lazy var refreshControlSimple: UINCRefreshControlSimple = UINCRefreshControlSimple()
     
     init() {
@@ -35,10 +38,14 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         tableChats.delegate = self
         tableChats.dataSource = self
         tableChats.tableFooterView = UIView()
+        tableChats.isSkeletonable = true
         tableChats.register(ChatCell.source.nib, forCellReuseIdentifier: ChatCell.source.identifier)
         
         refreshControlSimple.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
         tableChats.backgroundView = refreshControlSimple
+        loaderBottomView.setColorCircular(UINCColor.secondary)
+        loaderBottomView.setColorMiniCircular(UINCColor.primary)
+        containerLoaderBottomView.isHidden = true
     }
     
     func createConversationFromTimeline(conversation: Conversation) {
@@ -57,8 +64,46 @@ class ChatsView: UIViewController, ChatsPresenterToView {
         tableChats.reloadData()
     }
     
+    func showRefreshControl() {
+        refreshControlSimple.beginRefreshing()
+    }
+    
     func dismissRefreshControl() {
         refreshControlSimple.endRefreshing()
+    }
+    
+    func showSkeletonLoading() {
+        tableChats.showAnimatedSkeleton()
+    }
+    
+    func dismissSkeletonLoading() {
+        tableChats.hideSkeleton()
+    }
+    
+    func showBottomLoader() {
+        // Set the initial state of the view before showing
+        containerLoaderBottomView.transform = CGAffineTransform(translationX: 0, y: containerLoaderBottomView.bounds.height)
+        containerLoaderBottomView.alpha = 0
+        containerLoaderBottomView.isHidden = false
+        loaderBottomView.startAnimating()
+        
+        // Animate the transform and alpha
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.containerLoaderBottomView.transform = .identity
+            self?.containerLoaderBottomView.alpha = 1
+        })
+    }
+    
+    func dismissBottomLoader() {
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.containerLoaderBottomView.transform = CGAffineTransform(translationX: 0, y: self?.containerLoaderBottomView.bounds.height ?? 50)
+            self?.containerLoaderBottomView?.alpha = 0
+        }, completion: { [weak self] _ in
+            // After the animation completes, hide the view and reset transformations
+            self?.containerLoaderBottomView.isHidden = true
+            self?.containerLoaderBottomView.alpha = 1
+            self?.containerLoaderBottomView.transform = .identity
+        })
     }
     
     func showAlertMessage(title: String, message: String) {
@@ -126,5 +171,19 @@ extension ChatsView: UITableViewDelegate, UITableViewDataSource {
         if offsetY > contentHeight - scrollView.frame.height {
             presenter?.didScroll()
         }
+    }
+}
+
+extension ChatsView: SkeletonTableViewDataSource {
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (presenter?.isLoading() ?? false) ? 10 : 0
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return ChatCell.source.identifier
     }
 }

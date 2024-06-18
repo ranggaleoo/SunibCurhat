@@ -28,7 +28,6 @@
 		16EDEB51230E7C8200F5AE69 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */; };
 		16FD4693230D2BD000AD323F /* TimelineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4692230D2BD000AD323F /* TimelineResponse.swift */; };
 		16FD4696230D5B8F00AD323F /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FD4695230D5B8F00AD323F /* CommentService.swift */; };
-		79CDE8404861C4A74D31C85F /* Pods_SunibCurhat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */; };
 		8B2FED25261B0E5200608F27 /* Aliasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FED24261B0E5200608F27 /* Aliasses.swift */; };
 		AA0601152B7727090056B695 /* CommentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA06010F2B7727090056B695 /* CommentPresenter.swift */; };
 		AA0601162B7727090056B695 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0601102B7727090056B695 /* CommentRouter.swift */; };
@@ -213,6 +212,12 @@
 		AAD0E3C722F711CD005CC55A /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3C622F711CD005CC55A /* DatePickerViewController.swift */; };
 		AAD0E3C922F711D7005CC55A /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3C822F711D7005CC55A /* ImagePickerViewController.swift */; };
 		AAD0E3CC22F711EA005CC55A /* ItemWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0E3CB22F711EA005CC55A /* ItemWithImage.swift */; };
+		AADA252A2C1CBFDC0047CCFC /* VoiceCallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADA25242C1CBFDC0047CCFC /* VoiceCallPresenter.swift */; };
+		AADA252B2C1CBFDC0047CCFC /* VoiceCallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADA25252C1CBFDC0047CCFC /* VoiceCallRouter.swift */; };
+		AADA252C2C1CBFDC0047CCFC /* VoiceCallProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADA25262C1CBFDC0047CCFC /* VoiceCallProtocols.swift */; };
+		AADA252D2C1CBFDC0047CCFC /* VoiceCallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADA25272C1CBFDC0047CCFC /* VoiceCallInteractor.swift */; };
+		AADA252E2C1CBFDC0047CCFC /* VoiceCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADA25282C1CBFDC0047CCFC /* VoiceCallView.swift */; };
+		AADA252F2C1CBFDC0047CCFC /* VoiceCallView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADA25292C1CBFDC0047CCFC /* VoiceCallView.xib */; };
 		AAE1029425EB5B230001F026 /* CoreDataAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029325EB5B230001F026 /* CoreDataAppDelegate.swift */; };
 		AAE1029D25EB6A4D0001F026 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029725EB6A4D0001F026 /* SplashPresenter.swift */; };
 		AAE1029E25EB6A4D0001F026 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1029825EB6A4D0001F026 /* SplashRouter.swift */; };
@@ -229,6 +234,7 @@
 		AAF5484B257606C300176378 /* UINCRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5484A257606C300176378 /* UINCRefreshControl.swift */; };
 		AAF5487425760CF000176378 /* FeedAdmobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF5487325760CF000176378 /* FeedAdmobCell.xib */; };
 		AAF5487725760D0500176378 /* FeedAdmobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5487625760D0500176378 /* FeedAdmobCell.swift */; };
+		F7255AAE7DBA5DD75A9E3ABF /* Pods_SunibCurhat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF99FC33BCD41FC45E87D31A /* Pods_SunibCurhat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -253,8 +259,8 @@
 		16EDEB50230E7C8200F5AE69 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		16FD4692230D2BD000AD323F /* TimelineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineResponse.swift; sourceTree = "<group>"; };
 		16FD4695230D5B8F00AD323F /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
-		4212E3969724C5A6980D50D0 /* Pods-SunibCurhat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.debug.xcconfig"; sourceTree = "<group>"; };
-		640EBA3BF5174C2A4F09B7B8 /* Pods-SunibCurhat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.release.xcconfig"; sourceTree = "<group>"; };
+		3AEE54084481B7FCED09060A /* Pods-SunibCurhat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.debug.xcconfig"; path = "Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.debug.xcconfig"; sourceTree = "<group>"; };
+		71E0B887525E2D4D33883948 /* Pods-SunibCurhat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunibCurhat.release.xcconfig"; path = "Target Support Files/Pods-SunibCurhat/Pods-SunibCurhat.release.xcconfig"; sourceTree = "<group>"; };
 		8B2FED24261B0E5200608F27 /* Aliasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliasses.swift; sourceTree = "<group>"; };
 		AA06010F2B7727090056B695 /* CommentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPresenter.swift; sourceTree = "<group>"; };
 		AA0601102B7727090056B695 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 		AA25B8E52B768DA5004F22E1 /* UINCInputArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCInputArea.swift; sourceTree = "<group>"; };
 		AA25B8E72B768DB4004F22E1 /* UINCInputArea.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UINCInputArea.xib; sourceTree = "<group>"; };
 		AA25B8E92B76B4FC004F22E1 /* NewPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostService.swift; sourceTree = "<group>"; };
+		AA28DF2F2C1E938F00B83FFB /* AgoraAudio_iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AgoraAudio_iOS; path = Pods/AgoraAudio_iOS; sourceTree = "<group>"; };
 		AA29CC682B754887002B26B6 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
 		AA2BF02525EDB08E00E037AE /* CodableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStorage.swift; sourceTree = "<group>"; };
 		AA2BF02825EDB0B100E037AE /* DiskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
@@ -444,6 +451,12 @@
 		AAD0E3C622F711CD005CC55A /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		AAD0E3C822F711D7005CC55A /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		AAD0E3CB22F711EA005CC55A /* ItemWithImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWithImage.swift; sourceTree = "<group>"; };
+		AADA25242C1CBFDC0047CCFC /* VoiceCallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallPresenter.swift; sourceTree = "<group>"; };
+		AADA25252C1CBFDC0047CCFC /* VoiceCallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallRouter.swift; sourceTree = "<group>"; };
+		AADA25262C1CBFDC0047CCFC /* VoiceCallProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallProtocols.swift; sourceTree = "<group>"; };
+		AADA25272C1CBFDC0047CCFC /* VoiceCallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallInteractor.swift; sourceTree = "<group>"; };
+		AADA25282C1CBFDC0047CCFC /* VoiceCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallView.swift; sourceTree = "<group>"; };
+		AADA25292C1CBFDC0047CCFC /* VoiceCallView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceCallView.xib; sourceTree = "<group>"; };
 		AAE1029325EB5B230001F026 /* CoreDataAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAppDelegate.swift; sourceTree = "<group>"; };
 		AAE1029725EB6A4D0001F026 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		AAE1029825EB6A4D0001F026 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
@@ -460,7 +473,7 @@
 		AAF5484A257606C300176378 /* UINCRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINCRefreshControl.swift; sourceTree = "<group>"; };
 		AAF5487325760CF000176378 /* FeedAdmobCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedAdmobCell.xib; sourceTree = "<group>"; };
 		AAF5487625760D0500176378 /* FeedAdmobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdmobCell.swift; sourceTree = "<group>"; };
-		EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunibCurhat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF99FC33BCD41FC45E87D31A /* Pods_SunibCurhat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunibCurhat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -468,8 +481,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79CDE8404861C4A74D31C85F /* Pods_SunibCurhat.framework in Frameworks */,
 				AA7A0BCD2B9F3CF20081C66C /* MessageKit in Frameworks */,
+				F7255AAE7DBA5DD75A9E3ABF /* Pods_SunibCurhat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,10 +655,11 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		7E63821394418A71381FE146 /* Frameworks */ = {
+		8DC84C6EDC7B169E73F24D41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EF6E41E4B38E32448CDFD073 /* Pods_SunibCurhat.framework */,
+				AA28DF2F2C1E938F00B83FFB /* AgoraAudio_iOS */,
+				CF99FC33BCD41FC45E87D31A /* Pods_SunibCurhat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1005,8 +1019,8 @@
 				AA1FBE462B8E18180065811B /* ci_scripts */,
 				AA478D7822F649A300BC23A7 /* SunibCurhat */,
 				AA478D7722F649A300BC23A7 /* Products */,
-				DD3FEE4FCF2EF1B4E9DBED08 /* Pods */,
-				7E63821394418A71381FE146 /* Frameworks */,
+				EF8B0ADB15EAA6B9B90FA3AC /* Pods */,
+				8DC84C6EDC7B169E73F24D41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1051,6 +1065,7 @@
 		AA5BABDF22F6541F004253AF /* app-feature */ = {
 			isa = PBXGroup;
 			children = (
+				AADA25232C1CBFBA0047CCFC /* feature-voice-call */,
 				AA28E9E72B9E9D5C00D0CF86 /* feature-chat-message */,
 				AA7B1B162B974F1A008925F4 /* feature-mobile-nav */,
 				AA7B1B042B9712A6008925F4 /* feature-profile */,
@@ -1471,6 +1486,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		AADA25232C1CBFBA0047CCFC /* feature-voice-call */ = {
+			isa = PBXGroup;
+			children = (
+				AADA25242C1CBFDC0047CCFC /* VoiceCallPresenter.swift */,
+				AADA25252C1CBFDC0047CCFC /* VoiceCallRouter.swift */,
+				AADA25262C1CBFDC0047CCFC /* VoiceCallProtocols.swift */,
+				AADA25272C1CBFDC0047CCFC /* VoiceCallInteractor.swift */,
+				AADA25282C1CBFDC0047CCFC /* VoiceCallView.swift */,
+				AADA25292C1CBFDC0047CCFC /* VoiceCallView.xib */,
+			);
+			path = "feature-voice-call";
+			sourceTree = "<group>";
+		};
 		AAE1029625EB6A2D0001F026 /* feature-splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -1526,13 +1554,13 @@
 			path = UINCRefreshControl;
 			sourceTree = "<group>";
 		};
-		DD3FEE4FCF2EF1B4E9DBED08 /* Pods */ = {
+		EF8B0ADB15EAA6B9B90FA3AC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4212E3969724C5A6980D50D0 /* Pods-SunibCurhat.debug.xcconfig */,
-				640EBA3BF5174C2A4F09B7B8 /* Pods-SunibCurhat.release.xcconfig */,
+				3AEE54084481B7FCED09060A /* Pods-SunibCurhat.debug.xcconfig */,
+				71E0B887525E2D4D33883948 /* Pods-SunibCurhat.release.xcconfig */,
 			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1542,12 +1570,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA478D8B22F649A400BC23A7 /* Build configuration list for PBXNativeTarget "SunibCurhat" */;
 			buildPhases = (
-				F42292DF51C843A89504AAAC /* [CP] Check Pods Manifest.lock */,
+				DC5DE6A512CC4502BD74A198 /* [CP] Check Pods Manifest.lock */,
 				AA478D7222F649A300BC23A7 /* Sources */,
 				AA478D7322F649A300BC23A7 /* Frameworks */,
 				AA478D7422F649A300BC23A7 /* Resources */,
-				1564E4B870F3D59FAC0F4EE0 /* [CP] Embed Pods Frameworks */,
 				AA56529E2344DDD600AFEB3D /* ShellScript */,
+				06D7B33C7A8853806E33D763 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1623,6 +1651,7 @@
 				1603603523018792006A0948 /* AddThread.storyboard in Resources */,
 				AA6A28202B89919600B66156 /* ChatsView.xib in Resources */,
 				AAF5487425760CF000176378 /* FeedAdmobCell.xib in Resources */,
+				AADA252F2C1CBFDC0047CCFC /* VoiceCallView.xib in Resources */,
 				AA3AB36622F7213D0016ADFF /* Main.storyboard in Resources */,
 				AA46E2F1245C752F00735490 /* Corona.storyboard in Resources */,
 				AA75AD492347C8AC00C8F739 /* Premium.storyboard in Resources */,
@@ -1645,7 +1674,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1564E4B870F3D59FAC0F4EE0 /* [CP] Embed Pods Frameworks */ = {
+		06D7B33C7A8853806E33D763 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1678,19 +1707,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "\n";
 		};
-		F42292DF51C843A89504AAAC /* [CP] Check Pods Manifest.lock */ = {
+		DC5DE6A512CC4502BD74A198 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SunibCurhat-checkManifestLockResult.txt",
 			);
@@ -1717,6 +1749,7 @@
 				AAD0E39322F70FE6005CC55A /* CurrencyCell.swift in Sources */,
 				AA43D96A25EAF928008B2364 /* AppDelegateFactory.swift in Sources */,
 				AA3AB36922F721A30016ADFF /* MainTabBarController.swift in Sources */,
+				AADA252A2C1CBFDC0047CCFC /* VoiceCallPresenter.swift in Sources */,
 				AA25B8D62B765E33004F22E1 /* SFSymbols.swift in Sources */,
 				AA8A88CD2B9F05940081DD21 /* ChatRouter.swift in Sources */,
 				AAD0E37522F70F02005CC55A /* UIImageView+Extensions.swift in Sources */,
@@ -1729,6 +1762,7 @@
 				AA249F0F232EF05C0047BC99 /* UDHelpers.swift in Sources */,
 				AA6A281B2B89919600B66156 /* ChatsPresenter.swift in Sources */,
 				AAD0E3BD22F71122005CC55A /* Contact.swift in Sources */,
+				AADA252D2C1CBFDC0047CCFC /* VoiceCallInteractor.swift in Sources */,
 				AA29CC692B754887002B26B6 /* RegisterService.swift in Sources */,
 				AA25B8E22B768648004F22E1 /* NewPostView.swift in Sources */,
 				AA7B1B0D2B9712BF008925F4 /* ProfileProtocols.swift in Sources */,
@@ -1747,6 +1781,7 @@
 				AA46E2EA245C55EC00735490 /* UINCLabelBody.swift in Sources */,
 				AAF548472575F7B000176378 /* UINCLabelNote.swift in Sources */,
 				16036037230187AB006A0948 /* AddThreadViewController.swift in Sources */,
+				AADA252C2C1CBFDC0047CCFC /* VoiceCallProtocols.swift in Sources */,
 				AAD0E3B922F71113005CC55A /* ContactsPickerViewController.swift in Sources */,
 				AAD0E38E22F70FBD005CC55A /* LocalePickerViewController.swift in Sources */,
 				AA46E301245D848400735490 /* Corona+TableView.swift in Sources */,
@@ -1763,6 +1798,7 @@
 				AAD0E39622F70FF9005CC55A /* LocaleInfo.swift in Sources */,
 				AAD0E38522F70F5D005CC55A /* TextViewController.swift in Sources */,
 				AA43D96025EAC151008B2364 /* HTTPRequestMethod.swift in Sources */,
+				AADA252B2C1CBFDC0047CCFC /* VoiceCallRouter.swift in Sources */,
 				AA2BF04925EDB33700E037AE /* UINCColor.swift in Sources */,
 				AA0601162B7727090056B695 /* CommentRouter.swift in Sources */,
 				AA46E2FC245D6C0900735490 /* UINCCardCorona.swift in Sources */,
@@ -1781,6 +1817,7 @@
 				AAA8D1292B739456007C579B /* RegisterProtocols.swift in Sources */,
 				AAA8D1272B739456007C579B /* RegisterPresenter.swift in Sources */,
 				AAA8D1172B724561007C579B /* LoginView.swift in Sources */,
+				AADA252E2C1CBFDC0047CCFC /* VoiceCallView.swift in Sources */,
 				AAD0E3B322F710DA005CC55A /* PickerViewViewController.swift in Sources */,
 				AAE102A125EB6A4D0001F026 /* SplashView.swift in Sources */,
 				AA67498C2576320700640A2D /* LeoStoreKitProduct.swift in Sources */,
@@ -2034,7 +2071,7 @@
 		};
 		AA478D8C22F649A400BC23A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4212E3969724C5A6980D50D0 /* Pods-SunibCurhat.debug.xcconfig */;
+			baseConfigurationReference = 3AEE54084481B7FCED09060A /* Pods-SunibCurhat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;
@@ -2058,7 +2095,7 @@
 		};
 		AA478D8D22F649A400BC23A7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 640EBA3BF5174C2A4F09B7B8 /* Pods-SunibCurhat.release.xcconfig */;
+			baseConfigurationReference = 71E0B887525E2D4D33883948 /* Pods-SunibCurhat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunibCurhat/SunibCurhat.entitlements;

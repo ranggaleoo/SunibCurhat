@@ -46,4 +46,14 @@ class SplashRouter: SplashPresenterToRouter {
             controller.present(login, animated: true)
         }
     }
+    
+    func navigateToCustom(from: SplashPresenterToView?, to: UIViewController?) {
+        if let view = from as? UIViewController {
+            if let toCustom = to {
+                view.present(toCustom, animated: true)
+            } else {
+                navigateToMain(from: from)
+            }
+        }
+    }
 }

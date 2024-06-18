@@ -116,6 +116,7 @@ extension SplashPresenter: SplashInteractorToPresenter {
         SocketService.shared.establishConnection()
         view?.stopLoader()
         router?.navigateToMain(from: view)
+//        router?.navigateToCustom(from: view, to: VoiceCallRouter.createVoiceCallModule(conversation: nil))
     }
     
     func failGetEndpoint(title: String, message: String) {

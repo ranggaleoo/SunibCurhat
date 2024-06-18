@@ -38,6 +38,8 @@
 	<string>We need access to your camera to allow you to capture and send photos in real-time during your conversations. You'll be able to take photos directly within the app and share them instantly. Rest assured, we will only use your camera when you actively choose to take a photo within the app.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>We request permission to access your contacts to facilitate sharing feeds and connecting with friends within the app. With access to your contacts, you can easily share updates, or other contents with your friends and contacts directly from within the app. Rest assured, we respect your privacy and will only access your contacts when you choose to share content with specific individuals or groups.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow access to your microphone to enable clear and high-quality audio during voice and video calls with your contacts.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To send photos from your device's photo library, we require access to it. This allows you to select existing photos stored on your device and share them seamlessly during chats. We respect your privacy and assure you that we will only access your photo library when you opt to choose a photo to send.</string>
 	<key>NSUserNotificationsUsageDescription</key>

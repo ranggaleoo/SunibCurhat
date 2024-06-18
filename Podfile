@@ -11,6 +11,8 @@ target 'SunibCurhat' do
   pod 'FirebaseCrashlytics'
   pod 'FirebaseMessaging'
   
+  pod 'AgoraRtcEngine_iOS'
+ 
   pod 'Instructions'
   pod 'Kingfisher'
   pod 'Siren'
@@ -20,10 +22,12 @@ target 'SunibCurhat' do
   pod 'TransitionButton'
   pod 'Socket.IO-Client-Swift'
   pod 'Cloudinary'
+  pod 'SkeletonView'
   
   pod 'PermissionsKit/CameraPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
   pod 'PermissionsKit/PhotoLibraryPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
   pod 'PermissionsKit/NotificationPermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
+  pod 'PermissionsKit/MicrophonePermission', :git => 'https://github.com/sparrowcode/PermissionsKit'
 
 end
 

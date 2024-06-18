@@ -76,6 +76,17 @@ class ChatPresenter: ChatViewToPresenter {
         }
     }
     
+    func didTapVoiceCall() {
+        if let convo = conversation, let user = convo.me() {
+            let mediaConvo = MediaConversation(
+                conversation_id: convo.conversation_id,
+                user: user,
+                role: .Publisher
+            )
+            interactor?.fetchToken(conversation: mediaConvo)
+        }
+    }
+    
     func didVisibleChatsAsRead(indexPaths: [IndexPath]) {
         var chats: [Chat] = []
         for indexpath in indexPaths {
@@ -203,6 +214,10 @@ class ChatPresenter: ChatViewToPresenter {
 extension ChatPresenter: ChatInteractorToPresenter {    
     func failSendChat(message: String) {
         view?.showAlert(title: "Oops", message: message)
+    }
+    
+    func didGetRtcToken(conversation: MediaConversation) {
+        router?.navigateToVoiceCall(from: view, conversation: conversation)
     }
     
     func didUploadImage(response: CLDUploadResult?) {

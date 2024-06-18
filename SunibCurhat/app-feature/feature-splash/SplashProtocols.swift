@@ -37,6 +37,7 @@ protocol SplashPresenterToRouter: AnyObject {
     static func createSplashModule(secondaryBackground: Bool?) -> UIViewController
     func navigateToMain(from: SplashPresenterToView?)
     func navigateToLogin(from: SplashPresenterToView?)
+    func navigateToCustom(from: SplashPresenterToView?, to: UIViewController?)
 }
 
 // MARK: Presenter -

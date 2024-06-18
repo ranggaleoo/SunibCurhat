@@ -35,6 +35,7 @@ protocol ChatPresenterToInteractor: AnyObject {
     func uploadImage(image: UIImage)
     func updateBlock(conversation: Conversation)
     func markAsRead(chats: [Chat])
+    func fetchToken(conversation: MediaConversation)
 }
 
 // MARK: Router -
@@ -42,6 +43,7 @@ protocol ChatPresenterToRouter: AnyObject {
     static func createChatModule(conversation: Conversation?) -> MessagesViewController
     func navigateToChats(to: ChatsPresenterToView?, conversation: Conversation?)
     func navigateToReport(chat: Chat, from: ChatPresenterToView?)
+    func navigateToVoiceCall(from: ChatPresenterToView?, conversation: MediaConversation)
 }
 
 // MARK: Presenter -
@@ -56,6 +58,7 @@ protocol ChatViewToPresenter: AnyObject {
     func didPickImage(image: UIImage)
     func didTapBlock(block: Bool)
     func didTapReport()
+    func didTapVoiceCall()
     func didVisibleChatsAsRead(indexPaths: [IndexPath])
     func set(conversation: Conversation?)
     func typingIsStopped()
@@ -80,6 +83,7 @@ protocol ChatViewToPresenter: AnyObject {
 protocol ChatInteractorToPresenter: AnyObject {
     func failSendChat(message: String)
     func didUploadImage(response: CLDUploadResult?)
+    func didGetRtcToken(conversation: MediaConversation)
     func failUploadImage(message: String)
     func failUpdateBlockUser(message: String)
 }

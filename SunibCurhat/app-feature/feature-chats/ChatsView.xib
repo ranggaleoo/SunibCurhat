@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatsView" customModule="SunibCurhat" customModuleProvider="target">
             <connections>
+                <outlet property="containerLoaderBottomView" destination="8Pw-bo-pI5" id="aFh-kh-FnE"/>
+                <outlet property="loaderBottomView" destination="JPV-aI-X4H" id="5Sx-u0-zD9"/>
                 <outlet property="tableChats" destination="JCT-X4-7Mf" id="JvS-Aw-Ryt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,19 +23,54 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JCT-X4-7Mf">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="668"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Xc-bh-09V">
+                    <rect key="frame" x="0.0" y="727" width="393" height="91"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sg9-4d-iho">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="i5N-jH-pgO"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Pw-bo-pI5">
+                            <rect key="frame" x="0.0" y="1" width="393" height="90"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPV-aI-X4H" customClass="UINCLoaderCircular" customModule="SunibCurhat" customModuleProvider="target">
+                                    <rect key="frame" x="171.66666666666666" y="20" width="50" height="50"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="AR7-7V-IKa"/>
+                                        <constraint firstAttribute="height" constant="50" id="gDx-xV-OOF"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="JPV-aI-X4H" secondAttribute="bottom" constant="20" id="8gj-7V-Nct"/>
+                                <constraint firstItem="JPV-aI-X4H" firstAttribute="centerX" secondItem="8Pw-bo-pI5" secondAttribute="centerX" id="Ivu-HW-leJ"/>
+                                <constraint firstItem="JPV-aI-X4H" firstAttribute="centerY" secondItem="8Pw-bo-pI5" secondAttribute="centerY" id="Y6n-Z3-Tsj"/>
+                                <constraint firstItem="JPV-aI-X4H" firstAttribute="top" secondItem="8Pw-bo-pI5" secondAttribute="top" constant="20" id="mD5-io-ram"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="JCT-X4-7Mf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="A6b-w9-X7j"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JCT-X4-7Mf" secondAttribute="bottom" id="Bxr-kW-xPG"/>
+                <constraint firstItem="3Xc-bh-09V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KiN-7q-MSF"/>
                 <constraint firstItem="JCT-X4-7Mf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="QXR-pe-yuH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3Xc-bh-09V" secondAttribute="trailing" id="UVi-vh-6EL"/>
+                <constraint firstItem="3Xc-bh-09V" firstAttribute="top" secondItem="JCT-X4-7Mf" secondAttribute="bottom" id="cmd-JH-S35"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3Xc-bh-09V" secondAttribute="bottom" id="knW-I4-k8y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JCT-X4-7Mf" secondAttribute="trailing" id="uTu-Bc-99C"/>
             </constraints>
-            <point key="canvasLocation" x="28" y="20"/>
+            <point key="canvasLocation" x="26.717557251908396" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>

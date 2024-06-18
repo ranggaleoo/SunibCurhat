@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import SkeletonView
 
 class ChatCell: UITableViewCell {
     
@@ -48,6 +49,10 @@ class ChatCell: UITableViewCell {
         image_avatar.circleCorner = true
         status_view.circleCorner = true
         status_view.backgroundColor = .clear
+        
+        [self, contentView, image_avatar, lbl_name, lbl_last_chat, lbl_time].forEach({
+            $0.isSkeletonable = true
+        })
     }
     
     func set(conversation: Conversation?) {

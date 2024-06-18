@@ -85,4 +85,21 @@ class ChatInteractor: ChatPresenterToInteractor {
             }
         }
     }
+    
+    func fetchToken(conversation: MediaConversation) {
+        MainService.shared.fetchRtcToken(conversation: conversation) { [weak self] (result) in
+            switch result {
+            case .success(let res):
+                if let token = res.data {
+                    var mediaConversation = conversation
+                    mediaConversation.token = token
+                    self?.presenter?.didGetRtcToken(conversation: mediaConversation)
+                } else {
+                    debugLog(res.message)
+                }
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+            }
+        }
+    }
 }

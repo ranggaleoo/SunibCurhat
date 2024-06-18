@@ -59,3 +59,15 @@ extension Conversation {
         return []
     }
 }
+
+struct MediaConversation: Codable {
+    enum Role: UInt, Codable {
+        case Publisher = 1
+        case Subscriber = 2
+    }
+    
+    let conversation_id: String
+    let user: User
+    let role: Role
+    var token: String?
+}
