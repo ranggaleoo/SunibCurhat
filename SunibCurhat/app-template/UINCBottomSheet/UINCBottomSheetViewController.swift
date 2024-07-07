@@ -11,125 +11,84 @@ import UIKit
 
 class UINCBottomSheetViewController: UIViewController {
     
-    // Create a container for dynamic content
-    private let contentView = UIView()
-    private var contentHeightConstraint: NSLayoutConstraint?
+    private var containerView: UIView!
+    private var contentView: UIView!
+    private var closeButton: UIButton?
     
-    // Optional close button
-    private let closeButton = UIButton(type: .system)
-    var showCloseButton: Bool = false {
-        didSet {
-            closeButton.isHidden = !showCloseButton
-        }
+    var heightFraction: CGFloat = 0.5 // Default to half the screen
+    var showCloseButton: Bool = true
+    var dynamicContentView: UIView?
+    
+    init(heightFraction: CGFloat = 0.5, showCloseButton: Bool = true, contentView: UIView? = nil) {
+        self.heightFraction = heightFraction
+        self.showCloseButton = showCloseButton
+        self.dynamicContentView = contentView
+        super.init(nibName: nil, bundle: nil)
     }
     
-    // Enum to define height modes
-    enum HeightMode {
-        case dynamic
-        case fixed(CGFloat)
-        case ratio(CGFloat)
-    }
-    
-    var heightMode: HeightMode = .dynamic {
-        didSet {
-            updateHeightConstraint()
-        }
-    }
-    
-    // Add any dynamic content here
-    var dynamicContent: UIView? {
-        didSet {
-            setupDynamicContent()
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBottomSheet()
+        setupView()
+        setupGesture()
+        setupContent()
     }
     
-    private func setupBottomSheet() {
-        // Setup the view's appearance
-        view.backgroundColor = UIColor(white: 0, alpha: 0.5)
+    private func setupView() {
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
-        // Add contentView to the view
-        view.addSubview(contentView)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 16
-        contentView.layer.masksToBounds = true
+        containerView = UIView()
+        containerView.backgroundColor = .white
+        containerView.layer.cornerRadius = 16
+        containerView.layer.masksToBounds = true
+        view.addSubview(containerView)
         
-        // Add close button to the contentView
-        closeButton.setTitle("Close", for: .normal)
-        closeButton.addTarget(self, action: #selector(dismissBottomSheet), for: .touchUpInside)
-        closeButton.isHidden = !showCloseButton
-        contentView.addSubview(closeButton)
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        containerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: heightFraction).isActive = true
         
-        // Setup Auto Layout constraints
-        NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        if showCloseButton {
+            closeButton = UIButton(type: .system)
+            closeButton?.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+            closeButton?.tintColor = .gray
+            closeButton?.addTarget(self, action: #selector(dismissSheet), for: .touchUpInside)
+            containerView.addSubview(closeButton!)
             
-            closeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            closeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        ])
+            closeButton?.translatesAutoresizingMaskIntoConstraints = false
+            closeButton?.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8).isActive = true
+            closeButton?.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8).isActive = true
+        }
+    }
+    
+    private func setupContent() {
+        guard let contentView = dynamicContentView else { return }
         
-        contentHeightConstraint = contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 300)
-        contentHeightConstraint?.isActive = true
+        containerView.addSubview(contentView)
         
-        updateHeightConstraint()
-        
-        // Add a tap gesture recognizer to dismiss the bottom sheet
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissBottomSheet))
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.topAnchor.constraint(equalTo: showCloseButton ? closeButton!.bottomAnchor : containerView.topAnchor, constant: 16).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16).isActive = true
+    }
+    
+    private func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissSheet))
         view.addGestureRecognizer(tapGesture)
     }
     
-    private func setupDynamicContent() {
-        // Remove previous content if any
-        contentView.subviews.forEach { if $0 != closeButton { $0.removeFromSuperview() } }
-        
-        guard let dynamicContent = dynamicContent else { return }
-        
-        // Add new dynamic content
-        contentView.addSubview(dynamicContent)
-        dynamicContent.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Setup Auto Layout constraints for dynamic content
-        NSLayoutConstraint.activate([
-            dynamicContent.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 16),
-            dynamicContent.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            dynamicContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            dynamicContent.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
-        ])
-        
-        if case .dynamic = heightMode {
-            contentHeightConstraint?.isActive = false
-        }
+    func show(on parentview: UIViewController, completion: (() -> Void)?) {
+        modalPresentationStyle = .overCurrentContext
+        parentview.present(self, animated: true, completion: completion)
     }
     
-    private func updateHeightConstraint() {
-        contentHeightConstraint?.isActive = false
-        
-        switch heightMode {
-        case .dynamic:
-            contentHeightConstraint = contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 300)
-        case .fixed(let height):
-            contentHeightConstraint = contentView.heightAnchor.constraint(equalToConstant: height)
-        case .ratio(let ratio):
-            contentHeightConstraint = contentView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: ratio)
-        }
-        
-        contentHeightConstraint?.isActive = true
-    }
-    
-    func show(on view: UIViewController, _ completion: (() -> Void)? = nil) {
-        view.present(self, animated: true, completion: completion)
-    }
-    
-    @objc private func dismissBottomSheet() {
+    @objc private func dismissSheet() {
         dismiss(animated: true, completion: nil)
     }
 }

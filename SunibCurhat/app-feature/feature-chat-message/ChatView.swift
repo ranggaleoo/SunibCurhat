@@ -228,21 +228,17 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     }
     
     func showBottomSheetRequestCall(conversation: Conversation?, isFromCurrentSender: Bool?, isCallable: Bool?) {
-        let bottomSheet = UINCBottomSheetViewController()
-        bottomSheet.heightMode = .dynamic
-        bottomSheet.showCloseButton = true
-        let chatRequestView = RequestCallView.init()
-        chatRequestView.translatesAutoresizingMaskIntoConstraints = false
+        let requestCallView = RequestCallView()
+        requestCallView.delegate = self
+        requestCallView.set(conversation: conversation, isFromCurrentSender: isFromCurrentSender, isCallable: isCallable)
         
-        // You can set a specific height for the custom cell view if needed
-        NSLayoutConstraint.activate([
-            chatRequestView.heightAnchor.constraint(equalToConstant: 200) // Adjust height as needed
-        ])
-        
-        bottomSheet.dynamicContent = chatRequestView
+        let bottomSheet = UINCBottomSheetViewController(
+            heightFraction: 0.5,
+            showCloseButton: true,
+            contentView: requestCallView
+        )
         bottomSheet.show(on: self) { [weak self] in
-            chatRequestView.delegate = self
-            chatRequestView.set(conversation: conversation, isFromCurrentSender: isFromCurrentSender, isCallable: isCallable)
+            debugLog("show")
         }
     }
     
