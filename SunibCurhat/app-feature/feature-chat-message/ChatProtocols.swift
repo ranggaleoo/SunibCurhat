@@ -26,6 +26,7 @@ protocol ChatPresenterToView: AnyObject {
     func showTyping(chat: Chat)
     func startLoader()
     func stopLoader()
+    func dismissBottomSheet()
 }
 
 // MARK: Interactor -

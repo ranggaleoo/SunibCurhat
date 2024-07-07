@@ -81,9 +81,9 @@ class RequestCallView: UIView {
     }
     
     func set(conversation: Conversation?, isFromCurrentSender: Bool?, isCallable: Bool?) {
-        self.conversation = conversation
         self.isFromCurrentSender = isFromCurrentSender
         self.isCallable = isCallable
+        self.conversation = conversation
     }
     
     private func updateUI() {
@@ -134,6 +134,8 @@ class RequestCallView: UIView {
                 btn_accept.isHidden = false
             }
         }
+        btn_accept.addTarget(self, action: #selector(acceptBtnHandler), for: .touchUpInside)
+        btn_reject.addTarget(self, action: #selector(rejectBtnHandler), for: .touchUpInside)
     }
     
     @objc func acceptBtnHandler(_ sender: UIButton? = nil) {

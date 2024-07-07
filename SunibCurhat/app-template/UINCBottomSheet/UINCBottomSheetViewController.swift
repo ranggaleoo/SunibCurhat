@@ -10,20 +10,63 @@ import Foundation
 import UIKit
 
 class UINCBottomSheetViewController: UIViewController {
+
+    enum HeightMode {
+        case fixed(CGFloat)
+        case dynamic
+        case ratio(CGFloat)
+    }
     
-    private var containerView: UIView!
-    private var contentView: UIView!
+    private lazy var containerView: UIView = {
+        let containerView = UIView()
+        containerView.backgroundColor = .systemBackground
+        containerView.layer.cornerRadius = 26
+        containerView.layer.masksToBounds = true
+        return containerView
+    }()
+    
+    private var showCloseButton: Bool = true {
+        didSet {
+            closeButton?.isHidden = !showCloseButton
+        }
+    }
+    
+    var heightMode: HeightMode = .dynamic {
+        didSet {
+            self.updateHeight()
+        }
+    }
+   
+    
+    private var dynamicContentView: UIView?
     private var closeButton: UIButton?
+    private var HEIGHT_CONTENT_MINIMUM: CGFloat = 250
     
-    var heightFraction: CGFloat = 0.5 // Default to half the screen
-    var showCloseButton: Bool = true
-    var dynamicContentView: UIView?
-    
-    init(heightFraction: CGFloat = 0.5, showCloseButton: Bool = true, contentView: UIView? = nil) {
-        self.heightFraction = heightFraction
-        self.showCloseButton = showCloseButton
+    init(contentView: UIView? = nil) {
         self.dynamicContentView = contentView
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    func set(height mode: HeightMode) {
+        self.heightMode = mode
+    }
+    
+    func set(showCloseButton: Bool) {
+        self.showCloseButton = showCloseButton
+    }
+    
+    private func updateHeight() {
+        switch heightMode {
+        case .dynamic:
+            break // No height constraint, content will dictate the height
+        case .fixed(let height):
+            let heightBottomSheet = view.bounds.height
+            var realHeight = height >= heightBottomSheet ? heightBottomSheet - 80 : height
+            realHeight = realHeight <= HEIGHT_CONTENT_MINIMUM ? HEIGHT_CONTENT_MINIMUM + 80 : realHeight
+            containerView.heightAnchor.constraint(equalToConstant: realHeight).isActive = true
+        case .ratio(let height):
+            containerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: height).isActive = true
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +75,6 @@ class UINCBottomSheetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         setupGesture()
         setupContent()
@@ -40,30 +82,29 @@ class UINCBottomSheetViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        
-        containerView = UIView()
-        containerView.backgroundColor = .white
-        containerView.layer.cornerRadius = 16
-        containerView.layer.masksToBounds = true
         view.addSubview(containerView)
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        containerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: heightFraction).isActive = true
+        
+        updateHeight()
         
         if showCloseButton {
             closeButton = UIButton(type: .system)
-            closeButton?.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+            closeButton?.setImage(UIImage(symbol: .XmarkCircleFill, configuration: .init(scale: .large)), for: .normal)
             closeButton?.tintColor = .gray
             closeButton?.addTarget(self, action: #selector(dismissSheet), for: .touchUpInside)
             containerView.addSubview(closeButton!)
             
             closeButton?.translatesAutoresizingMaskIntoConstraints = false
-            closeButton?.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8).isActive = true
-            closeButton?.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8).isActive = true
+            closeButton?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+            closeButton?.widthAnchor.constraint(equalToConstant: 30).isActive = true
+            closeButton?.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16).isActive = true
+            closeButton?.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16).isActive = true
         }
+        view.bringSubviewToFront(containerView)
     }
     
     private func setupContent() {
@@ -75,7 +116,8 @@ class UINCBottomSheetViewController: UIViewController {
         contentView.topAnchor.constraint(equalTo: showCloseButton ? closeButton!.bottomAnchor : containerView.topAnchor, constant: 16).isActive = true
         contentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16).isActive = true
         contentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16).isActive = true
+        contentView.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -16).isActive = true
+        containerView.bringSubviewToFront(contentView)
     }
     
     private func setupGesture() {

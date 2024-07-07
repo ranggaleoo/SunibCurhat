@@ -18,6 +18,8 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     
     private let outgoingAvatarOverlap: CGFloat = 17.5
     
+    private var bottomSheet: UINCBottomSheetViewController?
+    
     private lazy var moreButtonItem: UIBarButtonItem = {
         let moreButtonItem = UIBarButtonItem(
             image: UIImage(symbol: .Ellipsis, configuration: .init(pointSize: 12, weight: .regular)),
@@ -232,12 +234,9 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         requestCallView.delegate = self
         requestCallView.set(conversation: conversation, isFromCurrentSender: isFromCurrentSender, isCallable: isCallable)
         
-        let bottomSheet = UINCBottomSheetViewController(
-            heightFraction: 0.5,
-            showCloseButton: true,
-            contentView: requestCallView
-        )
-        bottomSheet.show(on: self) { [weak self] in
+        bottomSheet = UINCBottomSheetViewController(contentView: requestCallView)
+        bottomSheet?.set(height: .dynamic)
+        bottomSheet?.show(on: self) { [weak self] in
             debugLog("show")
         }
     }
@@ -266,6 +265,10 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     
     func stopLoader() {
         dismissLoaderIndicator()
+    }
+    
+    func dismissBottomSheet() {
+        bottomSheet?.dismiss(animated: true)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -526,9 +529,11 @@ extension ChatView: UIImagePickerControllerDelegate, UINavigationControllerDeleg
 extension ChatView: RequestCallViewDelegate {
     func didTapAccept(view: RequestCallView) {
         presenter?.didTapAuthorizeCall(accept: true)
+        bottomSheet?.dismiss(animated: true)
     }
     
     func didTapReject(view: RequestCallView) {
         presenter?.didTapAuthorizeCall(accept: false)
+        bottomSheet?.dismiss(animated: true)
     }
 }

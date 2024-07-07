@@ -93,4 +93,5 @@ enum UDHelpersKey: String {
     case device_id
     case mobile_navigation
     case is_show_instructions
+    case counterRequestCall
 }

@@ -34,6 +34,22 @@ class ChatPresenter: ChatViewToPresenter {
         )
         view?.reloadCollectionView()
         view?.updateCallButton(isCallable: conversation?.is_callable)
+        
+        if let requestCall = conversation?.isRequestCall, requestCall {
+            let counterRequestCall = UDHelpers.shared.getInt(key: .counterRequestCall)
+            if let byMe = conversation?.isRequestCallByMe, !byMe {
+                if counterRequestCall >= 5 {
+                    view?.showBottomSheetRequestCall(
+                        conversation: conversation,
+                        isFromCurrentSender: byMe,
+                        isCallable: conversation?.is_callable
+                    )
+                    UDHelpers.shared.set(value: 0, key: .counterRequestCall)
+                } else {
+                    UDHelpers.shared.set(value: counterRequestCall + 1, key: .counterRequestCall)
+                }
+            }
+        }
     }
     
     func didScroll() {
@@ -406,12 +422,15 @@ extension ChatPresenter: SocketDelegate {
     
     func didUpdateAuthorizeCall(conversation: Conversation) {
         self.conversation = conversation
-        view?.showBottomSheetRequestCall(
-            conversation: conversation,
-            isFromCurrentSender: conversation.isRequestCallByMe,
-            isCallable: conversation.is_callable
-        )
-        view?.updateCallButton(isCallable: conversation.is_callable)
+        view?.dismissBottomSheet()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            self?.view?.showBottomSheetRequestCall(
+                conversation: conversation,
+                isFromCurrentSender: conversation.isRequestCallByMe,
+                isCallable: conversation.is_callable
+            )
+            self?.view?.updateCallButton(isCallable: conversation.is_callable)
+        })
     }
     
     func failUpdateAuthorizeCall(message: String) {

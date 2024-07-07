@@ -97,6 +97,8 @@ class ChatsPresenter: ChatsViewToPresenter {
            let lastChatItem = convo.chats.last {
             conversations[index].chats = convo.chats
             conversations[index].blocked_by = convo.blocked_by
+            conversations[index].request_call_by = convo.request_call_by
+            conversations[index].is_callable = convo.is_callable
             conversations[index].last_chat_timestamp = lastChatItem.created_at
             
             switch lastChatItem.content {
