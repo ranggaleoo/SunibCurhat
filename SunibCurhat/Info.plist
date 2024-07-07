@@ -46,8 +46,10 @@
 	<string>We request permission to send you notifications to keep you updated on new messages, important alerts, and other relevant information. With notifications enabled, you'll never miss a message, ensuring you stay connected and informed even when the app is not actively in use.</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
 		<string>fetch</string>
 		<string>remote-notification</string>
+		<string>voip</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

@@ -80,6 +80,9 @@ class ChatsPresenter: ChatsViewToPresenter {
     }
     
     func createConversation(conversation: Conversation) {
+        view?.dismissSkeletonLoading()
+        view?.dismissRefreshControl()
+        view?.dismissBottomLoader()
         if !conversations.contains(conversation) {
             conversations.insert(conversation, at: 0)
             let indexPaths = [IndexPath(row: 0, section: 0)]

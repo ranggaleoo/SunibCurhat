@@ -86,19 +86,24 @@ class ChatInteractor: ChatPresenterToInteractor {
         }
     }
     
-    func fetchToken(conversation: MediaConversation) {
-        MainService.shared.fetchRtcToken(conversation: conversation) { [weak self] (result) in
+    func requestCall(conversation: Conversation) {
+        SocketService.shared.emit(.req_request_call, conversation) { [weak self] (result) in
             switch result {
-            case .success(let res):
-                if let token = res.data {
-                    var mediaConversation = conversation
-                    mediaConversation.token = token
-                    self?.presenter?.didGetRtcToken(conversation: mediaConversation)
-                } else {
-                    debugLog(res.message)
-                }
+            case .success():
+                debugLog("success send request call")
             case .failure(let err):
-                debugLog(err.localizedDescription)
+                self?.presenter?.failingRequestCall(messagge: err.localizedDescription)
+            }
+        }
+    }
+    
+    func authorizeCall(conversation: Conversation) {
+        SocketService.shared.emit(.req_authorize_call, conversation) { [weak self] (result) in
+            switch result  {
+            case .success():
+                debugLog("success send auth call \(String(describing: conversation.conversation_id))")
+            case .failure(let err):
+                self?.presenter?.failAuthorizeCall(message: err.localizedDescription)
             }
         }
     }

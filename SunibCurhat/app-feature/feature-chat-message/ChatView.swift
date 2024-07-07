@@ -18,6 +18,40 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     
     private let outgoingAvatarOverlap: CGFloat = 17.5
     
+    private lazy var moreButtonItem: UIBarButtonItem = {
+        let moreButtonItem = UIBarButtonItem(
+            image: UIImage(symbol: .Ellipsis, configuration: .init(pointSize: 12, weight: .regular)),
+            style: .plain,
+            target: self,
+            action: #selector(moreDidPressed)
+        )
+        return moreButtonItem
+    }()
+    
+    private lazy var voiceCallButtonItem: UIBarButtonItem = {
+        let imageVoiceCall: UIImage? = UIImage(symbol: .PhoneFill, configuration: .init(pointSize: 12, weight: .regular))?.withTintColor(UINCColor.primary.withAlphaComponent(0.3), renderingMode: .alwaysOriginal)
+        
+        let voiceCallButtonItem = UIBarButtonItem(
+            image: imageVoiceCall,
+            style: .plain,
+            target: self,
+            action: #selector(self.voiceCallDidPressed)
+        )
+        return voiceCallButtonItem
+    }()
+    
+    private lazy var videoCallButtonItem: UIBarButtonItem = {
+        let imageVideoCall: UIImage? = UIImage(symbol: .VideoFill, configuration: .init(pointSize: 12, weight: .regular))?.withTintColor(UINCColor.primary.withAlphaComponent(0.3), renderingMode: .alwaysOriginal)
+        
+        let videoCallButtonItem = UIBarButtonItem(
+            image: imageVideoCall,
+            style: .plain,
+            target: self,
+            action: #selector(self.videoCallDidPressed)
+        )
+        return videoCallButtonItem
+    }()
+    
     init() {
         super.init(nibName: String(describing: ChatView.self), bundle: Bundle(for: ChatView.self))
     }
@@ -33,7 +67,6 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        messageInputBar.inputTextView.becomeFirstResponder()
         messagesCollectionView.scrollToLastItem()
     }
     
@@ -41,9 +74,6 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         /// setup navigation bar
         title = name
         navigationDefault()
-        let moreButtonItem = UIBarButtonItem(image: UIImage(symbol: .Ellipsis, configuration: .init(pointSize: 12, weight: .regular)), style: .plain, target: self, action: #selector(moreDidPressed))
-        let voiceCallButtonItem = UIBarButtonItem(image: UIImage(symbol: .PhoneFill, configuration: .init(pointSize: 12, weight: .regular)), style: .plain, target: self, action: #selector(voiceCallDidPressed))
-        let videoCallButtonItem = UIBarButtonItem(image: UIImage(symbol: .VideoFill, configuration: .init(pointSize: 12, weight: .regular)), style: .plain, target: self, action: #selector(videoCallDidPressed))
         navigationItem.rightBarButtonItems = [moreButtonItem, voiceCallButtonItem, videoCallButtonItem]
         
         /// delegate
@@ -157,6 +187,22 @@ class ChatView: MessagesViewController, ChatPresenterToView {
         navigationItem.titleView = titleView
     }
     
+    func updateCallButton(isCallable: Bool?) {
+        if let is_callable = isCallable, is_callable {
+            guard let imageVoiceCall: UIImage = UIImage(symbol: .PhoneFill, configuration: .init(pointSize: 12, weight: .regular)),
+                  let imageVideoCall: UIImage = UIImage(symbol: .VideoFill, configuration: .init(pointSize: 12, weight: .regular))
+            else { return }
+            
+            if #available(iOS 17.0, *) {
+                voiceCallButtonItem.setSymbolImage(imageVoiceCall, contentTransition: .automatic, options: .repeat(3))
+                videoCallButtonItem.setSymbolImage(imageVideoCall, contentTransition: .automatic, options: .repeat(3))
+            } else {
+                voiceCallButtonItem.image = imageVoiceCall
+                videoCallButtonItem.image = imageVideoCall
+            }
+        }
+    }
+    
     func reloadCollectionView() {
         messagesCollectionView.reloadData()
         messageInputBar.inputTextView.text = ""
@@ -171,6 +217,33 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     
     func showAlert(title: String, message: String) {
         showAlert(title: title, message: message, OKcompletion: nil, CancelCompletion: nil)
+    }
+    
+    func showAlertRequestCall(title: String, message: String) {
+        showAlert(title: title, message: message) { [weak self] action in
+            self?.presenter?.didTapRequestAuthorizeCall()
+        } CancelCompletion: { [weak self] action in
+            // cancel
+        }
+    }
+    
+    func showBottomSheetRequestCall(conversation: Conversation?, isFromCurrentSender: Bool?, isCallable: Bool?) {
+        let bottomSheet = UINCBottomSheetViewController()
+        bottomSheet.heightMode = .dynamic
+        bottomSheet.showCloseButton = true
+        let chatRequestView = RequestCallView.init()
+        chatRequestView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // You can set a specific height for the custom cell view if needed
+        NSLayoutConstraint.activate([
+            chatRequestView.heightAnchor.constraint(equalToConstant: 200) // Adjust height as needed
+        ])
+        
+        bottomSheet.dynamicContent = chatRequestView
+        bottomSheet.show(on: self) { [weak self] in
+            chatRequestView.delegate = self
+            chatRequestView.set(conversation: conversation, isFromCurrentSender: isFromCurrentSender, isCallable: isCallable)
+        }
     }
     
     func showTyping(chat: Chat) {
@@ -220,35 +293,11 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     }
     
     @objc private func videoCallDidPressed() {
-        let authorizedCamera = Permission.camera.authorized
-        let authorizedMicrophone = Permission.microphone.authorized
-        
-        if !authorizedCamera {
-            Permission.camera.request { [weak self] in
-                debugLog("auth camera")
-            }
-            return
-        }
-        
-        if !authorizedMicrophone {
-            Permission.microphone.request { [weak self] in
-                debugLog("auth microphone")
-            }
-            return
-        }
+        presenter?.didTapCall(medium: .VideoCall)
     }
     
-    @objc private func voiceCallDidPressed() {
-        let authorizedMicrophone = Permission.microphone.authorized
-                
-        if !authorizedMicrophone {
-            Permission.microphone.request { [weak self] in
-                debugLog("auth microphone")
-            }
-            return
-        }
-        
-        presenter?.didTapVoiceCall()
+    @objc private func voiceCallDidPressed() {        
+        presenter?.didTapCall(medium: .VoiceCall)
     }
     
     @objc private func moreDidPressed() {
@@ -474,5 +523,16 @@ extension ChatView: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             presenter?.didPop(to: chats)
         }
         return nil
+    }
+}
+
+// delegate custom cell
+extension ChatView: RequestCallViewDelegate {
+    func didTapAccept(view: RequestCallView) {
+        presenter?.didTapAuthorizeCall(accept: true)
+    }
+    
+    func didTapReject(view: RequestCallView) {
+        presenter?.didTapAuthorizeCall(accept: false)
     }
 }

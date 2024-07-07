@@ -1,39 +1,39 @@
 PODS:
-  - AgoraRtcEngine_iOS (4.3.2):
-    - AgoraRtcEngine_iOS/AIAEC (= 4.3.2)
-    - AgoraRtcEngine_iOS/AINS (= 4.3.2)
-    - AgoraRtcEngine_iOS/AudioBeauty (= 4.3.2)
-    - AgoraRtcEngine_iOS/ClearVision (= 4.3.2)
-    - AgoraRtcEngine_iOS/ContentInspect (= 4.3.2)
-    - AgoraRtcEngine_iOS/FaceCapture (= 4.3.2)
-    - AgoraRtcEngine_iOS/FaceDetection (= 4.3.2)
-    - AgoraRtcEngine_iOS/LipSync (= 4.3.2)
-    - AgoraRtcEngine_iOS/ReplayKit (= 4.3.2)
-    - AgoraRtcEngine_iOS/RtcBasic (= 4.3.2)
-    - AgoraRtcEngine_iOS/SpatialAudio (= 4.3.2)
-    - AgoraRtcEngine_iOS/VideoAv1CodecDec (= 4.3.2)
-    - AgoraRtcEngine_iOS/VideoAv1CodecEnc (= 4.3.2)
-    - AgoraRtcEngine_iOS/VideoCodecDec (= 4.3.2)
-    - AgoraRtcEngine_iOS/VideoCodecEnc (= 4.3.2)
-    - AgoraRtcEngine_iOS/VirtualBackground (= 4.3.2)
-    - AgoraRtcEngine_iOS/VQA (= 4.3.2)
-  - AgoraRtcEngine_iOS/AIAEC (4.3.2)
-  - AgoraRtcEngine_iOS/AINS (4.3.2)
-  - AgoraRtcEngine_iOS/AudioBeauty (4.3.2)
-  - AgoraRtcEngine_iOS/ClearVision (4.3.2)
-  - AgoraRtcEngine_iOS/ContentInspect (4.3.2)
-  - AgoraRtcEngine_iOS/FaceCapture (4.3.2)
-  - AgoraRtcEngine_iOS/FaceDetection (4.3.2)
-  - AgoraRtcEngine_iOS/LipSync (4.3.2)
-  - AgoraRtcEngine_iOS/ReplayKit (4.3.2)
-  - AgoraRtcEngine_iOS/RtcBasic (4.3.2)
-  - AgoraRtcEngine_iOS/SpatialAudio (4.3.2)
-  - AgoraRtcEngine_iOS/VideoAv1CodecDec (4.3.2)
-  - AgoraRtcEngine_iOS/VideoAv1CodecEnc (4.3.2)
-  - AgoraRtcEngine_iOS/VideoCodecDec (4.3.2)
-  - AgoraRtcEngine_iOS/VideoCodecEnc (4.3.2)
-  - AgoraRtcEngine_iOS/VirtualBackground (4.3.2)
-  - AgoraRtcEngine_iOS/VQA (4.3.2)
+  - AgoraRtcEngine_iOS (4.2.6):
+    - AgoraRtcEngine_iOS/AIAEC (= 4.2.6)
+    - AgoraRtcEngine_iOS/AINS (= 4.2.6)
+    - AgoraRtcEngine_iOS/AudioBeauty (= 4.2.6)
+    - AgoraRtcEngine_iOS/ClearVision (= 4.2.6)
+    - AgoraRtcEngine_iOS/ContentInspect (= 4.2.6)
+    - AgoraRtcEngine_iOS/DRM (= 4.2.6)
+    - AgoraRtcEngine_iOS/FaceDetection (= 4.2.6)
+    - AgoraRtcEngine_iOS/ReplayKit (= 4.2.6)
+    - AgoraRtcEngine_iOS/RtcBasic (= 4.2.6)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 4.2.6)
+    - AgoraRtcEngine_iOS/VideoCodecDec (= 4.2.6)
+    - AgoraRtcEngine_iOS/VideoCodecEnc (= 4.2.6)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 4.2.6)
+    - AgoraRtcEngine_iOS/VQA (= 4.2.6)
+  - AgoraRtcEngine_iOS/AIAEC (4.2.6)
+  - AgoraRtcEngine_iOS/AINS (4.2.6)
+  - AgoraRtcEngine_iOS/AudioBeauty (4.2.6)
+  - AgoraRtcEngine_iOS/ClearVision (4.2.6)
+  - AgoraRtcEngine_iOS/ContentInspect (4.2.6)
+  - AgoraRtcEngine_iOS/DRM (4.2.6)
+  - AgoraRtcEngine_iOS/FaceDetection (4.2.6)
+  - AgoraRtcEngine_iOS/ReplayKit (4.2.6)
+  - AgoraRtcEngine_iOS/RtcBasic (4.2.6)
+  - AgoraRtcEngine_iOS/SpatialAudio (4.2.6)
+  - AgoraRtcEngine_iOS/VideoCodecDec (4.2.6)
+  - AgoraRtcEngine_iOS/VideoCodecEnc (4.2.6)
+  - AgoraRtcEngine_iOS/VirtualBackground (4.2.6)
+  - AgoraRtcEngine_iOS/VQA (4.2.6)
+  - AgoraRtm_iOS (1.5.1)
+  - AgoraRtmControl_iOS (4.1.1):
+    - AgoraRtm_iOS (~> 1.5.1)
+  - AgoraUIKit_iOS (4.1.1):
+    - AgoraRtcEngine_iOS (~> 4.2.0)
+    - AgoraRtmControl_iOS (= 4.1.1)
   - Cloudinary (5.0.0):
     - Cloudinary/ios (= 5.0.0)
   - Cloudinary/ios (5.0.0)
@@ -182,7 +182,7 @@ PODS:
   - TransitionButton (0.5.3)
 
 DEPENDENCIES:
-  - AgoraRtcEngine_iOS
+  - AgoraUIKit_iOS
   - Cloudinary
   - FirebaseAnalytics
   - FirebaseCore
@@ -205,6 +205,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AgoraRtcEngine_iOS
+    - AgoraRtm_iOS
+    - AgoraRtmControl_iOS
+    - AgoraUIKit_iOS
     - Cloudinary
     - FirebaseAnalytics
     - FirebaseCore
@@ -243,7 +246,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sparrowcode/PermissionsKit
 
 SPEC CHECKSUMS:
-  AgoraRtcEngine_iOS: eaa97751fcfe1b50d9b067e0df92752a6a5f899f
+  AgoraRtcEngine_iOS: ac647332ad8f86d79cf810601c9e62b28c3a4de0
+  AgoraRtm_iOS: 595a9fa33a409831e6183396ea8f8bc563918403
+  AgoraRtmControl_iOS: 079ada035adea91e2b8fdca33a50e0daf3074189
+  AgoraUIKit_iOS: c0d65f7063f34743a2ec3c01019c257f54ec95b7
   Cloudinary: 1e8ed5ce1418ba50df625c1fec80ebec746141b6
   FirebaseAnalytics: f9211b719db260cc91aebee8bb539cb367d0dfd1
   FirebaseCore: a2b95ae4ce7c83ceecfbbbe3b6f1cddc7415a808
@@ -273,6 +279,6 @@ SPEC CHECKSUMS:
   Starscream: 19b5533ddb925208db698f0ac508a100b884a1b9
   TransitionButton: 36283346e17c64775a1b3bc3a7a72940a367de1f
 
-PODFILE CHECKSUM: 0ba8876e208a452b0f132f54494ac6be93cc32c1
+PODFILE CHECKSUM: de631c4d87d480f729841178235edc9a1f59e429
 
 COCOAPODS: 1.15.2

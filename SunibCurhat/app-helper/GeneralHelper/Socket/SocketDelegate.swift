@@ -27,6 +27,12 @@ protocol SocketDelegate: AnyObject {
     
     func didUpdateBlockUser(conversation: Conversation)
     func failUpdateBlock(message: String)
+    
+    func didRequestCall(conversation: Conversation)
+    func failRequestCall(message: String)
+    
+    func didUpdateAuthorizeCall(conversation: Conversation)
+    func failUpdateAuthorizeCall(message: String)
 }
 
 // default implementation
@@ -48,4 +54,10 @@ extension SocketDelegate {
     
     func didUpdateBlockUser(conversation: Conversation) { }
     func failUpdateBlock(message: String) { }
+    
+    func didRequestCall(conversation: Conversation) { }
+    func failRequestCall(message: String) { }
+    
+    func didUpdateAuthorizeCall(conversation: Conversation) { }
+    func failUpdateAuthorizeCall(message: String) { }
 }

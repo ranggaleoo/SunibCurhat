@@ -11,7 +11,7 @@ target 'SunibCurhat' do
   pod 'FirebaseCrashlytics'
   pod 'FirebaseMessaging'
   
-  pod 'AgoraRtcEngine_iOS'
+  pod 'AgoraUIKit_iOS'
  
   pod 'Instructions'
   pod 'Kingfisher'

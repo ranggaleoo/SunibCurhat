@@ -50,6 +50,7 @@ struct Preferences: Codable {
     let urls:                       PreferenceUrls?
     let contacts:                   PreferenceContacts?
     let cloudinary:                 PreferenceCloudinary?
+    let yekedoc:                    String?
 }
 
 struct PreferenceImages: Codable {
@@ -58,9 +59,10 @@ struct PreferenceImages: Codable {
 }
 
 struct PreferenceUrls: Codable {
+    let agora_token_server: String?
+    let socket_server: String?
     let privacy_policy: String?
     let user_agreement: String?
-    let socket_server: String?
 }
 
 struct PreferenceContacts: Codable {
@@ -74,14 +76,19 @@ struct PreferenceCloudinary: Codable {
     let tkn : String?
 }
 
+struct Yekedoc: Codable {
+    let agora_app_id: String?
+}
+
 struct User: Codable {
-    let user_id:    String
-    let device_id:  String
-    let email:      String?
-    let name:       String
-    let avatar:     String
-    var is_online:  Bool?
-    var fcm_token:  String?
+    let user_id:        String
+    let device_id:      String
+    let email:          String?
+    let name:           String
+    let avatar:         String
+    var is_online:      Bool?
+    var fcm_token:      String?
+    var pushkit_token:  String?
     
     func sender() -> SenderType {
         return ChatSender(senderId: user_id, displayName: name, avatar: avatar)

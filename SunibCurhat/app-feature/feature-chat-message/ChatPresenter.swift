@@ -10,6 +10,7 @@ import Foundation
 import MessageKit
 import UIKit
 import Cloudinary
+import PermissionsKit
 
 class ChatPresenter: ChatViewToPresenter {
     weak var view: ChatPresenterToView?
@@ -32,6 +33,7 @@ class ChatPresenter: ChatViewToPresenter {
             status: (conversation?.them().first?.is_online ?? true) ? "Online" : "Offline"
         )
         view?.reloadCollectionView()
+        view?.updateCallButton(isCallable: conversation?.is_callable)
     }
     
     func didScroll() {
@@ -76,14 +78,63 @@ class ChatPresenter: ChatViewToPresenter {
         }
     }
     
-    func didTapVoiceCall() {
-        if let convo = conversation, let user = convo.me() {
-            let mediaConvo = MediaConversation(
-                conversation_id: convo.conversation_id,
-                user: user,
-                role: .Publisher
-            )
-            interactor?.fetchToken(conversation: mediaConvo)
+    func didTapCall(medium: CallMediumType) {
+        if let is_callable = conversation?.is_callable, is_callable {
+            switch medium {
+            case .VideoCall:
+                let authorizedCamera = Permission.camera.authorized
+                let authorizedMicrophone = Permission.microphone.authorized
+                
+                if !authorizedCamera {
+                    Permission.camera.request { [weak self] in
+                        debugLog("auth camera")
+                    }
+                    return
+                }
+                
+                if !authorizedMicrophone {
+                    Permission.microphone.request { [weak self] in
+                        debugLog("auth microphone")
+                    }
+                    return
+                }
+            case .VoiceCall:
+                let authorizedMicrophone = Permission.microphone.authorized
+                        
+                if !authorizedMicrophone {
+                    Permission.microphone.request { [weak self] in
+                        debugLog("auth microphone")
+                    }
+                    return
+                }
+            default:
+                return
+            }
+            
+            if let convo = conversation, let user = convo.me() {
+                let mediaConvo = MediaConversation(
+                    conversation_id: convo.conversation_id,
+                    user: user,
+                    role: .publisher
+                )
+                router?.navigateToCall(from: view, conversation: mediaConvo, medium: medium)
+            }
+        } else {
+            view?.showAlertRequestCall(title: "Confimration", message: "Before making a call, you need to have approval and authorization from \(conversation?.them().first?.name ?? "User"). Are you sure you want to make a request for authorization?")
+        }
+    }
+    
+    func didTapRequestAuthorizeCall() {
+        if var convo = conversation {
+            convo.request_call_by = conversation?.me()?.user_id
+            interactor?.requestCall(conversation: convo)
+        }
+    }
+    
+    func didTapAuthorizeCall(accept: Bool) {
+        conversation?.is_callable = accept
+        if let convo = conversation {
+            interactor?.authorizeCall(conversation: convo)
         }
     }
     
@@ -216,10 +267,6 @@ extension ChatPresenter: ChatInteractorToPresenter {
         view?.showAlert(title: "Oops", message: message)
     }
     
-    func didGetRtcToken(conversation: MediaConversation) {
-        router?.navigateToVoiceCall(from: view, conversation: conversation)
-    }
-    
     func didUploadImage(response: CLDUploadResult?) {
         view?.stopLoader()
         guard let conversation_id = conversation?.conversation_id,
@@ -251,6 +298,14 @@ extension ChatPresenter: ChatInteractorToPresenter {
     }
     
     func failUpdateBlockUser(message: String) {
+        view?.showAlert(title: "Oops", message: message)
+    }
+    
+    func failingRequestCall(messagge: String) {
+        view?.showAlert(title: "Oops", message: messagge)
+    }
+    
+    func failAuthorizeCall(message: String) {
         view?.showAlert(title: "Oops", message: message)
     }
 }
@@ -330,6 +385,36 @@ extension ChatPresenter: SocketDelegate {
     }
     
     func failUpdateBlock(message: String) {
+        view?.showAlert(title: "Oops", message: message)
+    }
+    
+    func didRequestCall(conversation: Conversation) {
+        self.conversation = conversation
+        
+        if conversation.isRequestCall {
+            view?.showBottomSheetRequestCall(
+                conversation: conversation,
+                isFromCurrentSender: conversation.isRequestCallByMe,
+                isCallable: conversation.is_callable
+            )
+        }
+    }
+    
+    func failRequestCall(message: String) {
+        view?.showAlert(title: "Oops", message: message)
+    }
+    
+    func didUpdateAuthorizeCall(conversation: Conversation) {
+        self.conversation = conversation
+        view?.showBottomSheetRequestCall(
+            conversation: conversation,
+            isFromCurrentSender: conversation.isRequestCallByMe,
+            isCallable: conversation.is_callable
+        )
+        view?.updateCallButton(isCallable: conversation.is_callable)
+    }
+    
+    func failUpdateAuthorizeCall(message: String) {
         view?.showAlert(title: "Oops", message: message)
     }
 }

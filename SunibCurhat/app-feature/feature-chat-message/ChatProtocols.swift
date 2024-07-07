@@ -17,9 +17,12 @@ protocol ChatPresenterToView: AnyObject {
     func setupViews(name: String?)
     func updateInputBarToBlocked(name: String?)
     func updateUserStatusConnection(name: String?, status: String?)
+    func updateCallButton(isCallable: Bool?)
     func reloadCollectionView()
     func reloadAndKeepOffset()
     func showAlert(title: String, message: String)
+    func showAlertRequestCall(title: String, message: String)
+    func showBottomSheetRequestCall(conversation: Conversation?, isFromCurrentSender: Bool?, isCallable: Bool?)
     func showTyping(chat: Chat)
     func startLoader()
     func stopLoader()
@@ -35,7 +38,8 @@ protocol ChatPresenterToInteractor: AnyObject {
     func uploadImage(image: UIImage)
     func updateBlock(conversation: Conversation)
     func markAsRead(chats: [Chat])
-    func fetchToken(conversation: MediaConversation)
+    func requestCall(conversation: Conversation)
+    func authorizeCall(conversation: Conversation)
 }
 
 // MARK: Router -
@@ -43,7 +47,7 @@ protocol ChatPresenterToRouter: AnyObject {
     static func createChatModule(conversation: Conversation?) -> MessagesViewController
     func navigateToChats(to: ChatsPresenterToView?, conversation: Conversation?)
     func navigateToReport(chat: Chat, from: ChatPresenterToView?)
-    func navigateToVoiceCall(from: ChatPresenterToView?, conversation: MediaConversation)
+    func navigateToCall(from: ChatPresenterToView?, conversation: MediaConversation?, medium: CallMediumType?)
 }
 
 // MARK: Presenter -
@@ -58,7 +62,9 @@ protocol ChatViewToPresenter: AnyObject {
     func didPickImage(image: UIImage)
     func didTapBlock(block: Bool)
     func didTapReport()
-    func didTapVoiceCall()
+    func didTapCall(medium: CallMediumType)
+    func didTapRequestAuthorizeCall()
+    func didTapAuthorizeCall(accept: Bool)
     func didVisibleChatsAsRead(indexPaths: [IndexPath])
     func set(conversation: Conversation?)
     func typingIsStopped()
@@ -83,7 +89,8 @@ protocol ChatViewToPresenter: AnyObject {
 protocol ChatInteractorToPresenter: AnyObject {
     func failSendChat(message: String)
     func didUploadImage(response: CLDUploadResult?)
-    func didGetRtcToken(conversation: MediaConversation)
     func failUploadImage(message: String)
     func failUpdateBlockUser(message: String)
+    func failingRequestCall(messagge: String)
+    func failAuthorizeCall(message: String)
 }

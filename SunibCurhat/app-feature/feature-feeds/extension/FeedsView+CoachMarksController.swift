@@ -51,7 +51,9 @@ extension FeedsView: CoachMarksControllerDataSource {
                 
                 return coachMarksController.helper.makeCoachMark(for: tabbarView)
             case .moreOnFeedButton:
-                guard let cell = self.tableView.visibleCells.randomItem as? FeedDefaultCell
+                let cells = self.tableView.visibleCells
+                let cellIndex = Int(cells.count / 2)
+                guard let cell = self.tableView.visibleCells.item(at: cellIndex) as? FeedDefaultCell
                 else { return coachMarksController.helper.makeCoachMark() }
                 
                 return coachMarksController.helper.makeCoachMark(for: cell.btn_more)

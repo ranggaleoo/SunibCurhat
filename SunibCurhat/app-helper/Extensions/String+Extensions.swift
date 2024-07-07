@@ -2,6 +2,31 @@ import UIKit
 
 extension String {
     
+    // need bridging header
+    func md5() -> String {
+        let length = Int(CC_MD5_DIGEST_LENGTH)
+        let messageData = self.data(using:.utf8)!
+        var digestData = Data(count: length)
+        
+        _ = digestData.withUnsafeMutableBytes { digestBytes in
+            messageData.withUnsafeBytes { messageBytes in
+                CC_MD5(messageBytes.baseAddress, CC_LONG(messageData.count), digestBytes.bindMemory(to: UInt8.self).baseAddress)
+            }
+        }
+        
+        return digestData.map { String(format: "%02hhx", $0) }.joined()
+    }
+    
+//    need bridging header
+    func sha256() -> String {
+        let data = Data(self.utf8)
+        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA256($0.baseAddress, CC_LONG(data.count), &hash)
+        }
+        return hash.map { String(format: "%02x", $0) }.joined()
+    }
+    
     static func format(
         strings: [String],
         boldFont: UIFont = UIFont.boldSystemFont(ofSize: 14),

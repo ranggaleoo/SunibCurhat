@@ -134,6 +134,26 @@ class SocketService {
             }
             
         }
+        
+        self.on(.res_request_call) { [weak self] (result: Result<Conversation, Error>) in
+            switch result {
+            case .success(let res):
+                self?.delegate?.didRequestCall(conversation: res)
+            case .failure(let err):
+                self?.delegate?.failRequestCall(message: err.localizedDescription)
+            }
+            
+        }
+        
+        self.on(.res_authorize_call) { [weak self] (result: Result<Conversation, Error>) in
+            switch result {
+            case .success(let res):
+                self?.delegate?.didUpdateAuthorizeCall(conversation: res)
+            case .failure(let err):
+                self?.delegate?.failUpdateAuthorizeCall(message: err.localizedDescription)
+            }
+            
+        }
     }
     
     func set(URL: String) {

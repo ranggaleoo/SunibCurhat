@@ -13,27 +13,30 @@ class MainService {
     
     static let shared: MainService = MainService()
     
-    func fetchRtcToken(conversation: MediaConversation, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
-        if let socket_url = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)?.urls?.socket_server {
-            
-            let base_url = socket_url + URLConst.path_v1
+    func getAgoraToken(request: AgoraTokenRequest, completion: @escaping (Result<AgoraTokenResponse, Error>) -> Void) {
+        if let agora_url = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)?.urls?.agora_token_server {
+            let base_url = agora_url
             var params: [String: Any] = [:]
+            params["tokenType"] = request.tokenType.rawValue
+            params["channel"] = request.channel
+            params["uid"] = request.uid
             
-            if let conversationDict = conversation.toDictionary() {
-                params["media_conversation"] = conversationDict
-            } else {
-                // Handle error
-                completion(.failure(NSError(domain: "Error converting user to dictionary", code: 1, userInfo: nil)))
-                return
+            if let role = request.role {
+                params["role"] = role.rawValue
             }
+            
+            if let expire = request.expire {
+                params["expire"] = expire
+            }
+            
             HTTPRequest.shared.headers[.contentType] = "application/json"
-            HTTPRequest.shared.connect(url: base_url + "/fetchtoken", params: params, model: MainResponse<String>.self) { (result) in
+            HTTPRequest.shared.connect(url: base_url + "/getToken", params: params, model: AgoraTokenResponse.self) { (result) in
                 completion(result)
             }
         }
     }
     
-    func saveFcmToken(user: User, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
+    func saveToken(user: User, completion: @escaping (Result<MainResponse<String>, Error>) -> Void) {
         if let socket_url = UDHelpers.shared.getObject(type: Preferences.self, forKey: .preferences_key)?.urls?.socket_server {
             
             let base_url = socket_url + URLConst.path_v1

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestCallView" customModule="SunibCurhat" customModuleProvider="target">
+            <connections>
+                <outlet property="btn_accept" destination="sVw-kA-UKT" id="nf2-Ej-iYU"/>
+                <outlet property="btn_reject" destination="5Mm-yQ-AQ6" id="lEs-rI-NiN"/>
+                <outlet property="container_stack_btn_view" destination="9r0-HG-rlp" id="0sa-6i-ox4"/>
+                <outlet property="container_stack_view" destination="tzx-aD-ZMb" id="983-Ay-NE9"/>
+                <outlet property="container_view" destination="Xn1-59-5wK" id="L0m-db-uF0"/>
+                <outlet property="lbl_body" destination="gc1-mj-EgI" id="8BQ-9p-UGk"/>
+                <outlet property="lbl_title" destination="V6B-5c-jaf" id="3lA-CP-acy"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="456" height="256"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xn1-59-5wK">
+                    <rect key="frame" x="16" y="16" width="424" height="224"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tzx-aD-ZMb">
+                            <rect key="frame" x="16" y="16" width="392" height="192"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6B-5c-jaf" customClass="UINCLabelTitle" customModule="SunibCurhat" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="392" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="82t-XV-WMB"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc1-mj-EgI" customClass="UINCLabelBody" customModule="SunibCurhat" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="25" width="392" height="119"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9r0-HG-rlp">
+                                    <rect key="frame" x="0.0" y="144" width="392" height="48"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVw-kA-UKT" customClass="UINCButtonPrimaryRounded" customModule="SunibCurhat" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="196" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="VwA-TF-uYo"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Mm-yQ-AQ6" customClass="UINCButtonSecondaryRounded" customModule="SunibCurhat" customModuleProvider="target">
+                                            <rect key="frame" x="196" y="0.0" width="196" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="p5z-3F-196"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="tzx-aD-ZMb" firstAttribute="top" secondItem="Xn1-59-5wK" secondAttribute="top" constant="16" id="MX1-Lc-ReS"/>
+                        <constraint firstAttribute="bottom" secondItem="tzx-aD-ZMb" secondAttribute="bottom" constant="16" id="PML-qq-uv1"/>
+                        <constraint firstAttribute="trailing" secondItem="tzx-aD-ZMb" secondAttribute="trailing" constant="16" id="fwl-T2-evn"/>
+                        <constraint firstItem="tzx-aD-ZMb" firstAttribute="leading" secondItem="Xn1-59-5wK" secondAttribute="leading" constant="16" id="kaa-S9-Zqt"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Xn1-59-5wK" secondAttribute="trailing" constant="16" id="bGh-c4-2yc"/>
+                <constraint firstAttribute="bottom" secondItem="Xn1-59-5wK" secondAttribute="bottom" constant="16" id="bQv-Ay-DSb"/>
+                <constraint firstItem="Xn1-59-5wK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="maf-04-xgL"/>
+                <constraint firstItem="Xn1-59-5wK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="p9s-y5-afk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-93.129770992366403" y="-83.802816901408448"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

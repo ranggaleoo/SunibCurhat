@@ -15,6 +15,8 @@ struct Conversation: Codable {
     var last_chat           : String?
     var last_chat_timestamp : Int?
     var blocked_by          : String?
+    var request_call_by     : String?
+    var is_callable         : Bool?
 }
 
 extension Conversation: Equatable {
@@ -24,6 +26,22 @@ extension Conversation: Equatable {
 }
 
 extension Conversation {
+    var isRequestCall: Bool {
+        return request_call_by != nil
+    }
+    
+    var isRequestCallByMe: Bool {
+        if !isRequestCall {
+            return false
+        }
+        
+        guard let me = me()?.user_id,
+              let request_call_by_me = request_call_by
+        else { return false }
+        
+        return me == request_call_by_me
+    }
+    
     var isBlocked: Bool {
         return blocked_by != nil
     }
@@ -61,13 +79,14 @@ extension Conversation {
 }
 
 struct MediaConversation: Codable {
-    enum Role: UInt, Codable {
-        case Publisher = 1
-        case Subscriber = 2
+    enum Role: String, Codable {
+        case publisher
+        case subscriber
     }
     
     let conversation_id: String
     let user: User
     let role: Role
-    var token: String?
+    var rtc_token: String?
+    var rtm_token: String?
 }
