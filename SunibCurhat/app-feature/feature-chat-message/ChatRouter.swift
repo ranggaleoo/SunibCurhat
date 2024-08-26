@@ -43,12 +43,12 @@ class ChatRouter: ChatPresenterToRouter {
         }
     }
     
-    func navigateToCall(from: ChatPresenterToView?, conversation: MediaConversation?, medium: CallMediumType?) {
-        if let view = from as? UIViewController, let convo = conversation {
-            let call = CallRouter.createCallModule(mediaConversation: convo, medium: medium)
-            call.modalTransitionStyle = .crossDissolve
-            call.modalPresentationStyle = .fullScreen
-            view.present(call, animated: true)
+    func navigateToCall(from: ChatPresenterToView?, call: Call?, callType: Call.CallType?) {
+        if let view = from as? UIViewController, let call = call {
+            let callView = CallRouter.createCallModule(call: call, callType: callType)
+            callView.modalTransitionStyle = .crossDissolve
+            callView.modalPresentationStyle = .fullScreen
+            view.present(callView, animated: true)
         }
     }
 }

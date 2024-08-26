@@ -10,7 +10,7 @@ import UIKit
 
 class CallRouter: CallPresenterToRouter {
     
-    static func createCallModule(mediaConversation: MediaConversation?, medium: CallMediumType?) -> UIViewController {
+    static func createCallModule(call: Call?, callType: Call.CallType?) -> UIViewController {
         let view: UIViewController & CallPresenterToView = CallView()
         let presenter: CallViewToPresenter & CallInteractorToPresenter = CallPresenter()
         let interactor: CallPresenterToInteractor = CallInteractor()
@@ -20,8 +20,8 @@ class CallRouter: CallPresenterToRouter {
         presenter.view = view
         presenter.router = router
         presenter.interactor = interactor
-        presenter.mediaConversation = mediaConversation
-        presenter.callMediumType = medium != nil ? medium : .VoiceCall
+        presenter.call = call
+        presenter.callType = callType != nil ? callType : .voice_call
         interactor.presenter = presenter
         
         return view

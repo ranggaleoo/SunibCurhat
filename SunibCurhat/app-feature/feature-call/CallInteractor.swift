@@ -11,6 +11,17 @@ import Foundation
 class CallInteractor: CallPresenterToInteractor {
     weak var presenter: CallInteractorToPresenter?
     
+    func call(call: Call) {
+        SocketService.shared.emit(.req_call, call) { [weak self] (result) in
+            switch result {
+            case .success():
+                debugLog("success send call")
+            case .failure(let err):
+                debugLog(err.localizedDescription)
+            }
+        }
+    }
+    
     func getAgoraToken(request: AgoraTokenRequest) {
         MainService.shared.getAgoraToken(request: request) { [weak self] result in
             switch result {

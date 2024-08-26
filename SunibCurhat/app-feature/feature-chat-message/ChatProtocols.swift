@@ -48,7 +48,7 @@ protocol ChatPresenterToRouter: AnyObject {
     static func createChatModule(conversation: Conversation?) -> MessagesViewController
     func navigateToChats(to: ChatsPresenterToView?, conversation: Conversation?)
     func navigateToReport(chat: Chat, from: ChatPresenterToView?)
-    func navigateToCall(from: ChatPresenterToView?, conversation: MediaConversation?, medium: CallMediumType?)
+    func navigateToCall(from: ChatPresenterToView?, call: Call?, callType: Call.CallType?)
 }
 
 // MARK: Presenter -
@@ -63,7 +63,7 @@ protocol ChatViewToPresenter: AnyObject {
     func didPickImage(image: UIImage)
     func didTapBlock(block: Bool)
     func didTapReport()
-    func didTapCall(medium: CallMediumType)
+    func didTapCall(callType: Call.CallType)
     func didTapRequestAuthorizeCall()
     func didTapAuthorizeCall(accept: Bool)
     func didVisibleChatsAsRead(indexPaths: [IndexPath])

@@ -16,16 +16,20 @@ class CallPresenter: NSObject, CallViewToPresenter {
     weak var view: CallPresenterToView?
     var interactor: CallPresenterToInteractor?
     var router: CallPresenterToRouter?
-    var mediaConversation: MediaConversation?
-    var callMediumType: CallMediumType?
+    var call: Call?
+    var callType: Call.CallType?
     
     func didLoad() {
+        if let call = call {
+            interactor?.call(call: call)
+        }
+        
         interactor?.getAgoraToken(
             request: AgoraTokenRequest(
                 tokenType: .rtc,
-                channel: mediaConversation?.conversation_id ?? "",
-                uid: mediaConversation?.user.user_id ?? "",
-                role: mediaConversation?.role ?? .publisher,
+                channel: call?.conversation_id ?? "",
+                uid: call?.from?.user_id ?? "",
+                role: call?.role ?? .publisher,
                 expire: nil
             )
         )
@@ -37,8 +41,8 @@ class CallPresenter: NSObject, CallViewToPresenter {
     
     func getConnectionData() -> AgoraConnectionData? {
         let appId = interactor?.getYekedoc()?.agora_app_id ?? ""
-        let rtc_token = mediaConversation?.rtc_token
-        let rtm_token = mediaConversation?.rtm_token
+        let rtc_token = call?.rtc_token
+        let rtm_token = call?.rtm_token
         var data = AgoraConnectionData(appId: appId, rtcToken: rtc_token, rtmToken: rtm_token)
 //        data.username = mediaConversation?.user.user_id ?? ""
         return data
@@ -53,7 +57,7 @@ class CallPresenter: NSObject, CallViewToPresenter {
         settings.tokenURL = interactor?.getPreferences()?.urls?.agora_token_server
         settings.videoRenderMode = .hidden
 //        settings.previewEnabled = callMediumType == .VideoCall
-        settings.cameraEnabled = callMediumType == .VideoCall
+        settings.cameraEnabled = call?.type == .video_call
         settings.rtcDelegate = self
         settings.rtmDelegate = self
         settings.rtmChannelDelegate = self
@@ -72,10 +76,10 @@ class CallPresenter: NSObject, CallViewToPresenter {
         settings.colors.micFlag = UINCColor.error
         settings.colors.buttonTintColor = UINCColor.secondary_foreground
         
-        switch callMediumType {
-        case .VideoCall:
+        switch callType {
+        case .video_call:
             settings.enabledButtons = [.cameraButton, .flipButton, .micButton]
-        case .VoiceCall:
+        case .voice_call:
             settings.enabledButtons = [.cameraButton, .flipButton, .micButton]
         case nil:
             settings.enabledButtons = .all
@@ -84,26 +88,26 @@ class CallPresenter: NSObject, CallViewToPresenter {
     }
     
     func getChannel() -> String? {
-        return mediaConversation?.conversation_id.sha256()
+        return call?.conversation_id.sha256()
     }
 }
 
 extension CallPresenter: CallInteractorToPresenter {
     func didGetRtcToken(token: String?) {
-        mediaConversation?.rtc_token = token
+        call?.rtc_token = token
         interactor?.getAgoraToken(
             request: AgoraTokenRequest(
                 tokenType: .rtm,
-                channel: mediaConversation?.conversation_id ?? "",
-                uid: mediaConversation?.user.user_id ?? "",
-                role: mediaConversation?.role ?? .publisher,
+                channel: call?.conversation_id ?? "",
+                uid: call?.from?.user_id ?? "",
+                role: call?.role ?? .publisher,
                 expire: nil
             )
         )
     }
     
     func didGetRtmToken(token: String?) {
-        mediaConversation?.rtm_token = token
+        call?.rtm_token = token
         view?.setupViews()
     }
     

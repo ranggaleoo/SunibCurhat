@@ -292,11 +292,11 @@ class ChatView: MessagesViewController, ChatPresenterToView {
     }
     
     @objc private func videoCallDidPressed() {
-        presenter?.didTapCall(medium: .VideoCall)
+        presenter?.didTapCall(callType: .video_call)
     }
     
     @objc private func voiceCallDidPressed() {        
-        presenter?.didTapCall(medium: .VoiceCall)
+        presenter?.didTapCall(callType: .voice_call)
     }
     
     @objc private func moreDidPressed() {

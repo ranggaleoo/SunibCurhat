@@ -154,6 +154,15 @@ class SocketService {
             }
             
         }
+        
+        self.on(.res_call) { [weak self] (result: Result<Call, Error>) in
+            switch result {
+            case .success(let res):
+                self?.delegate?.didGetCall(call: res)
+            case .failure(let err):
+                self?.delegate?.failGetCall(message: err.localizedDescription)
+            }
+        }
     }
     
     func set(URL: String) {

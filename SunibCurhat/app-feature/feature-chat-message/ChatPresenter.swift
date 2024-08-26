@@ -94,10 +94,10 @@ class ChatPresenter: ChatViewToPresenter {
         }
     }
     
-    func didTapCall(medium: CallMediumType) {
+    func didTapCall(callType: Call.CallType) {
         if let is_callable = conversation?.is_callable, is_callable {
-            switch medium {
-            case .VideoCall:
+            switch callType {
+            case .video_call:
                 let authorizedCamera = Permission.camera.authorized
                 let authorizedMicrophone = Permission.microphone.authorized
                 
@@ -114,7 +114,7 @@ class ChatPresenter: ChatViewToPresenter {
                     }
                     return
                 }
-            case .VoiceCall:
+            case .voice_call:
                 let authorizedMicrophone = Permission.microphone.authorized
                         
                 if !authorizedMicrophone {
@@ -127,14 +127,22 @@ class ChatPresenter: ChatViewToPresenter {
                 return
             }
             
-            if let convo = conversation, let user = convo.me() {
-                let mediaConvo = MediaConversation(
-                    conversation_id: convo.conversation_id,
-                    user: user,
-                    role: .publisher
-                )
-                router?.navigateToCall(from: view, conversation: mediaConvo, medium: medium)
-            }
+            guard let conversation_id = conversation?.conversation_id,
+                  let from = conversation?.me(),
+                  let to = conversation?.them().first
+            else { return }
+            
+            let call = Call(
+                call_id: UUID().uuidString,
+                conversation_id: conversation_id,
+                from: from,
+                to: to,
+                role: .publisher,
+                type: callType,
+                created_at: Date().unixTimestampMilliseconds()
+            )
+            router?.navigateToCall(from: view, call: call, callType: callType)
+            
         } else {
             view?.showAlertRequestCall(title: "Confimration", message: "Before making a call, you need to have approval and authorization from \(conversation?.them().first?.name ?? "User"). Are you sure you want to make a request for authorization?")
         }

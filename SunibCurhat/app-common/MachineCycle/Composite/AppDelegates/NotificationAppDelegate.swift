@@ -12,6 +12,7 @@ import PushKit
 
 class NotificationAppDelegate: AppDelegateType {
     var gcmMessageIDKey = "gcm.message_id"
+    var pushRegistry: PKPushRegistry?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
@@ -30,9 +31,9 @@ class NotificationAppDelegate: AppDelegateType {
         application.registerForRemoteNotifications()
         
         // setup voip pushkit notification
-        let pushRegistry = PKPushRegistry(queue: .main)
-        pushRegistry.delegate = self
-        pushRegistry.desiredPushTypes = [.voIP]
+        pushRegistry = PKPushRegistry(queue: .main)
+        pushRegistry?.delegate = self
+        pushRegistry?.desiredPushTypes = [.voIP]
         
         return true
     }
@@ -51,6 +52,7 @@ class NotificationAppDelegate: AppDelegateType {
         }
         debugLog(userInfo)
         let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
+        CallManager.shared.reportIncomingCall(uuid: UUID(), handle: "conversation_id")
         completionHandler(UIBackgroundFetchResult.newData)
     }
 }
@@ -83,6 +85,7 @@ extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
         debugLog(userInfo)
         debugLog("Received notification with ID = \(id)")
         let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
+        CallManager.shared.reportIncomingCall(uuid: UUID(), handle: "conversation_id")
         completionHandler([.sound])
     }
     
@@ -95,6 +98,7 @@ extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
         debugLog(userInfo)
         debugLog("Received notification with ID = \(id)")
         let pushIsOn = ConstGlobal.setting_list.get(.pushNotification)?.usersValue ?? false
+        CallManager.shared.reportIncomingCall(uuid: UUID(), handle: "conversation_id")
         completionHandler()
     }
 }
@@ -102,7 +106,8 @@ extension NotificationAppDelegate: UNUserNotificationCenterDelegate {
 extension NotificationAppDelegate: PKPushRegistryDelegate {
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
         if var user = UDHelpers.shared.getObject(type: User.self, forKey: .user) {
-            let token = pushCredentials.token.base64EncodedString()
+//            let token = pushCredentials.token.base64EncodedString()
+            let token = pushCredentials.token.map { String(format: "%02x", $0) }.joined()
             user.pushkit_token = token
             MainService.shared.saveToken(user: user) { [weak self] result in
                 switch result {
@@ -118,6 +123,9 @@ extension NotificationAppDelegate: PKPushRegistryDelegate {
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         // Handle the incoming VoIP push notification
         // Show an incoming call screen
+        debugLog("didReceiveIncomingPushWith")
+        debugLog(payload.dictionaryPayload)
+        CallManager.shared.reportIncomingCall(uuid: UUID(), handle: "conversation_id")
         completion()
     }
 }

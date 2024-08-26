@@ -77,16 +77,3 @@ extension Conversation {
         return []
     }
 }
-
-struct MediaConversation: Codable {
-    enum Role: String, Codable {
-        case publisher
-        case subscriber
-    }
-    
-    let conversation_id: String
-    let user: User
-    let role: Role
-    var rtc_token: String?
-    var rtm_token: String?
-}

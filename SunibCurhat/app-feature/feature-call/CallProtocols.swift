@@ -23,11 +23,12 @@ protocol CallPresenterToInteractor: AnyObject {
     func getYekedoc() -> Yekedoc?
     func getPreferences() -> Preferences?
     func getAgoraToken(request: AgoraTokenRequest)
+    func call(call: Call)
 }
 
 // MARK: Router -
 protocol CallPresenterToRouter: AnyObject {
-    static func createCallModule(mediaConversation: MediaConversation?, medium: CallMediumType?) -> UIViewController
+    static func createCallModule(call: Call?, callType: Call.CallType?) -> UIViewController
     func navigateToParent(from: CallPresenterToView?)
 }
 
@@ -36,8 +37,8 @@ protocol CallViewToPresenter: AnyObject {
     var view: CallPresenterToView? {get set}
     var interactor: CallPresenterToInteractor? {get set}
     var router: CallPresenterToRouter? {get set}
-    var mediaConversation: MediaConversation? {get set}
-    var callMediumType: CallMediumType? {get set}
+    var call: Call? {get set}
+    var callType: Call.CallType? {get set}
     
     func didLoad()
     func didEndCall()

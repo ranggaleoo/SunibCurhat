@@ -15,6 +15,6 @@ struct AgoraTokenRequest: Codable {
     let tokenType: TokenType
     let channel: String
     let uid: String
-    let role: MediaConversation.Role?
+    let role: Call.Role?
     let expire: Int?
 }

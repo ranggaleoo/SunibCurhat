@@ -33,6 +33,9 @@ protocol SocketDelegate: AnyObject {
     
     func didUpdateAuthorizeCall(conversation: Conversation)
     func failUpdateAuthorizeCall(message: String)
+    
+    func didGetCall(call: Call)
+    func failGetCall(message: String)
 }
 
 // default implementation
@@ -60,4 +63,7 @@ extension SocketDelegate {
     
     func didUpdateAuthorizeCall(conversation: Conversation) { }
     func failUpdateAuthorizeCall(message: String) { }
+    
+    func didGetCall(call: Call) { }
+    func failGetCall(message: String) { }
 }

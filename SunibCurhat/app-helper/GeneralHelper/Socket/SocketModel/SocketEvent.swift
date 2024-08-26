@@ -18,6 +18,7 @@ enum SocketEventRequest: String {
     case req_update_block
     case req_request_call
     case req_authorize_call
+    case req_call
 }
 
 enum SocketEventResponse: String {
@@ -31,4 +32,5 @@ enum SocketEventResponse: String {
     case res_update_block
     case res_request_call
     case res_authorize_call
+    case res_call
 }
